@@ -417,7 +417,30 @@ export default function Home() {
   };
 
   const toggleSubject = (subjectId) => {
-    setExpandedSubject(expandedSubject === subjectId ? null : subjectId);
+    const newSubject = expandedSubject === subjectId ? null : subjectId;
+    setExpandedSubject(newSubject);
+    // Filter assessments based on selected subject
+    document.querySelectorAll('.assessment-card:not(.coming-soon)').forEach(card => {
+      if (!newSubject || card.dataset.subject === newSubject) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    // Also handle coming soon cards
+    document.querySelectorAll('.assessment-card.coming-soon').forEach(card => {
+      if (!newSubject || card.dataset.subject === newSubject) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    // Scroll to assessments section
+    if (newSubject) {
+      setTimeout(() => {
+        document.getElementById('assessments')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
   };
 
   const handleFilterClick = (filter) => {
