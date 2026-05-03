@@ -2,16 +2,71 @@ import React, { useState, useEffect } from 'react';
 import '../styles/global.css';
 import { useAuth } from '../context/AuthContext';
 
-const topicsData = [
-  { id: 'all', name: 'All Topics', icon: '📖', color: 'rgba(99, 102, 241, 0.15)' },
-  { id: 'number', name: 'Number', icon: '🔢', color: 'rgba(245, 158, 11, 0.15)' },
-  { id: 'algebra', name: 'Algebra', icon: '𝑥𝑦', color: 'rgba(139, 92, 246, 0.15)' },
-  { id: 'geometry', name: 'Geometry', icon: '△', color: 'rgba(236, 72, 153, 0.15)' },
-  { id: 'trigonometry', name: 'Trigonometry', icon: '📐', color: 'rgba(6, 182, 212, 0.15)' },
-  { id: 'probability', name: 'Probability', icon: '🎲', color: 'rgba(16, 185, 129, 0.15)' },
-  { id: 'statistics', name: 'Statistics', icon: '📊', color: 'rgba(6, 182, 212, 0.15)' },
-  { id: 'science', name: 'Science', icon: '⚛️', color: 'rgba(16, 185, 129, 0.15)' },
-  { id: 'ins', name: 'I & S', icon: '🏛', color: 'rgba(234, 88, 12, 0.15)' },
+const subjectsData = [
+  { 
+    id: 'math', 
+    name: 'Mathematics', 
+    icon: '📐', 
+    color: 'rgba(99, 102, 241, 0.15)',
+    topics: [
+      { id: 'number', name: 'Number', icon: '🔢' },
+      { id: 'algebra', name: 'Algebra', icon: '𝑥𝑦' },
+      { id: 'geometry', name: 'Geometry', icon: '△' },
+      { id: 'trigonometry', name: 'Trigonometry', icon: '📐' },
+      { id: 'probability', name: 'Probability', icon: '🎲' },
+      { id: 'statistics', name: 'Statistics', icon: '📊' }
+    ]
+  },
+  { 
+    id: 'ins', 
+    name: 'Individuals & Societies', 
+    icon: '🏛', 
+    color: 'rgba(234, 88, 12, 0.15)',
+    topics: [
+      { id: 'money', name: 'Money & Economy', icon: '💰' },
+      { id: 'supply-demand', name: 'Supply & Demand', icon: '📈' }
+    ]
+  },
+  { 
+    id: 'science', 
+    name: 'Science', 
+    icon: '⚛️', 
+    color: 'rgba(16, 185, 129, 0.15)',
+    topics: [
+      { id: 'ions', name: 'Ions & Isotopes', icon: '🧬' },
+      { id: 'ionic-bonding', name: 'Ionic Bonding', icon: '⚡' }
+    ]
+  },
+  { 
+    id: 'technology', 
+    name: 'Technology', 
+    icon: '💻', 
+    color: 'rgba(6, 182, 212, 0.15)',
+    topics: [
+      { id: 'coding', name: 'Coding Basics', icon: '⚙️' },
+      { id: 'ai', name: 'AI & ML', icon: '🤖' }
+    ]
+  },
+  { 
+    id: 'games', 
+    name: 'Games & Puzzles', 
+    icon: '🎮', 
+    color: 'rgba(236, 72, 153, 0.15)',
+    topics: [
+      { id: 'sudoku', name: 'Sudoku', icon: '🔢' },
+      { id: 'riddles', name: 'Riddles', icon: '🧩' }
+    ]
+  },
+  { 
+    id: 'biotech', 
+    name: 'BioTechnology', 
+    icon: '🧬', 
+    color: 'rgba(245, 158, 11, 0.15)',
+    topics: [
+      { id: 'news', name: 'Latest News', icon: '📰' },
+      { id: 'innovations', name: 'Innovations', icon: '💡' }
+    ]
+  }
 ];
 
 const assessmentsData = [
@@ -21,6 +76,7 @@ const assessmentsData = [
     description: 'Master set theory, 3-set Venn diagrams, inclusion-exclusion principle, and compound probability calculations.',
     topics: ['Sets', 'Venn Diagrams', 'Probability'],
     topicId: 'probability',
+    subjectId: 'math',
     questionCount: 16,
     time: '45',
     marks: 70,
@@ -37,6 +93,7 @@ const assessmentsData = [
     description: 'Expert-level challenge: 4-set Venn diagrams, multi-stage Bayes\' theorem, advanced combinatorics, and probability paradoxes.',
     topics: ['4-Set Venn', 'Bayes\' Theorem', 'Combinatorics'],
     topicId: 'probability',
+    subjectId: 'math',
     questionCount: 50,
     time: '90',
     marks: 400,
@@ -53,6 +110,7 @@ const assessmentsData = [
     description: 'Measures of central tendency, spread, box plots, histograms, and correlation.',
     topics: ['Mean/Median', 'Box Plots', 'IQR'],
     topicId: 'statistics',
+    subjectId: 'math',
     questionCount: 25,
     time: '60',
     marks: 150,
@@ -69,6 +127,7 @@ const assessmentsData = [
     description: 'Elite assessment: PIE, derangements, mean-median identity, Z-scores, combinatorics. AMC/Kangaroo style with charts.',
     topics: ['PIE', 'Derangements', 'Z-scores'],
     topicId: 'probability',
+    subjectId: 'math',
     questionCount: 25,
     time: '90',
     marks: 175,
@@ -85,6 +144,7 @@ const assessmentsData = [
     description: 'Mastery portal: Criterion A-D knowledge, patterns, communication, real-life application with AoPS elite challenges.',
     topics: ['Mean/Median', 'Std Dev', 'Box Plots'],
     topicId: 'statistics',
+    subjectId: 'math',
     questionCount: 25,
     time: '60',
     marks: 100,
@@ -100,7 +160,8 @@ const assessmentsData = [
     title: 'History & Future of Money',
     description: 'Explore 11,000 years of monetary evolution: barter to Bitcoin. OPVL analysis, PESTEL framework, and cryptocurrency debate.',
     topics: ['Barter Systems', 'Fiat Currency', 'Blockchain'],
-    topicId: 'ins',
+    topicId: 'money',
+    subjectId: 'ins',
     questionCount: 20,
     time: '90',
     marks: 44,
@@ -116,7 +177,8 @@ const assessmentsData = [
     title: 'Supply & Demand',
     description: 'Master market economics: Law of Demand/Supply, equilibrium, shifts, and government intervention with Swedish examples.',
     topics: ['Demand', 'Supply', 'Equilibrium'],
-    topicId: 'ins',
+    topicId: 'supply-demand',
+    subjectId: 'ins',
     questionCount: 20,
     time: '90',
     marks: 84,
@@ -133,6 +195,7 @@ const assessmentsData = [
     description: 'Full curriculum coverage: Number, Algebra, Geometry, Coordinate Geometry, Statistics, Probability, and Problem Solving.',
     topics: ['Number', 'Algebra', 'Geometry', '+more'],
     topicId: 'all',
+    subjectId: 'math',
     questionCount: 45,
     time: '60',
     marks: 45,
@@ -149,6 +212,7 @@ const assessmentsData = [
     description: 'Comprehensive trigonometry study guide with interactive diagrams, real-world examples, and all Haese MYP4 topics covered with LaTeX formulas.',
     topics: ['SOHCAHTOA', 'Sine Rule', 'Cosine Rule', 'Bearings'],
     topicId: 'trigonometry',
+    subjectId: 'math',
     questionCount: 0,
     time: 'Self-paced',
     marks: 0,
@@ -165,6 +229,7 @@ const assessmentsData = [
     description: '25 questions covering SOHCAHTOA, sine/cosine rules, bearings, area formula, trig graphs, and real-world problems. LaTeX formatted with interactive diagrams.',
     topics: ['SOHCAHTOA', 'Sine Rule', 'Cosine Rule', 'Bearings', 'Real World'],
     topicId: 'trigonometry',
+    subjectId: 'math',
     questionCount: 25,
     time: '60',
     marks: 100,
@@ -175,12 +240,13 @@ const assessmentsData = [
     icon: '△',
     iconBg: 'geometry'
   },
-{
+  {
     id: 11,
     title: 'Algebra - Study Material',
     description: 'Comprehensive algebra study guide with interactive graphing, equations solving, functions, sequences, and real-world applications. Based on Haese MYP4 curriculum.',
     topics: ['Expressions', 'Linear Equations', 'Quadratics', 'Functions', 'Sequences'],
     topicId: 'algebra',
+    subjectId: 'math',
     questionCount: 0,
     time: 'Self-paced',
     marks: 0,
@@ -197,6 +263,7 @@ const assessmentsData = [
     description: '25 questions covering algebraic expressions, linear/quadratic equations, simultaneous equations, functions, sequences, and real-world problems.',
     topics: ['Expressions', 'Linear Equations', 'Quadratics', 'Functions', 'Sequences'],
     topicId: 'algebra',
+    subjectId: 'math',
     questionCount: 25,
     time: '60',
     marks: 100,
@@ -212,7 +279,8 @@ const assessmentsData = [
     title: 'Science - Ions, Isotopes & Ionic Bonding',
     description: 'Comprehensive science study guide covering ion formation, isotope notation, ionic bonding, and properties of ionic compounds. Based on MYP4 Science curriculum.',
     topics: ['Ions', 'Isotopes', 'Ionic Bonding', 'Properties'],
-    topicId: 'science',
+    topicId: 'ions',
+    subjectId: 'science',
     questionCount: 0,
     time: 'Self-paced',
     marks: 0,
@@ -228,7 +296,8 @@ const assessmentsData = [
     title: 'Science Assessment - Ions & Bonding',
     description: '20 questions covering ions, isotopes, ionic bonding, properties of ionic compounds, and real-world applications. LaTeX formatted with interactive diagrams.',
     topics: ['Ions', 'Isotopes', 'Ionic Bonding', 'Properties', 'Real World'],
-    topicId: 'science',
+    topicId: 'ions',
+    subjectId: 'science',
     questionCount: 20,
     time: '45',
     marks: 80,
@@ -242,10 +311,13 @@ const assessmentsData = [
 ];
 
   const comingSoon = [
-  { icon: '📐', title: 'Functions & Graphing', topics: 'Coming Soon • Domain, range, transformations', category: 'myp5' },
-  { icon: '📊', title: 'Statistics & Probability', topics: 'Coming Soon • Mean, median, standard deviation', category: 'myp5' },
-  { icon: '🎓', title: 'DP Mathematics AA', topics: 'Coming Soon • IB Diploma Programme content', category: 'dp' },
-];
+    { icon: '📐', title: 'Functions & Graphing', topics: 'Coming Soon • Domain, range, transformations', category: 'myp5', subject: 'math' },
+    { icon: '📊', title: 'Statistics & Probability', topics: 'Coming Soon • Mean, median, standard deviation', category: 'myp5', subject: 'math' },
+    { icon: '🎓', title: 'DP Mathematics AA', topics: 'Coming Soon • IB Diploma Programme content', category: 'dp', subject: 'math' },
+    { icon: '💻', title: 'Web Development', topics: 'Coming Soon • HTML, CSS, JavaScript', category: 'myp5', subject: 'technology' },
+    { icon: '🎮', title: 'Chess Puzzles', topics: 'Coming Soon • Strategy & Logic', category: 'myp5', subject: 'games' },
+    { icon: '🧬', title: 'Genetics Basics', topics: 'Coming Soon • DNA, Inheritance', category: 'myp5', subject: 'biotech' },
+  ];
 
 function StatCard({ icon, value, label, colorClass }) {
   return (
@@ -257,23 +329,14 @@ function StatCard({ icon, value, label, colorClass }) {
   );
 }
 
-function TopicChip({ topic, active, onClick }) {
-  return (
-    <a href="#" className={`topic-chip ${active ? 'active' : ''}`} data-topic={topic.id} role="tab" aria-selected={active} onClick={onClick}>
-      <div className="topic-icon" style={{ background: topic.color }}>{topic.icon}</div>
-      <span>{topic.name}</span>
-    </a>
-  );
-}
-
-function AssessmentCard({ assessment, onFilter }) {
+function AssessmentCard({ assessment }) {
   const difficultyDots = [];
   for (let i = 0; i < 5; i++) {
     difficultyDots.push(<span key={i} className={i < assessment.difficulty ? 'active' : ''}></span>);
   }
   
   return (
-    <a href={assessment.href} className="assessment-card" data-category={assessment.category} data-topic={assessment.topicId || 'all'} aria-label={`Start ${assessment.title} assessment`} onClick={(e) => {
+    <a href={assessment.href} className="assessment-card" data-category={assessment.category} data-subject={assessment.subjectId || 'all'} data-topic={assessment.topicId || 'all'} aria-label={`Start ${assessment.title} assessment`} onClick={(e) => {
       if (assessment.href && assessment.href.includes('.html')) {
         e.preventDefault();
         window.location.assign(assessment.href);
@@ -303,7 +366,7 @@ function AssessmentCard({ assessment, onFilter }) {
 
 function ComingSoonCard({ item }) {
   return (
-    <div className="assessment-card coming-soon" data-category={item.category}>
+    <div className="assessment-card coming-soon" data-category={item.category} data-subject={item.subject}>
       <div className="coming-soon-icon">{item.icon}</div>
       <div className="coming-soon-title">{item.title}</div>
       <div className="coming-soon-topics">{item.topics}</div>
@@ -312,7 +375,7 @@ function ComingSoonCard({ item }) {
 }
 
 export default function Home() {
-  const [activeTopic, setActiveTopic] = useState('all');
+  const [expandedSubject, setExpandedSubject] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
   const [statsAnimated, setStatsAnimated] = useState(false);
   const { user, signOut } = useAuth();
@@ -353,22 +416,18 @@ export default function Home() {
     });
   };
 
-  const handleTopicClick = (e, topicId) => {
-    e.preventDefault();
-    setActiveTopic(topicId);
-    document.querySelectorAll('.assessment-card:not(.coming-soon)').forEach(card => {
-      if (topicId === 'all' || card.dataset.topic === topicId) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
+  const toggleSubject = (subjectId) => {
+    setExpandedSubject(expandedSubject === subjectId ? null : subjectId);
   };
 
   const handleFilterClick = (filter) => {
     setActiveFilter(filter);
     document.querySelectorAll('.assessment-card:not(.coming-soon)').forEach(card => {
-      if (filter === 'all' || card.dataset.category === filter) {
+      if (filter === 'all') {
+        card.style.display = 'block';
+      } else if (card.dataset.subject === filter) {
+        card.style.display = 'block';
+      } else if (['myp4', 'myp5', 'dp'].includes(filter) && card.dataset.category === filter) {
         card.style.display = 'block';
       } else {
         card.style.display = 'none';
@@ -388,19 +447,61 @@ export default function Home() {
         <div className="hero-content">
           <div className="hero-badge">
             <span></span>
-            Free IB Math Practice
+            Free IB Practice
           </div>
-          <h1 id="hero-title">Master <span>Mathematics</span><br/>with Kanishka</h1>
-          <p className="hero-desc">Interactive assessments aligned with IB MYP4 curriculum. Track your progress, identify knowledge gaps, and achieve excellence.</p>
+          <h1 id="hero-title">Master <span>Subjects</span><br/>with KaniMath</h1>
+          <p className="hero-desc">Interactive assessments aligned with IB curriculum. Track your progress, identify knowledge gaps, and achieve excellence.</p>
           <div className="hero-actions">
-            <a href="#assessments" className="btn btn-primary">
-              Start Learning
+            <a href="#subjects" className="btn btn-primary">
+              Explore Subjects
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="#topics" className="btn btn-secondary">
-              Browse Topics
+            <a href="#assessments" className="btn btn-secondary">
+              View Assessments
             </a>
           </div>
+        </div>
+      </section>
+
+      <section className="subjects-section" id="subjects" aria-labelledby="subjects-title">
+        <div className="section-header">
+          <h2 id="subjects-title">Explore Subjects</h2>
+          <p>Click on a subject to view available topics</p>
+        </div>
+        <div className="subjects-grid" role="tablist" aria-label="Subject navigation">
+          {subjectsData.map(subject => (
+            <div key={subject.id} className="subject-card">
+              <button 
+                className={`subject-header ${expandedSubject === subject.id ? 'expanded' : ''}`}
+                onClick={() => toggleSubject(subject.id)}
+                aria-expanded={expandedSubject === subject.id}
+                aria-controls={`topics-${subject.id}`}
+              >
+                <div className="subject-icon" style={{ background: subject.color }}>{subject.icon}</div>
+                <div className="subject-info">
+                  <h3>{subject.name}</h3>
+                  <span className="topic-count">{subject.topics.length} topics</span>
+                </div>
+                <svg className="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </button>
+              {expandedSubject === subject.id && (
+                <div className="topics-list" id={`topics-${subject.id}`} role="tabpanel">
+                  {subject.topics.map(topic => (
+                    <a 
+                      key={topic.id} 
+                      href={`#topic-${topic.id}`}
+                      className="topic-item"
+                    >
+                      <span className="topic-icon-small">{topic.icon}</span>
+                      <span>{topic.name}</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -410,18 +511,6 @@ export default function Home() {
           <StatCard icon="📝" value="276" label="Questions" colorClass="green" />
           <StatCard icon="⏱" value="360" label="Minutes" colorClass="amber" />
           <StatCard icon="🎯" value="MYP4" label="Curriculum" colorClass="cyan" />
-        </div>
-      </section>
-
-      <section className="topics-section" id="topics" aria-labelledby="topics-title">
-        <div className="section-header">
-          <h2 id="topics-title">Explore by Topic</h2>
-          <p>Filter assessments by mathematical domain</p>
-        </div>
-        <div className="topics-grid" role="tablist" aria-label="Topic filters">
-          {topicsData.map(topic => (
-            <TopicChip key={topic.id} topic={topic} active={activeTopic === topic.id} onClick={(e) => handleTopicClick(e, topic.id)} />
-          ))}
         </div>
       </section>
 
