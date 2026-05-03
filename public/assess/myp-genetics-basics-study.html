@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genetics Basics - MYP Science Study Material</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 40px 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .topic-badge { background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; display: inline-block; margin-top: 10px; }
+    h2 { color: #059669; margin: 30px 0 15px; font-size: 1.8em; border-bottom: 3px solid #10b981; padding-bottom: 10px; }
+    h3 { color: #047857; margin: 20px 0 10px; font-size: 1.3em; }
+    .content-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .key-concept { background: #d1fae5; border-left: 4px solid #10b981; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+    .key-concept strong { color: #065f46; }
+    .interactive-img { background: #f0fdf4; border: 2px dashed #10b981; padding: 20px; border-radius: 10px; margin: 15px 0; text-align: center; cursor: pointer; transition: all 0.3s; }
+    .interactive-img:hover { background: #d1fae5; transform: scale(1.01); }
+    .interactive-img h4 { color: #059669; margin-bottom: 10px; }
+    .dna-helix { font-family: 'Courier New', monospace; font-size: 1.2em; color: #10b981; padding: 20px; background: #1e293b; border-radius: 8px; margin: 15px 0; text-align: center; line-height: 2; }
+    .punnett-mini { display: inline-block; margin: 10px; border-collapse: collapse; }
+    .punnett-mini td, .punnett-mini th { border: 2px solid #10b981; padding: 10px; text-align: center; min-width: 50px; }
+    .punnett-mini th { background: #10b981; color: white; }
+    .punnett-mini td { background: #f0fdf4; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .comparison-table th, .comparison-table td { padding: 12px; text-align: left; border: 1px solid #e5e7eb; }
+    .comparison-table th { background: #10b981; color: white; }
+    .comparison-table tr:nth-child(even) { background: #f0fdf4; }
+    .quiz-box { background: #f0fdf4; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .quiz-question { font-weight: bold; margin-bottom: 10px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { padding: 10px; border: 2px solid #e5e7eb; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+    .quiz-option:hover { border-color: #10b981; background: #d1fae5; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .nav-links { display: flex; justify-content: space-between; margin: 30px 0; }
+    .nav-links a { background: #10b981; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+    .nav-links a:hover { background: #059669; }
+    .image-placeholder { background: #e5e7eb; border-radius: 8px; padding: 40px; text-align: center; color: #6b7280; margin: 15px 0; border: 2px dashed #9ca3af; }
+    .timeline { position: relative; padding-left: 40px; margin: 20px 0; }
+    .timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #10b981; }
+    .timeline-item { position: relative; margin: 15px 0; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .timeline-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 12px; height: 12px; border-radius: 50%; background: #10b981; border: 3px solid white; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧬 Genetics Basics</h1>
+      <div class="topic-badge">MYP Science - Introduction to Genetics</div>
+      <p style="margin-top: 15px; opacity: 0.9;">Your first step into the world of genes, DNA, and inheritance</p>
+    </header>
+
+    <div class="content-box">
+      <h2>What is Genetics?</h2>
+      <div class="key-concept">
+        <strong>Genetics</strong> is the study of heredity and variation in living organisms. It explains how traits are passed from parents to offspring.
+      </div>
+      
+      <div class="interactive-img" onclick="alert('DNA is made of four bases: A, T, G, C!')">
+        <h4>🖱️ Click to Explore: What is DNA?</h4>
+        <div class="dna-helix">
+          <div>   A — T   </div>
+          <div>   |   |   </div>
+          <div>   G — C   </div>
+          <div>   |   |   </div>
+          <div>   T — A   </div>
+          <div style="margin-top: 10px; font-size: 0.8em; color: #94a3b8;">↑ DNA Double Helix Structure ↑</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>1. Genes: The Units of Inheritance</h2>
+      <p>Genes are segments of DNA that control specific traits like eye color, height, or blood type.</p>
+      
+      <div class="interactive-img" onclick="this.innerHTML='<h4>🎉 You discovered: Humans have ~20,000-25,000 genes!</h4><p>Each gene provides instructions to make proteins.</p>'">
+        <h4>🖱️ Click to Reveal: How Many Genes Do Humans Have?</h4>
+        <div class="image-placeholder">
+          👤 Human Silhouette<br>
+          <small>Click to see gene count</small>
+        </div>
+      </div>
+
+      <h3>Alleles: Different Versions of Genes</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>Allele:</strong> A variant form of a gene (e.g., B for brown eyes, b for blue eyes)</li>
+        <li><strong>Homozygous:</strong> Two identical alleles (BB or bb)</li>
+        <li><strong>Heterozygous:</strong> Two different alleles (Bb)</li>
+      </ul>
+    </div>
+
+    <div class="content-box">
+      <h2>2. Chromosomes: Packages of DNA</h2>
+      <p>Humans have 46 chromosomes (23 pairs). One set comes from each parent.</p>
+      
+      <div class="interactive-img" onclick="this.innerHTML='<h4>🎉 Human Karyotype: 46 Chromosomes (23 Pairs)</h4><p>22 pairs of autosomes + 1 pair of sex chromosomes (XX or XY)</p><div style=\'margin-top:15px;\'>👧 XX = Female | 👦 XY = Male</div>'">
+        <h4>🖱️ Click to Reveal: Human Chromosome Set</h4>
+        <div class="image-placeholder">
+          🧬 Chromosome Pairs (1-22 + XY)<br>
+          <small>Click to learn about karyotypes</small>
+        </div>
+      </div>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Chromosome Number</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Diploid (2n)</td>
+            <td>46 (23 pairs)</td>
+            <td>Body cells</td>
+          </tr>
+          <tr>
+            <td>Haploid (n)</td>
+            <td>23</td>
+            <td>Sperm or egg cells</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>3. How Traits Are Inherited: Simple Inheritance</h2>
+      
+      <div class="key-concept">
+        <strong>Punnett Squares</strong> help predict the probability of offspring traits by showing all possible combinations of parental alleles.
+      </div>
+
+      <h3>Example: Tall (T) vs. Short (t) Plants</h3>
+      <p>Cross: Two heterozygous parents (Tt × Tt)</p>
+      
+      <div style="text-align: center; margin: 20px 0;">
+        <table class="punnett-mini">
+          <tr>
+            <th></th>
+            <th>T</th>
+            <th>t</th>
+          </tr>
+          <tr>
+            <th>T</th>
+            <td>TT<br><small>Tall</small></td>
+            <td>Tt<br><small>Tall</small></td>
+          </tr>
+          <tr>
+            <th>t</th>
+            <td>Tt<br><small>Tall</small></td>
+            <td>tt<br><small>Short</small></td>
+          </tr>
+        </table>
+        <p style="margin-top: 15px;"><strong>Result:</strong> 75% Tall, 25% Short (3:1 ratio)</p>
+      </div>
+
+      <div class="interactive-img" onclick="this.innerHTML='<h4>🎉 Understanding Dominant vs. Recessive</h4><p><strong>Dominant (T):</strong> Expressed even if only one copy present</p><p><strong>Recessive (t):</strong> Only expressed when two copies present</p>'">
+        <h4>🖱️ Click to Understand: Dominant vs. Recessive</h4>
+        <div class="image-placeholder">
+          📊 Dominant vs Recessive Visualization<br>
+          <small>Click to reveal explanation</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>4. Sex-Linked Traits</h2>
+      <p>Some traits are carried on the X chromosome. Males (XY) are more likely to express X-linked recessive traits.</p>
+      
+      <h3>Example: Color Blindness</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>More common in males (only one X chromosome)</li>
+        <li>Females need two copies of the recessive allele to be colorblind</li>
+        <li>Carrier females have one normal and one colorblind allele</li>
+      </ul>
+
+      <div class="interactive-img" onclick="this.innerHTML='<h4>🎉 Sex Chromosomes: XX vs XY</h4><div style=\'font-size:1.5em;\'>👧 XX = Female | 👦 XY = Male</div><p>Males get their X from mother, Y from father</p>'">
+        <h4>🖱️ Click to Explore: Why Are Males Different?</h4>
+        <div class="image-placeholder">
+          👦 Male (XY) vs 👧 Female (XX)<br>
+          <small>Click to understand sex chromosomes</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>5. DNA: The Blueprint of Life</h2>
+      
+      <div class="dna-helix">
+        <div style="color: #ef4444;">A</div> — <div style="color: #3b82f6;">T</div>
+        <div style="color: #22c55e;">G</div> — <div style="color: #f59e0b;">C</div>
+        <div style="margin-top: 10px; font-size: 0.9em;">Base Pairing Rules: A=T, G≡C</div>
+      </div>
+
+      <h3>DNA Functions</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>Store information:</strong> Contains instructions for building proteins</li>
+        <li><strong>Replicate:</strong> Makes copies of itself during cell division</li>
+        <li><strong>Mutate:</strong> Changes in DNA can lead to evolution</li>
+      </ul>
+
+      <div class="interactive-img" onclick="this.innerHTML='<h4>🎉 DNA vs. RNA Differences</h4><table class=\'comparison-table\'><tr><th>DNA</th><th>RNA</th></tr><tr><td>Deoxyribose sugar</td><td>Ribose sugar</td></tr><tr><td>Double-stranded</td><td>Single-stranded</td></tr><tr><td>Has Thymine (T)</td><td>Has Uracil (U)</td></tr></table>'">
+        <h4>🖱️ Click to Compare: DNA vs. RNA</h4>
+        <div class="image-placeholder">
+          🧬 DNA ↔ RNA Comparison<br>
+          <small>Click to see differences</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>6. Genetic Technology</h2>
+      <p>Modern technology allows us to read, copy, and modify DNA!</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>🔬 PCR (Polymerase Chain Reaction)</h4>
+          <p>Laboratory technique to make millions of copies of a specific DNA segment.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>🧪 Gel Electrophoresis</h4>
+          <p>Separates DNA fragments by size. Used in forensics and paternity tests.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>🧬 Genetic Modification</h4>
+          <p>Adding genes to organisms to give them new traits (e.g., Bt corn resists insects).</p>
+        </div>
+      </div>
+
+      <div class="interactive-img" onclick="this.innerHTML='<h4>🎉 GMOs: Benefits vs. Concerns</h4><div style=\'display:flex;gap:20px;margin-top:15px;\'><div style=\'flex:1;background:#d1fae5;padding:10px;border-radius:8px;\'><strong>✅ Benefits</strong><ul style=\'text-align:left;margin-left:20px;\'><li>Increased yield</li><li>Better nutrition</li></ul></div><div style=\'flex:1;background:#fee2e2;padding:10px;border-radius:8px;\'><strong>⚠️ Concerns</strong><ul style=\'text-align:left;margin-left:20px;\'><li>Environmental impact</li><li>Health questions</li></ul></div></div>'">
+        <h4>🖱️ Click to Debate: GMOs - Good or Bad?</h4>
+        <div class="image-placeholder">
+          🌽 GMO Corn vs 🌱 Organic Corn<br>
+          <small>Click to see the debate</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>7. Epigenetics: Nature vs. Nurture</h2>
+      <p>Genes can be turned on or off by environmental factors without changing the DNA sequence!</p>
+      
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>Diet, stress, exercise</strong> can affect how genes are expressed</li>
+        <li><strong>Methylation:</strong> Adding chemical tags that silence genes</li>
+        <li>Explains why identical twins can become different over time</li>
+      </ul>
+
+      <div class="key-concept">
+        <strong>Fun Fact:</strong> Your lifestyle choices can affect not only your gene expression but potentially your children's too!
+      </div>
+    </div>
+
+    <div class="content-box quiz-box">
+      <h2>🧪 Quick Check: What Did You Learn?</h2>
+      
+      <div class="quiz-question">1. How many chromosomes do humans have?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">23</div>
+        <div class="quiz-option" data-correct="true">46</div>
+        <div class="quiz-option">23 pairs</div>
+        <div class="quiz-option">44</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">2. Which base pairs with Adenine in DNA?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Guanine</div>
+        <div class="quiz-option" data-correct="true">Thymine</div>
+        <div class="quiz-option">Cytosine</div>
+        <div class="quiz-option">Uracil</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">3. In a Tt × Tt cross, what percentage will be tall?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">25%</div>
+        <div class="quiz-option" data-correct="true">75%</div>
+        <div class="quiz-option">50%</div>
+        <div class="quiz-option">100%</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">4. What does PCR do?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Separates DNA by size</div>
+        <div class="quiz-option" data-correct="true">Makes copies of DNA</div>
+        <div class="quiz-option">Cuts DNA</div>
+        <div class="quiz-option">Modifies genes</div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>📚 Summary: Your Genetics Journey</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <strong>✓ Genes & Alleles</strong> - Basic units of inheritance
+        </div>
+        <div class="timeline-item">
+          <strong>✓ Chromosomes</strong> - Packages of DNA (46 in humans)
+        </div>
+        <div class="timeline-item">
+          <strong>✓ Inheritance</strong> - How traits pass from parents to offspring
+        </div>
+        <div class="timeline-item">
+          <strong>✓ DNA Structure</strong> - A, T, G, C base pairing
+        </div>
+        <div class="timeline-item">
+          <strong>✓ Genetic Technology</strong> - PCR, gel electrophoresis, GMOs
+        </div>
+        <div class="timeline-item">
+          <strong>✓ Epigenetics</strong> - How environment affects gene expression
+        </div>
+      </div>
+      <p style="margin-top: 20px; text-align: center; font-size: 1.1em; color: #059669;">
+        <strong>🎓 Ready for IB Diploma Genetics? Continue to Topics 3.1-3.5, 7, D2.2, and 10!</strong>
+      </p>
+    </div>
+
+    <div class="nav-links">
+      <a href="dp-biotech-genes-study.html">Continue to DP Genetics →</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const parent = this.parentElement;
+        if (parent.querySelector('.correct')) return;
+        if (this.dataset.correct === 'true') {
+          this.classList.add('correct');
+        } else {
+          this.classList.add('incorrect');
+          parent.querySelector('[data-correct="true"]').classList.add('correct');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

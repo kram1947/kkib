@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genetics Basics - MYP Assessment</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 30px 20px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+    h1 { font-size: 2em; margin-bottom: 10px; }
+    .timer-box { background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 20px; display: inline-block; margin-top: 10px; font-size: 1.2em; }
+    .progress-bar { background: #e5e7eb; height: 8px; border-radius: 4px; margin: 20px 0; overflow: hidden; }
+    .progress-fill { background: #10b981; height: 100%; transition: width 0.3s; }
+    .question-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .question-number { color: #059669; font-weight: bold; margin-bottom: 10px; }
+    .question-text { font-size: 1.1em; margin-bottom: 15px; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option { padding: 12px 15px; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+    .option:hover { border-color: #10b981; background: #d1fae5; }
+    .option.selected { border-color: #10b981; background: #d1fae5; }
+    .nav-buttons { display: flex; justify-content: space-between; margin: 20px 0; }
+    .btn { background: #10b981; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+    .btn:hover { background: #059669; }
+    .btn:disabled { background: #9ca3af; cursor: not-allowed; }
+    .results { display: none; background: white; padding: 30px; border-radius: 10px; text-align: center; }
+    .score { font-size: 3em; color: #10b981; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧬 Genetics Basics Assessment</h1>
+      <div class="timer-box">⏱ Time: <span id="timer">30:00</span></div>
+      <p style="margin-top: 10px;">MYP Science - Introduction to Genetics</p>
+    </header>
+
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width: 0%"></div></div>
+
+    <div id="assessment">
+      <div class="question-box" data-question="1">
+        <div class="question-number">Question 1 of 20</div>
+        <div class="question-text">How many chromosomes do humans have?</div>
+        <div class="options">
+          <div class="option" data-correct="true">46 (23 pairs)</div>
+          <div class="option">23</div>
+          <div class="option">44</div>
+          <div class="option">48</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="2" style="display:none;">
+        <div class="question-number">Question 2 of 20</div>
+        <div class="question-text">What is a gene?</div>
+        <div class="options">
+          <div class="option">A type of protein</div>
+          <div class="option" data-correct="true">A segment of DNA that controls a trait</div>
+          <div class="option">The same as a chromosome</div>
+          <div class="option">A type of cell</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="3" style="display:none;">
+        <div class="question-number">Question 3 of 20</div>
+        <div class="question-text">Which base pairs with Adenine (A) in DNA?</div>
+        <div class="options">
+          <div class="option">Guanine</div>
+          <div class="option" data-correct="true">Thymine</div>
+          <div class="option">Cytosine</div>
+          <div class="option">Uracil</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="4" style="display:none;">
+        <div class="question-number">Question 4 of 20</div>
+        <div class="question-text">What is an allele?</div>
+        <div class="options">
+          <div class="option">A type of chromosome</div>
+          <div class="option" data-correct="true">A variant form of a gene</div>
+          <div class="option">A protein molecule</div>
+          <div class="option">A cell structure</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="5" style="display:none;">
+        <div class="question-number">Question 5 of 20</div>
+        <div class="question-text">In a Tt × Tt cross, what is the phenotypic ratio?</div>
+        <div class="options">
+          <div class="option">1:1</div>
+          <div class="option" data-correct="true">3:1 (75% tall, 25% short)</div>
+          <div class="option">1:2:1</div>
+          <div class="option">9:3:3:1</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="6" style="display:none;">
+        <div class="question-number">Question 6 of 20</div>
+        <div class="question-text">What is a homozygous genotype?</div>
+        <div class="options">
+          <div class="option">Two different alleles (Tt)</div>
+          <div class="option" data-correct="true">Two identical alleles (TT or tt)</div>
+          <div class="option">Three alleles</div>
+          <div class="option">No alleles</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="7" style="display:none;">
+        <div class="question-number">Question 7 of 20</div>
+        <div class="question-text">Males have which sex chromosomes?</div>
+        <div class="options">
+          <div class="option">XX</div>
+          <div class="option" data-correct="true">XY</div>
+          <div class="option">YY</div>
+          <div class="option">X only</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="8" style="display:none;">
+        <div class="question-number">Question 8 of 20</div>
+        <div class="question-text">Color blindness is more common in males because:</div>
+        <div class="options">
+          <div class="option">Males have two X chromosomes</div>
+          <div class="option" data-correct="true">Males only need one recessive allele (on X)</div>
+          <div class="option">Females are immune</div>
+          <div class="option">It's Y-linked</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="9" style="display:none;">
+        <div class="question-number">Question 9 of 20</div>
+        <div class="question-text">What does DNA stand for?</div>
+        <div class="options">
+          <div class="option">Direct Nucleic Acid</div>
+          <div class="option" data-correct="true">Deoxyribonucleic Acid</div>
+          <div class="option">Double Nucleus Acid</div>
+          <div class="option">Dynamic Nuclear Array</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="10" style="display:none;">
+        <div class="question-number">Question 10 of 20</div>
+        <div class="question-text">Which base is found in RNA but NOT in DNA?</div>
+        <div class="options">
+          <div class="option">Adenine</div>
+          <div class="option">Thymine</div>
+          <div class="option" data-correct="true">Uracil</div>
+          <div class="option">Guanine</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="11" style="display:none;">
+        <div class="question-number">Question 11 of 20</div>
+        <div class="question-text">What is PCR used for?</div>
+        <div class="options">
+          <div class="option">Separating DNA by size</div>
+          <div class="option" data-correct="true">Making many copies of DNA</div>
+          <div class="option">Cutting DNA</div>
+          <div class="option">Visualizing chromosomes</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="12" style="display:none;">
+        <div class="question-number">Question 12 of 20</div>
+        <div class="question-text">In gel electrophoresis, DNA moves toward:</div>
+        <div class="options">
+          <div class="option">Negative electrode</div>
+          <div class="option" data-correct="true">Positive electrode</div>
+          <div class="option">Both electrodes</div>
+          <div class="option">It doesn't move</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="13" style="display:none;">
+        <div class="question-number">Question 13 of 20</div>
+        <div class="question-text">What is a GMO?</div>
+        <div class="options">
+          <div class="option">A naturally evolved organism</div>
+          <div class="option" data-correct="true">An organism with altered genetic material</div>
+          <div class="option">A type of virus</div>
+          <div class="option">A cloning technique</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="14" style="display:none;">
+        <div class="question-number">Question 14 of 20</div>
+        <div class="question-text">Bt corn contains a gene from:</div>
+        <div class="options">
+          <div class="option">Another plant</div>
+          <div class="option" data-correct="true">Bacteria (Bacillus thuringiensis)</div>
+          <div class="option">A virus</div>
+          <div class="option">A fungus</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="15" style="display:none;">
+        <div class="question-number">Question 15 of 20</div>
+        <div class="question-text">What is epigenetics?</div>
+        <div class="options">
+          <div class="option">Changes to DNA sequence</div>
+          <div class="option">Mutations in genes</div>
+          <div class="option" data-correct="true">Changes in gene expression without DNA changes</div>
+          <div class="option">Protein synthesis</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="16" style="display:none;">
+        <div class="question-number">Question 16 of 20</div>
+        <div class="question-text">Which is NOT a base found in DNA?</div>
+        <div class="options">
+          <div class="option">Adenine</div>
+          <div class="option">Guanine</div>
+          <div class="option" data-correct="true">Uracil</div>
+          <div class="option">Cytosine</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="17" style="display:none;">
+        <div class="question-number">Question 17 of 20</div>
+        <div class="question-text">Haploid cells have how many chromosomes?</div>
+        <div class="options">
+          <div class="option">46</div>
+          <div class="option" data-correct="true">23</div>
+          <div class="option">92</div>
+          <div class="option">44</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="18" style="display:none;">
+        <div class="question-number">Question 18 of 20</div>
+        <div class="question-text">What is the purpose of DNA methylation?</div>
+        <div class="options">
+          <div class="option">To copy DNA</div>
+          <div class="option" data-correct="true">Usually to silence (turn off) genes</div>
+          <div class="option">To make proteins</div>
+          <div class="option">To repair DNA</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="19" style="display:none;">
+        <div class="question-number">Question 19 of 20</div>
+        <div class="question-text">Which environmental factor can affect gene expression?</div>
+        <div class="options">
+          <div class="option">Only genetics</div>
+          <div class="option" data-correct="true">Diet, stress, exercise</div>
+          <div class="option">Only mutations</div>
+          <div class="option">None - it's fixed</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="20" style="display:none;">
+        <div class="question-number">Question 20 of 20</div>
+        <div class="question-text">What is the first step in DNA replication?</div>
+        <div class="options">
+          <div class="option" data-correct="true">DNA double helix unwinds (denaturation)</div>
+          <div class="option">Proteins are synthesized</div>
+          <div class="option">Cell divides</div>
+          <div class="option">RNA is transcribed</div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn" id="prevBtn" disabled>Previous</button>
+        <button class="btn" id="nextBtn">Next</button>
+        <button class="btn" id="submitBtn" style="display:none;">Submit Assessment</button>
+      </div>
+    </div>
+
+    <div class="results" id="results">
+      <h2>Assessment Complete! 🎉</h2>
+      <div class="score" id="score">0%</div>
+      <p id="scoreText"></p>
+      <button class="btn" onclick="location.reload()">Retake Assessment</button>
+      <button class="btn" style="margin-left: 10px;" onclick="window.location.href='dp-biotech-genes-study.html'">Continue to DP Genetics →</button>
+    </div>
+  </div>
+
+  <script>
+    let currentQuestion = 1, answers = {}, totalQuestions = 20, timeLeft = 30 * 60;
+    
+    const timerInterval = setInterval(() => {
+      timeLeft--;
+      const m = Math.floor(timeLeft / 60), s = timeLeft % 60;
+      document.getElementById('timer').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+      if (timeLeft <= 0) { clearInterval(timerInterval); submitAssessment(); }
+    }, 1000);
+
+    document.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        const qb = this.closest('.question-box'), qn = qb.dataset.question;
+        qb.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        this.classList.add('selected');
+        answers[qn] = this.dataset.correct === 'true';
+      });
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentQuestion < totalQuestions) {
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'none';
+        currentQuestion++;
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+        updateNav();
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentQuestion > 1) {
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'none';
+        currentQuestion--;
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+        updateNav();
+      }
+    });
+
+    function updateNav() {
+      document.getElementById('prevBtn').disabled = currentQuestion === 1;
+      document.getElementById('nextBtn').style.display = currentQuestion === totalQuestions ? 'none' : 'block';
+      document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+      document.getElementById('progress').style.width = `${(currentQuestion / totalQuestions) * 100}%`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', submitAssessment);
+
+    function submitAssessment() {
+      clearInterval(timerInterval);
+      let correct = 0;
+      for (let i = 1; i <= totalQuestions; i++) { if (answers[i]) correct++; }
+      const score = Math.round((correct / totalQuestions) * 100);
+      document.getElementById('assessment').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
+      document.getElementById('score').textContent = `${score}%`;
+      document.getElementById('scoreText').textContent = `You got ${correct} out of ${totalQuestions} questions correct!`;
+    }
+    updateNav();
+  </script>
+</body>
+</html>
