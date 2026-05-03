@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Genetics & Evolution (Topic 10) - IB Diploma Assessment</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 30px 20px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+    h1 { font-size: 2em; margin-bottom: 10px; }
+    .timer-box { background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 20px; display: inline-block; margin-top: 10px; font-size: 1.2em; }
+    .progress-bar { background: #e5e7eb; height: 8px; border-radius: 4px; margin: 20px 0; overflow: hidden; }
+    .progress-fill { background: #f59e0b; height: 100%; transition: width 0.3s; }
+    .question-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .question-number { color: #d97706; font-weight: bold; margin-bottom: 10px; }
+    .question-text { font-size: 1.1em; margin-bottom: 15px; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option { padding: 12px 15px; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+    .option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .option.selected { border-color: #f59e0b; background: #fef3c7; }
+    .nav-buttons { display: flex; justify-content: space-between; margin: 20px 0; }
+    .btn { background: #f59e0b; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+    .btn:hover { background: #d97706; }
+    .btn:disabled { background: #9ca3af; cursor: not-allowed; }
+    .results { display: none; background: white; padding: 30px; border-radius: 10px; text-align: center; }
+    .score { font-size: 3em; color: #d97706; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📈 Advanced Genetics & Evolution (Topic 10) Assessment</h1>
+      <div class="timer-box">⏱ Time: <span id="timer">45:00</span></div>
+      <p style="margin-top: 10px;">IB Diploma BioTechnology - HL Only</p>
+    </header>
+
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width: 0%"></div></div>
+
+    <div id="assessment">
+      <div class="question-box" data-question="1">
+        <div class="question-number">Question 1 of 15</div>
+        <div class="question-text">What is the expected phenotypic ratio for a dihybrid cross?</div>
+        <div class="options">
+          <div class="option">3:1</div>
+          <div class="option" data-correct="true">9:3:3:1</div>
+          <div class="option">1:2:1</div>
+          <div class="option">1:1</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="2" style="display:none;">
+        <div class="question-number">Question 2 of 15</div>
+        <div class="question-text">Linked genes are:</div>
+        <div class="options">
+          <div class="option">On different chromosomes</div>
+          <div class="option" data-correct="true">Close together on the same chromosome</div>
+          <div class="option">Always inherited independently</div>
+          <div class="option">Never recombine</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="3" style="display:none;">
+        <div class="question-number">Question 3 of 15</div>
+        <div class="question-text">What is the formula for chi-squared?</div>
+        <div class="options">
+          <div class="option">χ² = (O + E)² / E</div>
+          <div class="option" data-correct="true">χ² = Σ [(O - E)² / E]</div>
+          <div class="option">χ² = O / E</div>
+          <div class="option">χ² = (O - E) / E</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="4" style="display:none;">
+        <div class="question-number">Question 4 of 15</div>
+        <div class="question-text">If genes are 18 cM apart, what is the recombination frequency?</div>
+        <div class="options">
+          <div class="option">18%</div>
+          <div class="option" data-correct="true">18%</div>
+          <div class="option">0.18%</div>
+          <div class="option">82%</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="5" style="display:none;">
+        <div class="question-number">Question 5 of 15</div>
+        <div class="question-text">In a chi-squared test, degrees of freedom (df) for a dihybrid cross is:</div>
+        <div class="options">
+          <div class="option">1</div>
+          <div class="option">2</div>
+          <div class="option" data-correct="true">3</div>
+          <div class="option">4</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="6" style="display:none;">
+        <div class="question-number">Question 6 of 15</div>
+        <div class="question-text">What is the maximum recombination frequency (genes appear unlinked)?</div>
+        <div class="options">
+          <div class="option">25%</div>
+          <div class="option">75%</div>
+          <div class="option" data-correct="true">50%</div>
+          <div class="option">100%</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="7" style="display:none;">
+        <div class="question-number">Question 7 of 15</div>
+        <div class="question-text">If calculated χ² < critical value, you:</div>
+        <div class="options">
+          <div class="option">Reject null hypothesis</div>
+          <div class="option" data-correct="true">Accept null hypothesis (no significant difference)</div>
+          <div class="option">Conclude genes are linked</div>
+          <div class="option">Repeat the experiment</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="8" style="display:none;">
+        <div class="question-number">Question 8 of 15</div>
+        <div class="question-text">What does 1 centimorgan (cM) represent?</div>
+        <div class="options">
+          <div class="option">1% of the chromosome</div>
+          <div class="option" data-correct="true">1% recombination frequency</div>
+          <div class="option">100 base pairs</div>
+          <div class="option">1 million base pairs</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="9" style="display:none;">
+        <div class="question-number">Question 9 of 15</div>
+        <div class="question-text">Crossing over can:</div>
+        <div class="options">
+          <div class="option">Only occur in unlinked genes</div>
+          <div class="option" data-correct="true">Separate linked genes (recombination)</div>
+          <div class="option">Never occur in linked genes</div>
+          <div class="option">Increase linkage</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="10" style="display:none;">
+        <div class="question-number">Question 10 of 15</div>
+        <div class="question-text">What is the null hypothesis in a genetics chi-squared test?</div>
+        <div class="options">
+          <div class="option">Genes are linked</div>
+          <div class="option" data-correct="true">No significant difference between observed and expected</div>
+          <div class="option">Genes are unlinked</div>
+          <div class="option">All traits are dominant</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="11" style="display:none;">
+        <div class="question-number">Question 11 of 15</div>
+        <div class="question-text">How many boxes are in a dihybrid Punnett square?</div>
+        <div class="options">
+          <div class="option">4</div>
+          <div class="option">8</div>
+          <div class="option" data-correct="true">16</div>
+          <div class="option">32</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="12" style="display:none;">
+        <div class="question-number">Question 12 of 15</div>
+        <div class="question-text">Critical value for df=3 at p=0.05 is:</div>
+        <div class="options">
+          <div class="option">3.841</div>
+          <div class="option">5.991</div>
+          <div class="option" data-correct="true">7.815</div>
+          <div class="option">11.345</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="13" style="display:none;">
+        <div class="question-number">Question 13 of 15</div>
+        <div class="question-text">Genes far apart on the same chromosome behave as:</div>
+        <div class="options">
+          <div class="option">Linked (0% recombination)</div>
+          <div class="option" data-correct="true">Unlinked (50% recombination)</div>
+          <div class="option">Impossible to map</div>
+          <div class="option">Always recombinant</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="14" style="display:none;">
+        <div class="question-number">Question 14 of 15</div>
+        <div class="question-text">What is the expected ratio for a test cross (dihybrid × recessive)?</div>
+        <div class="options">
+          <div class="option">9:3:3:1</div>
+          <div class="option" data-correct="true">1:1:1:1</div>
+          <div class="option">3:1</div>
+          <div class="option">1:2:1</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="15" style="display:none;">
+        <div class="question-number">Question 15 of 15</div>
+        <div class="question-text">How many degrees of freedom for a monohybrid cross (2 categories)?</div>
+        <div class="options">
+          <div class="option" data-correct="true">1</div>
+          <div class="option">2</div>
+          <div class="option">3</div>
+          <div class="option">0</div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn" id="prevBtn" disabled>Previous</button>
+        <button class="btn" id="nextBtn">Next</button>
+        <button class="btn" id="submitBtn" style="display:none;">Submit Assessment</button>
+      </div>
+    </div>
+
+    <div class="results" id="results">
+      <h2>Assessment Complete!</h2>
+      <div class="score" id="score">0%</div>
+      <p id="scoreText"></p>
+      <button class="btn" onclick="location.reload()">Retake Assessment</button>
+    </div>
+  </div>
+
+  <script>
+    let currentQuestion = 1, answers = {}, totalQuestions = 15, timeLeft = 45 * 60;
+    const timerInterval = setInterval(() => {
+      timeLeft--;
+      const m = Math.floor(timeLeft / 60), s = timeLeft % 60;
+      document.getElementById('timer').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+      if (timeLeft <= 0) { clearInterval(timerInterval); submitAssessment(); }
+    }, 1000);
+
+    document.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        const qb = this.closest('.question-box'), qn = qb.dataset.question;
+        qb.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        this.classList.add('selected');
+        answers[qn] = this.dataset.correct === 'true';
+      });
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentQuestion < totalQuestions) {
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'none';
+        currentQuestion++;
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+        updateNav();
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentQuestion > 1) {
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'none';
+        currentQuestion--;
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+        updateNav();
+      }
+    });
+
+    function updateNav() {
+      document.getElementById('prevBtn').disabled = currentQuestion === 1;
+      document.getElementById('nextBtn').style.display = currentQuestion === totalQuestions ? 'none' : 'block';
+      document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+      document.getElementById('progress').style.width = `${(currentQuestion / totalQuestions) * 100}%`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', submitAssessment);
+
+    function submitAssessment() {
+      clearInterval(timerInterval);
+      let correct = 0;
+      for (let i = 1; i <= totalQuestions; i++) { if (answers[i]) correct++; }
+      const score = Math.round((correct / totalQuestions) * 100);
+      document.getElementById('assessment').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
+      document.getElementById('score').textContent = `${score}%`;
+      document.getElementById('scoreText').textContent = `You got ${correct} out of ${totalQuestions} questions correct!`;
+    }
+    updateNav();
+  </script>
+</body>
+</html>

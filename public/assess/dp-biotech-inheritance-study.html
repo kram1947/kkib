@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inheritance (Topic 3.4) - IB Diploma BioTechnology Study Material</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 40px 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .topic-badge { background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; display: inline-block; margin-top: 10px; }
+    h2 { color: #d97706; margin: 30px 0 15px; font-size: 1.8em; border-bottom: 3px solid #f59e0b; padding-bottom: 10px; }
+    h3 { color: #92400e; margin: 20px 0 10px; font-size: 1.3em; }
+    .content-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .key-concept { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+    .key-concept strong { color: #92400e; }
+    .punnett-square { margin: 20px auto; border-collapse: collapse; width: 300px; }
+    .punnett-square td, .punnett-square th { border: 2px solid #f59e0b; padding: 15px; text-align: center; font-weight: bold; }
+    .punnett-square th { background: #f59e0b; color: white; }
+    .punnett-square td { background: #fffbeb; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .comparison-table th, .comparison-table td { padding: 12px; text-align: left; border: 1px solid #e5e7eb; }
+    .comparison-table th { background: #f59e0b; color: white; }
+    .comparison-table tr:nth-child(even) { background: #fef3c7; }
+    .interactive { background: #fffbeb; border: 2px dashed #f59e0b; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .quiz-box { background: #fffbeb; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .quiz-question { font-weight: bold; margin-bottom: 10px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { padding: 10px; border: 2px solid #e5e7eb; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+    .quiz-option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .nav-links { display: flex; justify-content: space-between; margin: 30px 0; }
+    .nav-links a { background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+    .nav-links a:hover { background: #d97706; }
+    .sex-linked { background: #fef3c7; padding: 15px; border-radius: 8px; margin: 15px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📊 Inheritance (Topic 3.4)</h1>
+      <div class="topic-badge">IB Diploma BioTechnology - Core SL & HL</div>
+      <p style="margin-top: 15px; opacity: 0.9;">Punnett squares, monohybrid crosses, and sex-linked traits</p>
+    </header>
+
+    <div class="content-box">
+      <h2>Monohybrid Crosses</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> A genetic cross examining the inheritance of a single trait (e.g., flower color, seed shape). Uses Punnett squares to predict offspring genotypes and phenotypes.
+      </div>
+
+      <h3>Example: Tall (T) vs. Dwarf (t) Pea Plants</h3>
+      <p>Crossing two heterozygous parents (Tt × Tt):</p>
+      
+      <table class="punnett-square">
+        <tr>
+          <th></th>
+          <th>T</th>
+          <th>t</th>
+        </tr>
+        <tr>
+          <th>T</th>
+          <td>TT (Tall)</td>
+          <td>Tt (Tall)</td>
+        </tr>
+        <tr>
+          <th>t</th>
+          <td>Tt (Tall)</td>
+          <td>tt (Dwarf)</td>
+        </tr>
+      </table>
+
+      <div style="text-align: center; margin-top: 15px;">
+        <p><strong>Genotypic Ratio:</strong> 1 TT : 2 Tt : 1 tt</p>
+        <p><strong>Phenotypic Ratio:</strong> 3 Tall : 1 Dwarf</p>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Dominant vs. Recessive Alleles</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Symbol</th>
+            <th>Expression</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Dominant</strong></td>
+            <td>Capital letter (T)</td>
+            <td>Expressed in heterozygous (Tt) or homozygous (TT)</td>
+            <td>Tall in pea plants</td>
+          </tr>
+          <tr>
+            <td><strong>Recessive</strong></td>
+            <td>Lowercase letter (t)</td>
+            <td>Only expressed in homozygous (tt)</td>
+            <td>Dwarf in pea plants</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Key Terminology</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>Homozygous:</strong> Two identical alleles (TT or tt)</li>
+        <li><strong>Heterozygous:</strong> Two different alleles (Tt)</li>
+        <li><strong>Genotype:</strong> Genetic makeup (TT, Tt, tt)</li>
+        <li><strong>Phenotype:</strong> Physical appearance (Tall, Dwarf)</li>
+      </ul>
+    </div>
+
+    <div class="content-box">
+      <h2>Sex-Linked Traits</h2>
+      <div class="key-concept">
+        <strong>Sex-linked genes:</strong> Genes located on sex chromosomes (X or Y). Most are X-linked because the X chromosome carries more genes.
+      </div>
+
+      <div class="sex-linked">
+        <h3>🩸 Example: Hemophilia</h3>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+          <li>X-linked recessive disorder</li>
+          <li>Gene for blood clotting factor is on X chromosome</li>
+          <li>Males (XY) express the trait if their single X carries the recessive allele</li>
+          <li>Females (XX) need two copies to express the trait</li>
+          <li>More common in males</li>
+        </ul>
+      </div>
+
+      <h3> cross: Hemophilia Carrier Mother × Normal Father</h3>
+      <p>Mother: XᴺXʰ (carrier), Father: XᴺY (normal)</p>
+      
+      <table class="punnett-square">
+        <tr>
+          <th></th>
+          <th>Xᴺ</th>
+          <th>Xʰ</th>
+        </tr>
+        <tr>
+          <th>Xᴺ</th>
+          <td>XᴺXᴺ (Normal female)</td>
+          <td>XᴺXʰ (Carrier female)</td>
+        </tr>
+        <tr>
+          <th>Y</th>
+          <td>XᴺY (Normal male)</td>
+          <td>XʰY (Hemophiliac male)</td>
+        </tr>
+      </table>
+
+      <div style="text-align: center; margin-top: 15px;">
+        <p><strong>Offspring:</strong> 25% normal female, 25% carrier female, 25% normal male, 25% hemophiliac male</p>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Other Sex-Linked Examples</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Disorder</th>
+            <th>Type</th>
+            <th>Inheritance Pattern</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Red-Green Color Blindness</td>
+            <td>X-linked recessive</td>
+            <td>More common in males</td>
+          </tr>
+          <tr>
+            <td>Hemophilia A & B</td>
+            <td>X-linked recessive</td>
+            <td>More common in males</td>
+          </tr>
+          <tr>
+            <td>Duchenne Muscular Dystrophy</td>
+            <td>X-linked recessive</td>
+            <td>More common in males</td>
+          </tr>
+          <tr>
+            <td>Y-linked traits</td>
+            <td>Y-linked</td>
+            <td>Passed only from father to son</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Steps to Solve Punnett Square Problems</h2>
+      <ol style="margin-left: 20px; margin-top: 10px;">
+        <li>Determine the genotypes of the parents</li>
+        <li>Identify the gametes each parent can produce</li>
+        <li>Set up the Punnett square (rows = one parent's gametes, columns = other parent's gametes)</li>
+        <li>Fill in all possible offspring genotypes</li>
+        <li>Calculate genotypic and phenotypic ratios</li>
+        <li>Answer the specific question asked</li>
+      </ol>
+    </div>
+
+    <div class="content-box quiz-box">
+      <h2>🧪 Quick Check Quiz</h2>
+      
+      <div class="quiz-question">1. In a monohybrid cross between two heterozygotes (Tt × Tt), what is the phenotypic ratio?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">1:1</div>
+        <div class="quiz-option" data-correct="true">3:1</div>
+        <div class="quiz-option">1:2:1</div>
+        <div class="quiz-option">9:3:3:1</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">2. Hemophilia is what type of inheritance?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Autosomal dominant</div>
+        <div class="quiz-option">Autosomal recessive</div>
+        <div class="quiz-option" data-correct="true">X-linked recessive</div>
+        <div class="quiz-option">Y-linked</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">3. What is the genotype of a male with a sex-linked recessive disorder?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">XᴺXᴺ</div>
+        <div class="quiz-option">XᴺXʰ</div>
+        <div class="quiz-option" data-correct="true">XʰY</div>
+        <div class="quiz-option">XᴺY</div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>📚 IB Diploma Learning Objectives</h2>
+      <ul style="margin-left: 20px;">
+        <li>Construct and interpret Punnett squares for monohybrid crosses</li>
+        <li>Define homozygous, heterozygous, genotype, phenotype</li>
+        <li>Distinguish between dominant and recessive alleles</li>
+        <li>Explain sex-linked inheritance patterns</li>
+        <li>Solve problems involving sex-linked disorders (hemophilia, color blindness)</li>
+        <li>Predict offspring ratios from genetic crosses</li>
+      </ul>
+    </div>
+
+    <div class="nav-links">
+      <a href="dp-biotech-meiosis-study.html">← Previous: Meiosis (3.3)</a>
+      <a href="dp-biotech-genetic-modification-study.html">Next: Genetic Modification (3.5) →</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const parent = this.parentElement;
+        if (parent.querySelector('.correct')) return;
+        if (this.dataset.correct === 'true') {
+          this.classList.add('correct');
+        } else {
+          this.classList.add('incorrect');
+          parent.querySelector('[data-correct="true"]').classList.add('correct');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

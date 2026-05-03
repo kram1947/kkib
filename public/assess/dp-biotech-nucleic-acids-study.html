@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nucleic Acids (Topic 7) - IB Diploma BioTechnology Study Material</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 40px 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .topic-badge { background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; display: inline-block; margin-top: 10px; }
+    h2 { color: #d97706; margin: 30px 0 15px; font-size: 1.8em; border-bottom: 3px solid #f59e0b; padding-bottom: 10px; }
+    h3 { color: #92400e; margin: 20px 0 10px; font-size: 1.3em; }
+    .content-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .key-concept { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+    .key-concept strong { color: #92400e; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .comparison-table th, .comparison-table td { padding: 12px; text-align: left; border: 1px solid #e5e7eb; }
+    .comparison-table th { background: #f59e0b; color: white; }
+    .comparison-table tr:nth-child(even) { background: #fef3c7; }
+    .dna-viz { background: #1e293b; padding: 20px; border-radius: 10px; margin: 15px 0; font-family: 'Courier New', monospace; color: #10b981; text-align: center; }
+    .process-box { background: #fffbeb; border: 2px solid #f59e0b; padding: 20px; border-radius: 10px; margin: 15px 0; }
+    .process-box h4 { color: #d97706; margin-bottom: 10px; }
+    .steps { counter-reset: step-counter; list-style: none; padding-left: 0; }
+    .steps li { counter-increment: step-counter; margin: 10px 0; padding-left: 35px; position: relative; }
+    .steps li::before { content: counter(step-counter); position: absolute; left: 0; background: #f59e0b; color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+    .quiz-box { background: #fffbeb; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .quiz-question { font-weight: bold; margin-bottom: 10px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { padding: 10px; border: 2px solid #e5e7eb; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+    .quiz-option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .nav-links { display: flex; justify-content: space-between; margin: 30px 0; }
+    .nav-links a { background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+    .nav-links a:hover { background: #d97706; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧬 Nucleic Acids (Topic 7)</h1>
+      <div class="topic-badge">IB Diploma BioTechnology - HL Only</div>
+      <p style="margin-top: 15px; opacity: 0.9;">Detailed mechanisms of DNA replication, transcription, and translation</p>
+    </header>
+
+    <div class="content-box">
+      <h2>DNA Structure Review</h2>
+      <div class="key-concept">
+        <strong>DNA (Deoxyribonucleic Acid):</strong> Double-stranded helix composed of nucleotides (deoxyribose sugar + phosphate + nitrogenous base).
+      </div>
+
+      <div class="dna-viz">
+        <h4 style="color: #f59e0b; margin-bottom: 10px;">DNA Base Pairing</h4>
+        <p style="font-size: 1.2em;">
+          <span style="color: #ef4444;">A</span>=<span style="color: #3b82f6;">T</span> (Adenine-Thymine, 2 H-bonds)<br>
+          <span style="color: #22c55e;">G</span>≡<span style="color: #f59e0b;">C</span> (Guanine-Cytosine, 3 H-bonds)
+        </p>
+      </div>
+
+      <h3>DNA vs. RNA Comparison</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>DNA</th>
+            <th>RNA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sugar</strong></td>
+            <td>Deoxyribose</td>
+            <td>Ribose</td>
+          </tr>
+          <tr>
+            <td><strong>Bases</strong></td>
+            <td>A, T, G, C</td>
+            <td>A, U, G, C</td>
+          </tr>
+          <tr>
+            <td><strong>Strands</strong></td>
+            <td>Double-stranded</td>
+            <td>Single-stranded</td>
+          </tr>
+          <tr>
+            <td><strong>Function</strong></td>
+            <td>Store genetic information</td>
+            <td>Protein synthesis</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>DNA Replication</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> The process by which DNA makes a copy of itself. Semi-conservative (each new DNA molecule has one old and one new strand).
+      </div>
+
+      <div class="process-box">
+        <h4>🔬 Steps of DNA Replication</h4>
+        <ol class="steps">
+          <li><strong>Initiation:</strong> Helicase unwinds DNA double helix, creating replication fork</li>
+          <li><strong>Primer Binding:</strong> RNA primer binds to template strand (provided by primase)</li>
+          <li><strong>Elongation:</strong> DNA polymerase III adds nucleotides in 5'→3' direction</li>
+          <li><strong>Leading Strand:</strong> Synthesized continuously toward replication fork</li>
+          <li><strong>Lagging Strand:</strong> Synthesized discontinuously as Okazaki fragments</li>
+          <li><strong>Primer Removal:</strong> DNA polymerase I removes RNA primers, replaces with DNA</li>
+          <li><strong>Ligation:</strong> DNA ligase joins Okazaki fragments</li>
+        </ol>
+      </div>
+
+      <h3>Key Enzymes in Replication</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Enzyme</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Helicase</strong></td>
+            <td>Unwinds DNA double helix</td>
+          </tr>
+          <tr>
+            <td><strong>DNA Polymerase III</strong></td>
+            <td>Adds nucleotides to growing DNA strand</td>
+          </tr>
+          <tr>
+            <td><strong>DNA Polymerase I</strong></td>
+            <td>Removes RNA primers, replaces with DNA</td>
+          </tr>
+          <tr>
+            <td><strong>DNA Ligase</strong></td>
+            <td>Joins Okazaki fragments together</td>
+          </tr>
+          <tr>
+            <td><strong>Primase</strong></td>
+            <td>Synthesizes RNA primers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Transcription (DNA → RNA)</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> The process of making mRNA from a DNA template. Occurs in the nucleus.
+      </div>
+
+      <div class="process-box">
+        <h4>📝 Steps of Transcription</h4>
+        <ol class="steps">
+          <li><strong>Initiation:</strong> RNA polymerase binds to promoter region on DNA</li>
+          <li><strong>Elongation:</strong> RNA polymerase unwinds DNA and adds RNA nucleotides (5'→3')</li>
+          <li><strong>Termination:</strong> RNA polymerase reaches terminator sequence, mRNA is released</li>
+          <li><strong>Processing (Eukaryotes):</strong> 5' cap added, poly-A tail added, introns removed (splicing)</li>
+        </ol>
+      </div>
+
+      <h3>Transcription vs. Replication</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Replication</th>
+            <th>Transcription</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Product</strong></td>
+            <td>DNA</td>
+            <td>mRNA</td>
+          </tr>
+          <tr>
+            <td><strong>Template</strong></td>
+            <td>Both DNA strands</td>
+            <td>One DNA strand (gene)</td>
+          </tr>
+          <tr>
+            <td><strong>Enzyme</strong></td>
+            <td>DNA polymerase</td>
+            <td>RNA polymerase</td>
+          </tr>
+          <tr>
+            <td><strong>Occurs</strong></td>
+            <td>Before cell division</td>
+            <td>When protein is needed</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Translation (RNA → Protein)</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> The process of building a protein from mRNA. Occurs at ribosomes in the cytoplasm.
+      </div>
+
+      <div class="process-box">
+        <h4>🧬 Steps of Translation</h4>
+        <ol class="steps">
+          <li><strong>Initiation:</strong> mRNA binds to small ribosomal subunit; start codon (AUG) recruits initiator tRNA</li>
+          <li><strong>Elongation:</strong> tRNA brings amino acids; ribosome moves along mRNA, adding amino acids to growing polypeptide</li>
+          <li><strong>Codon Recognition:</strong> Each tRNA anticodon matches mRNA codon (e.g., AUG → Methionine)</li>
+          <li><strong>Termination:</strong> Stop codon (UAA, UAG, UGA) reached; release factor binds, polypeptide released</li>
+        </ol>
+      </div>
+
+      <h3>The Genetic Code</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>64 codons (4³ = 64 possible 3-base combinations)</li>
+        <li>61 codons code for amino acids</li>
+        <li>3 stop codons (UAA, UAG, UGA)</li>
+        <li>AUG is start codon (codes for Methionine)</li>
+        <li>Code is universal (nearly all organisms use same code)</li>
+        <li>Code is degenerate (multiple codons can code for same amino acid)</li>
+      </ul>
+    </div>
+
+    <div class="content-box quiz-box">
+      <h2>🧪 Quick Check Quiz</h2>
+      
+      <div class="quiz-question">1. Which enzyme unwinds the DNA double helix during replication?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">DNA polymerase</div>
+        <div class="quiz-option" data-correct="true">Helicase</div>
+        <div class="quiz-option">Ligase</div>
+        <div class="quiz-option">Primase</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">2. In transcription, what is the product?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">DNA</div>
+        <div class="quiz-option" data-correct="true">mRNA</div>
+        <div class="quiz-option">Protein</div>
+        <div class="quiz-option">tRNA</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">3. How many codons are there in the genetic code?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">20</div>
+        <div class="quiz-option">61</div>
+        <div class="quiz-option" data-correct="true">64</div>
+        <div class="quiz-option">3</div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>📚 IB Diploma Learning Objectives (HL)</h2>
+      <ul style="margin-left: 20px;">
+        <li>Explain the semi-conservative model of DNA replication</li>
+        <li>Describe the roles of enzymes in DNA replication</li>
+        <li>Compare leading and lagging strand synthesis</li>
+        <li>Explain transcription (initiation, elongation, termination)</li>
+        <li>Describe mRNA processing in eukaryotes</li>
+        <li>Explain translation (codon-anticodon pairing, tRNA function)</li>
+        <li>Understand the genetic code and its properties</li>
+      </ul>
+    </div>
+
+    <div class="nav-links">
+      <a href="dp-biotech-genetic-modification-study.html">← Previous: Genetic Modification (3.5)</a>
+      <a href="dp-biotech-gene-expression-study.html">Next: Gene Expression (D2.2) →</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const parent = this.parentElement;
+        if (parent.querySelector('.correct')) return;
+        if (this.dataset.correct === 'true') {
+          this.classList.add('correct');
+        } else {
+          this.classList.add('incorrect');
+          parent.querySelector('[data-correct="true"]').classList.add('correct');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genetic Modification & Biotechnology (Topic 3.5) - IB Diploma Study Material</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 40px 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .topic-badge { background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; display: inline-block; margin-top: 10px; }
+    h2 { color: #d97706; margin: 30px 0 15px; font-size: 1.8em; border-bottom: 3px solid #f59e0b; padding-bottom: 10px; }
+    h3 { color: #92400e; margin: 20px 0 10px; font-size: 1.3em; }
+    .content-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .key-concept { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+    .key-concept strong { color: #92400e; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .comparison-table th, .comparison-table td { padding: 12px; text-align: left; border: 1px solid #e5e7eb; }
+    .comparison-table th { background: #f59e0b; color: white; }
+    .comparison-table tr:nth-child(even) { background: #fef3c7; }
+    .procedure-box { background: #fffbeb; border: 2px solid #f59e0b; padding: 20px; border-radius: 10px; margin: 15px 0; }
+    .procedure-box h4 { color: #d97706; margin-bottom: 10px; }
+    .steps { counter-reset: step-counter; list-style: none; padding-left: 0; }
+    .steps li { counter-increment: step-counter; margin: 10px 0; padding-left: 35px; position: relative; }
+    .steps li::before { content: counter(step-counter); position: absolute; left: 0; background: #f59e0b; color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+    .quiz-box { background: #fffbeb; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .quiz-question { font-weight: bold; margin-bottom: 10px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { padding: 10px; border: 2px solid #e5e7eb; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+    .quiz-option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .nav-links { display: flex; justify-content: space-between; margin: 30px 0; }
+    .nav-links a { background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+    .nav-links a:hover { background: #d97706; }
+    .ethics-box { background: #fee2e2; border-left: 4px solid #ef4444; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧪 Genetic Modification & Biotechnology (Topic 3.5)</h1>
+      <div class="topic-badge">IB Diploma BioTechnology - Core SL & HL</div>
+      <p style="margin-top: 15px; opacity: 0.9;">PCR, gel electrophoresis, DNA profiling, and GMO ethics</p>
+    </header>
+
+    <div class="content-box">
+      <h2>Polymerase Chain Reaction (PCR)</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> PCR is a technique used to amplify (make millions of copies of) a specific DNA segment in vitro (in a lab).
+      </div>
+
+      <div class="procedure-box">
+        <h4>🔬 PCR Steps (Thermal Cycling)</h4>
+        <ol class="steps">
+          <li><strong>Denaturation (95°C):</strong> DNA double helix separates into single strands</li>
+          <li><strong>Annealing (55-65°C):</strong> Primers bind to complementary sequences on DNA</li>
+          <li><strong>Elongation (72°C):</strong> Taq polymerase adds nucleotides to extend new DNA strands</li>
+        </ol>
+        <p style="margin-top: 15px;"><strong>Result:</strong> 1 DNA segment → 2ⁿ copies after n cycles (e.g., 30 cycles = ~1 billion copies)</p>
+      </div>
+
+      <h3>Key Components of PCR</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>DNA Template:</strong> The DNA containing the target sequence</li>
+        <li><strong>Primers:</strong> Short DNA sequences that bind to start replication</li>
+        <li><strong>Taq Polymerase:</strong> Heat-stable DNA polymerase from <em>Thermus aquaticus</em></li>
+        <li><strong>Nucleotides (dNTPs):</strong> Building blocks (A, T, G, C)</li>
+        <li><strong>Buffer:</strong> Provides optimal conditions for the reaction</li>
+      </ul>
+    </div>
+
+    <div class="content-box">
+      <h2>Gel Electrophoresis</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> A technique used to separate DNA fragments by size. DNA is negatively charged, so it moves toward the positive electrode.
+      </div>
+
+      <div class="procedure-box">
+        <h4>🔬 Gel Electrophoresis Steps</h4>
+        <ol class="steps">
+          <li><strong>Prepare Agarose Gel:</strong> Melt agarose in buffer, pour into tray with comb</li>
+          <li><strong>Load DNA Samples:</strong> Mix DNA with loading dye, load into wells</li>
+          <li><strong>Run Current:</strong> Apply electric field (DNA moves toward positive anode)</li>
+          <li><strong>Stain and Visualize:</strong> Use ethidium bromide or SYBR Safe, view under UV light</li>
+        </ol>
+        <p style="margin-top: 15px;"><strong>Result:</strong> Smaller fragments move faster and travel farther; larger fragments stay closer to wells</p>
+      </div>
+
+      <h3>Interpreting Gel Results</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Observation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Band Position</strong></td>
+            <td>Lower = smaller fragment; Higher = larger fragment</td>
+          </tr>
+          <tr>
+            <td><strong>Band Intensity</strong></td>
+            <td>Brighter = more DNA; Fainter = less DNA</td>
+          </tr>
+          <tr>
+            <td><strong>Ladder/Marker</strong></td>
+            <td>Known DNA sizes for comparison</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>DNA Profiling (Fingerprinting)</h2>
+      <div class="key-concept">
+        <strong>Purpose:</strong> Identify individuals based on unique patterns in their DNA (non-coding regions with repeats).
+      </div>
+
+      <h3>Steps in DNA Profiling</h3>
+      <ol style="margin-left: 20px; margin-top: 10px;">
+        <li>Extract DNA from sample (blood, hair, skin)</li>
+        <li>Amplify specific regions using PCR (STRs - Short Tandem Repeats)</li>
+        <li>Separate fragments using gel electrophoresis or capillary electrophoresis</li>
+        <li>Compare band patterns between samples</li>
+        <li>Calculate probability of match by chance</li>
+      </ol>
+
+      <h3>Applications of DNA Profiling</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>Forensics:</strong> Crime scene investigation, identifying suspects</li>
+        <li><strong>Paternity Testing:</strong> Determining biological parents</li>
+        <li><strong>Medical Diagnosis:</strong> Identifying genetic disorders</li>
+        <li><strong>Conservation:</strong> Tracking endangered species populations</li>
+      </ul>
+    </div>
+
+    <div class="content-box">
+      <h2>Genetically Modified Organisms (GMOs)</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> Organisms whose genetic material has been altered using genetic engineering techniques (recombinant DNA technology).
+      </div>
+
+      <h3>How GMOs Are Created</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Identify desired gene (e.g., pesticide resistance)</li>
+        <li>Isolate and clone the gene</li>
+        <li>Insert gene into vector (plasmid)</li>
+        <li>Transfer to host organism (bacteria, plants, animals)</li>
+        <li>Select and test transformed organisms</li>
+      </ul>
+
+      <h3>Examples of GMOs</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Organism</th>
+            <th>Modification</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bt Corn</td>
+            <td>Insert bacterial gene (Bt toxin)</td>
+            <td>Resistance to insect pests</td>
+          </tr>
+          <tr>
+            <td>Golden Rice</td>
+            <td>Added beta-carotene synthesis genes</td>
+            <td>Combat vitamin A deficiency</td>
+          </tr>
+          <tr>
+            <td>Roundup Ready Soybeans</td>
+            <td>Herbicide-resistant gene</td>
+            <td>Tolerance to glyphosate herbicide</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Ethical Implications of GMOs</h2>
+      
+      <div class="ethics-box">
+        <h4 style="color: #ef4444;">⚠️ Concerns About GMOs</h4>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+          <li>Potential health risks (allergies, unknown effects)</li>
+          <li>Environmental impact (gene flow to wild relatives)</li>
+          <li>Loss of biodiversity</li>
+          <li>Corporate control of seeds (patents)</li>
+          <li>Ethical concerns about "playing God"</li>
+        </ul>
+      </div>
+
+      <div class="key-concept" style="border-color: #10b981; background: #d1fae5;">
+        <h4 style="color: #065f46;">✅ Benefits of GMOs</h4>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+          <li>Increased crop yields and food security</li>
+          <li>Reduced pesticide use (Bt crops)</li>
+          <li>Enhanced nutritional content (Golden Rice)</li>
+          <li>Drought and salt tolerance</li>
+          <li>Medical applications (insulin production in bacteria)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-box quiz-box">
+      <h2>🧪 Quick Check Quiz</h2>
+      
+      <div class="quiz-question">1. What is the purpose of PCR?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Separate DNA by size</div>
+        <div class="quiz-option" data-correct="true">Amplify (copy) DNA segments</div>
+        <div class="quiz-option">Cut DNA at specific sequences</div>
+        <div class="quiz-option">Visualize DNA bands</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">2. In gel electrophoresis, which way does DNA move?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Toward negative electrode</div>
+        <div class="quiz-option" data-correct="true">Toward positive electrode</div>
+        <div class="quiz-option">It doesn't move</div>
+        <div class="quiz-option">Random direction</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">3. What does Bt in Bt corn stand for?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Bacillus toxicus</div>
+        <div class="quiz-option" data-correct="true">Bacillus thuringiensis</div>
+        <div class="quiz-option">Bacterial toxin</div>
+        <div class="quiz-option">Beta-carotene transgenic</div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>📚 IB Diploma Learning Objectives</h2>
+      <ul style="margin-left: 20px;">
+        <li>Describe the steps of PCR (denaturation, annealing, elongation)</li>
+        <li>Explain how gel electrophoresis separates DNA fragments</li>
+        <li>Understand DNA profiling and its applications</li>
+        <li>Describe how GMOs are created</li>
+        <li>Discuss ethical implications of genetic modification</li>
+        <li>Evaluate benefits vs. risks of GMOs</li>
+      </ul>
+    </div>
+
+    <div class="nav-links">
+      <a href="dp-biotech-inheritance-study.html">← Previous: Inheritance (3.4)</a>
+      <a href="dp-biotech-nucleic-acids-study.html">Next: Nucleic Acids (Topic 7) →</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const parent = this.parentElement;
+        if (parent.querySelector('.correct')) return;
+        if (this.dataset.correct === 'true') {
+          this.classList.add('correct');
+        } else {
+          this.classList.add('incorrect');
+          parent.querySelector('[data-correct="true"]').classList.add('correct');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

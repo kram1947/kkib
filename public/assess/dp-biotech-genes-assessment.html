@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genes (Topic 3.1) - IB Diploma Assessment</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 30px 20px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+    h1 { font-size: 2em; margin-bottom: 10px; }
+    .timer-box { background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 20px; display: inline-block; margin-top: 10px; font-size: 1.2em; }
+    .progress-bar { background: #e5e7eb; height: 8px; border-radius: 4px; margin: 20px 0; overflow: hidden; }
+    .progress-fill { background: #f59e0b; height: 100%; transition: width 0.3s; }
+    .question-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .question-number { color: #d97706; font-weight: bold; margin-bottom: 10px; }
+    .question-text { font-size: 1.1em; margin-bottom: 15px; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option { padding: 12px 15px; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+    .option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .option.selected { border-color: #f59e0b; background: #fef3c7; }
+    .option.correct { background: #d1fae5; border-color: #10b981; }
+    .option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .nav-buttons { display: flex; justify-content: space-between; margin: 20px 0; }
+    .btn { background: #f59e0b; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+    .btn:hover { background: #d97706; }
+    .btn:disabled { background: #9ca3af; cursor: not-allowed; }
+    .results { display: none; background: white; padding: 30px; border-radius: 10px; text-align: center; }
+    .score { font-size: 3em; color: #d97706; font-weight: bold; }
+    .mark-review { background: #fef3c7; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #f59e0b; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧬 Genes (Topic 3.1) Assessment</h1>
+      <div class="timer-box">⏱ Time: <span id="timer">30:00</span></div>
+      <p style="margin-top: 10px;">IB Diploma BioTechnology - Core SL & HL</p>
+    </header>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress" style="width: 0%"></div>
+    </div>
+
+    <div id="assessment">
+      <div class="question-box" data-question="1">
+        <div class="question-number">Question 1 of 15</div>
+        <div class="question-text">What is the correct definition of a gene?</div>
+        <div class="options">
+          <div class="option" data-correct="true">A heritable factor that controls a specific characteristic or trait</div>
+          <div class="option">A type of protein that regulates cell metabolism</div>
+          <div class="option">The physical expression of a genetic trait</div>
+          <div class="option">The complete set of chromosomes in an organism</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="2" style="display:none;">
+        <div class="question-number">Question 2 of 15</div>
+        <div class="question-text">Which of the following best describes an allele?</div>
+        <div class="options">
+          <div class="option">The complete set of genetic material in a cell</div>
+          <div class="option" data-correct="true">Alternative versions of the same gene coding for different variations of a trait</div>
+          <div class="option">The physical location of a gene on a chromosome</div>
+          <div class="option">A type of RNA molecule involved in protein synthesis</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="3" style="display:none;">
+        <div class="question-number">Question 3 of 15</div>
+        <div class="question-text">What is the approximate size of the human genome in base pairs?</div>
+        <div class="options">
+          <div class="option">4.6 million</div>
+          <div class="option">180 million</div>
+          <div class="option" data-correct="true">3.2 billion</div>
+          <div class="option">12 million</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="4" style="display:none;">
+        <div class="question-number">Question 4 of 15</div>
+        <div class="question-text">A recessive allele is expressed when:</div>
+        <div class="options">
+          <div class="option">It is present in one copy (heterozygous)</div>
+          <div class="option" data-correct="true">Two copies are present (homozygous recessive)</div>
+          <div class="option">It is dominant over other alleles</div>
+          <div class="option">In the presence of a codominant allele</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="5" style="display:none;">
+        <div class="question-number">Question 5 of 15</div>
+        <div class="question-text">What is the definition of a genome?</div>
+        <div class="options">
+          <div class="option">The physical expression of genetic traits</div>
+          <div class="option">A single gene sequence</div>
+          <div class="option" data-correct="true">The complete set of genetic material (all DNA) in an organism</div>
+          <div class="option">The study of heredity and variation</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="6" style="display:none;">
+        <div class="question-number">Question 6 of 15</div>
+        <div class="question-text">In codominance, what happens when two different alleles are present?</div>
+        <div class="options">
+          <div class="option">One allele is completely dominant</div>
+          <div class="option">The traits blend together</div>
+          <div class="option" data-correct="true">Both alleles are fully expressed</div>
+          <div class="option">Neither allele is expressed</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="7" style="display:none;">
+        <div class="question-number">Question 7 of 15</div>
+        <div class="question-text">What is the genotype of an organism?</div>
+        <div class="options">
+          <div class="option">Its physical appearance</div>
+          <div class="option" data-correct="true">Its genetic makeup (allele combinations)</div>
+          <div class="option">The environment it lives in</div>
+          <div class="option">The proteins it produces</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="8" style="display:none;">
+        <div class="question-number">Question 8 of 15</div>
+        <div class="question-text">Which of the following is an example of incomplete dominance?</div>
+        <div class="options">
+          <div class="option">AB blood type in humans</div>
+          <div class="option" data-correct="true">Red and white flowers producing pink offspring</div>
+          <div class="option">Brown eyes being dominant over blue eyes</div>
+          <div class="option">Hemophilia in males</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="9" style="display:none;">
+        <div class="question-number">Question 9 of 15</div>
+        <div class="question-text">What percentage of the human genome codes for proteins?</div>
+        <div class="options">
+          <div class="option">Approximately 50%</div>
+          <div class="option">Approximately 25%</div>
+          <div class="option" data-correct="true">Approximately 1-2%</div>
+          <div class="option">Approximately 80%</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="10" style="display:none;">
+        <div class="question-number">Question 10 of 15</div>
+        <div class="question-text">What is the locus of a gene?</div>
+        <div class="options">
+          <div class="option">The protein product of the gene</div>
+          <div class="option" data-correct="true">The specific position of a gene on a chromosome</div>
+          <div class="option">The function of the gene</div>
+          <div class="option">The number of copies of the gene</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="11" style="display:none;">
+        <div class="question-number">Question 11 of 15</div>
+        <div class="question-text">Mitochondrial DNA is inherited from:</div>
+        <div class="options">
+          <div class="option">Both parents equally</div>
+          <div class="option">The father only</div>
+          <div class="option" data-correct="true">The mother only</div>
+          <div class="option">Neither parent (it's random)</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="12" style="display:none;">
+        <div class="question-number">Question 12 of 15</div>
+        <div class="question-text">What is the phenotype of an organism with genotype Bb for eye color (B = brown, b = blue)?</div>
+        <div class="options">
+          <div class="option">Blue eyes</div>
+          <div class="option" data-correct="true">Brown eyes</div>
+          <div class="option">Blue-brown mixed eyes</div>
+          <div class="option">Cannot be determined</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="13" style="display:none;">
+        <div class="question-number">Question 13 of 15</div>
+        <div class="question-text">Which organism has the smallest genome listed below?</div>
+        <div class="options">
+          <div class="option" data-correct="true">E. coli (bacteria)</div>
+          <div class="option">Yeast (S. cerevisiae)</div>
+          <div class="option">Fruit fly (D. melanogaster)</div>
+          <div class="option">Humans (H. sapiens)</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="14" style="display:none;">
+        <div class="question-number">Question 14 of 15</div>
+        <div class="question-text">Non-coding DNA includes:</div>
+        <div class="options">
+          <div class="option">Only introns</div>
+          <div class="option">Only regulatory sequences</div>
+          <div class="option" data-correct="true">Regulatory sequences, introns, and repetitive DNA</div>
+          <div class="option">Only exons</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="15" style="display:none;">
+        <div class="question-number">Question 15 of 15</div>
+        <div class="question-text">What is the approximate number of genes in the human genome?</div>
+        <div class="options">
+          <div class="option">~4,300</div>
+          <div class="option">~14,000</div>
+          <div class="option" data-correct="true">~20,000-25,000</div>
+          <div class="option">~100,000</div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn" id="prevBtn" disabled>Previous</button>
+        <button class="btn" id="nextBtn">Next</button>
+        <button class="btn" id="submitBtn" style="display:none;">Submit Assessment</button>
+      </div>
+    </div>
+
+    <div class="results" id="results">
+      <h2>Assessment Complete!</h2>
+      <div class="score" id="score">0%</div>
+      <p id="scoreText"></p>
+      <div id="review"></div>
+      <button class="btn" onclick="location.reload()">Retake Assessment</button>
+    </div>
+  </div>
+
+  <script>
+    let currentQuestion = 1;
+    let answers = {};
+    const totalQuestions = 15;
+    let timeLeft = 30 * 60; // 30 minutes
+
+    // Timer
+    const timerInterval = setInterval(() => {
+      timeLeft--;
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      document.getElementById('timer').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        submitAssessment();
+      }
+    }, 1000);
+
+    // Option selection
+    document.querySelectorAll('.option').forEach(option => {
+      option.addEventListener('click', function() {
+        const questionBox = this.closest('.question-box');
+        const questionNum = questionBox.dataset.question;
+        questionBox.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+        answers[questionNum] = this.dataset.correct === 'true';
+      });
+    });
+
+    // Navigation
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentQuestion < totalQuestions) {
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'none';
+        currentQuestion++;
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+        updateNav();
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentQuestion > 1) {
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'none';
+        currentQuestion--;
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+        updateNav();
+      }
+    });
+
+    function updateNav() {
+      document.getElementById('prevBtn').disabled = currentQuestion === 1;
+      document.getElementById('nextBtn').style.display = currentQuestion === totalQuestions ? 'none' : 'block';
+      document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+      document.getElementById('progress').style.width = `${(currentQuestion / totalQuestions) * 100}%`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', submitAssessment);
+
+    function submitAssessment() {
+      clearInterval(timerInterval);
+      let correct = 0;
+      for (let i = 1; i <= totalQuestions; i++) {
+        if (answers[i]) correct++;
+      }
+      const score = Math.round((correct / totalQuestions) * 100);
+      document.getElementById('assessment').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
+      document.getElementById('score').textContent = `${score}%`;
+      document.getElementById('scoreText').textContent = `You got ${correct} out of ${totalQuestions} questions correct!`;
+    }
+
+    updateNav();
+  </script>
+</body>
+</html>

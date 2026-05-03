@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chromosomes (Topic 3.2) - IB Diploma BioTechnology Study Material</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 40px 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .topic-badge { background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; display: inline-block; margin-top: 10px; }
+    h2 { color: #d97706; margin: 30px 0 15px; font-size: 1.8em; border-bottom: 3px solid #f59e0b; padding-bottom: 10px; }
+    h3 { color: #92400e; margin: 20px 0 10px; font-size: 1.3em; }
+    .content-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .key-concept { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+    .key-concept strong { color: #92400e; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .comparison-table th, .comparison-table td { padding: 12px; text-align: left; border: 1px solid #e5e7eb; }
+    .comparison-table th { background: #f59e0b; color: white; }
+    .comparison-table tr:nth-child(even) { background: #fef3c7; }
+    .karyotype-viz { background: #1e293b; padding: 20px; border-radius: 8px; margin: 15px 0; text-align: center; }
+    .chromosome-pair { display: inline-flex; gap: 5px; margin: 5px; }
+    .chr { width: 30px; height: 60px; background: linear-gradient(to bottom, #f59e0b, #d97706); border-radius: 4px; position: relative; }
+    .chr::after { content: ''; position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: white; }
+    .dna-structure { background: #fef3c7; padding: 20px; border-radius: 10px; margin: 15px 0; font-family: 'Courier New', monospace; }
+    .quiz-box { background: #fffbeb; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .quiz-question { font-weight: bold; margin-bottom: 10px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { padding: 10px; border: 2px solid #e5e7eb; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+    .quiz-option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .nav-links { display: flex; justify-content: space-between; margin: 30px 0; }
+    .nav-links a { background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+    .nav-links a:hover { background: #d97706; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧬 Chromosomes (Topic 3.2)</h1>
+      <div class="topic-badge">IB Diploma BioTechnology - Core SL & HL</div>
+      <p style="margin-top: 15px; opacity: 0.9;">Structure of DNA in prokaryotes and eukaryotes, karyotypes, and chromosome numbers</p>
+    </header>
+
+    <div class="content-box">
+      <h2>What are Chromosomes?</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> Chromosomes are structures made of DNA and proteins (histones) that carry genetic information. They are visible during cell division and contain hundreds to thousands of genes.
+      </div>
+
+      <h3>Chromosome Structure</h3>
+      <div class="dna-structure">
+        <h4 style="color: #92400e; margin-bottom: 10px;">DNA Packaging Hierarchy</h4>
+        <p>DNA → Nucleosomes → Chromatin fibers → Chromosomes</p>
+        <ul style="margin-left: 20px; margin-top: 10px;">
+          <li><strong>DNA double helix:</strong> 2 nm wide</li>
+          <li><strong>Nucleosome:</strong> DNA wrapped around histone proteins (11 nm)</li>
+          <li><strong>Chromatin fiber:</strong> Coiled nucleosomes (30 nm)</li>
+          <li><strong>Chromosome:</strong> Highly condensed chromatin (700 nm)</li>
+        </ul>
+      </div>
+
+      <h3>Parts of a Chromosome</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>Centromere:</strong> Constricted region where sister chromatids join</li>
+        <li><strong>Chromatid:</strong> One copy of a duplicated chromosome</li>
+        <li><strong>Telomeres:</strong> Protective caps at chromosome ends (prevent degradation)</li>
+        <li><strong>Arms:</strong> p-arm (short) and q-arm (long)</li>
+      </ul>
+    </div>
+
+    <div class="content-box">
+      <h2>Prokaryotes vs. Eukaryotes</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Prokaryotes (Bacteria)</th>
+            <th>Eukaryotes (Plants/Animals)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>DNA Structure</strong></td>
+            <td>Circular, naked (no histones)</td>
+            <td>Linear, wrapped around histones</td>
+          </tr>
+          <tr>
+            <td><strong>Number of Chromosomes</strong></td>
+            <td>Usually 1 (circular DNA)</td>
+            <td>Multiple pairs (diploid: 2n)</td>
+          </tr>
+          <tr>
+            <td><strong>Location</strong></td>
+            <td>Nucleoid region (no nucleus)</td>
+            <td>Inside nucleus</td>
+          </tr>
+          <tr>
+            <td><strong>Extra DNA</strong></td>
+            <td>Plasmids (small circular DNA)</td>
+            <td>Mitochondrial/Chloroplast DNA</td>
+          </tr>
+          <tr>
+            <td><strong>Size</strong></td>
+            <td>Small (~4.6 million bp)</td>
+            <td>Large (~3.2 billion bp in humans)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Karyotypes</h2>
+      <div class="key-concept">
+        <strong>Karyotype:</strong> A visual display of all chromosomes in a cell, arranged in pairs by size and shape. Used to detect chromosomal abnormalities.
+      </div>
+
+      <h3>Human Karyotype</h3>
+      <div class="karyotype-viz">
+        <h4 style="color: #f59e0b; margin-bottom: 15px;">Human Chromosome Pairs (1-22 + XY)</h4>
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;">
+          <div style="color: white;">1<div class="chromosome-pair"><div class="chr"></div><div class="chr"></div></div></div>
+          <div style="color: white;">2<div class="chromosome-pair"><div class="chr"></div><div class="chr"></div></div></div>
+          <div style="color: white;">3<div class="chromosome-pair"><div class="chr"></div><div class="chr"></div></div></div>
+          <div style="color: white;">4<div class="chromosome-pair"><div class="chr"></div><div class="chr"></div></div></div>
+          <div style="color: white;">5<div class="chromosome-pair"><div class="chr"></div><div class="chr"></div></div></div>
+          <div style="color: white;">6<div class="chromosome-pair"><div class="chr"></div><div class="chr"></div></div></div>
+        </div>
+        <p style="margin-top: 15px; color: #f59e0b;">Humans have 46 chromosomes (23 pairs): 22 autosomes + 1 sex chromosome pair</p>
+      </div>
+
+      <h3>Chromosome Numbers Across Species</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Organism</th>
+            <th>Diploid Number (2n)</th>
+            <th>Haploid Number (n)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Humans (<em>H. sapiens</em>)</td>
+            <td>46</td>
+            <td>23</td>
+          </tr>
+          <tr>
+            <td>Fruit fly (<em>D. melanogaster</em>)</td>
+            <td>8</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>Dog (<em>C. lupus</em>)</td>
+            <td>78</td>
+            <td>39</td>
+          </tr>
+          <tr>
+            <td>Chicken (<em>G. gallus</em>)</td>
+            <td>78</td>
+            <td>39</td>
+          </tr>
+          <tr>
+            <td>Rice (<em>O. sativa</em>)</td>
+            <td>24</td>
+            <td>12</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Chromosomal Abnormalities</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Condition</th>
+            <th>Chromosome Abnormality</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Down Syndrome</td>
+            <td>Trisomy 21</td>
+            <td>Extra copy of chromosome 21 (47 chromosomes total)</td>
+          </tr>
+          <tr>
+            <td>Turner Syndrome</td>
+            <td>Monosomy X</td>
+            <td>Only one X chromosome (XO) in females</td>
+          </tr>
+          <tr>
+            <td>Klinefelter Syndrome</td>
+            <td>XXY</td>
+            <td>Extra X chromosome in males</td>
+          </tr>
+          <tr>
+            <td>Edward Syndrome</td>
+            <td>Trisomy 18</td>
+            <td>Extra copy of chromosome 18</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Haploid vs. Diploid</h2>
+      <div class="key-concept">
+        <strong>Diploid (2n):</strong> Cells with two sets of chromosomes (one from each parent). Most body cells.<br>
+        <strong>Haploid (n):</strong> Cells with one set of chromosomes. Gametes (sperm and egg).
+      </div>
+
+      <h3>Key Differences</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Diploid (2n)</th>
+            <th>Haploid (n)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Chromosome sets</td>
+            <td>2 sets</td>
+            <td>1 set</td>
+          </tr>
+          <tr>
+            <td>Human chromosome number</td>
+            <td>46</td>
+            <td>23</td>
+          </tr>
+          <tr>
+            <td>Cell types</td>
+            <td>Somatic (body) cells</td>
+            <td>Gametes (sex cells)</td>
+          </tr>
+          <tr>
+            <td>Produced by</td>
+            <td>Mitosis</td>
+            <td>Meiosis</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box quiz-box">
+      <h2>🧪 Quick Check Quiz</h2>
+      
+      <div class="quiz-question">1. What is the diploid chromosome number in humans?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">23</div>
+        <div class="quiz-option" data-correct="true">46</div>
+        <div class="quiz-option">44</div>
+        <div class="quiz-option">48</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">2. Where are chromosomes located in eukaryotic cells?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Nucleoid region</div>
+        <div class="quiz-option" data-correct="true">Inside the nucleus</div>
+        <div class="quiz-option">In the cytoplasm</div>
+        <div class="quiz-option">In the cell membrane</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">3. What is a karyotype?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">The process of cell division</div>
+        <div class="quiz-option">A type of protein in chromosomes</div>
+        <div class="quiz-option" data-correct="true">Visual display of all chromosomes arranged in pairs</div>
+        <div class="quiz-option">The number of genes on a chromosome</div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>📚 IB Diploma Learning Objectives</h2>
+      <ul style="margin-left: 20px;">
+        <li>Describe the structure of chromosomes (centromere, chromatid, telomeres)</li>
+        <li>Compare prokaryotic and eukaryotic chromosomes</li>
+        <li>Define haploid and diploid and give examples</li>
+        <li>Understand karyotypes and how to analyze them</li>
+        <li>Identify common chromosomal abnormalities</li>
+        <li>Know chromosome numbers for different species</li>
+      </ul>
+    </div>
+
+    <div class="nav-links">
+      <a href="dp-biotech-genes-study.html">← Previous: Genes (3.1)</a>
+      <a href="dp-biotech-meiosis-study.html">Next: Meiosis (3.3) →</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const parent = this.parentElement;
+        if (parent.querySelector('.correct')) return;
+        if (this.dataset.correct === 'true') {
+          this.classList.add('correct');
+        } else {
+          this.classList.add('incorrect');
+          parent.querySelector('[data-correct="true"]').classList.add('correct');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

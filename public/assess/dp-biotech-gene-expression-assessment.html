@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gene Expression (Topic D2.2) - IB Diploma Assessment</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 30px 20px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+    h1 { font-size: 2em; margin-bottom: 10px; }
+    .timer-box { background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 20px; display: inline-block; margin-top: 10px; font-size: 1.2em; }
+    .progress-bar { background: #e5e7eb; height: 8px; border-radius: 4px; margin: 20px 0; overflow: hidden; }
+    .progress-fill { background: #f59e0b; height: 100%; transition: width 0.3s; }
+    .question-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .question-number { color: #d97706; font-weight: bold; margin-bottom: 10px; }
+    .question-text { font-size: 1.1em; margin-bottom: 15px; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option { padding: 12px 15px; border: 2px solid #e5e7eb; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+    .option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .option.selected { border-color: #f59e0b; background: #fef3c7; }
+    .nav-buttons { display: flex; justify-content: space-between; margin: 20px 0; }
+    .btn { background: #f59e0b; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+    .btn:hover { background: #d97706; }
+    .btn:disabled { background: #9ca3af; cursor: not-allowed; }
+    .results { display: none; background: white; padding: 30px; border-radius: 10px; text-align: center; }
+    .score { font-size: 3em; color: #d97706; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧬 Gene Expression (D2.2) Assessment</h1>
+      <div class="timer-box">⏱ Time: <span id="timer">40:00</span></div>
+      <p style="margin-top: 10px;">IB Diploma BioTechnology - HL Only</p>
+    </header>
+
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width: 0%"></div></div>
+
+    <div id="assessment">
+      <div class="question-box" data-question="1">
+        <div class="question-number">Question 1 of 15</div>
+        <div class="question-text">What is epigenetics?</div>
+        <div class="options">
+          <div class="option">Changes to DNA sequence</div>
+          <div class="option" data-correct="true">Heritable changes in gene expression without DNA changes</div>
+          <div class="option">Protein synthesis</div>
+          <div class="option">DNA replication</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="2" style="display:none;">
+        <div class="question-number">Question 2 of 15</div>
+        <div class="question-text">DNA methylation usually:</div>
+        <div class="options">
+          <div class="option">Activates gene expression</div>
+          <div class="option" data-correct="true">Silences gene expression (turns OFF)</div>
+          <div class="option">Has no effect</div>
+          <div class="option">Causes mutations</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="3" style="display:none;">
+        <div class="question-number">Question 3 of 15</div>
+        <div class="question-text">Which histone modification loosens chromatin and activates genes?</div>
+        <div class="options">
+          <div class="option">Methylation</div>
+          <div class="option" data-correct="true">Acetylation</div>
+          <div class="option">Phosphorylation</div>
+          <div class="option">Ubiquitination</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="4" style="display:none;">
+        <div class="question-number">Question 4 of 15</div>
+        <div class="question-text">Genomic imprinting means:</div>
+        <div class="options">
+          <div class="option">Both alleles are expressed</div>
+          <div class="option" data-correct="true">Only maternal OR paternal allele is expressed</div>
+          <div class="option">Genes are deleted</div>
+          <div class="option">DNA sequence is changed</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="5" style="display:none;">
+        <div class="question-number">Question 5 of 15</div>
+        <div class="question-text">Which environmental factor can alter DNA methylation?</div>
+        <div class="options">
+          <div class="option">Only genetics</div>
+          <div class="option" data-correct="true">Diet, stress, smoking</div>
+          <div class="option">Only mutations</div>
+          <div class="option">None - it's fixed at birth</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="6" style="display:none;">
+        <div class="question-number">Question 6 of 15</div>
+        <div class="question-text">In cancer, tumor suppressor genes are often:</div>
+        <div class="options">
+          <div class="option">Overexpressed</div>
+          <div class="option" data-correct="true">Silenced by methylation</div>
+          <div class="option">Deleted from DNA</div>
+          <div class="option">Mutated to gain function</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="7" style="display:none;">
+        <div class="question-number">Question 7 of 15</div>
+        <div class="question-text">What is the purpose of histone acetylation?</div>
+        <div class="options">
+          <div class="option">Tighten chromatin, silence genes</div>
+          <div class="option" data-correct="true">Loosen chromatin, activate genes</div>
+          <div class="option">Replicate DNA</div>
+          <div class="option">Splice mRNA</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="8" style="display:none;">
+        <div class="question-number">Question 8 of 15</div>
+        <div class="question-text">Which gene is only expressed from the paternal allele?</div>
+        <div class="options">
+          <div class="option">H19</div>
+          <div class="option" data-correct="true">IGF2</div>
+          <div class="option">Both IGF2 and H19</div>
+          <div class="option">Neither</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="9" style="display:none;">
+        <div class="question-number">Question 9 of 15</div>
+        <div class="question-text">Epigenetic changes can be:</div>
+        <div class="options">
+          <div class="option">Only inherited through gametes</div>
+          <div class="option" data-correct="true">Inherited through cell divisions</div>
+          <div class="option">Never inherited</div>
+          <div class="option">Only occur in cancer</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="10" style="display:none;">
+        <div class="question-number">Question 10 of 15</div>
+        <div class="question-text">Where does DNA methylation typically occur?</div>
+        <div class="options">
+          <div class="option">Anywhere in DNA</div>
+          <div class="option" data-correct="true">CpG islands in promoter regions</div>
+          <div class="option">In the coding region only</div>
+          <div class="option">On histones</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="11" style="display:none;">
+        <div class="question-number">Question 11 of 15</div>
+        <div class="question-text">Angelman syndrome is caused by:</div>
+        <div class="option" data-correct="true">Maternal allele deletion/imprinting defect</div>
+        <div class="option">Paternal allele deletion</div>
+        <div class="option">Mutation in both alleles</div>
+        <div class="option">Environmental factors only</div>
+      </div>
+
+      <div class="question-box" data-question="12" style="display:none;">
+        <div class="question-number">Question 12 of 15</div>
+        <div class="question-text">Epigenetic drugs for cancer work by:</div>
+        <div class="options">
+          <div class="option">Killing all dividing cells</div>
+          <div class="option" data-correct="true">Reversing abnormal methylation patterns</div>
+          <div class="option">Blocking DNA replication</div>
+          <div class="option">Inhibiting protein synthesis</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="13" style="display:none;">
+        <div class="question-number">Question 13 of 15</div>
+        <div class="question-text">Which is NOT an epigenetic mechanism?</div>
+        <div class="options">
+          <div class="option">DNA methylation</div>
+          <div class="option">Histone acetylation</div>
+          <div class="option" data-correct="true">DNA mutation</div>
+          <div class="option">Histone methylation</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="14" style="display:none;">
+        <div class="question-number">Question 14 of 15</div>
+        <div class="question-text">Environmental factors affect gene expression by:</div>
+        <div class="options">
+          <div class="option">Changing DNA sequence</div>
+          <div class="option" data-correct="true">Altering epigenetic marks</div>
+          <div class="option">Mutating genes</div>
+          <div class="option">Deleting chromosomes</div>
+        </div>
+      </div>
+
+      <div class="question-box" data-question="15" style="display:none;">
+        <div class="question-number">Question 15 of 15</div>
+        <div class="question-text">Beckwith-Wiedemann syndrome is associated with:</div>
+        <div class="options">
+          <div class="option">H19 gene overexpression</div>
+          <div class="option" data-correct="true">IGF2 overexpression (paternal imprinting defect)</div>
+          <div class="option">Both alleles deleted</div>
+          <div class="option">Mutation in maternal allele only</div>
+        </div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn" id="prevBtn" disabled>Previous</button>
+        <button class="btn" id="nextBtn">Next</button>
+        <button class="btn" id="submitBtn" style="display:none;">Submit Assessment</button>
+      </div>
+    </div>
+
+    <div class="results" id="results">
+      <h2>Assessment Complete!</h2>
+      <div class="score" id="score">0%</div>
+      <p id="scoreText"></p>
+      <button class="btn" onclick="location.reload()">Retake Assessment</button>
+    </div>
+  </div>
+
+  <script>
+    let currentQuestion = 1, answers = {}, totalQuestions = 15, timeLeft = 40 * 60;
+    const timerInterval = setInterval(() => {
+      timeLeft--;
+      const m = Math.floor(timeLeft / 60), s = timeLeft % 60;
+      document.getElementById('timer').textContent = `${m}:${s.toString().padStart(2, '0')}`;
+      if (timeLeft <= 0) { clearInterval(timerInterval); submitAssessment(); }
+    }, 1000);
+
+    document.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', function() {
+        const qb = this.closest('.question-box'), qn = qb.dataset.question;
+        qb.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        this.classList.add('selected');
+        answers[qn] = this.dataset.correct === 'true';
+      });
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentQuestion < totalQuestions) {
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'none';
+        currentQuestion++;
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+        updateNav();
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentQuestion > 1) {
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'none';
+        currentQuestion--;
+        document.querySelector(`[data-question="${currentQuestion}"]`).style.display = 'block';
+        updateNav();
+      }
+    });
+
+    function updateNav() {
+      document.getElementById('prevBtn').disabled = currentQuestion === 1;
+      document.getElementById('nextBtn').style.display = currentQuestion === totalQuestions ? 'none' : 'block';
+      document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+      document.getElementById('progress').style.width = `${(currentQuestion / totalQuestions) * 100}%`;
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', submitAssessment);
+
+    function submitAssessment() {
+      clearInterval(timerInterval);
+      let correct = 0;
+      for (let i = 1; i <= totalQuestions; i++) { if (answers[i]) correct++; }
+      const score = Math.round((correct / totalQuestions) * 100);
+      document.getElementById('assessment').style.display = 'none';
+      document.getElementById('results').style.display = 'block';
+      document.getElementById('score').textContent = `${score}%`;
+      document.getElementById('scoreText').textContent = `You got ${correct} out of ${totalQuestions} questions correct!`;
+    }
+    updateNav();
+  </script>
+</body>
+</html>

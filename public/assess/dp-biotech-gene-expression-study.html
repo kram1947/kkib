@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gene Expression (Topic D2.2) - IB Diploma Study Material</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 40px 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .topic-badge { background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; display: inline-block; margin-top: 10px; }
+    h2 { color: #d97706; margin: 30px 0 15px; font-size: 1.8em; border-bottom: 3px solid #f59e0b; padding-bottom: 10px; }
+    h3 { color: #92400e; margin: 20px 0 10px; font-size: 1.3em; }
+    .content-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .key-concept { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+    .key-concept strong { color: #92400e; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .comparison-table th, .comparison-table td { padding: 12px; text-align: left; border: 1px solid #e5e7eb; }
+    .comparison-table th { background: #f59e0b; color: white; }
+    .comparison-table tr:nth-child(even) { background: #fef3c7; }
+    .epigenetic-viz { background: #1e293b; padding: 20px; border-radius: 10px; margin: 15px 0; color: #10b981; font-family: 'Courier New', monospace; }
+    .mechanism-box { background: #fffbeb; border: 2px solid #f59e0b; padding: 20px; border-radius: 10px; margin: 15px 0; }
+    .mechanism-box h4 { color: #d97706; margin-bottom: 10px; }
+    .quiz-box { background: #fffbeb; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .quiz-question { font-weight: bold; margin-bottom: 10px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { padding: 10px; border: 2px solid #e5e7eb; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+    .quiz-option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .nav-links { display: flex; justify-content: space-between; margin: 30px 0; }
+    .nav-links a { background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+    .nav-links a:hover { background: #d97706; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧬 Gene Expression (Topic D2.2)</h1>
+      <div class="topic-badge">IB Diploma BioTechnology - HL Only</div>
+      <p style="margin-top: 15px; opacity: 0.9;">Epigenetics and environmental influences on gene expression</p>
+    </header>
+
+    <div class="content-box">
+      <h2>What is Gene Expression?</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> The process by which genetic information (DNA) is used to synthesize a functional gene product (usually a protein). Not all genes are expressed in every cell.
+      </div>
+
+      <h3>Key Concept</h3>
+      <p>All cells have the same DNA, but different cell types (muscle, nerve, skin) express different sets of genes. Gene expression is regulated so that only needed proteins are produced.</p>
+    </div>
+
+    <div class="content-box">
+      <h2>Epigenetics</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> Heritable changes in gene expression that do not involve changes to the DNA sequence. Influenced by environment and lifestyle.
+      </div>
+
+      <div class="epigenetic-viz">
+        <h4 style="color: #f59e0b; margin-bottom: 10px;">Epigenetic Modifications</h4>
+        <p>DNA Sequence: ATGCTA → <span style="color: #f59e0b;">[Methylation]</span> → Gene SILENCED</p>
+        <p style="margin-top: 10px;">DNA Sequence: ATGCTA → <span style="color: #10b981;">[Acetylation]</span> → Gene ACTIVATED</p>
+      </div>
+
+      <h3>Common Epigenetic Mechanisms</h3>
+      <div class="mechanism-box">
+        <h4>1. DNA Methylation</h4>
+        <ul style="margin-left: 20px;">
+          <li>Addition of methyl group (CH₃) to cytosine bases</li>
+          <li>Usually silences gene expression (turns gene OFF)</li>
+          <li>Occurs at CpG islands (promoter regions)</li>
+          <li>Can be inherited through cell divisions</li>
+        </ul>
+      </div>
+
+      <div class="mechanism-box">
+        <h4>2. Histone Modification</h4>
+        <ul style="margin-left: 20px;">
+          <li>Histones are proteins that DNA wraps around</li>
+          <li><strong>Acetylation:</strong> Loosens chromatin → gene turned ON</li>
+          <li><strong>Methylation:</strong> Tightens chromatin → gene turned OFF</li>
+          <li>Changes accessibility of DNA to transcription machinery</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Environmental Influences on Gene Expression</h2>
+      <div class="key-concept">
+        <strong>Key Idea:</strong> Environment and lifestyle can change gene expression through epigenetic modifications, without changing DNA sequence.
+      </div>
+
+      <h3>Examples of Environmental Factors</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>Effect on Gene Expression</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Diet/Nutrition</td>
+            <td>Can methylate genes</td>
+            <td>Folate deficiency → altered methylation patterns</td>
+          </tr>
+          <tr>
+            <td>Stress</td>
+            <td>Alters cortisol-related gene expression</td>
+            <td>Early life stress → lifelong changes in stress response</td>
+          </tr>
+          <tr>
+            <td>Smoking</td>
+            <td>Changes methylation patterns</td>
+            <td>Increased lung cancer risk via gene silencing</td>
+          </tr>
+          <tr>
+            <td>Exercise</td>
+            <td>Activates beneficial genes</td>
+            <td>Improved metabolism, brain health</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Epigenetics and Disease</h2>
+      <h3>Cancer and Epigenetics</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Cancer cells often have abnormal methylation patterns</li>
+        <li>Tumor suppressor genes can be silenced by methylation</li>
+        <li>Oncogenes can be activated by hypomethylation</li>
+        <li>Epigenetic drugs (e.g., demethylating agents) are used in cancer therapy</li>
+      </ul>
+
+      <h3>Other Diseases Linked to Epigenetics</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Diabetes (imprinted genes affected)</li>
+        <li>Alzheimer's (altered histone modifications)</li>
+        <li>Autoimmune diseases (methylation changes)</li>
+        <li>Mental health disorders (stress-induced epigenetics)</li>
+      </ul>
+    </div>
+
+    <div class="content-box">
+      <h2>Imprinting</h2>
+      <div class="key-concept">
+        <strong>Genomic Imprinting:</strong> Genes are expressed in a parent-of-origin-specific manner. Only the maternal OR paternal allele is expressed, not both.
+      </div>
+
+      <h3>Examples of Imprinted Genes</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Gene</th>
+            <th>Expressed Allele</th>
+            <th>Disorder if Dysregulated</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>IGF2 (growth factor)</td>
+            <td>Paternal allele only</td>
+            <td>Beckwith-Wiedemann syndrome</td>
+          </tr>
+          <tr>
+            <td>H19 (non-coding RNA)</td>
+            <td>Maternal allele only</td>
+            <td>Wilms tumor (kidney cancer)</td>
+          </tr>
+          <tr>
+            <td>SNRPN</td>
+            <td>Maternal allele only</td>
+            <td>Angelman syndrome</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box quiz-box">
+      <h2>🧪 Quick Check Quiz</h2>
+      
+      <div class="quiz-question">1. What is epigenetics?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Changes to DNA sequence</div>
+        <div class="quiz-option" data-correct="true">Heritable changes in gene expression without DNA changes</div>
+        <div class="quiz-option">Protein synthesis</div>
+        <div class="quiz-option">DNA replication</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">2. DNA methylation usually:</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Activates gene expression</div>
+        <div class="quiz-option" data-correct="true">Silences gene expression (turns OFF)</div>
+        <div class="quiz-option">Has no effect</div>
+        <div class="quiz-option">Causes mutations</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">3. Which histone modification loosens chromatin and activates genes?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Methylation</div>
+        <div class="quiz-option" data-correct="true">Acetylation</div>
+        <div class="quiz-option">Phosphorylation</div>
+        <div class="quiz-option">Ubiquitination</div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>📚 IB Diploma Learning Objectives (HL)</h2>
+      <ul style="margin-left: 20px;">
+        <li>Define epigenetics and give examples</li>
+        <li>Explain DNA methylation and histone modification</li>
+        <li>Describe how environment influences gene expression</li>
+        <li>Understand genomic imprinting and parent-of-origin effects</li>
+        <li>Link epigenetics to cancer and other diseases</li>
+        <li>Evaluate the nature vs. nurture debate in light of epigenetics</li>
+      </ul>
+    </div>
+
+    <div class="nav-links">
+      <a href="dp-biotech-nucleic-acids-study.html">← Previous: Nucleic Acids (Topic 7)</a>
+      <a href="dp-biotech-advanced-genetics-study.html">Next: Advanced Genetics (Topic 10) →</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const parent = this.parentElement;
+        if (parent.querySelector('.correct')) return;
+        if (this.dataset.correct === 'true') {
+          this.classList.add('correct');
+        } else {
+          this.classList.add('incorrect');
+          parent.querySelector('[data-correct="true"]').classList.add('correct');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

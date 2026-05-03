@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genes (Topic 3.1) - IB Diploma BioTechnology Study Material</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 40px 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .topic-badge { background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; display: inline-block; margin-top: 10px; }
+    h2 { color: #d97706; margin: 30px 0 15px; font-size: 1.8em; border-bottom: 3px solid #f59e0b; padding-bottom: 10px; }
+    h3 { color: #92400e; margin: 20px 0 10px; font-size: 1.3em; }
+    .content-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .key-concept { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+    .key-concept strong { color: #92400e; }
+    .interactive { background: #fffbeb; border: 2px dashed #f59e0b; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .interactive h4 { color: #d97706; margin-bottom: 10px; }
+    .drag-drop { display: flex; gap: 10px; flex-wrap: wrap; margin: 15px 0; }
+    .drag-item { background: #f59e0b; color: white; padding: 10px 15px; border-radius: 6px; cursor: move; user-select: none; }
+    .drop-zone { border: 2px dashed #d97706; padding: 20px; border-radius: 8px; min-height: 60px; flex: 1; min-width: 200px; }
+    .dna-visual { background: #1e293b; color: #10b981; padding: 20px; border-radius: 8px; font-family: 'Courier New', monospace; margin: 15px 0; overflow-x: auto; }
+    .dna-visual .base { font-weight: bold; }
+    .dna-visual .a { color: #ef4444; }
+    .dna-visual .t { color: #3b82f6; }
+    .dna-visual .g { color: #22c55e; }
+    .dna-visual .c { color: #f59e0b; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .comparison-table th, .comparison-table td { padding: 12px; text-align: left; border: 1px solid #e5e7eb; }
+    .comparison-table th { background: #f59e0b; color: white; }
+    .comparison-table tr:nth-child(even) { background: #fef3c7; }
+    .quiz-box { background: #fffbeb; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .quiz-question { font-weight: bold; margin-bottom: 10px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { padding: 10px; border: 2px solid #e5e7eb; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+    .quiz-option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .nav-links { display: flex; justify-content: space-between; margin: 30px 0; }
+    .nav-links a { background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+    .nav-links a:hover { background: #d97706; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🧬 Genes (Topic 3.1)</h1>
+      <div class="topic-badge">IB Diploma BioTechnology - Core SL & HL</div>
+      <p style="margin-top: 15px; opacity: 0.9;">Understanding the nature of genes as heritable factors, alleles, and genomes</p>
+    </header>
+
+    <div class="content-box">
+      <h2>What is a Gene?</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> A gene is a heritable factor that controls a specific characteristic or trait in an organism. Genes are sequences of DNA that code for proteins or functional RNA molecules.
+      </div>
+      
+      <h3>Key Components of Genes</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>DNA Sequence:</strong> Genes are made of DNA (deoxyribonucleic acid)</li>
+        <li><strong>Locus:</strong> The specific position of a gene on a chromosome</li>
+        <li><strong>Coding Region:</strong> The part of the gene that codes for a protein</li>
+        <li><strong>Regulatory Sequences:</strong> Control when and where the gene is expressed</li>
+      </ul>
+
+      <div class="dna-visual">
+        <h4 style="color: #10b981; margin-bottom: 10px;">DNA Structure Visualization</h4>
+        <pre>
+  5' - A T G C T A G C T A G - 3'  (Coding strand)
+      | | | | | | | | | | | |
+  3' - T A C G A T C G A T C - 5'  (Template strand)
+        </pre>
+        <p style="margin-top: 10px;"><span class="base a">A</span> = Adenine, <span class="base t">T</span> = Thymine, <span class="base g">G</span> = Guanine, <span class="base c">C</span> = Cytosine</p>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Alleles: Different Forms of a Gene</h2>
+      <div class="key-concept">
+        <strong>Allele:</strong> Alternative versions of the same gene that code for different variations of a trait (e.g., brown eyes vs. blue eyes).
+      </div>
+
+      <h3>Types of Alleles</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Dominant (A)</strong></td>
+            <td>Expressed when present in either one or two copies</td>
+            <td>Brown eyes (B) over blue eyes (b)</td>
+          </tr>
+          <tr>
+            <td><strong>Recessive (a)</strong></td>
+            <td>Only expressed when two copies are present</td>
+            <td>Blue eyes only if genotype is bb</td>
+          </tr>
+          <tr>
+            <td><strong>Codominant</strong></td>
+            <td>Both alleles are fully expressed</td>
+            <td>AB blood type (IA and IB both expressed)</td>
+          </tr>
+          <tr>
+            <td><strong>Incompletely Dominant</strong></td>
+            <td>Blending of traits in heterozygotes</td>
+            <td>Red + White flowers → Pink flowers</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="interactive">
+        <h4>🎯 Interactive: Allele Matching</h4>
+        <p>Drag the correct allele type to match each description:</p>
+        <div class="drag-drop">
+          <div class="drag-item" draggable="true" data-type="dominant">Dominant</div>
+          <div class="drag-item" draggable="true" data-type="recessive">Recessive</div>
+          <div class="drag-item" draggable="true" data-type="codominant">Codominant</div>
+        </div>
+        <div class="drop-zone" data-match="dominant">Expressed in one or two copies → <span style="color: #10b981;">Drop here</span></div>
+        <div class="drop-zone" data-match="recessive">Only expressed in homozygous state → <span style="color: #10b981;">Drop here</span></div>
+        <div class="drop-zone" data-match="codominant">Both alleles fully expressed → <span style="color: #10b981;">Drop here</span></div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>The Genome</h2>
+      <div class="key-concept">
+        <strong>Genome:</strong> The complete set of genetic material (all DNA) in an organism. Includes both coding and non-coding regions.
+      </div>
+
+      <h3>Genome Components</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>Nuclear Genome:</strong> DNA contained within the nucleus (eukaryotes)</li>
+        <li><strong>Mitochondrial Genome:</strong> Small circular DNA in mitochondria (inherited maternally)</li>
+        <li><strong>Chloroplast Genome:</strong> DNA in chloroplasts (plants only)</li>
+        <li><strong>Coding DNA:</strong> Genes that code for proteins (~1-2% in humans)</li>
+        <li><strong>Non-coding DNA:</strong> Regulatory sequences, introns, repetitive DNA</li>
+      </ul>
+
+      <h3>Genome Sizes Comparison</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Organism</th>
+            <th>Genome Size (base pairs)</th>
+            <th>Number of Genes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bacteria (<em>E. coli</em>)</td>
+            <td>~4.6 million</td>
+            <td>~4,300</td>
+          </tr>
+          <tr>
+            <td>Yeast (<em>S. cerevisiae</em>)</td>
+            <td>~12 million</td>
+            <td>~6,000</td>
+          </tr>
+          <tr>
+            <td>Fruit fly (<em>D. melanogaster</em>)</td>
+            <td>~180 million</td>
+            <td>~14,000</td>
+          </tr>
+          <tr>
+            <td>Humans (<em>H. sapiens</em>)</td>
+            <td>~3.2 billion</td>
+            <td>~20,000-25,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Genes vs. Alleles vs. Genome</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Definition</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gene</strong></td>
+            <td>Sequence of DNA coding for a trait</td>
+            <td>Gene for eye color</td>
+          </tr>
+          <tr>
+            <td><strong>Allele</strong></td>
+            <td>Variant form of a gene</td>
+            <td>B (brown) or b (blue) for eye color</td>
+          </tr>
+          <tr>
+            <td><strong>Genotype</strong></td>
+            <td>Genetic makeup of an organism</td>
+            <td>Bb (heterozygous for eye color)</td>
+          </tr>
+          <tr>
+            <td><strong>Phenotype</strong></td>
+            <td>Physical expression of traits</td>
+            <td>Brown eyes</td>
+          </tr>
+          <tr>
+            <td><strong>Genome</strong></td>
+            <td>All genetic material in an organism</td>
+            <td>Complete human DNA (~3.2 billion bp)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box quiz-box">
+      <h2>🧪 Quick Check Quiz</h2>
+      
+      <div class="quiz-question">1. What is the definition of a gene?</div>
+      <div class="quiz-options">
+        <div class="quiz-option" data-correct="true">A heritable factor that controls a specific characteristic</div>
+        <div class="quiz-option">A type of protein that regulates cell function</div>
+        <div class="quiz-option">The physical expression of a trait</div>
+        <div class="quiz-option">The complete set of chromosomes in a cell</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">2. Which type of allele is only expressed when two copies are present?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Dominant</div>
+        <div class="quiz-option" data-correct="true">Recessive</div>
+        <div class="quiz-option">Codominant</div>
+        <div class="quiz-option">Incompletely dominant</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">3. What is the human genome size approximately?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">4.6 million base pairs</div>
+        <div class="quiz-option">180 million base pairs</div>
+        <div class="quiz-option" data-correct="true">3.2 billion base pairs</div>
+        <div class="quiz-option">12 million base pairs</div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>📚 IB Diploma Learning Objectives</h2>
+      <ul style="margin-left: 20px;">
+        <li>Define gene, allele, and genome</li>
+        <li>Explain the relationship between genes, alleles, and traits</li>
+        <li>Distinguish between genotype and phenotype</li>
+        <li>Compare genome sizes across different organisms</li>
+        <li>Understand the concept of coding vs. non-coding DNA</li>
+      </ul>
+    </div>
+
+    <div class="nav-links">
+      <a href="dp-biotech-chromosomes-study.html">Next: Chromosomes (3.2) →</a>
+    </div>
+  </div>
+
+  <script>
+    // Quiz functionality
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const parent = this.parentElement;
+        if (parent.querySelector('.correct')) return; // Already answered
+        
+        if (this.dataset.correct === 'true') {
+          this.classList.add('correct');
+        } else {
+          this.classList.add('incorrect');
+          parent.querySelector('[data-correct="true"]').classList.add('correct');
+        }
+      });
+    });
+
+    // Drag and drop functionality
+    document.querySelectorAll('.drag-item').forEach(item => {
+      item.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', item.dataset.type);
+      });
+    });
+
+    document.querySelectorAll('.drop-zone').forEach(zone => {
+      zone.addEventListener('dragover', e => e.preventDefault());
+      zone.addEventListener('drop', e => {
+        e.preventDefault();
+        const type = e.dataTransfer.getData('text/plain');
+        if (zone.dataset.match === type) {
+          zone.innerHTML = '✅ ' + type.charAt(0).toUpperCase() + type.slice(1) + ' - Correct!';
+          zone.style.borderColor = '#10b981';
+          zone.style.background = '#d1fae5';
+        } else {
+          zone.innerHTML = '❌ Try again!';
+          zone.style.borderColor = '#ef4444';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

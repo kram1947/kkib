@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meiosis (Topic 3.3) - IB Diploma BioTechnology Study Material</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 40px 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .topic-badge { background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; display: inline-block; margin-top: 10px; }
+    h2 { color: #d97706; margin: 30px 0 15px; font-size: 1.8em; border-bottom: 3px solid #f59e0b; padding-bottom: 10px; }
+    h3 { color: #92400e; margin: 20px 0 10px; font-size: 1.3em; }
+    .content-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .key-concept { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+    .key-concept strong { color: #92400e; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .comparison-table th, .comparison-table td { padding: 12px; text-align: left; border: 1px solid #e5e7eb; }
+    .comparison-table th { background: #f59e0b; color: white; }
+    .comparison-table tr:nth-child(even) { background: #fef3c7; }
+    .meiosis-stages { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0; }
+    .stage { background: #fffbeb; padding: 15px; border-radius: 8px; border: 2px solid #f59e0b; }
+    .stage h4 { color: #d97706; margin-bottom: 8px; }
+    .interactive-diagram { background: #1e293b; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: center; color: white; }
+    .cell { display: inline-block; width: 80px; height: 80px; border-radius: 50%; background: #f59e0b; margin: 10px; position: relative; }
+    .cell::before { content: '2n'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold; }
+    .cell.haploid::before { content: 'n'; }
+    .arrow { display: inline-block; font-size: 2em; color: #f59e0b; margin: 0 10px; }
+    .quiz-box { background: #fffbeb; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .quiz-question { font-weight: bold; margin-bottom: 10px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { padding: 10px; border: 2px solid #e5e7eb; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+    .quiz-option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .nav-links { display: flex; justify-content: space-between; margin: 30px 0; }
+    .nav-links a { background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+    .nav-links a:hover { background: #d97706; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔬 Meiosis (Topic 3.3)</h1>
+      <div class="topic-badge">IB Diploma BioTechnology - Core SL & HL</div>
+      <p style="margin-top: 15px; opacity: 0.9;">Cell division producing haploid gametes with genetic variation</p>
+    </header>
+
+    <div class="content-box">
+      <h2>What is Meiosis?</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> Meiosis is a type of cell division that reduces the chromosome number by half, producing four haploid daughter cells (gametes). It involves two rounds of division: Meiosis I and Meiosis II.
+      </div>
+
+      <div class="interactive-diagram">
+        <h4 style="color: #f59e0b; margin-bottom: 15px;">Meiosis Overview</h4>
+        <div>
+          <div class="cell"></div>
+          <span class="arrow">→</span>
+          <div class="cell"></div>
+          <span class="arrow">→</span>
+          <div class="cell haploid"></div>
+          <div class="cell haploid"></div>
+          <div class="cell haploid"></div>
+          <div class="cell haploid"></div>
+        </div>
+        <p style="margin-top: 15px;">1 Diploid Cell (2n) → 4 Haploid Cells (n)</p>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Meiosis I - Reduction Division</h2>
+      <p>Chromosome number is halved. Homologous chromosomes separate.</p>
+
+      <div class="meiosis-stages">
+        <div class="stage">
+          <h4>Prophase I</h4>
+          <ul style="margin-left: 15px; font-size: 0.9em;">
+            <li>Chromosomes condense</li>
+            <li>Homologous chromosomes pair (synapsis)</li>
+            <li>Crossing over occurs at chiasmata</li>
+            <li>Nuclear membrane breaks down</li>
+          </ul>
+        </div>
+        <div class="stage">
+          <h4>Metaphase I</h4>
+          <ul style="margin-left: 15px; font-size: 0.9em;">
+            <li>Homologous pairs align at equator</li>
+            <li>Independent assortment (random orientation)</li>
+            <li>2n chromosomes = 2² possible arrangements</li>
+          </ul>
+        </div>
+        <div class="stage">
+          <h4>Anaphase I</h4>
+          <ul style="margin-left: 15px; font-size: 0.9em;">
+            <li>Homologous chromosomes separate</li>
+            <li>Sister chromatids remain attached</li>
+            <li>Chromosome number halves (2n → n)</li>
+          </ul>
+        </div>
+        <div class="stage">
+          <h4>Telophase I</h4>
+          <ul style="margin-left: 15px; font-size: 0.9em;">
+            <li>Chromosomes arrive at poles</li>
+            <li>Cytokinesis occurs</li>
+            <li>Two haploid cells formed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Meiosis II - Separation of Sister Chromatids</h2>
+      <p>Similar to mitosis. Sister chromatids separate.</p>
+
+      <div class="meiosis-stages">
+        <div class="stage">
+          <h4>Prophase II</h4>
+          <ul style="margin-left: 15px; font-size: 0.9em;">
+            <li>Chromosomes condense again</li>
+            <li>No DNA replication</li>
+            <li>Nuclear membrane breaks down</li>
+          </ul>
+        </div>
+        <div class="stage">
+          <h4>Metaphase II</h4>
+          <ul style="margin-left: 15px; font-size: 0.9em;">
+            <li>Chromosomes align at equator</li>
+            <li>Sister chromatids attached at centromere</li>
+          </ul>
+        </div>
+        <div class="stage">
+          <h4>Anaphase II</h4>
+          <ul style="margin-left: 15px; font-size: 0.9em;">
+            <li>Sister chromatids separate</li>
+            <li>Move to opposite poles</li>
+          </ul>
+        </div>
+        <div class="stage">
+          <h4>Telophase II</h4>
+          <ul style="margin-left: 15px; font-size: 0.9em;">
+            <li>Nuclear membranes reform</li>
+            <li>Cytokinesis occurs</li>
+            <li>Four haploid gametes produced</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Sources of Genetic Variation</h2>
+      <div class="key-concept">
+        <strong>Meiosis creates genetic diversity through three mechanisms:</strong>
+      </div>
+
+      <h3>1. Crossing Over (Prophase I)</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Exchange of genetic material between homologous chromosomes</li>
+        <li>Occurs at chiasmata</li>
+        <li>Creates new combinations of alleles</li>
+        <li>Increases genetic diversity significantly</li>
+      </ul>
+
+      <h3>2. Independent Assortment (Metaphase I)</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Random orientation of homologous chromosome pairs</li>
+        <li>2n chromosomes → 2ⁿ possible combinations</li>
+        <li>Humans: 2²³ = ~8.4 million combinations</li>
+      </ul>
+
+      <h3>3. Random Fertilization</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Any sperm can fertilize any egg</li>
+        <li>Combines genetic material from two parents</li>
+        <li>Further increases variation</li>
+      </ul>
+    </div>
+
+    <div class="content-box">
+      <h2>Meiosis vs. Mitosis</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Meiosis</th>
+            <th>Mitosis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Purpose</strong></td>
+            <td>Produce gametes (sex cells)</td>
+            <td>Growth, repair, asexual reproduction</td>
+          </tr>
+          <tr>
+            <td><strong>Division Rounds</strong></td>
+            <td>Two (Meiosis I & II)</td>
+            <td>One</td>
+          </tr>
+          <tr>
+            <td><strong>Daughter Cells</strong></td>
+            <td>4 haploid cells (n)</td>
+            <td>2 diploid cells (2n)</td>
+          </tr>
+          <tr>
+            <td><strong>Genetic Variation</strong></td>
+            <td>High (crossing over, independent assortment)</td>
+            <td>None (clones of parent cell)</td>
+          </tr>
+          <tr>
+            <td><strong>Occurs In</strong></td>
+            <td>Reproductive organs (gonads)</td>
+            <td>All body tissues</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box quiz-box">
+      <h2>🧪 Quick Check Quiz</h2>
+      
+      <div class="quiz-question">1. How many daughter cells are produced by meiosis?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">2</div>
+        <div class="quiz-option" data-correct="true">4</div>
+        <div class="quiz-option">1</div>
+        <div class="quiz-option">8</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">2. When does crossing over occur?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Metaphase I</div>
+        <div class="quiz-option">Anaphase I</div>
+        <div class="quiz-option" data-correct="true">Prophase I</div>
+        <div class="quiz-option">Prophase II</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">3. What is the chromosome number of daughter cells after meiosis?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Diploid (2n)</div>
+        <div class="quiz-option">Tetraploid (4n)</div>
+        <div class="quiz-option" data-correct="true">Haploid (n)</div>
+        <div class="quiz-option">Same as parent</div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>📚 IB Diploma Learning Objectives</h2>
+      <ul style="margin-left: 20px;">
+        <li>Explain the process of meiosis (I and II)</li>
+        <li>Identify stages of meiosis from diagrams</li>
+        <li>Compare meiosis and mitosis</li>
+        <li>Explain how crossing over increases variation</li>
+        <li>Calculate possible combinations from independent assortment</li>
+        <li>Understand the role of meiosis in sexual reproduction</li>
+      </ul>
+    </div>
+
+    <div class="nav-links">
+      <a href="dp-biotech-chromosomes-study.html">← Previous: Chromosomes (3.2)</a>
+      <a href="dp-biotech-inheritance-study.html">Next: Inheritance (3.4) →</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const parent = this.parentElement;
+        if (parent.querySelector('.correct')) return;
+        if (this.dataset.correct === 'true') {
+          this.classList.add('correct');
+        } else {
+          this.classList.add('incorrect');
+          parent.querySelector('[data-correct="true"]').classList.add('correct');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

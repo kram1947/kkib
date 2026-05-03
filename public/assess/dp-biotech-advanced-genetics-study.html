@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Genetics & Evolution (Topic 10) - IB Diploma Study Material</title>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 40px 20px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+    h1 { font-size: 2.5em; margin-bottom: 10px; }
+    .topic-badge { background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; display: inline-block; margin-top: 10px; }
+    h2 { color: #d97706; margin: 30px 0 15px; font-size: 1.8em; border-bottom: 3px solid #f59e0b; padding-bottom: 10px; }
+    h3 { color: #92400e; margin: 20px 0 10px; font-size: 1.3em; }
+    .content-box { background: white; padding: 25px; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .key-concept { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+    .key-concept strong { color: #92400e; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    .comparison-table th, .comparison-table td { padding: 12px; text-align: left; border: 1px solid #e5e7eb; }
+    .comparison-table th { background: #f59e0b; color: white; }
+    .comparison-table tr:nth-child(even) { background: #fef3c7; }
+    .punnett-large { margin: 20px auto; border-collapse: collapse; width: 400px; }
+    .punnett-large td, .punnett-large th { border: 2px solid #f59e0b; padding: 10px; text-align: center; }
+    .punnett-large th { background: #f59e0b; color: white; }
+    .punnett-large td { background: #fffbeb; }
+    .formula-box { background: #1e293b; color: #10b981; padding: 20px; border-radius: 10px; margin: 15px 0; font-family: 'Courier New', monospace; text-align: center; font-size: 1.2em; }
+    .quiz-box { background: #fffbeb; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .quiz-question { font-weight: bold; margin-bottom: 10px; }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-option { padding: 10px; border: 2px solid #e5e7eb; border-radius: 6px; cursor: pointer; transition: all 0.3s; }
+    .quiz-option:hover { border-color: #f59e0b; background: #fef3c7; }
+    .quiz-option.correct { background: #d1fae5; border-color: #10b981; }
+    .quiz-option.incorrect { background: #fee2e2; border-color: #ef4444; }
+    .nav-links { display: flex; justify-content: space-between; margin: 30px 0; }
+    .nav-links a { background: #f59e0b; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+    .nav-links a:hover { background: #d97706; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📈 Advanced Genetics & Evolution (Topic 10)</h1>
+      <div class="topic-badge">IB Diploma BioTechnology - HL Only</div>
+      <p style="margin-top: 15px; opacity: 0.9;">Dihybrid crosses, gene linkage, and Chi-squared test</p>
+    </header>
+
+    <div class="content-box">
+      <h2>Dihybrid Crosses</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> A genetic cross examining the inheritance of TWO different traits simultaneously. Uses a 4×4 Punnett square (16 boxes).
+      </div>
+
+      <h3>Example: Seed Color (Y=yellow, y=green) and Seed Shape (R=round, r=wrinkled)</h3>
+      <p>Cross: YyRr × YyRr (heterozygous for both traits)</p>
+      
+      <table class="punnett-large">
+        <tr>
+          <th></th>
+          <th>YR</th>
+          <th>Yr</th>
+          <th>yR</th>
+          <th>yr</th>
+        </tr>
+        <tr>
+          <th>YR</th>
+          <td>YYRR</td>
+          <td>YYRr</td>
+          <td>YyRR</td>
+          <td>YyRr</td>
+        </tr>
+        <tr>
+          <th>Yr</th>
+          <td>YYRr</td>
+          <td>YYrr</td>
+          <td>YyRr</td>
+          <td>Yyrr</td>
+        </tr>
+        <tr>
+          <th>yR</th>
+          <td>YyRR</td>
+          <td>YyRr</td>
+          <td>yyRR</td>
+          <td>yyRr</td>
+        </tr>
+        <tr>
+          <th>yr</th>
+          <td>YyRr</td>
+          <td>Yyrr</td>
+          <td>yyRr</td>
+          <td>yyrr</td>
+        </tr>
+      </table>
+
+      <div style="text-align: center; margin-top: 15px;">
+        <p><strong>Phenotypic Ratio:</strong> 9 Yellow Round : 3 Yellow Wrinkled : 3 Green Round : 1 Green Wrinkled</p>
+        <p><strong>9:3:3:1 ratio</strong> is classic for dihybrid crosses with independent assortment</p>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>Gene Linkage</h2>
+      <div class="key-concept">
+        <strong>Definition:</strong> Genes located close together on the same chromosome tend to be inherited together (do not assort independently).
+      </div>
+
+      <h3>Key Concepts</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>Linked genes:</strong> On same chromosome, inherited together</li>
+        <li><strong>Recombination (crossing over):</strong> Can separate linked genes</li>
+        <li><strong>Linkage map:</strong> Shows relative positions of genes on chromosome</li>
+        <li><strong>Centimorgans (cM):</strong> Unit of distance (1% recombination = 1 cM)</li>
+      </ul>
+
+      <h3>Linked vs. Unlinked Genes</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Unlinked (Independent Assortment)</th>
+            <th>Linked Genes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Location</strong></td>
+            <td>Different chromosomes OR far apart on same chromosome</td>
+            <td>Close together on same chromosome</td>
+          </tr>
+          <tr>
+            <td><strong>Punnett Ratio</strong></td>
+            <td>9:3:3:1 (dihybrid)</td>
+            <td>More parental types, fewer recombinants</td>
+          </tr>
+          <tr>
+            <td><strong>Recombination</strong></td>
+            <td>Not applicable</td>
+            <td>Crossing over can separate them</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Chi-Squared (χ²) Test</h2>
+      <div class="key-concept">
+        <strong>Purpose:</strong> Statistical test to determine if observed results differ significantly from expected results (null hypothesis).
+      </div>
+
+      <div class="formula-box">
+        χ² = Σ [(Observed - Expected)² / Expected]
+      </div>
+
+      <h3>Steps to Perform Chi-Squared Test</h3>
+      <ol style="margin-left: 20px; margin-top: 10px;">
+        <li><strong>State null hypothesis:</strong> "No significant difference between observed and expected"</li>
+        <li><strong>Calculate expected values:</strong> Based on known ratios (e.g., 9:3:3:1)</li>
+        <li><strong>Calculate χ²:</strong> Use formula for each category, sum them</li>
+        <li><strong>Determine degrees of freedom (df):</strong> df = number of categories - 1</li>
+        <li><strong>Compare to critical value:</strong> Use χ² table at p=0.05</li>
+        <li><strong>Conclusion:</strong> If χ² calculated < critical value → accept null hypothesis</li>
+      </ol>
+
+      <h3>Example Calculation</h3>
+      <p><strong>Cross:</strong> Dihybrid (YyRr × YyRr), expected ratio 9:3:3:1</p>
+      <p><strong>Total offspring:</strong> 160</p>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Expected: 90 Yellow Round, 30 Yellow Wrinkled, 30 Green Round, 10 Green Wrinkled</li>
+        <li>Observed: 85, 32, 28, 15</li>
+        <li>χ² = (85-90)²/90 + (32-30)²/30 + (28-30)²/30 + (15-10)²/10 = 0.278 + 0.133 + 0.133 + 2.5 = <strong>3.044</strong></li>
+        <li>df = 4-1 = 3 → Critical value (p=0.05) = 7.815</li>
+        <li>3.044 < 7.815 → <strong>Accept null hypothesis</strong> (difference is due to chance)</li>
+      </ul>
+    </div>
+
+    <div class="content-box">
+      <h2>Degrees of Freedom and Critical Values</h2>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>df</th>
+            <th>Critical Value (p=0.05)</th>
+            <th>Application</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>3.841</td>
+            <td>Monohybrid cross (2 categories)</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>7.815</td>
+            <td>Dihybrid cross (4 categories)</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>5.991</td>
+            <td>Chi-squared for 3 categories</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-box">
+      <h2>Linkage Maps</h2>
+      <div class="key-concept">
+        <strong>Gene mapping:</strong> Using recombination frequencies to determine relative positions of genes on a chromosome.
+      </div>
+
+      <h3>Example: Drosophila (Fruit Fly)</h3>
+      <ul style="margin-left: 20px; margin-top: 10px;">
+        <li>Body color (B) and wing size (W) are 18 cM apart</li>
+        <li>18% recombination frequency = 18 cM</li>
+        <li>Genes closer together have lower recombination frequencies</li>
+        <li>Maximum recombination = 50% (genes behave as unlinked)</li>
+      </ul>
+    </div>
+
+    <div class="content-box quiz-box">
+      <h2>🧪 Quick Check Quiz</h2>
+      
+      <div class="quiz-question">1. What is the expected phenotypic ratio for a dihybrid cross?</div>
+      <div class="quiz-options">
+        <div class="quiz-option">3:1</div>
+        <div class="quiz-option">1:2:1</div>
+        <div class="quiz-option" data-correct="true">9:3:3:1</div>
+        <div class="quiz-option">1:1</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">2. Linked genes are:</div>
+      <div class="quiz-options">
+        <div class="quiz-option">On different chromosomes</div>
+        <div class="quiz-option" data-correct="true">Close together on the same chromosome</div>
+        <div class="quiz-option">Always inherited independently</div>
+        <div class="quiz-option">Never recombinant</div>
+      </div>
+
+      <div class="quiz-question" style="margin-top: 20px;">3. In a chi-squared test, if calculated χ² < critical value, you:</div>
+      <div class="quiz-options">
+        <div class="quiz-option">Reject null hypothesis</div>
+        <div class="quiz-option" data-correct="true">Accept null hypothesis (no significant difference)</div>
+        <div class="quiz-option">Conclude genes are linked</div>
+        <div class="quiz-option">Repeat the experiment</div>
+      </div>
+    </div>
+
+    <div class="content-box">
+      <h2>📚 IB Diploma Learning Objectives (HL)</h2>
+      <ul style="margin-left: 20px;">
+        <li>Perform and interpret dihybrid crosses</li>
+        <li>Understand gene linkage and recombination frequencies</li>
+        <li>Calculate map distances in centimorgans</li>
+        <li>Perform chi-squared test (state null hypothesis, calculate χ², determine df, compare to critical value)</li>
+        <li>Interpret chi-squared results</li>
+        <li>Distinguish between linked and unlinked genes</li>
+      </ul>
+    </div>
+
+    <div class="nav-links">
+      <a href="dp-biotech-gene-expression-study.html">← Previous: Gene Expression (D2.2)</a>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.quiz-option').forEach(option => {
+      option.addEventListener('click', function() {
+        const parent = this.parentElement;
+        if (parent.querySelector('.correct')) return;
+        if (this.dataset.correct === 'true') {
+          this.classList.add('correct');
+        } else {
+          this.classList.add('incorrect');
+          parent.querySelector('[data-correct="true"]').classList.add('correct');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
