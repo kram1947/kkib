@@ -1,9 +1,10 @@
 # KaniMath - IB MYP Assessment Platform
-
+ 
 ## Project Overview
-An interactive assessment platform for IB MYP4 (International Baccalaureate Middle Years Programme Year 4) students covering Mathematics and Individuals & Societies subjects.
+An interactive assessment platform for IB MYP4 (International Baccalaureate Middle Years Programme Year 4) students covering Mathematics, Science, and Individuals & Societies subjects.
 
 **Live Site**: https://kaniib.vercel.app
+**GitHub Repo**: https://github.com/kram1947/kkib
 
 ## Tech Stack
 - React 18 + Vite (frontend)
@@ -13,111 +14,160 @@ An interactive assessment platform for IB MYP4 (International Baccalaureate Midd
 
 ## Project Structure
 ```
-mathapp/
+kkib/
 ├── index.html              # SPA entry point (served by Vercel)
 ├── package.json
 ├── vite.config.js
 ├── vercel.json             # Updated for React build
+├── AGENTS.md              # Developer documentation (this file)
+├── project_prompt.md      # E-learning portal development prompt
 ├── src/
 │   ├── assets/             # Images, icons
-│   ├── components/         # Reusable UI components
-│   ├── hooks/              # Custom React hooks
-│   ├── pages/              # Page components
+│   ├── components/         # Reusable UI components (ProtectedRoute)
+│   ├── context/            # React Context (AuthContext)
+│   ├── pages/              # Page components (Home, Topics, Assessments)
+│   │   ├── auth/            # Authentication pages (Login, AuthLayout)
+│   │   └── Home.jsx        # Main landing page with all assessments
 │   ├── styles/             # CSS variables, globals
-│   ├── utils/              # Helper functions
+│   ├── main.jsx            # React entry point
 │   └── App.jsx             # Main app component with routing
-├── assessments/            # UNCHANGED - all existing .html files
-│   ├── myp4-*.html
-│   └── content/
-└── public/                 # Static assets
-    └── vite.svg
+├── public/
+│   ├── assess/            # ALL assessment HTML files
+│   │   ├── myp4-algebra-study.html
+│   │   ├── myp4-algebra-assessment.html
+│   │   ├── myp4-science-ions-isotopes-study.html     # NEW: Science study
+│   │   ├── myp4-science-ions-isotopes-assessment.html  # NEW: Science quiz
+│   │   ├── myp4-trigonometry-study.html
+│   │   ├── myp4-trigonometry-assessment.html
+│   │   ├── content/         # Source materials (PDF, ODT, ODS files)
+│   │   └── ... (other assessments)
+│   └── vite.svg
+└── api/                   # Serverless API functions (Supabase auth)
 ```
+
+### Key Files for Adding Content
+- **src/pages/Home.jsx**: Add new topics to `topicsData` and assessments to `assessmentsData`
+- **public/assess/**: Create new HTML files for study materials and assessments
+- **AGENTS.md**: Update this file with new content information
 
 ## Assessment Types
 
 ### Mathematics (MYP4)
 | File | Topics | Questions |
 |------|--------|-----------|
+| myp4-algebra-study.html | Expressions, Linear, Quadratics, Functions | Study |
+| myp4-algebra-assessment.html | Algebra Assessment | 25 |
+| myp4-trigonometry-study.html | SOHCAHTOA, Sine/Cosine Rules | Study |
+| myp4-trigonometry-assessment.html | Trigonometry Assessment | 25 |
 | myp4-sets-venn-probability.html | Sets, Venn Diagrams, Probability | 16 |
 | myp4-sets-venn-probability-advanced.html | 4-Set Venn, Bayes' Theorem | 50 |
 | myp4-statistics.html | Mean, Median, Box Plots | 25 |
 | myp4-statistics-part4.html | Advanced Statistics | 25 |
 | myp4-comprehensive.html | Full Curriculum Review | 45 |
 
+### Science (MYP4)
+| File | Topics | Questions |
+|------|--------|-----------|
+| myp4-science-ions-isotopes-study.html | Ions, Isotopes, Ionic Bonding | Study |
+| myp4-science-ions-isotopes-assessment.html | Ions, Isotopes, Properties, Applications | 20 |
+
 ### Individuals & Societies (I&S)
 | File | Topics | Questions |
 |------|--------|-----------|
+| myp4-ins-money-history-study.html | Barter to Bitcoin, OPVL Analysis | Study |
 | myp4-ins-money-history.html | History of Money, Cryptocurrency | 20 |
 | myp4-ins-supply-demand.html | Supply & Demand, Market Economics | 20 |
 
 ### Study Materials
 | File | Description |
 |------|-------------|
+| myp4-algebra-study.html | Interactive study guide for Algebra (7 sections) |
+| myp4-trigonometry-study.html | Interactive study guide for Trigonometry |
+| myp4-science-ions-isotopes-study.html | Science: Ions, Isotopes, Ionic Bonding (5 sections) |
 | myp4-ins-money-history-study.html | Interactive study guide for History of Money |
-| myp4-ins-supply-demand.html | Study material for Supply & Demand |
+| myp4-ins-supply-demand-study.html | Study material for Supply & Demand |
 
-## Adding New Assessments
+## Adding New Content (Study Material + Assessment)
 
-### Approach 1: HTML Assessments (Maintains Backward Compatibility)
-Existing assessment files (.html) continue to work as-is. To add new HTML assessments:
+### Step 1: Create Study Material HTML
+Follow the template in `public/assess/[topic]-study.html`:
+- Include topic sections with interactive examples
+- Use MathJax for LaTeX formulas: `\(formula\)` for inline, `\[formula\]` for display
+- Add SVG diagrams for visual concepts
+- Include real-world examples (preferably Swedish context)
+- Add "NEW SECTION" markers if multiple topics in one file
 
-1. **Create Assessment File**
-Copy the assessment structure:
-```html
-<!-- assessments/myp4-[topic].html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Standard meta tags -->
-    <title>MYP4 [Subject] - [Topic]</title>
-    <!-- Include fonts and jsPDF -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <!-- CSS styles -->
-</head>
-<body>
-    <!-- Sidebar with timer, progress, nav -->
-    <!-- Main content with questions -->
-    <!-- JavaScript for quiz logic -->
-</body>
-</html>
+### Step 2: Create Assessment HTML
+Follow the template in `public/assess/[topic]-assessment.html`:
+- 20-25 questions with 4 options each
+- Include `topic` field in each question for section markers
+- Add section transitions using `isNewTopic` logic
+- Timer: 45-60 minutes (2700-3600 seconds)
+- Question format:
+```javascript
+{id:1, topic:"TopicName", difficulty:1-4, text:"Question?", options:["A","B","C","D"], correct:0, explanation:"Why this is correct"}
 ```
 
-2. **Update index.html** (React App)
-Add assessment card to the React application:
-```html
-<a href="assessments/myp4-[topic].html" class="assessment-card" data-category="myp4" data-topics="[topic]">
-    <!-- Card content -->
-</a>
+### Step 3: Update React App (src/pages/Home.jsx)
+1. Add to `topicsData` array (for topic filter chips):
+```javascript
+{ id: 'topic', name: 'Topic Name', icon: '🎯', color: 'rgba(..., 0.15)' }
 ```
 
-Update stats in the React app:
-- Assessments count
-- Questions count
-- Minutes count
+2. Add to `assessmentsData` array (for assessment cards):
+```javascript
+{
+  id: N,
+  title: 'Topic - Study/Assessment',
+  description: 'Description...',
+  topics: ['Subtopic1', 'Subtopic2'],
+  topicId: 'topic',
+  questionCount: 20,
+  time: '45',
+  marks: 80,
+  difficulty: 3,
+  href: 'assess/myp4-[topic].html',
+  category: 'myp4',
+  badge: 'MYP4',
+  icon: '📊',
+  iconBg: 'geometry'
+}
+```
 
-### Approach 2: React Assessments (Future Migration Path)
-For new development, assessments can be created as React components:
-1. Create a new component in `src/pages/assessments/`
-2. Add route in `src/App.jsx`
-3. Link from the assessments page
+3. Update stats in the return statement:
+```javascript
+<StatCard icon="📚" value="14" label="Assessments" ... />
+<StatCard icon="📝" value="276" label="Questions" ... />
+<StatCard icon="⏱" value="360" label="Minutes" ... />
+```
 
-Note: Existing HTML assessments will continue to work unchanged regardless of approach chosen.
-
-### 3. Commit & Deploy
+### Step 4: Commit & Push
 ```bash
-git add .
-git commit -m "Add [topic] assessment"
+# Stage changes
+git add src/pages/Home.jsx public/assess/myp4-*.html
+
+# Commit with descriptive message
+git commit -m "Add [Subject]: [Topic] - Study material + Assessment"
+
+# Push to GitHub
 git push origin main
 ```
 
+### Verification
+1. Local testing: `npm run dev` → visit http://localhost:5173
+2. Check topic appears in filter chips
+3. Verify assessment card shows correctly
+4. Test study material renders with MathJax
+
 ## Assessment Features
-- Timer with warnings
-- Question navigator
-- Multiple choice, short answer, essay questions
-- Progress tracking
-- PDF results download
+- Timer with warnings (warning at 5min, danger at 1min)
+- Question navigator with current/answered states
+- Section markers showing topic transitions ("📚 NEW SECTION: Topic Name")
+- Multiple choice questions with immediate feedback (after submit)
+- Progress tracking with visual progress bar
+- PDF results download (jsPDF)
 - LocalStorage for history
+- Topic tags on each question for easy identification
 
 ## Design System
 
