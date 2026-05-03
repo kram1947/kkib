@@ -1,4 +1,4 @@
-# KaniMath - IB MYP Assessment Platform
+# KKIB - IB MYP Assessment Platform
  
 ## Project Overview
 An interactive assessment platform for IB MYP4 (International Baccalaureate Middle Years Programme Year 4) students covering Mathematics, Science, and Individuals & Societies subjects.

@@ -79,7 +79,7 @@ const assessmentsData = [
   {
     id: 1,
     title: 'Sets, Venn & Probability',
-    description: 'Master set theory, 3-set Venn diagrams, inclusion-exclusion principle, and compound probability calculations.',
+    description: 'Mastery set theory, 3-set Venn diagrams, inclusion-exclusion principle, and compound probability calculations.',
     topics: ['Sets', 'Venn Diagrams', 'Probability'],
     topicId: 'probability',
     subjectId: 'math',
@@ -181,7 +181,7 @@ const assessmentsData = [
   {
     id: 7,
     title: 'Supply & Demand',
-    description: 'Master market economics: Law of Demand/Supply, equilibrium, shifts, and government intervention with Swedish examples.',
+    description: 'Mastery market economics: Law of Demand/Supply, equilibrium, shifts, and government intervention with Swedish examples.',
     topics: ['Demand', 'Supply', 'Equilibrium'],
     topicId: 'supply-demand',
     subjectId: 'ins',
@@ -1060,7 +1060,7 @@ export default function Home() {
             <span></span>
             Free IB Practice
           </div>
-          <h1 id="hero-title">Master <span>Subjects</span><br/>with KaniMath</h1>
+          <h1 id="hero-title">Kani <span>IB Subjects</span><br/>with KKIB</h1>
           <p className="hero-desc">Interactive assessments aligned with IB curriculum. Track your progress, identify knowledge gaps, and achieve excellence.</p>
           <div className="hero-actions">
             <a href="#subjects" className="btn btn-primary">
