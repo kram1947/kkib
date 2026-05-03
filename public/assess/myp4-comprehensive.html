@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB MYP 4 Mathematics - International Examination</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], processEscapes: true },
+            startup: { pageReady: () => MathJax.typesetPromise() }
+        };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #006aa7 0%, #f4b83a 50%, #006aa7 100%); min-height: 100vh; }
+        .content-bg { background: rgba(255,255,255,0.95); }
+        .option-input:checked + .option-label { background-color: #d4e6f1; border-color: #006aa7; box-shadow: 0 2px 8px rgba(0,106,167,0.15); }
+        .nav-btn.active { background: #006aa7; color: white; border-color: #006aa7; font-weight: 600; }
+        .nav-btn.answered { background: #c8e6f5; border-color: #006aa7; color: #003d66; font-weight: 600; }
+        .header-gradient { background: linear-gradient(90deg, #006aa7 0%, #004477 100%); }
+        .accent-btn { background: linear-gradient(135deg, #006aa7 0%, #004477 100%); cursor: pointer; }
+        .accent-btn:hover { background: linear-gradient(135deg, #005588 0%, #003366 100%); }
+        .review-correct { border-left: 6px solid #22c55e; background: #f0fdf4; }
+        .review-wrong { border-left: 6px solid #ef4444; background: #fef2f2; }
+        .question-text { line-height: 1.8; word-break: break-word; }
+        mjx-container { display: inline; }
+        
+        /* Login Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .modal-content h2 {
+            color: #006aa7;
+            margin-bottom: 8px;
+        }
+        .modal-content p {
+            color: #64748b;
+            margin-bottom: 24px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #334155;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #006aa7;
+        }
+        .modal-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #006aa7 0%, #004477 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .modal-btn:hover {
+            transform: scale(1.02);
+        }
+        .guest-link {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #64748b;
+        }
+        .guest-link a {
+            color: #006aa7;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        /* History Panel */
+        .history-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #006aa7 0%, #004477 100%);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,106,167,0.4);
+            z-index: 100;
+        }
+        .history-panel {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 320px;
+            max-height: 400px;
+            overflow-y: auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: none;
+        }
+        .history-panel.show {
+            display: block;
+        }
+        .history-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            font-weight: 700;
+            color: #006aa7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .history-item {
+            padding: 12px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .history-item:hover {
+            background: #f8fafc;
+        }
+        .history-item:last-child {
+            border-bottom: none;
+        }
+        .history-item .date {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .history-item .score {
+            font-size: 20px;
+            font-weight: 700;
+            color: #006aa7;
+        }
+        .history-item .name {
+            font-weight: 600;
+            color: #334155;
+        }
+        .history-empty {
+            padding: 40px 20px;
+            text-align: center;
+            color: #64748b;
+        }
+        .back-home-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #006aa7 0%, #004477 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,106,167,0.4);
+            z-index: 100;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .back-home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,106,167,0.5);
+        }
+        #login-modal { display: flex; }
+        #back-home-btn { display: none; }
+        #back-home-btn.show { display: flex; }
+    </style>
+</head>
+<body class="text-slate-900 min-h-screen flex flex-col">
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Welcome!</h2>
+            <p>Enter your name to start the assessment</p>
+            <div class="form-group">
+                <label for="student-name">Your Name *</label>
+                <input type="text" id="student-name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="student-class">Class (optional)</label>
+                <input type="text" id="student-class" placeholder="e.g., MYP4-A">
+            </div>
+            <button class="modal-btn" onclick="startWithLogin()">Start Quiz</button>
+            <div class="guest-link"><a onclick="startAsGuest()">Continue as Guest</a></div>
+        </div>
+    </div>
+
+    <!-- History Toggle Button -->
+    <button class="history-toggle" onclick="toggleHistory()" title="View History">📋</button>
+
+    <!-- History Panel -->
+    <div id="history-panel" class="history-panel">
+        <div class="history-header">
+            <span>📊 Your History</span>
+            <button onclick="toggleHistory()" style="background:none;border:none;cursor:pointer;font-size:18px;">×</button>
+        </div>
+        <div id="history-list"></div>
+    </div>
+
+    <!-- Back to Home Button (shown after quiz) -->
+    <a id="back-home-btn" class="back-home-btn hidden" href="/">
+        ← Back to Home
+    </a>
+
+    <header class="header-gradient text-white shadow-lg p-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-white p-2 rounded-lg shadow-md">
+                    <span class="text-[#006aa7] font-bold text-xl">IB MYP 4</span>
+                </div>
+                <h1 class="font-bold text-lg hidden sm:block">Mathematics International Examination</h1>
+            </div>
+            <div id="timer-display" class="bg-yellow-400 text-slate-900 px-4 py-2 rounded-full font-bold shadow-inner">60:00</div>
+        </div>
+    </header>
+
+    <main class="flex-1 w-full max-w-6xl mx-auto p-4 sm:p-6">
+        
+        <div id="start-screen" class="content-bg rounded-2xl shadow-xl border border-slate-100 p-8 text-center">
+            <h2 class="text-4xl font-bold mb-2 text-[#006aa7]">IB MYP 4 Mathematics</h2>
+            <p class="text-slate-500 mb-8 text-lg">International Baccalaureate · ISSR Standard Edition</p>
+            
+            <div class="text-left max-w-2xl mx-auto space-y-4 text-slate-600 mb-8 bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <p><strong class="text-[#006aa7]">⏱️ Duration:</strong> 60 minutes · 45 questions</p>
+                <p><strong class="text-[#006aa7]">📊 Content Areas:</strong> Number & Operations, Algebraic Expressions, Geometric Shapes, Trigonometry, Linear Relations, Data Analysis, Combinatorics, Financial Mathematics, Real-world Problem Solving</p>
+                <p><strong class="text-[#006aa7]">📋 Format:</strong> Multiple choice · No calculators permitted · 1 mark per correct answer</p>
+                <p><strong class="text-[#006aa7]">✓ Features:</strong> Detailed review, performance analysis, PDF download available after submission</p>
+            </div>
+            
+            <button id="start-btn" class="accent-btn text-white font-bold py-4 px-12 rounded-xl text-xl transition-transform active:scale-95 shadow-lg hover:shadow-xl">
+                Start Examination
+            </button>
+        </div>
+
+        <div id="quiz-container" class="hidden">
+            <div class="mb-4 flex items-center gap-4">
+                <div class="flex-1 bg-slate-200 rounded-full h-3 shadow-sm">
+                    <div id="progress-bar" class="bg-gradient-to-r from-[#006aa7] to-[#004477] h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <span class="text-sm font-bold text-slate-600" id="progress-text">1 / 45</span>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-5">
+                <div class="lg:w-36 content-bg p-4 rounded-xl border border-slate-200 shadow-md h-fit lg:sticky lg:top-28">
+                    <div class="text-xs font-semibold text-slate-400 mb-3 tracking-wider flex justify-between">
+                        <span>NAVIGATION</span>
+                        <span class="text-[#006aa7]" id="answered-count">0/45</span>
+                    </div>
+                    <div id="question-nav" class="grid grid-cols-5 lg:grid-cols-3 gap-1.5"></div>
+                </div>
+
+                <div class="flex-1">
+                    <div class="content-bg rounded-2xl shadow-lg border border-slate-200 p-6 sm:p-8 mb-5">
+                        <div id="category-tag" class="bg-blue-100 text-[#006aa7] inline-block px-3 py-1 text-xs font-bold uppercase rounded-md mb-4 tracking-wider">
+                            Number
+                        </div>
+                        
+                        <div id="question-text" class="question-text text-xl sm:text-2xl font-semibold mb-8 text-slate-800 leading-relaxed"></div>
+                        <div id="options-container" class="grid grid-cols-1 gap-3"></div>
+                    </div>
+
+                    <div class="flex justify-between items-center gap-4">
+                        <button id="prev-btn" class="px-6 py-2 rounded-lg font-bold text-slate-400 hover:text-slate-600 disabled:opacity-0 transition cursor-pointer">
+                            ← Previous
+                        </button>
+                        <button id="next-btn" class="accent-btn text-white px-8 py-3 rounded-xl font-bold transition shadow-md hover:shadow-lg cursor-pointer">
+                            Next Question
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="result-screen" class="hidden content-bg rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-10">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-slate-900 mb-2">Examination Submitted</h2>
+                <p class="text-slate-500 mb-8 text-lg">Your results and detailed analysis below</p>
+                
+                <div class="inline-block bg-gradient-to-br from-blue-50 to-slate-50 border-4 border-[#006aa7] rounded-full w-56 h-56 flex flex-col justify-center items-center mb-8 shadow-lg">
+                    <span class="text-6xl font-black text-[#006aa7]" id="final-score">0</span>
+                    <span class="text-[#006aa7] font-bold text-xl">out of 45</span>
+                </div>
+
+                <div id="performance-feedback" class="text-lg font-semibold text-slate-700 mb-8 max-w-lg mx-auto bg-slate-50 p-6 rounded-lg border border-slate-200 whitespace-pre-line"></div>
+
+                <div id="stats-container" class="grid grid-cols-3 gap-4 mb-8 max-w-lg mx-auto">
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200">
+                        <div class="text-2xl font-black text-green-600" id="correct-count">0</div>
+                        <div class="text-sm text-green-700 font-semibold">Correct</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg border border-red-200">
+                        <div class="text-2xl font-black text-red-600" id="wrong-count">0</div>
+                        <div class="text-sm text-red-700 font-semibold">Incorrect</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-4 rounded-lg border border-yellow-200">
+                        <div class="text-2xl font-black text-yellow-600" id="skipped-count">0</div>
+                        <div class="text-sm text-yellow-700 font-semibold">Skipped</div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 justify-center mb-6 flex-wrap">
+                    <button id="review-btn" class="bg-[#006aa7] hover:bg-[#005588] text-white font-bold py-3 px-8 rounded-xl transition shadow-md cursor-pointer">
+                        📋 Detailed Review
+                    </button>
+                    <button id="pdf-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-xl transition shadow-md cursor-pointer">
+                        📥 Download PDF
+                    </button>
+                    <button id="retake-btn" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-8 rounded-xl transition cursor-pointer">
+                        ⟲ Retake Examination
+                    </button>
+                </div>
+            </div>
+
+            <div id="review-panel" class="hidden mt-10 border-t-2 border-slate-200 pt-8">
+                <h3 class="text-2xl font-bold mb-6 flex items-center gap-2 text-[#006aa7]">
+                    <span class="w-3 h-3 bg-[#006aa7] rounded-full"></span>
+                    Complete Question Analysis
+                </h3>
+                <div id="review-list" class="space-y-4 max-h-[700px] overflow-y-auto pr-3"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Question Data - 45 Original Questions
+        const quizData = [
+            { cat: "NUMBER", q: "Q1. Simplify: \\( 3^4 \\div 3^2 \\times 3 \\)", opts: ["\\(3^3\\)", "\\(3^4\\)", "\\(3^5\\)", "\\(3^2\\)"], ans: 0 },
+            { cat: "NUMBER", q: "Q2. Convert to standard form: \\( 456,000,000 \\)", opts: ["\\(4.56 \\times 10^8\\)", "\\(4.56 \\times 10^7\\)", "\\(45.6 \\times 10^6\\)", "\\(4.56 \\times 10^9\\)"], ans: 0 },
+            { cat: "NUMBER", q: "Q3. A tablet costs 450 SEK. After a 12% price increase, what is the new cost?", opts: ["504 SEK", "396 SEK", "462 SEK", "540 SEK"], ans: 0 },
+            { cat: "NUMBER", q: "Q4. Evaluate: \\[ \\frac{3}{7} + \\frac{5}{14} - \\frac{1}{2} \\]", opts: ["\\(\\frac{3}{14}\\)", "\\(\\frac{5}{14}\\)", "\\(\\frac{4}{7}\\)", "\\(\\frac{1}{7}\\)"], ans: 0 },
+            { cat: "NUMBER", q: "Q5. If \\( p = -3 \\) and \\( q = 4 \\), find \\( p^3 - q^2 + 2pq \\)", opts: ["-43", "-19", "11", "-35"], ans: 0 },
+            { cat: "ALGEBRA", q: "Q6. Solve: \\( 4x + 7 = 2x - 5 \\)", opts: ["\\(x = -6\\)", "\\(x = 6\\)", "\\(x = 1\\)", "\\(x = -1\\)"], ans: 0 },
+            { cat: "ALGEBRA", q: "Q7. Factorise: \\( 2x^2 + 9x + 9 \\)", opts: ["\\((2x+3)(x+3)\\)", "\\((x+3)(2x+3)\\)", "\\((2x+9)(x+1)\\)", "\\((2x-3)(x-3)\\)"], ans: 0 },
+            { cat: "ALGEBRA", q: "Q8. Simplify: \\[ \\frac{6ab^3}{2a^2b} \\]", opts: ["\\(\\frac{3b^2}{a}\\)", "\\(\\frac{3a}{b^2}\\)", "\\(3ab^2\\)", "\\(\\frac{b^2}{3a}\\)"], ans: 0 },
+            { cat: "ALGEBRA", q: "Q9. Expand: \\( (3x - 2)(2x + 5) \\)", opts: ["\\(6x^2 + 11x - 10\\)", "\\(6x^2 + 15x - 4\\)", "\\(6x^2 - 10\\)", "\\(6x^2 + 19x - 10\\)"], ans: 0 },
+            { cat: "ALGEBRA", q: "Q10. Solve: \\( \\frac{x}{4} - \\frac{x}{6} = 1 \\)", opts: ["\\(x = 12\\)", "\\(x = 24\\)", "\\(x = 6\\)", "\\(x = 8\\)"], ans: 0 },
+            { cat: "ALGEBRA", q: "Q11. Solve inequality: \\( 5 - 2x \\geq 11 \\)", opts: ["\\(x \\leq -3\\)", "\\(x \\geq -3\\)", "\\(x \\geq 8\\)", "\\(x \\leq 3\\)"], ans: 0 },
+            { cat: "ALGEBRA", q: "Q12. If \\( f(x) = 3x^2 - 2x + 1 \\), find \\( f(-1) \\)", opts: ["6", "4", "2", "0"], ans: 0 },
+            { cat: "GEOMETRY", q: "Q13. A right-angled triangle has hypotenuse 13 cm and one leg 5 cm. Find the other leg.", opts: ["12 cm", "8 cm", "10 cm", "7 cm"], ans: 0 },
+            { cat: "GEOMETRY", q: "Q14. Find the area of a parallelogram with base 8 cm and height 6.5 cm.", opts: ["52 cm²", "26 cm²", "65 cm²", "39 cm²"], ans: 0 },
+            { cat: "GEOMETRY", q: "Q15. A sphere has radius 6 cm. Calculate its surface area. (Use \\( \\pi \\approx 3.14 \\))", opts: ["452.16 cm²", "226.08 cm²", "904.32 cm²", "113.04 cm²"], ans: 0 },
+            { cat: "GEOMETRY", q: "Q16. What is the sum of interior angles in a hexagon?", opts: ["720°", "540°", "900°", "1080°"], ans: 0 },
+            { cat: "GEOMETRY", q: "Q17. A cone has radius 4 cm and height 9 cm. Find its volume. (Use \\( \\pi \\approx 3.14 \\))", opts: ["150.72 cm³", "113.04 cm³", "75.36 cm³", "226.08 cm³"], ans: 0 },
+            { cat: "GEOMETRY", q: "Q18. Calculate the diagonal of a rectangular prism with dimensions 3 cm, 4 cm, and 12 cm.", opts: ["13 cm", "19 cm", "√169 cm", "15 cm"], ans: 0 },
+            { cat: "GEOMETRY", q: "Q19. Find \\( \\cos \\theta \\) in a right triangle where adjacent = 7 and hypotenuse = 25.", opts: ["\\(\\frac{7}{25}\\)", "\\(\\frac{25}{7}\\)", "\\(\\frac{24}{25}\\)", "\\(\\frac{7}{24}\\)"], ans: 0 },
+            { cat: "GEOMETRY", q: "Q20. Two circles have radii 5 cm and 3 cm. Their combined area is approximately:", opts: ["201.06 cm²", "100.48 cm²", "50.24 cm²", "314 cm²"], ans: 0 },
+            { cat: "COORDINATE", q: "Q21. Find the gradient between points (-3, 2) and (5, -6).", opts: ["-1", "1", "-2", "2"], ans: 0 },
+            { cat: "COORDINATE", q: "Q22. A line passes through (4, 7) with gradient -2. Its equation is:", opts: ["\\(y = -2x + 15\\)", "\\(y = -2x + 7\\)", "\\(y = -2x - 1\\)", "\\(y = -2x + 3\\)"], ans: 0 },
+            { cat: "COORDINATE", q: "Q23. Find where \\( y = 3x - 2 \\) and \\( y = -x + 6 \\) intersect.", opts: ["(2, 4)", "(1, 5)", "(3, 7)", "(0, 6)"], ans: 0 },
+            { cat: "COORDINATE", q: "Q24. The midpoint of (8, -4) and (-2, 10) is:", opts: ["(3, 3)", "(6, 6)", "(5, 3)", "(3, 6)"], ans: 0 },
+            { cat: "COORDINATE", q: "Q25. Distance between (6, 8) and (9, 12):", opts: ["5", "10", "7", "12"], ans: 0 },
+            { cat: "COORDINATE", q: "Q26. Find x-intercept of \\( 2x + 3y = 12 \\)", opts: ["6", "4", "3", "12"], ans: 0 },
+            { cat: "COORDINATE", q: "Q27. A line parallel to \\( y = \\frac{2}{3}x - 1 \\) passing through (0, 4) is:", opts: ["\\(y = \\frac{2}{3}x + 4\\)", "\\(y = -\\frac{2}{3}x + 4\\)", "\\(y = \\frac{3}{2}x + 4\\)", "\\(y = \\frac{2}{3}x - 4\\)"], ans: 0 },
+            { cat: "STATISTICS", q: "Q28. Mode of {7, 8, 8, 9, 10, 10, 10, 11}:", opts: ["10", "9", "8", "11"], ans: 0 },
+            { cat: "STATISTICS", q: "Q29. Median of {14, 7, 22, 5, 18, 11, 9}:", opts: ["11", "12", "9", "14"], ans: 0 },
+            { cat: "PROBABILITY", q: "Q30. Three coins are flipped. What is P(exactly 2 heads)?", opts: ["\\(\\frac{3}{8}\\)", "\\(\\frac{1}{2}\\)", "\\(\\frac{1}{4}\\)", "\\(\\frac{1}{8}\\)"], ans: 0 },
+            { cat: "PROBABILITY", q: "Q31. A deck has 52 cards. P(drawing a King or a Heart)?", opts: ["\\(\\frac{16}{52}\\)", "\\(\\frac{4}{52}\\)", "\\(\\frac{13}{52}\\)", "\\(\\frac{8}{52}\\)"], ans: 0 },
+            { cat: "STATISTICS", q: "Q32. Range of {45, 32, 78, 56, 23, 91}:", opts: ["68", "69", "70", "67"], ans: 0 },
+            { cat: "PROBABILITY", q: "Q33. Drawing two cards without replacement. P(both hearts)?", opts: ["\\(\\frac{13}{221}\\)", "\\(\\frac{12}{52}\\)", "\\(\\frac{1}{4}\\)", "\\(\\frac{1}{17}\\)"], ans: 0 },
+            { cat: "STATISTICS", q: "Q34. A pie chart sector of 108° represents what percentage?", opts: ["30%", "20%", "25%", "35%"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q35. A cyclist travels 180 km in 3.5 hours. Average speed?", opts: ["≈51.4 km/h", "60 km/h", "45 km/h", "55 km/h"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q36. Investment of 8,000 EUR at 5% simple interest for 4 years yields:", opts: ["9,600 EUR", "9,200 EUR", "10,400 EUR", "9,400 EUR"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q37. Marcus is 8 years older than Sofia. In 5 years, Marcus will be 1.5 times Sofia's age. How old is Marcus now?", opts: ["24 years", "18 years", "16 years", "22 years"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q38. A mixture of 3 kg of salt-water (15% salt) and 2 kg of salt-water (25% salt). Final concentration?", opts: ["19%", "20%", "18%", "21%"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q39. Three machines produce widgets. Machine A in 6 hours, B in 8 hours, C in 12 hours. Together, how long to produce 1 unit?", opts: ["\\(\\frac{24}{17}\\) hours", "2 hours", "\\(\\frac{24}{9}\\) hours", "3 hours"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q40. A price decreases by 15%, then increases by 15%. Net change?", opts: ["-2.25%", "0%", "+2.25%", "-5%"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q41. A rectangular garden is 12m × 8m. A path of 1m surrounds it. Path area?", opts: ["40 m²", "50 m²", "60 m²", "80 m²"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q42. Exchange: 1 GBP = 1.28 EUR. How many GBP for 200 EUR?", opts: ["≈156.25 GBP", "256 GBP", "128 GBP", "200 GBP"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q43. A geometric sequence: 2, 6, 18, 54, ... Find the 7th term.", opts: ["1458", "729", "2187", "1062"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q44. Solve: \\( 5^{x-1} = 125 \\)", opts: ["\\(x = 4\\)", "\\(x = 3\\)", "\\(x = 2\\)", "\\(x = 5\\)"], ans: 0 },
+            { cat: "PROBLEM SOLVING", q: "Q45. Two trains depart from cities 280 km apart. Train A: 60 km/h, Train B: 80 km/h (towards each other). When do they meet?", opts: ["2 hours", "2.5 hours", "3 hours", "1.75 hours"], ans: 0 }
+        ];
+
+        let currentIdx = 0, score = 0, userAnswers = new Array(quizData.length).fill(null), timeLeft = 3600, timerInterval;
+
+        // Student data
+        let studentData = { name: 'Guest', class: '' };
+
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('start-btn').addEventListener('click', function() {
+                document.getElementById('login-modal').style.display = 'flex';
+            });
+            document.getElementById('prev-btn').addEventListener('click', prevQuestion);
+            document.getElementById('next-btn').addEventListener('click', handleNext);
+            document.getElementById('review-btn').addEventListener('click', toggleReview);
+            document.getElementById('pdf-btn').addEventListener('click', downloadPDF);
+            document.getElementById('retake-btn').addEventListener('click', function() { location.reload(); });
+        });
+
+        function startWithLogin() {
+            const nameInput = document.getElementById('student-name');
+            const classInput = document.getElementById('student-class');
+            const name = nameInput.value.trim();
+            
+            if (!name) {
+                nameInput.style.borderColor = '#ef4444';
+                nameInput.focus();
+                return;
+            }
+            
+            studentData = {
+                name: name,
+                class: classInput.value.trim() || 'Not specified'
+            };
+            
+            document.getElementById('login-modal').style.display = 'none';
+            startQuiz();
+        }
+
+        function startAsGuest() {
+            studentData = { name: 'Guest', class: 'Not specified' };
+            document.getElementById('login-modal').style.display = 'none';
+            startQuiz();
+        }
+
+        function startQuiz() {
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            renderNav();
+            renderQuestion();
+            startTimer();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                let mins = Math.floor(timeLeft / 60), secs = timeLeft % 60;
+                document.getElementById('timer-display').innerText = `${mins}:${secs < 10 ? '0' + secs : secs}`;
+                if (timeLeft <= 300) {
+                    document.getElementById('timer-display').classList.replace('bg-yellow-400', 'bg-red-600');
+                    document.getElementById('timer-display').classList.add('text-white');
+                }
+                if (timeLeft <= 0) { clearInterval(timerInterval); finishQuiz(); }
+            }, 1000);
+        }
+
+        function renderNav() {
+            let html = '';
+            for (let i = 0; i < quizData.length; i++) {
+                let btnClass = 'nav-btn w-full aspect-square flex items-center justify-center text-xs font-bold rounded-md border border-slate-200 transition hover:border-[#006aa7] cursor-pointer ';
+                if (i === currentIdx) btnClass += 'active ';
+                if (userAnswers[i] !== null) btnClass += 'answered ';
+                html += `<button class="${btnClass}" onclick="jumpToQuestion(${i})" type="button">${i + 1}</button>`;
+            }
+            document.getElementById('question-nav').innerHTML = html;
+            const answeredCount = userAnswers.filter(a => a !== null).length;
+            document.getElementById('answered-count').innerText = `${answeredCount}/${quizData.length}`;
+        }
+
+        function jumpToQuestion(index) {
+            if (index >= 0 && index < quizData.length) {
+                currentIdx = index;
+                renderQuestion();
+            }
+        }
+
+        function renderQuestion() {
+            const data = quizData[currentIdx];
+            document.getElementById('category-tag').innerText = data.cat;
+            document.getElementById('question-text').innerHTML = data.q;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            data.opts.forEach((opt, i) => {
+                const isChecked = userAnswers[currentIdx] === i ? 'checked' : '';
+                optionsContainer.innerHTML += `
+                    <div class="relative">
+                        <input type="radio" name="option" id="opt-${i}" class="option-input hidden" value="${i}" ${isChecked} onchange="saveAnswer(${i})">
+                        <label for="opt-${i}" class="option-label block p-4 border-2 border-slate-200 rounded-xl cursor-pointer hover:border-[#006aa7] font-medium text-base sm:text-lg transition">
+                            <span class="inline-block w-8 h-8 rounded-full border-2 border-slate-300 mr-3 text-center leading-7 text-sm font-bold text-slate-600">${String.fromCharCode(65 + i)}</span>
+                            ${opt}
+                        </label>
+                    </div>
+                `;
+            });
+
+            document.getElementById('progress-bar').style.width = `${((currentIdx + 1) / quizData.length) * 100}%`;
+            document.getElementById('progress-text').innerText = `${currentIdx + 1} / ${quizData.length}`;
+            document.getElementById('prev-btn').disabled = currentIdx === 0;
+            document.getElementById('next-btn').innerText = (currentIdx === quizData.length - 1) ? "Submit Exam" : "Next Question";
+
+            renderNav();
+
+            if (window.MathJax) {
+                MathJax.typesetPromise().catch(err => console.log("MathJax error:", err));
+            }
+        }
+
+        function saveAnswer(val) {
+            userAnswers[currentIdx] = val;
+            renderNav();
+        }
+
+        function prevQuestion() {
+            if (currentIdx > 0) {
+                currentIdx--;
+                renderQuestion();
+            }
+        }
+
+        function handleNext() {
+            if (currentIdx < quizData.length - 1) {
+                currentIdx++;
+                renderQuestion();
+            } else {
+                if (confirm("Submit your examination?")) {
+                    finishQuiz();
+                }
+            }
+        }
+
+        function finishQuiz() {
+            clearInterval(timerInterval);
+            score = 0;
+            let correctCount = 0, wrongCount = 0, skippedCount = 0;
+            
+            userAnswers.forEach((ans, i) => {
+                if (ans === quizData[i].ans) {
+                    score++;
+                    correctCount++;
+                } else if (ans !== null) {
+                    wrongCount++;
+                } else {
+                    skippedCount++;
+                }
+            });
+
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('correct-count').innerText = correctCount;
+            document.getElementById('wrong-count').innerText = wrongCount;
+            document.getElementById('skipped-count').innerText = skippedCount;
+
+            let feedback = "";
+            if (score >= 40) {
+                feedback = "🌟 EXCEPTIONAL PERFORMANCE\nYou demonstrate advanced mastery of IB MYP 4 concepts. Excellent preparation for higher-level mathematics.";
+            } else if (score >= 35) {
+                feedback = "⭐ STRONG PERFORMANCE\nYou demonstrate solid understanding across most topics. Minor gaps can be addressed with targeted review.";
+            } else if (score >= 28) {
+                feedback = "✓ PROFICIENT LEVEL\nYou meet core curriculum requirements. Focus on geometry and algebraic problem-solving for improvement.";
+            } else if (score >= 20) {
+                feedback = "📚 DEVELOPING SKILLS\nContinue practicing fundamentals. Pay special attention to real-world problem applications.";
+            } else {
+                feedback = "🔄 FOUNDATIONAL REVIEW NEEDED\nConcentrate on number operations and basic algebra. Use detailed review to identify specific gaps.";
+            }
+
+            document.getElementById('performance-feedback').innerText = feedback;
+
+            // Save result and show back home button
+            saveResult(score, correctCount, wrongCount, skippedCount);
+            document.getElementById('back-home-btn').classList.add('show');
+        }
+
+        function saveResult(score, correct, wrong, skipped) {
+            const result = {
+                id: Date.now(),
+                studentName: studentData.name,
+                studentClass: studentData.class,
+                quizName: 'Comprehensive Math Review',
+                quizFile: 'myp4-comprehensive.html',
+                score: score,
+                total: quizData.length,
+                percentage: ((score / quizData.length) * 100).toFixed(1),
+                correct: correct,
+                wrong: wrong,
+                skipped: skipped,
+                date: new Date().toLocaleString()
+            };
+
+            let history = JSON.parse(localStorage.getItem('kanimath_history') || '[]');
+            history.unshift(result);
+            history = history.slice(0, 20);
+            localStorage.setItem('kanimath_history', JSON.stringify(history));
+        }
+
+        function toggleHistory() {
+            const panel = document.getElementById('history-panel');
+            panel.classList.toggle('show');
+            if (panel.classList.contains('show')) {
+                renderHistory();
+            }
+        }
+
+        function renderHistory() {
+            const history = JSON.parse(localStorage.getItem('kanimath_history') || '[]');
+            const container = document.getElementById('history-list');
+            
+            if (history.length === 0) {
+                container.innerHTML = '<div class="history-empty">No history yet.<br>Complete a quiz to see your results!</div>';
+                return;
+            }
+
+            container.innerHTML = history.map(item => `
+                <div class="history-item" onclick="showHistoryDetail(${item.id})">
+                    <div class="name">${item.studentName}${item.studentClass !== 'Not specified' ? ' (' + item.studentClass + ')' : ''}</div>
+                    <div class="score">${item.score}/${item.total} (${item.percentage}%)</div>
+                    <div class="date">${item.quizName} • ${item.date}</div>
+                </div>
+            `).join('');
+        }
+
+        function showHistoryDetail(id) {
+            const history = JSON.parse(localStorage.getItem('kanimath_history') || '[]');
+            const item = history.find(h => h.id === id);
+            if (item) {
+                alert(`${item.studentName}\n${item.quizName}\nScore: ${item.score}/${item.total} (${item.percentage}%)\nCorrect: ${item.correct} | Wrong: ${item.wrong} | Skipped: ${item.skipped}\nDate: ${item.date}`);
+            }
+        }
+
+        function toggleReview() {
+            const panel = document.getElementById('review-panel');
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                renderReview();
+            } else {
+                panel.classList.add('hidden');
+            }
+        }
+
+        function renderReview() {
+            const container = document.getElementById('review-list');
+            let html = '';
+
+            for (let i = 0; i < quizData.length; i++) {
+                const q = quizData[i];
+                const userAnsIndex = userAnswers[i];
+                const correctIndex = q.ans;
+                const isCorrect = (userAnsIndex === correctIndex);
+                const userText = (userAnsIndex !== null) ? q.opts[userAnsIndex] : '— Not answered';
+                const correctText = q.opts[correctIndex];
+
+                const statusClass = isCorrect ? 'review-correct' : 'review-wrong';
+                const symbol = isCorrect ? '✅' : '❌';
+
+                html += `
+                    <div class="${statusClass} p-4 rounded-lg flex flex-col sm:flex-row sm:items-start gap-3 border border-slate-100">
+                        <div class="font-mono text-sm font-bold text-[#006aa7] w-12 shrink-0">Q${i + 1}</div>
+                        <div class="flex-1 text-sm">
+                            <div class="font-semibold mb-2 text-slate-800">${q.q}</div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2 text-xs text-slate-600 bg-white/50 p-2 rounded">
+                                <div><span class="font-bold text-slate-700">Your answer:</span> ${userText}</div>
+                                <div><span class="font-bold text-slate-700">Correct:</span> ${correctText}</div>
+                            </div>
+                        </div>
+                        <div class="text-2xl shrink-0">${symbol}</div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+
+            if (window.MathJax) {
+                MathJax.typesetPromise().catch(err => console.log("MathJax error in review:", err));
+            }
+        }
+
+        function downloadPDF() {
+            const pdfContent = document.createElement('div');
+            pdfContent.style.padding = '12px';
+            pdfContent.style.fontFamily = 'Arial, sans-serif';
+            pdfContent.style.color = '#333';
+            pdfContent.style.lineHeight = '1.3';
+            
+            // Calculate performance by category
+            const categoryPerformance = {
+                'NUMBER': { correct: 0, total: 0 },
+                'ALGEBRA': { correct: 0, total: 0 },
+                'GEOMETRY': { correct: 0, total: 0 },
+                'COORDINATE': { correct: 0, total: 0 },
+                'STATISTICS': { correct: 0, total: 0 },
+                'PROBABILITY': { correct: 0, total: 0 },
+                'PROBLEM SOLVING': { correct: 0, total: 0 }
+            };
+            
+            quizData.forEach((q, i) => {
+                const cat = q.cat;
+                if (categoryPerformance[cat]) {
+                    categoryPerformance[cat].total++;
+                    if (userAnswers[i] === q.ans) {
+                        categoryPerformance[cat].correct++;
+                    }
+                }
+            });
+            
+            const categoryScores = {};
+            Object.keys(categoryPerformance).forEach(cat => {
+                const perf = categoryPerformance[cat];
+                categoryScores[cat] = perf.total > 0 ? (perf.correct / perf.total * 100).toFixed(1) : 0;
+            });
+            
+            let weakestAreas = Object.keys(categoryScores)
+                .sort((a, b) => categoryScores[a] - categoryScores[b])
+                .slice(0, 3);
+            let strongestAreas = Object.keys(categoryScores)
+                .sort((a, b) => categoryScores[b] - categoryScores[a])
+                .slice(0, 2);
+            
+            let html = `
+                <h1 style="text-align: center; color: #006aa7; margin: 5px 0; font-size: 18px;">IB MYP 4 Mathematics</h1>
+                <p style="text-align: center; color: #004477; margin: 0 0 10px 0; font-size: 13px;"><strong>Result Report & Personalized Study Plan</strong></p>
+                <hr style="border: 1px solid #006aa7; margin: 10px 0;">
+                
+                <div style="text-align: center; margin: 10px 0; padding: 8px; background: #f5f5f5; border-radius: 4px;">
+                    <div style="font-size: 32px; color: #006aa7; font-weight: bold;">${score}</div>
+                    <div style="font-size: 11px; color: #666;">out of 45 marks (${((score/45)*100).toFixed(1)}%)</div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin: 8px 0;">
+                    <div style="border: 1px solid #22c55e; padding: 6px; border-radius: 3px; text-align: center; font-size: 11px;">
+                        <div style="color: #22c55e; font-weight: bold;">✓ Correct</div>
+                        <div style="font-size: 16px; color: #22c55e;">${document.getElementById('correct-count').innerText}</div>
+                    </div>
+                    <div style="border: 1px solid #ef4444; padding: 6px; border-radius: 3px; text-align: center; font-size: 11px;">
+                        <div style="color: #ef4444; font-weight: bold;">✗ Wrong</div>
+                        <div style="font-size: 16px; color: #ef4444;">${document.getElementById('wrong-count').innerText}</div>
+                    </div>
+                    <div style="border: 1px solid #eab308; padding: 6px; border-radius: 3px; text-align: center; font-size: 11px;">
+                        <div style="color: #eab308; font-weight: bold;">○ Skipped</div>
+                        <div style="font-size: 16px; color: #eab308;">${document.getElementById('skipped-count').innerText}</div>
+                    </div>
+                </div>
+                
+                <div style="background: #f0f0f0; padding: 8px; border-radius: 3px; margin: 8px 0; font-size: 11px;">
+                    <div style="font-weight: bold; color: #006aa7; margin-bottom: 3px;">📊 Feedback:</div>
+                    <div>${document.getElementById('performance-feedback').innerText.replace(/\n/g, ' ')}</div>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 8px; border-radius: 3px; margin: 8px 0; border-left: 3px solid #ffc107; font-size: 11px;">
+                    <div style="font-weight: bold; color: #856404; margin-bottom: 3px;">🎯 FOCUS AREAS (Needs Improvement):</div>
+                    <ul style="margin: 0; padding-left: 18px;">
+            `;
+            
+            weakestAreas.forEach(area => {
+                const perf = categoryPerformance[area];
+                html += `<li style="font-size: 10px; margin: 2px 0;"><strong>${area}:</strong> ${perf.correct}/${perf.total} (${categoryScores[area]}%) - Allocate 30 mins daily</li>`;
+            });
+            
+            html += `
+                    </ul>
+                </div>
+                
+                <div style="background: #e8f5e9; padding: 8px; border-radius: 3px; margin: 8px 0; border-left: 3px solid #4caf50; font-size: 11px;">
+                    <div style="font-weight: bold; color: #2e7d32; margin-bottom: 3px;">✓ STRENGTHS (Keep Up):</div>
+                    <ul style="margin: 0; padding-left: 18px;">
+            `;
+            
+            strongestAreas.forEach(area => {
+                const perf = categoryPerformance[area];
+                html += `<li style="font-size: 10px; margin: 2px 0;"><strong>${area}:</strong> ${perf.correct}/${perf.total} (${categoryScores[area]}%) - Review weekly</li>`;
+            });
+            
+            html += `
+                    </ul>
+                </div>
+                
+                <div style="margin: 8px 0; padding: 8px; background: #e3f2fd; border-radius: 3px; border-left: 3px solid #006aa7; font-size: 10px;">
+                    <div style="font-weight: bold; color: #006aa7; margin-bottom: 3px;">📚 TOPIC PERFORMANCE BREAKDOWN:</div>
+                    <table style="width: 100%; font-size: 10px; border-collapse: collapse;">
+                        <tr style="background: #e3f2fd; border-bottom: 1px solid #90caf9;">
+                            <td style="padding: 2px 4px;"><strong>Topic</strong></td>
+                            <td style="padding: 2px 4px; text-align: center;"><strong>Score</strong></td>
+                            <td style="padding: 2px 4px; text-align: center;"><strong>%</strong></td>
+                        </tr>
+            `;
+            
+            Object.keys(categoryScores).forEach(cat => {
+                const perf = categoryPerformance[cat];
+                const score_val = categoryScores[cat];
+                const color = score_val >= 70 ? '#22c55e' : (score_val >= 50 ? '#ffc107' : '#ef4444');
+                html += `
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td style="padding: 2px 4px;">${cat}</td>
+                        <td style="padding: 2px 4px; text-align: center;">${perf.correct}/${perf.total}</td>
+                        <td style="padding: 2px 4px; text-align: center; color: ${color}; font-weight: bold;">${score_val}%</td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                    </table>
+                </div>
+                
+                <hr style="border: 0.5px solid #ccc; margin: 8px 0;">
+                <h3 style="color: #006aa7; margin: 5px 0; font-size: 12px; border-bottom: 1px solid #006aa7; padding-bottom: 2px;">📋 QUESTION-BY-QUESTION REVIEW</h3>
+            `;
+            
+            for (let i = 0; i < quizData.length; i++) {
+                const q = quizData[i];
+                const userAnsIdx = userAnswers[i];
+                const correctIdx = q.ans;
+                const isCorrect = (userAnsIdx === correctIdx);
+                const userText = (userAnsIdx !== null) ? q.opts[userAnsIdx] : 'NOT ANSWERED';
+                const correctText = q.opts[correctIdx];
+                
+                let statusColor = isCorrect ? '#22c55e' : '#ef4444';
+                let statusBg = isCorrect ? '#f0fdf4' : '#fef2f2';
+                let statusIcon = isCorrect ? '✓' : '✗';
+                
+                if (userAnsIdx === null) {
+                    statusColor = '#eab308';
+                    statusBg = '#fffbeb';
+                    statusIcon = '○';
+                }
+                
+                html += `
+                    <div style="border-left: 2px solid ${statusColor}; background: ${statusBg}; padding: 6px; margin: 4px 0; border-radius: 2px; font-size: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                            <strong style="color: ${statusColor};">Q${i + 1} ${q.cat}</strong>
+                            <span style="background: ${statusColor}; color: white; padding: 0px 4px; border-radius: 10px; font-size: 9px; font-weight: bold;">${statusIcon}</span>
+                        </div>
+                        <div style="margin: 2px 0; font-size: 9px;">Q: ${q.q.substring(0, 60).replace(/\\\(/g, '').replace(/\\\)/g, '')}...</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin: 3px 0;">
+                            <div style="background: ${userAnsIdx === null ? '#fff8e1' : (isCorrect ? '#c8e6c9' : '#ffcdd2')}; padding: 3px; border-radius: 2px; font-size: 9px;">
+                                <strong style="color: #666;">Your: </strong>${userText.substring(0, 25).replace(/\\\(/g, '').replace(/\\\)/g, '')}
+                            </div>
+                            <div style="background: #c8e6c9; padding: 3px; border-radius: 2px; font-size: 9px;">
+                                <strong style="color: #2e7d32;">✓ Correct: </strong>${correctText.substring(0, 25).replace(/\\\(/g, '').replace(/\\\)/g, '')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            html += `
+                <hr style="border: 0.5px solid #ccc; margin: 8px 0;">
+                <div style="page-break-before: always; margin-top: 10px;">
+                    <h3 style="color: #006aa7; font-size: 12px; margin: 5px 0 8px 0; border-bottom: 2px solid #006aa7; padding-bottom: 3px;">📖 PERSONALIZED STUDY PLAN</h3>
+                    
+                    <div style="background: #ffe8e8; padding: 8px; border-radius: 3px; margin: 6px 0; border-left: 3px solid #ef4444;">
+                        <div style="font-weight: bold; color: #c62828; font-size: 11px; margin-bottom: 4px;">🔴 CRITICAL FOCUS (${weakestAreas[0]} - ${categoryScores[weakestAreas[0]]}%):</div>
+                        <ul style="margin: 0; padding-left: 16px; font-size: 10px;">
+                            <li>Review foundational concepts daily (30 mins)</li>
+                            <li>Practice 10-15 similar problems</li>
+                            <li>Identify common mistakes</li>
+                            <li>Ask teacher for extra help</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #fff3e0; padding: 8px; border-radius: 3px; margin: 6px 0; border-left: 3px solid #ffc107;">
+                        <div style="font-weight: bold; color: #e65100; font-size: 11px; margin-bottom: 4px;">🟡 AREAS TO IMPROVE (${weakestAreas.slice(1).map(a => a).join(', ')}):</div>
+                        <ul style="margin: 0; padding-left: 16px; font-size: 10px;">
+                            <li>Daily practice 20-25 mins per topic</li>
+                            <li>Work step-by-step with solutions</li>
+                            <li>Make flashcards for key formulas</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #e8f5e9; padding: 8px; border-radius: 3px; margin: 6px 0; border-left: 3px solid #4caf50;">
+                        <div style="font-weight: bold; color: #2e7d32; font-size: 11px; margin-bottom: 4px;">✓ MAINTAIN STRENGTHS (${strongestAreas.map(a => a + ' ' + categoryScores[a] + '%').join(', ')}):</div>
+                        <ul style="margin: 0; padding-left: 16px; font-size: 10px;">
+                            <li>Review weekly to maintain level</li>
+                            <li>Try challenging variations</li>
+                            <li>Teach peers to reinforce learning</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #e3f2fd; padding: 8px; border-radius: 3px; margin: 6px 0; border-left: 3px solid #006aa7; font-size: 10px;">
+                        <div style="font-weight: bold; color: #006aa7; margin-bottom: 4px;">⏰ RECOMMENDED WEEKLY SCHEDULE:</div>
+                        <table style="width: 100%; border-collapse: collapse; font-size: 9px;">
+                            <tr style="background: #e3f2fd;">
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;"><strong>Days</strong></td>
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;"><strong>Focus</strong></td>
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;"><strong>Time</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;">Mon-Wed</td>
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;">${weakestAreas[0]}</td>
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;">30 min/day</td>
+                            </tr>
+                            <tr style="background: #f5f5f5;">
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;">Thu-Fri</td>
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;">${weakestAreas.slice(1).join(', ')}</td>
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;">25 min/day</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;">Sat-Sun</td>
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;">Mock Tests</td>
+                                <td style="border: 1px solid #90caf9; padding: 3px 4px;">1 hour</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 15px; padding-top: 8px; border-top: 1px solid #ddd; text-align: center; font-size: 9px; color: #999;">
+                    <p style="margin: 2px 0;">IB MYP 4 Mathematics | Generated ${new Date().toLocaleString()}</p>
+                    <p style="margin: 2px 0;">© ISSR Standard Edition</p>
+                </div>
+            `;
+            
+            pdfContent.innerHTML = html;
+            
+            const opt = {
+                margin: 6,
+                filename: `IB_MYP4_Mathematics_Results_${new Date().toISOString().split('T')[0]}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+            
+            html2pdf().set(opt).from(pdfContent).save();
+        }
+        function downloadPDF() {
+            const pdfContent = document.createElement('div');
+            pdfContent.style.padding = '20px';
+            pdfContent.style.fontFamily = 'Arial, sans-serif';
+            pdfContent.style.color = '#333';
+            
+            let html = `
+                <h1 style="text-align: center; color: #006aa7; margin-bottom: 10px;">IB MYP 4 Mathematics Examination</h1>
+                <h2 style="text-align: center; color: #004477; margin-bottom: 20px;">Result Report & Answer Analysis for Learning</h2>
+                <hr style="border: 2px solid #006aa7; margin-bottom: 20px;">
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <h2 style="color: #006aa7; font-size: 48px; margin: 0;">${score}</h2>
+                    <p style="font-size: 18px; color: #666;">out of 45 marks</p>
+                    <p style="font-size: 16px; color: #666;">Percentage: <strong>${((score/45)*100).toFixed(2)}%</strong></p>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin: 30px 0;">
+                    <div style="border: 2px solid #22c55e; padding: 15px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #22c55e; margin: 0;">✓ Correct</h3>
+                        <p style="font-size: 28px; color: #22c55e; margin: 0;">${document.getElementById('correct-count').innerText}</p>
+                    </div>
+                    <div style="border: 2px solid #ef4444; padding: 15px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #ef4444; margin: 0;">✗ Incorrect</h3>
+                        <p style="font-size: 28px; color: #ef4444; margin: 0;">${document.getElementById('wrong-count').innerText}</p>
+                    </div>
+                    <div style="border: 2px solid #eab308; padding: 15px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: #eab308; margin: 0;">○ Skipped</h3>
+                        <p style="font-size: 28px; color: #eab308; margin: 0;">${document.getElementById('skipped-count').innerText}</p>
+                    </div>
+                </div>
+                
+                <div style="background: #f0f0f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                    <h3 style="color: #006aa7; margin-top: 0;">📊 Performance Feedback:</h3>
+                    <p style="line-height: 1.6; color: #333;">${document.getElementById('performance-feedback').innerText.replace(/\n/g, '<br>')}</p>
+                </div>
+                
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #006aa7;">
+                    <h3 style="color: #006aa7; margin-top: 0;">📌 How to Use This Report:</h3>
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li><strong>Green (✓ CORRECT):</strong> You answered this question correctly. Review to reinforce understanding.</li>
+                        <li><strong>Red (✗ INCORRECT):</strong> You selected a wrong answer. Review the correct answer below to learn.</li>
+                        <li><strong>Yellow (○ SKIPPED):</strong> You didn't answer this question. Study the concept and correct answer.</li>
+                    </ul>
+                </div>
+                
+                <div style="page-break-before: always; margin-top: 50px;">
+                <h2 style="color: #006aa7; margin-top: 30px; border-bottom: 3px solid #006aa7; padding-bottom: 10px;">📚 DETAILED QUESTION-BY-QUESTION ANALYSIS</h2>
+                <p style="font-size: 12px; color: #666; margin: 10px 0;">Learn from every question by reviewing your answers and the correct solutions below.</p>
+            `;
+            
+            for (let i = 0; i < quizData.length; i++) {
+                const q = quizData[i];
+                const userAnsIndex = userAnswers[i];
+                const correctIndex = q.ans;
+                const isCorrect = (userAnsIndex === correctIndex);
+                const userText = (userAnsIndex !== null) ? q.opts[userAnsIndex] : 'NOT ANSWERED';
+                const correctText = q.opts[correctIndex];
+                
+                let statusColor = isCorrect ? '#22c55e' : '#ef4444';
+                let statusBg = isCorrect ? '#f0fdf4' : '#fef2f2';
+                let statusIcon = isCorrect ? '✓' : '✗';
+                let statusText = isCorrect ? 'CORRECT' : 'INCORRECT';
+                
+                if (userAnsIndex === null) {
+                    statusColor = '#eab308';
+                    statusBg = '#fffbeb';
+                    statusIcon = '○';
+                    statusText = 'SKIPPED';
+                }
+                
+                html += `
+                    <div style="border-left: 5px solid ${statusColor}; background: ${statusBg}; padding: 15px; margin: 20px 0; border-radius: 4px; page-break-inside: avoid;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <h3 style="margin: 0; color: ${statusColor}; font-size: 16px;">Q${i + 1} - ${q.cat}</h3>
+                            <span style="background: ${statusColor}; color: white; padding: 5px 10px; border-radius: 20px; font-weight: bold; font-size: 12px;">${statusIcon} ${statusText}</span>
+                        </div>
+                        
+                        <div style="background: white; padding: 12px; border-radius: 4px; margin: 10px 0; border: 1px solid #e0e0e0;">
+                            <p style="margin: 0 0 5px 0; font-weight: bold; color: #006aa7; font-size: 12px;">QUESTION:</p>
+                            <p style="margin: 5px 0 10px 0; color: #333; font-size: 13px; line-height: 1.5;">${q.q.replace(/\\\(/g, '').replace(/\\\)/g, '').replace(/\\\[/g, '').replace(/\\\]/g, '')}</p>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0;">
+                            <div style="background: ${userAnsIndex === null ? '#fff3cd' : (isCorrect ? '#c8e6c9' : '#ffcdd2')}; padding: 12px; border-radius: 4px; border-left: 3px solid ${userAnsIndex === null ? '#ffc107' : (isCorrect ? '#4caf50' : '#f44336')};">
+                                <p style="margin: 0 0 5px 0; font-weight: bold; color: ${userAnsIndex === null ? '#856404' : (isCorrect ? '#2e7d32' : '#c62828')}; font-size: 11px;">YOUR ANSWER:</p>
+                                <p style="margin: 0; color: #333; font-size: 12px; line-height: 1.4;">${userText.replace(/\\\(/g, '').replace(/\\\)/g, '').replace(/\\\[/g, '').replace(/\\\]/g, '')}</p>
+                            </div>
+                            
+                            <div style="background: #c8e6c9; padding: 12px; border-radius: 4px; border-left: 3px solid #4caf50;">
+                                <p style="margin: 0 0 5px 0; font-weight: bold; color: #2e7d32; font-size: 11px;">✓ CORRECT ANSWER:</p>
+                                <p style="margin: 0; color: #333; font-size: 12px; line-height: 1.4;">${correctText.replace(/\\\(/g, '').replace(/\\\)/g, '').replace(/\\\[/g, '').replace(/\\\]/g, '')}</p>
+                            </div>
+                        </div>
+                        
+                        ${!isCorrect && userAnsIndex !== null ? `
+                        <div style="background: #fff3cd; padding: 10px; border-radius: 4px; margin-top: 10px; border: 1px solid #ffc107;">
+                            <p style="margin: 0; font-size: 12px; color: #856404;"><strong>💡 Learning Point:</strong> You selected a different answer. Study the correct answer above to understand the concept better.</p>
+                        </div>
+                        ` : ''}
+                        
+                        ${userAnsIndex === null ? `
+                        <div style="background: #fff3cd; padding: 10px; border-radius: 4px; margin-top: 10px; border: 1px solid #ffc107;">
+                            <p style="margin: 0; font-size: 12px; color: #856404;"><strong>💡 Learning Point:</strong> You skipped this question. Review the correct answer above and understand the concept.</p>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+            
+            html += `
+                <div style="page-break-before: always; margin-top: 50px;">
+                    <h2 style="color: #006aa7; border-bottom: 3px solid #006aa7; padding-bottom: 10px;">📖 STUDY RECOMMENDATIONS</h2>
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <h3 style="color: #2e7d32; margin-top: 0;">For Incorrect Questions:</h3>
+                        <ul style="margin: 10px 0; padding-left: 20px; color: #333;">
+                            <li>Review the concept related to each incorrect answer</li>
+                            <li>Work through similar practice problems</li>
+                            <li>Identify patterns in the mistakes you made</li>
+                            <li>Seek help from your teacher or tutor if needed</li>
+                        </ul>
+                    </div>
+                    <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <h3 style="color: #1565c0; margin-top: 0;">For Skipped Questions:</h3>
+                        <ul style="margin: 10px 0; padding-left: 20px; color: #333;">
+                            <li>Understand why you couldn't answer the question</li>
+                            <li>Study the foundational concepts involved</li>
+                            <li>Practice similar problems to build confidence</li>
+                            <li>Time management: work on speed and accuracy</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f3e5f5; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <h3 style="color: #6a1b9a; margin-top: 0;">For Correct Answers:</h3>
+                        <ul style="margin: 10px 0; padding-left: 20px; color: #333;">
+                            <li>Review to maintain your understanding</li>
+                            <li>Try alternative solution methods</li>
+                            <li>Teach the concept to someone else to reinforce learning</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <hr style="border: 1px solid #ccc; margin-top: 30px;">
+                <div style="text-align: center; color: #999; font-size: 11px; margin-top: 20px;">
+                    <p style="margin: 5px 0;"><strong>IB MYP 4 Mathematics International Examination</strong></p>
+                    <p style="margin: 5px 0;">Generated on ${new Date().toLocaleString()}</p>
+                    <p style="margin: 5px 0;">© ISSR Standard Edition | www.issrstockholm.se</p>
+                    <p style="margin: 5px 0; font-style: italic;">This report is for personal learning and improvement purposes only.</p>
+                </div>
+            `;
+            
+            pdfContent.innerHTML = html;
+            
+            const opt = {
+                margin: 10,
+                filename: `IB_MYP4_Mathematics_Results_${new Date().toISOString().split('T')[0]}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+            
+            html2pdf().set(opt).from(pdfContent).save();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB MYP4 Trigonometry - Study Material | KaniMath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg-dark: #0a0f1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1e293b;
+            --bg-section: #0f172a;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --border: #374151;
+            --gradient-1: linear-gradient(135deg, #6366f1, #8b5cf6);
+            --gradient-2: linear-gradient(135deg, #10b981, #059669);
+            --gradient-3: linear-gradient(135deg, #f59e0b, #d97706);
+            --gradient-4: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .logo-text h1 { font-size: 18px; font-weight: 700; }
+        .logo-text span { font-size: 12px; color: var(--text-secondary); }
+
+        .badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-myp4 { background: rgba(99, 102, 241, 0.2); color: var(--primary-light); border: 1px solid rgba(99, 102, 241, 0.3); }
+        .badge-ib { background: rgba(16, 185, 129, 0.2); color: var(--secondary); border: 1px solid rgba(16, 185, 129, 0.3); }
+
+        .nav-links { display: flex; gap: 12px; flex-wrap: wrap; }
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+        }
+        .nav-link:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--primary); }
+        .nav-link.primary { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .hero-section {
+            padding: 4rem 0;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .topic-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .topic-nav-item {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .topic-nav-item:hover { border-color: var(--primary); color: var(--primary-light); background: var(--bg-card-hover); }
+
+        .section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+        .section:last-child { border-bottom: none; }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header p { color: var(--text-secondary); font-size: 1rem; }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .content-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+        .content-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-light);
+        }
+
+        .content-card p { color: var(--text-secondary); margin-bottom: 1rem; }
+
+        .formula-box {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .formula-box .formula {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+        }
+
+        .example-box {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .example-box p { color: var(--text-secondary); margin-bottom: 0.8rem; }
+
+        .realworld-box {
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .realworld-box h4 {
+            color: var(--warning);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .interactive-canvas {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .interactive-canvas h4 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+        }
+
+        canvas, svg { max-width: 100%; height: auto; }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn:hover { border-color: var(--primary); background: var(--bg-card-hover); }
+        .btn-primary { background: var(--primary); border-color: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+
+        .tip-box {
+            background: rgba(99, 102, 241, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tip-box strong { color: var(--primary-light); }
+
+        .footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer a { color: var(--primary-light); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2rem; }
+            .container { padding: 0 1rem; }
+        }
+
+        .full-width { grid-column: 1 / -1; }
+
+        .question-preview {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .question-preview .q-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-section);
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        td { color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">K</div>
+                <div class="logo-text">
+                    <h1>KaniMath</h1>
+                    <span>IB MYP4 Trigonometry Study Guide</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <span class="badge badge-myp4">MYP4</span>
+                <span class="badge badge-ib">IB Curriculum</span>
+                <a href="myp4-trigonometry-assessment.html" class="nav-link primary">Take Assessment →</a>
+                <a href="/" class="nav-link">← Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <div class="container">
+            <h1>📐 Trigonometry</h1>
+            <p>Master the mathematics of triangles, angles, and real-world applications. Based on Haese Mathematics 9 MYP4 curriculum with interactive diagrams and practical examples.</p>
+            <div class="topic-nav">
+                <a href="#basics" class="topic-nav-item">SOHCAHTOA</a>
+                <a href="#angles" class="topic-nav-item">Angles of Elevation</a>
+                <a href="#bearings" class="topic-nav-item">Bearings</a>
+                <a href="#sine-rule" class="topic-nav-item">Sine Rule</a>
+                <a href="#cosine-rule" class="topic-nav-item">Cosine Rule</a>
+                <a href="#area" class="topic-nav-item">Area Formula</a>
+                <a href="#graphs" class="topic-nav-item">Trig Graphs</a>
+                <a href="#realworld" class="topic-nav-item">Real-World Apps</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 1: Basic Trigonometric Ratios -->
+    <section class="section" id="basics">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(99, 102, 241, 0.15);">📐</span> Basic Trigonometric Ratios</h2>
+                <p>Understanding sine, cosine, and tangent in right-angled triangles (Haese Chapter 12)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>The Right-Angled Triangle</h3>
+                    <p>In a right-angled triangle, the side opposite the right angle is called the <strong>hypotenuse</strong> (the longest side). The other two sides are called <strong>adjacent</strong> (next to the angle) and <strong>opposite</strong> (opposite the angle).</p>
+                    
+                    <div class="interactive-canvas">
+                        <h4>Interactive: Explore Triangle Sides</h4>
+                        <canvas id="triangle-basic" width="400" height="300"></canvas>
+                        <div class="controls">
+                            <label style="color: var(--text-secondary);">Angle θ: <input type="range" id="angle-slider" min="10" max="80" value="30" style="width: 150px;"> <span id="angle-value">30°</span></label>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 13px; margin-top: 10px;">Drag the slider to change the angle and see how sides change</p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>SOHCAHTOA</h3>
+                    <p>These three ratios relate the angles of a right triangle to the lengths of its sides:</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">\(\sin(\theta) = \frac{\text{Opposite}}{\text{Hypotenuse}}\)</div>
+                        <div class="formula">\(\cos(\theta) = \frac{\text{Adjacent}}{\text{Hypotenuse}}\)</div>
+                        <div class="formula">\(\tan(\theta) = \frac{\text{Opposite}}{\text{Adjacent}}\)</div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Memory Tip:</strong> SOH-CAH-TOA = Sine=Opp/Hyp, Cosine=Adj/Hyp, Tangent=Opp/Adj
+                    </div>
+
+                    <table>
+                        <tr><th>Ratio</th><th>30°</th><th>45°</th><th>60°</th></tr>
+                        <tr><td>\(\sin\)</td><td>\(\frac{1}{2}\)</td><td>\(\frac{\sqrt{2}}{2}\)</td><td>\(\frac{\sqrt{3}}{2}\)</td></tr>
+                        <tr><td>\(\cos\)</td><td>\(\frac{\sqrt{3}}{2}\)</td><td>\(\frac{\sqrt{2}}{2}\)</td><td>\(\frac{1}{2}\)</td></tr>
+                        <tr><td>\(\tan\)</td><td>\(\frac{\sqrt{3}}{3}\)</td><td>\(1\)</td><td>\(\sqrt{3}\)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>📝 Example 1: Finding a Side Length</h4>
+                <p><strong>Problem:</strong> In a right triangle, the hypotenuse is 10 cm and the angle is 30°. Find the opposite side.</p>
+                <p><strong>Solution:</strong> Use \(\sin(\theta) = \frac{\text{Opposite}}{\text{Hypotenuse}}\)</p>
+                <p>\(\sin(30°) = \frac{x}{10}\)</p>
+                <p>\(x = 10 \times \sin(30°) = 10 \times 0.5 = 5\) cm</p>
+            </div>
+
+            <div class="realworld-box">
+                <h4>🌍 Real-World: Measuring Tree Height</h4>
+                <p><strong>Scenario:</strong> A surveyor stands 20 meters from a tree. Using a clinometer, they measure the angle of elevation to the top of the tree as 52°. How tall is the tree?</p>
+                <p><strong>Solution:</strong> \(\tan(52°) = \frac{\text{height}}{20}\)</p>
+                <p>\(\text{height} = 20 \times \tan(52°) \approx 20 \times 1.2799 \approx 25.6\) meters</p>
+                <div class="interactive-canvas">
+                    <canvas id="tree-canvas" width="500" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Angles of Elevation and Depression -->
+    <section class="section" id="angles">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(245, 158, 11, 0.15);">👁️</span> Angles of Elevation & Depression</h2>
+                <p>Solving problems involving looking up or down (Haese Chapter 12)</p>
+            </div>
+
+            <div class="two-col">
+                <div class="content-card">
+                    <h3>Angle of Elevation</h3>
+                    <p>The angle measured <strong>upwards</strong> from the horizontal to look at an object above.</p>
+                    <div class="interactive-canvas">
+                        <canvas id="elevation-canvas" width="400" height="300"></canvas>
+                        <div class="controls">
+                            <label style="color: var(--text-secondary);">Elevation: <input type="range" id="elev-slider" min="10" max="60" value="35" style="width: 150px;"> <span id="elev-value">35°</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Angle of Depression</h3>
+                    <p>The angle measured <strong>downwards</strong> from the horizontal to look at an object below.</p>
+                    <div class="interactive-canvas">
+                        <canvas id="depression-canvas" width="400" height="300"></canvas>
+                        <div class="controls">
+                            <label style="color: var(--text-secondary);">Depression: <input type="range" id="depr-slider" min="10" max="60" value="25" style="width: 150px;"> <span id="depr-value">25°</span></label>
+                        </div>
+                    </div>
+                    <div class="tip-box">
+                        <strong>Key Insight:</strong> The angle of depression from point A to point B equals the angle of elevation from point B to point A (alternate angles).
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box full-width">
+                <h4>📝 Example 2: Building Height</h4>
+                <p><strong>Problem:</strong> From the top of a 50m tall building, the angle of depression to a car on the ground is 28°. How far is the car from the base of the building?</p>
+                <p><strong>Solution:</strong> The angle of depression = angle of elevation from car = 28°</p>
+                <p>\(\tan(28°) = \frac{50}{x}\) where x is the distance from building base</p>
+                <p>\(x = \frac{50}{\tan(28°)} \approx \frac{50}{0.5317} \approx 94.0\) meters</p>
+            </div>
+
+            <div class="realworld-box full-width">
+                <h4>🌍 Real-World: Aviation Navigation</h4>
+                <p><strong>Scenario:</strong> An airplane flying at 10,000 ft altitude spots an airport at an angle of depression of 15°. The pilot wants to know the horizontal distance to start descent.</p>
+                <p><strong>Solution:</strong></p>
+                <p>\(\tan(15°) = \frac{10000}{d}\)</p>
+                <p>\(d = \frac{10000}{\tan(15°)} \approx \frac{10000}{0.2679} \approx 37,320\) ft ≈ 7.1 miles</p>
+                <p style="color: var(--text-muted); font-size: 13px;">Pilots use this calculation to determine when to begin their descent approach.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Bearings -->
+    <section class="section" id="bearings">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(16, 185, 129, 0.15);">🧭</span> Bearings</h2>
+                <p>Navigation using three-figure bearings (Haese Chapter 12)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>What are Bearings?</h3>
+                    <p>A bearing is a direction measured as a <strong>three-figure angle clockwise from north</strong>.</p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.5rem;">Always 3 digits (045°, not 45°)</li>
+                        <li style="margin-bottom: 0.5rem;">Measured clockwise from North</li>
+                        <li style="margin-bottom: 0.5rem;">Range: 000° to 359°</li>
+                        <li style="margin-bottom: 0.5rem;">Due North = 000°, East = 090°, South = 180°, West = 270°</li>
+                    </ul>
+
+                    <div class="interactive-canvas">
+                        <h4>Interactive Compass</h4>
+                        <canvas id="compass-canvas" width="400" height="400"></canvas>
+                        <div class="controls">
+                            <label style="color: var(--text-secondary);">Bearing: <input type="range" id="bearing-slider" min="0" max="359" value="45" style="width: 150px;"> <span id="bearing-value">045°</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Solving Bearing Problems</h3>
+                    <p>Use trigonometry to find distances and positions when given bearings.</p>
+
+                    <div class="example-box" style="margin-top: 1rem;">
+                        <h4>📝 Example 3: Ship Navigation</h4>
+                        <p><strong>Problem:</strong> A ship sails 15 km on a bearing of 060°, then 10 km on a bearing of 150°. How far is it from the starting point?</p>
+                        <p><strong>Solution:</strong> Draw the path, find the angle between paths (150° - 60° = 90°), then use Pythagoras or Cosine Rule.</p>
+                        <p>\(d = \sqrt{15^2 + 10^2} = \sqrt{225 + 100} = \sqrt{325} \approx 18.03\) km</p>
+                    </div>
+
+                    <div class="realworld-box" style="margin-top: 1rem;">
+                        <h4>🌍 Real-World: Maritime Navigation</h4>
+                        <p><strong>Scenario:</strong> A ship leaves port on bearing 035°, sails 120 nautical miles. Then changes course to bearing 125°, sails 80 nautical miles. Find final position relative to port.</p>
+                        <p>This type of calculation is used by ships and aircraft for GPS-free navigation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Sine Rule -->
+    <section class="section" id="sine-rule">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(139, 92, 246, 0.15);">📏</span> The Sine Rule</h2>
+                <p>For non-right angled triangles (Haese Chapter 25)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Sine Rule Formula</h3>
+                    <p>Used when you know either:</p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin: 1rem 0;">
+                        <li style="margin-bottom: 0.5rem;">Two angles and one side (AAS or ASA)</li>
+                        <li style="margin-bottom: 0.5rem;">Two sides and an opposite angle (SSA)</li>
+                    </ul>
+
+                    <div class="formula-box">
+                        <div class="formula">\(\frac{a}{\sin(A)} = \frac{b}{\sin(B)} = \frac{c}{\sin(C)}\)</div>
+                        <p style="color: var(--text-muted); font-size: 13px; margin-top: 10px;">or equivalently:</p>
+                        <div class="formula">\(\frac{\sin(A)}{a} = \frac{\sin(B)}{b} = \frac{\sin(C)}{c}\)</div>
+                    </div>
+
+                    <div class="interactive-canvas">
+                        <h4>Interactive: Sine Rule Triangle</h4>
+                        <canvas id="sine-rule-canvas" width="400" height="300"></canvas>
+                        <div class="controls">
+                            <label style="color: var(--text-secondary);">Angle A: <input type="range" id="sine-A" min="30" max="120" value="40" style="width: 120px;"> <span id="sine-A-val">40°</span></label>
+                            <label style="color: var(--text-secondary);">Angle B: <input type="range" id="sine-B" min="30" max="120" value="70" style="width: 120px;"> <span id="sine-B-val">70°</span></label>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 12px;">Angles change automatically keep sum = 180°</p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Worked Examples</h3>
+
+                    <div class="example-box">
+                        <h4>📝 Example 4: Finding a Side</h4>
+                        <p><strong>Given:</strong> Triangle ABC with A = 50°, B = 70°, a = 12 cm. Find side b.</p>
+                        <p><strong>Solution:</strong> \(\frac{a}{\sin(A)} = \frac{b}{\sin(B)}\)</p>
+                        <p>\(\frac{12}{\sin(50°)} = \frac{b}{\sin(70°)}\)</p>
+                        <p>\(b = \frac{12 \times \sin(70°)}{\sin(50°)} \approx \frac{12 \times 0.9397}{0.7660} \approx 14.72\) cm</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 5: Finding an Angle</h4>
+                        <p><strong>Given:</strong> Triangle with a = 8 cm, b = 10 cm, A = 35°. Find angle B.</p>
+                        <p><strong>Solution:</strong> \(\frac{\sin(A)}{a} = \frac{\sin(B)}{b}\)</p>
+                        <p>\(\sin(B) = \frac{b \times \sin(A)}{a} = \frac{10 \times \sin(35°)}{8} \approx \frac{10 \times 0.5736}{8} \approx 0.717\)</p>
+                        <p>\(B = \sin^{-1}(0.717) \approx 45.8°\) or \(180° - 45.8° = 134.2°\) (ambiguous case!)</p>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Ambiguous Case (SSA):</strong> When given two sides and a non-included angle, there may be 0, 1, or 2 possible triangles. Always check if both solutions are valid.
+                    </div>
+                </div>
+            </div>
+
+            <div class="realworld-box full-width">
+                <h4>🌍 Real-World: Triangulation in Surveying</h4>
+                <p><strong>Scenario:</strong> Surveyors need to find the distance across a river without crossing it. They measure a baseline AB = 200m, then measure angles: from A, angle to point C is 65°; from B, angle to C is 55°. Find distance AC.</p>
+                <p><strong>Solution:</strong> Angle C = 180° - 65° - 55° = 60°</p>
+                <p>Using Sine Rule: \(\frac{AC}{\sin(55°)} = \frac{200}{\sin(60°)}\)</p>
+                <p>\(AC = \frac{200 \times \sin(55°)}{\sin(60°)} \approx \frac{200 \times 0.8192}{0.8660} \approx 189.2\) meters</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Cosine Rule -->
+    <section class="section" id="cosine-rule">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(236, 72, 153, 0.15);">📐</span> The Cosine Rule</h2>
+                <p>For non-right angled triangles when Sine Rule doesn't apply (Haese Chapter 25)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Cosine Rule Formula</h3>
+                    <p>Use when you know:</p>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin: 1rem 0;">
+                        <li style="margin-bottom: 0.5rem;">Three sides (SSS)</li>
+                        <li style="margin-bottom: 0.5rem;">Two sides and the included angle (SAS)</li>
+                    </ul>
+
+                    <div class="formula-box">
+                        <div class="formula">\(a^2 = b^2 + c^2 - 2bc\cos(A)\)</div>
+                        <div class="formula">\(b^2 = a^2 + c^2 - 2ac\cos(B)\)</div>
+                        <div class="formula">\(c^2 = a^2 + b^2 - 2ab\cos(C)\)</div>
+                    </div>
+
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">To find an angle when all sides are known, rearrange:</p>
+                    <div class="formula-box">
+                        <div class="formula">\(\cos(A) = \frac{b^2 + c^2 - a^2}{2bc}\)</div>
+                    </div>
+
+                    <div class="interactive-canvas">
+                        <h4>Interactive: Cosine Rule Triangle</h4>
+                        <canvas id="cosine-rule-canvas" width="400" height="300"></canvas>
+                        <div class="controls">
+                            <label style="color: var(--text-secondary);">Side a: <input type="range" id="cos-a" min="50" max="150" value="80" style="width: 100px;"> <span id="cos-a-val">80</span></label>
+                            <label style="color: var(--text-secondary);">Side b: <input type="range" id="cos-b" min="50" max="150" value="100" style="width: 100px;"> <span id="cos-b-val">100</span></label>
+                            <label style="color: var(--text-secondary);">Angle C: <input type="range" id="cos-C" min="30" max="120" value="60" style="width: 100px;"> <span id="cos-C-val">60°</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Worked Examples</h3>
+
+                    <div class="example-box">
+                        <h4>📝 Example 6: Finding a Side (SAS)</h4>
+                        <p><strong>Given:</strong> Triangle with b = 8 cm, c = 12 cm, A = 45°. Find side a.</p>
+                        <p><strong>Solution:</strong> \(a^2 = b^2 + c^2 - 2bc\cos(A)\)</p>
+                        <p>\(a^2 = 8^2 + 12^2 - 2(8)(12)\cos(45°)\)</p>
+                        <p>\(a^2 = 64 + 144 - 192 \times 0.7071 = 208 - 135.77 = 72.23\)</p>
+                        <p>\(a = \sqrt{72.23} \approx 8.50\) cm</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 7: Finding an Angle (SSS)</h4>
+                        <p><strong>Given:</strong> Triangle with a = 7 cm, b = 8 cm, c = 9 cm. Find angle C.</p>
+                        <p><strong>Solution:</strong> \(\cos(C) = \frac{a^2 + b^2 - c^2}{2ab}\)</p>
+                        <p>\(\cos(C) = \frac{49 + 64 - 81}{2(7)(8)} = \frac{32}{112} = 0.2857\)</p>
+                        <p>\(C = \cos^{-1}(0.2857) \approx 73.4°\)</p>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Pythagoras Check:</strong> When angle C = 90°, the Cosine Rule becomes \(c^2 = a^2 + b^2\) (Pythagoras' Theorem) since \(\cos(90°) = 0\).
+                    </div>
+                </div>
+            </div>
+
+            <div class="realworld-box full-width">
+                <h4>🌍 Real-World: Bridge Design</h4>
+                <p><strong>Scenario:</strong> Engineers are designing a bridge support. Two structural beams of lengths 15m and 20m meet at an angle of 75°. What is the length of the connecting beam?</p>
+                <p><strong>Solution:</strong> Using Cosine Rule with a = 15, b = 20, C = 75°</p>
+                <p>\(c^2 = 15^2 + 20^2 - 2(15)(20)\cos(75°)\)</p>
+                <p>\(c^2 = 225 + 400 - 600 \times 0.2588 = 625 - 155.28 = 469.72\)</p>
+                <p>\(c = \sqrt{469.72} \approx 21.67\) meters</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Area of Triangle -->
+    <section class="section" id="area">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(6, 182, 212, 0.15);">📊</span> Area of a Triangle Using Sine</h2>
+                <p>When you know two sides and the included angle (Haese Chapter 25)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Area Formula</h3>
+                    <p>Traditional area = \(\frac{1}{2} \times \text{base} \times \text{height}\) requires knowing the height. The sine formula works when you know two sides and the included angle:</p>
+
+                    <div class="formula-box">
+                        <div class="formula">\(\text{Area} = \frac{1}{2}ab\sin(C)\)</div>
+                        <div class="formula">\(\text{Area} = \frac{1}{2}bc\sin(A)\)</div>
+                        <div class="formula">\(\text{Area} = \frac{1}{2}ac\sin(B)\)</div>
+                    </div>
+
+                    <div class="interactive-canvas">
+                        <h4>Interactive: Area Visualization</h4>
+                        <canvas id="area-canvas" width="400" height="300"></canvas>
+                        <div class="controls">
+                            <label style="color: var(--text-secondary);">Side a: <input type="range" id="area-a" min="50" max="150" value="100" style="width: 100px;"> <span id="area-a-val">100</span></label>
+                            <label style="color: var(--text-secondary);">Side b: <input type="range" id="area-b" min="50" max="150" value="120" style="width: 100px;"> <span id="area-b-val">120</span></label>
+                            <label style="color: var(--text-secondary);">Angle C: <input type="range" id="area-C" min="10" max="170" value="60" style="width: 100px;"> <span id="area-C-val">60°</span></label>
+                        </div>
+                        <p style="color: var(--primary-light); font-weight: 600; margin-top: 10px;">Area: <span id="area-value">0</span> square units</p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Worked Examples</h3>
+
+                    <div class="example-box">
+                        <h4>📝 Example 8: Finding Area</h4>
+                        <p><strong>Given:</strong> Triangle with sides 8 cm and 10 cm, included angle 35°.</p>
+                        <p><strong>Solution:</strong> \(\text{Area} = \frac{1}{2}(8)(10)\sin(35°)\)</p>
+                        <p>\(\text{Area} = 40 \times 0.5736 = 22.94\) cm²</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 9: Maximum Area</h4>
+                        <p><strong>Question:</strong> For a triangle with two fixed sides of length 10 and 15, what angle gives maximum area?</p>
+                        <p><strong>Solution:</strong> Area = \(\frac{1}{2}(10)(15)\sin(C) = 75\sin(C)\)</p>
+                        <p>Maximum occurs when \(\sin(C) = 1\), so \(C = 90°\)</p>
+                        <p>Maximum Area = 75 square units</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="realworld-box full-width">
+                <h4>🌍 Real-World: Land Surveying</h4>
+                <p><strong>Scenario:</strong> A triangular plot of land has two sides measuring 85m and 120m with an included angle of 68°. Calculate the area for property tax assessment.</p>
+                <p><strong>Solution:</strong> \(\text{Area} = \frac{1}{2}(85)(120)\sin(68°)\)</p>
+                <p>\(\text{Area} = 5100 \times 0.9272 \approx 4728.7\) m² ≈ 0.47 hectares</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Trigonometric Graphs -->
+    <section class="section" id="graphs">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(245, 158, 11, 0.15);">📈</span> Trigonometric Graphs</h2>
+                <p>Visualizing sine, cosine, and tangent functions</p>
+            </div>
+
+            <div class="content-card full-width">
+                <h3>Sine and Cosine Curves</h3>
+                <div class="two-col" style="margin-top: 1rem;">
+                    <div>
+                        <div class="formula-box">
+                            <div class="formula">\(y = \sin(x)\)</div>
+                            <p style="color: var(--text-muted); font-size: 13px;">Range: [-1, 1], Period: 360° or \(2\pi\)</p>
+                        </div>
+                        <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Starts at (0, 0)</li>
+                            <li>Maximum at 90°: y = 1</li>
+                            <li>Zero at 180°</li>
+                            <li>Minimum at 270°: y = -1</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="formula-box">
+                            <div class="formula">\(y = \cos(x)\)</div>
+                            <p style="color: var(--text-muted); font-size: 13px;">Range: [-1, 1], Period: 360° or \(2\pi\)</p>
+                        </div>
+                        <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-top: 1rem;">
+                            <li>Starts at (0, 1)</li>
+                            <li>Zero at 90°</li>
+                            <li>Minimum at 180°: y = -1</li>
+                            <li>Maximum at 360°: y = 1</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="interactive-canvas" style="margin-top: 2rem;">
+                    <h4>Interactive: Sine and Cosine Graphs</h4>
+                    <canvas id="trig-graphs-canvas" width="800" height="400"></canvas>
+                    <div class="controls">
+                        <button class="btn btn-primary" onclick="showSine()">Show Sine</button>
+                        <button class="btn btn-primary" onclick="showCosine()">Show Cosine</button>
+                        <button class="btn" onclick="showBoth()">Show Both</button>
+                        <label style="color: var(--text-secondary);">Frequency: <input type="range" id="freq-slider" min="1" max="4" value="1" style="width: 100px;"> <span id="freq-value">1</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card full-width" style="margin-top: 2rem;">
+                <h3>Tangent Curve</h3>
+                <div class="formula-box">
+                    <div class="formula">\(y = \tan(x) = \frac{\sin(x)}{\cos(x)}\)</div>
+                    <p style="color: var(--text-muted); font-size: 13px;">Period: 180° or \(\pi\). Vertical asymptotes where \(\cos(x) = 0\).</p>
+                </div>
+                <div class="tip-box">
+                    <strong>Asymptotes:</strong> The tangent function has vertical asymptotes at x = 90°, 270°, etc. (where cos(x) = 0). The graph approaches infinity near these points.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Real-World Applications -->
+    <section class="section" id="realworld">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(16, 185, 129, 0.15);">🌍</span> Real-World Applications</h2>
+                <p>How trigonometry is used in various fields</p>
+            </div>
+
+            <div class="three-col">
+                <div class="content-card">
+                    <h3>🏗️ Architecture</h3>
+                    <p><strong>Roof Trusses:</strong> Engineers use trig to calculate rafter lengths and roof angles.</p>
+                    <p style="margin-top: 1rem;"><strong>Example:</strong> For a roof with 30° pitch and 8m span, each rafter length = \(\frac{4}{\cos(30°)} \approx 4.62\) m</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>✈️ Aviation</h3>
+                    <p><strong>Flight Path:</strong> Pilots calculate ground speed and drift angle using wind triangles.</p>
+                    <p style="margin-top: 1rem;"><strong>Example:</strong> Aircraft heading 045° at 250 knots with 30 knot wind from 120°. Trig gives actual track and ground speed.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>🌊 Physics - Waves</h3>
+                    <p><strong>Sound & Light:</strong> All waves modeled using sine/cosine functions.</p>
+                    <p style="margin-top: 1rem;"><strong>Formula:</strong> \(y = A\sin(2\pi ft + \phi)\) where A = amplitude, f = frequency, \(\phi\) = phase.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>🔭 Astronomy</h3>
+                    <p><strong>Parallax:</strong> Distance to stars calculated using angle measurements from opposite sides of Earth's orbit.</p>
+                    <p style="margin-top: 1rem;">\(d = \frac{1 \text{ AU}}{\tan(p)}\) where p is parallax angle in arcseconds.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>📱 GPS Technology</h3>
+                    <p><strong>Triangulation:</strong> GPS uses signals from multiple satellites to calculate position using trigonometric principles.</p>
+                    <p style="margin-top: 1rem;">Requires solving 3D triangles using extended trig formulas.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>🎮 Computer Graphics</h3>
+                    <p><strong>3D Rendering:</strong> Rotation matrices use sine and cosine to rotate objects in 3D space.</p>
+                    <p style="margin-top: 1rem;">\(x' = x\cos(\theta) - y\sin(\theta)\) for 2D rotation.</p>
+                </div>
+            </div>
+
+            <div class="realworld-box full-width" style="margin-top: 2rem;">
+                <h4>🌍 Comprehensive Example: Solar Panel Optimization</h4>
+                <p><strong>Scenario:</strong> A solar panel in California (latitude 34°N) needs optimal tilt angle for maximum winter sun capture. The sun's angle at noon in winter is 32° above horizon.</p>
+                <p><strong>Solution:</strong></p>
+                <p>1. Panel should face south (northern hemisphere)</p>
+                <p>2. Optimal tilt = latitude ± seasonal adjustment = 34° + 15° = 49° from horizontal</p>
+                <p>3. If panel is 2m × 1.5m, effective area catching sun = \(2 \times 1.5 \times \sin(49°)\) = 3 × 0.7547 = 2.26 m²</p>
+                <p style="color: var(--secondary); font-weight: 600; margin-top: 1rem;">This calculation helps maximize solar energy collection efficiency!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Link -->
+    <section class="section" style="text-align: center; background: var(--bg-section);">
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Ready to Test Your Knowledge?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Take the comprehensive trigonometry assessment with 25 questions covering all topics</p>
+            <a href="myp4-trigonometry-assessment.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 18px; text-decoration: none; display: inline-block;">Start Assessment →</a>
+            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 14px;">25 Questions • 60 Minutes • Covers All Topics</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>KaniMath • IB MYP4 Trigonometry Study Material</p>
+            <p style="margin-top: 0.5rem;">Based on Haese Mathematics 9 MYP4 Curriculum</p>
+            <p style="margin-top: 1rem;">
+                <a href="../src/pages/Home.jsx">← Back to KaniMath Home</a> • 
+                <a href="myp4-trigonometry-assessment.html">Take Assessment</a> • 
+                <a href="https://github.com/kram1947/kaniib">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize MathJax
+        window.MathJax = {
+            tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+
+        // Utility function to convert degrees to radians
+        function toRad(deg) { return deg * Math.PI / 180; }
+        function toDeg(rad) { return rad * 180 / Math.PI; }
+
+        // Basic Triangle Interactive Canvas
+        const triCanvas = document.getElementById('triangle-basic');
+        if (triCanvas) {
+            const ctx = triCanvas.getContext('2d');
+            const angleSlider = document.getElementById('angle-slider');
+            const angleValue = document.getElementById('angle-value');
+
+            function drawBasicTriangle() {
+                const angle = parseInt(angleSlider.value);
+                angleValue.textContent = angle + '°';
+                
+                ctx.clearRect(0, 0, triCanvas.width, triCanvas.height);
+                
+                const hypotenuse = 150;
+                const adj = hypotenuse * Math.cos(toRad(angle));
+                const opp = hypotenuse * Math.sin(toRad(angle));
+                
+                const originX = 100, originY = 250;
+                
+                ctx.strokeStyle = '#6366f1';
+                ctx.lineWidth = 3;
+                
+                // Draw triangle
+                ctx.beginPath();
+                ctx.moveTo(originX, originY);
+                ctx.lineTo(originX + adj, originY);
+                ctx.lineTo(originX + adj, originY - opp);
+                ctx.closePath();
+                ctx.stroke();
+                
+                // Fill with transparency
+                ctx.fillStyle = 'rgba(99, 102, 241, 0.1)';
+                ctx.fill();
+                
+                // Labels
+                ctx.fillStyle = '#f9fafb';
+                ctx.font = '14px Inter';
+                ctx.fillText('θ = ' + angle + '°', originX + adj/2 - 20, originY + 20);
+                ctx.fillText('Hyp = 1', originX + adj/2 - 15, originY - opp/2);
+                ctx.fillText('Opp', originX + adj + 10, originY - opp/2);
+                ctx.fillText('Adj', originX + adj/2, originY - opp - 10);
+                
+                // Right angle symbol
+                ctx.strokeStyle = '#10b981';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(originX + 20, originY);
+                ctx.lineTo(originX + 20, originY - 20);
+                ctx.lineTo(originX, originY - 20);
+                ctx.stroke();
+            }
+            
+            angleSlider.addEventListener('input', drawBasicTriangle);
+            drawBasicTriangle();
+        }
+
+        // Tree Height Canvas
+        const treeCanvas = document.getElementById('tree-canvas');
+        if (treeCanvas) {
+            const ctx = treeCanvas.getContext('2d');
+            // Draw tree scenario
+            ctx.strokeStyle = '#6366f1';
+            ctx.lineWidth = 3;
+            
+            // Ground
+            ctx.beginPath();
+            ctx.moveTo(50, 200);
+            ctx.lineTo(450, 200);
+            ctx.stroke();
+            
+            // Tree
+            ctx.strokeStyle = '#10b981';
+            ctx.beginPath();
+            ctx.moveTo(300, 200);
+            ctx.lineTo(300, 50);
+            ctx.stroke();
+            
+            // Line of sight
+            ctx.strokeStyle = '#f59e0b';
+            ctx.setLineDash([5, 5]);
+            ctx.beginPath();
+            ctx.moveTo(100, 200);
+            ctx.lineTo(300, 50);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            
+            // Labels
+            ctx.fillStyle = '#f9fafb';
+            ctx.font = '14px Inter';
+            ctx.fillText('20 m', 190, 220);
+            ctx.fillText('52°', 120, 180);
+            ctx.fillText('Tree height', 310, 120);
+        }
+
+        // Elevation Canvas
+        const elevCanvas = document.getElementById('elevation-canvas');
+        if (elevCanvas) {
+            const ctx = elevCanvas.getContext('2d');
+            const slider = document.getElementById('elev-slider');
+            const value = document.getElementById('elev-value');
+            
+            function drawElevation() {
+                const angle = parseInt(slider.value);
+                value.textContent = angle + '°';
+                ctx.clearRect(0, 0, elevCanvas.width, elevCanvas.height);
+                
+                // Eye level
+                ctx.strokeStyle = '#6366f1';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(50, 200);
+                ctx.lineTo(350, 200);
+                ctx.stroke();
+                
+                // Line of sight
+                const endX = 350;
+                const endY = 200 - 150 * Math.tan(toRad(angle));
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(50, 200);
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+                
+                // Angle arc
+                ctx.strokeStyle = '#10b981';
+                ctx.beginPath();
+                ctx.arc(50, 200, 40, 0, -toRad(angle), true);
+                ctx.stroke();
+                
+                ctx.fillStyle = '#10b981';
+                ctx.font = '14px Inter';
+                ctx.fillText(angle + '°', 60, 185);
+            }
+            slider.addEventListener('input', drawElevation);
+            drawElevation();
+        }
+
+        // Depression Canvas
+        const deprCanvas = document.getElementById('depression-canvas');
+        if (deprCanvas) {
+            const ctx = deprCanvas.getContext('2d');
+            const slider = document.getElementById('depr-slider');
+            const value = document.getElementById('depr-value');
+            
+            function drawDepression() {
+                const angle = parseInt(slider.value);
+                value.textContent = angle + '°';
+                ctx.clearRect(0, 0, deprCanvas.width, deprCanvas.height);
+                
+                // Eye level (horizontal from observer)
+                ctx.strokeStyle = '#6366f1';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(50, 100);
+                ctx.lineTo(350, 100);
+                ctx.stroke();
+                
+                // Observer
+                ctx.fillStyle = '#6366f1';
+                ctx.beginPath();
+                ctx.arc(50, 100, 5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Line of sight (downward)
+                const endX = 350;
+                const endY = 100 + 150 * Math.tan(toRad(angle));
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(50, 100);
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+                
+                // Angle arc
+                ctx.strokeStyle = '#ef4444';
+                ctx.beginPath();
+                ctx.arc(50, 100, 40, 0, toRad(angle));
+                ctx.stroke();
+                
+                ctx.fillStyle = '#ef4444';
+                ctx.font = '14px Inter';
+                ctx.fillText(angle + '°', 60, 80);
+            }
+            slider.addEventListener('input', drawDepression);
+            drawDepression();
+        }
+
+        // Compass Canvas
+        const compassCanvas = document.getElementById('compass-canvas');
+        if (compassCanvas) {
+            const ctx = compassCanvas.getContext('2d');
+            const slider = document.getElementById('bearing-slider');
+            const value = document.getElementById('bearing-value');
+            const centerX = 200, centerY = 200, radius = 150;
+            
+            function drawCompass() {
+                const bearing = parseInt(slider.value);
+                value.textContent = String(bearing).padStart(3, '0') + '°';
+                ctx.clearRect(0, 0, compassCanvas.width, compassCanvas.height);
+                
+                // Draw compass circle
+                ctx.strokeStyle = '#6366f1';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                ctx.stroke();
+                
+                // Draw N, E, S, W
+                ctx.fillStyle = '#f9fafb';
+                ctx.font = 'bold 16px Inter';
+                ctx.fillText('N', centerX - 8, centerY - radius - 10);
+                ctx.fillText('S', centerX - 8, centerY + radius + 20);
+                ctx.fillText('E', centerX + radius + 10, centerY + 5);
+                ctx.fillText('W', centerX - radius - 20, centerY + 5);
+                
+                // Draw bearing line
+                const angle = toRad(90 - bearing); // Convert bearing to canvas angle
+                const endX = centerX + radius * Math.cos(angle);
+                const endY = centerY - radius * Math.sin(angle);
+                
+                ctx.strokeStyle = '#f59e0b';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+                
+                // Draw angle arc
+                ctx.strokeStyle = '#10b981';
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, 30, -Math.PI/2, -toRad(bearing) - Math.PI/2, bearing > 180);
+                ctx.stroke();
+                
+                ctx.fillStyle = '#10b981';
+                ctx.font = '14px Inter';
+                ctx.fillText(bearing + '°', centerX + 40, centerY - 40);
+            }
+            slider.addEventListener('input', drawCompass);
+            drawCompass();
+        }
+
+        // Sine Rule Canvas
+        const sineCanvas = document.getElementById('sine-rule-canvas');
+        if (sineCanvas) {
+            const ctx = sineCanvas.getContext('2d');
+            const sliderA = document.getElementById('sine-A');
+            const sliderB = document.getElementById('sine-B');
+            const valA = document.getElementById('sine-A-val');
+            const valB = document.getElementById('sine-B-val');
+            
+            function drawSineRule() {
+                let angleA = parseInt(sliderA.value);
+                let angleB = parseInt(sliderB.value);
+                let angleC = 180 - angleA - angleB;
+                
+                if (angleC <= 0) {
+                    angleB = 180 - angleA - 30;
+                    sliderB.value = angleB;
+                }
+                
+                valA.textContent = angleA + '°';
+                valB.textContent = angleB + '°';
+                
+                ctx.clearRect(0, 0, sineCanvas.width, sineCanvas.height);
+                
+                // Draw triangle
+                const originX = 100, originY = 250;
+                const sideC = 200; // Fix side c
+                
+                // Calculate vertices
+                const angleA_rad = toRad(angleA);
+                const angleB_rad = toRad(angleB);
+                
+                const xA = originX;
+                const yA = originY;
+                const xB = originX + sideC;
+                const yB = originY;
+                const xC = originX + sideC * Math.cos(angleA_rad);
+                const yC = originY - sideC * Math.sin(angleA_rad);
+                
+                ctx.strokeStyle = '#6366f1';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(xA, yA);
+                ctx.lineTo(xB, yB);
+                ctx.lineTo(xC, yC);
+                ctx.closePath();
+                ctx.stroke();
+                
+                // Labels
+                ctx.fillStyle = '#f59e0b';
+                ctx.font = 'bold 14px Inter';
+                ctx.fillText('A = ' + angleA + '°', xA - 30, yA + 20);
+                ctx.fillText('B = ' + angleB + '°', xB + 10, yB + 20);
+                ctx.fillText('C = ' + (180-angleA-angleB) + '°', xC, yC - 10);
+            }
+            
+            sliderA.addEventListener('input', drawSineRule);
+            sliderB.addEventListener('input', drawSineRule);
+            drawSineRule();
+        }
+
+        // Cosine Rule Canvas
+        const cosCanvas = document.getElementById('cosine-rule-canvas');
+        if (cosCanvas) {
+            const ctx = cosCanvas.getContext('2d');
+            const sliderA = document.getElementById('cos-a');
+            const sliderB = document.getElementById('cos-b');
+            const sliderC = document.getElementById('cos-C');
+            const valA = document.getElementById('cos-a-val');
+            const valB = document.getElementById('cos-b-val');
+            const valC = document.getElementById('cos-C-val');
+            
+            function drawCosineRule() {
+                const a = parseInt(sliderA.value);
+                const b = parseInt(sliderB.value);
+                const angleC = parseInt(sliderC.value);
+                
+                valA.textContent = a;
+                valB.textContent = b;
+                valC.textContent = angleC + '°';
+                
+                ctx.clearRect(0, 0, cosCanvas.width, cosCanvas.height);
+                
+                const originX = 100, originY = 250;
+                const angleC_rad = toRad(angleC);
+                
+                // Vertices
+                const xA = originX;
+                const yA = originY;
+                const xB = originX + a;
+                const yB = originY;
+                const xC = originX + b * Math.cos(angleC_rad);
+                const yC = originY - b * Math.sin(angleC_rad);
+                
+                ctx.strokeStyle = '#6366f1';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(xA, yA);
+                ctx.lineTo(xB, yB);
+                ctx.lineTo(xC, yC);
+                ctx.closePath();
+                ctx.stroke();
+                
+                // Calculate side c
+                const c = Math.sqrt(a*a + b*b - 2*a*b*Math.cos(angleC_rad));
+                
+                // Labels
+                ctx.fillStyle = '#f9fafb';
+                ctx.font = '14px Inter';
+                ctx.fillText('a = ' + a, (xA + xB)/2 - 10, yA + 20);
+                ctx.fillText('b = ' + b, xC - 40, (yC + yA)/2);
+                ctx.fillText('c = ' + c.toFixed(1), (xB + xC)/2, (yB + yC)/2 - 10);
+                ctx.fillText('C = ' + angleC + '°', xA + 20, yA - 20);
+            }
+            
+            sliderA.addEventListener('input', drawCosineRule);
+            sliderB.addEventListener('input', drawCosineRule);
+            sliderC.addEventListener('input', drawCosineRule);
+            drawCosineRule();
+        }
+
+        // Area Canvas
+        const areaCanvas = document.getElementById('area-canvas');
+        if (areaCanvas) {
+            const ctx = areaCanvas.getContext('2d');
+            const sliderA = document.getElementById('area-a');
+            const sliderB = document.getElementById('area-b');
+            const sliderC = document.getElementById('area-C');
+            const valA = document.getElementById('area-a-val');
+            const valB = document.getElementById('area-b-val');
+            const valC = document.getElementById('area-C-val');
+            const areaVal = document.getElementById('area-value');
+            
+            function drawArea() {
+                const a = parseInt(sliderA.value);
+                const b = parseInt(sliderB.value);
+                const angleC = parseInt(sliderC.value);
+                
+                valA.textContent = a;
+                valB.textContent = b;
+                valC.textContent = angleC + '°';
+                
+                ctx.clearRect(0, 0, areaCanvas.width, areaCanvas.height);
+                
+                const originX = 100, originY = 250;
+                const angleC_rad = toRad(angleC);
+                
+                // Vertices
+                const xA = originX;
+                const yA = originY;
+                const xB = originX + a;
+                const yB = originY;
+                const xC = originX + b * Math.cos(angleC_rad);
+                const yC = originY - b * Math.sin(angleC_rad);
+                
+                // Fill triangle
+                ctx.fillStyle = 'rgba(6, 182, 212, 0.2)';
+                ctx.beginPath();
+                ctx.moveTo(xA, yA);
+                ctx.lineTo(xB, yB);
+                ctx.lineTo(xC, yC);
+                ctx.closePath();
+                ctx.fill();
+                
+                // Stroke
+                ctx.strokeStyle = '#06b6d4';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(xA, yA);
+                ctx.lineTo(xB, yB);
+                ctx.lineTo(xC, yC);
+                ctx.closePath();
+                ctx.stroke();
+                
+                // Calculate and display area
+                const area = 0.5 * a * b * Math.sin(angleC_rad);
+                areaVal.textContent = area.toFixed(1);
+            }
+            
+            sliderA.addEventListener('input', drawArea);
+            sliderB.addEventListener('input', drawArea);
+            sliderC.addEventListener('input', drawArea);
+            drawArea();
+        }
+
+        // Trig Graphs Canvas
+        const graphCanvas = document.getElementById('trig-graphs-canvas');
+        let graphMode = 'both';
+        if (graphCanvas) {
+            const ctx = graphCanvas.getContext('2d');
+            const freqSlider = document.getElementById('freq-slider');
+            const freqValue = document.getElementById('freq-value');
+            
+            function drawGraphs() {
+                const freq = parseInt(freqSlider.value);
+                freqValue.textContent = freq;
+                
+                ctx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
+                
+                // Draw axes
+                ctx.strokeStyle = '#374151';
+                ctx.lineWidth = 1;
+                
+                // X-axis
+                ctx.beginPath();
+                ctx.moveTo(50, 200);
+                ctx.lineTo(750, 200);
+                ctx.stroke();
+                
+                // Y-axis
+                ctx.beginPath();
+                ctx.moveTo(50, 50);
+                ctx.lineTo(50, 350);
+                ctx.stroke();
+                
+                // X-axis labels
+                ctx.fillStyle = '#9ca3af';
+                ctx.font = '12px Inter';
+                for (let deg = 0; deg <= 720; deg += 90) {
+                    const x = 50 + (deg / 720) * 700;
+                    ctx.fillText(deg + '°', x - 10, 370);
+                    ctx.beginPath();
+                    ctx.moveTo(x, 195);
+                    ctx.lineTo(x, 205);
+                    ctx.stroke();
+                }
+                
+                // Y-axis labels
+                ctx.fillText('1', 30, 100);
+                ctx.fillText('0', 30, 205);
+                ctx.fillText('-1', 25, 310);
+                
+                if (graphMode === 'sine' || graphMode === 'both') {
+                    ctx.strokeStyle = '#6366f1';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    for (let x = 0; x <= 700; x++) {
+                        const deg = (x / 700) * 720;
+                        const y = 200 - 100 * Math.sin(toRad(deg * freq));
+                        if (x === 0) ctx.moveTo(50 + x, y);
+                        else ctx.lineTo(50 + x, y);
+                    }
+                    ctx.stroke();
+                }
+                
+                if (graphMode === 'cosine' || graphMode === 'both') {
+                    ctx.strokeStyle = '#10b981';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    for (let x = 0; x <= 700; x++) {
+                        const deg = (x / 700) * 720;
+                        const y = 200 - 100 * Math.cos(toRad(deg * freq));
+                        if (x === 0) ctx.moveTo(50 + x, y);
+                        else ctx.lineTo(50 + x, y);
+                    }
+                    ctx.stroke();
+                }
+                
+                // Legend
+                if (graphMode === 'both') {
+                    ctx.fillStyle = '#6366f1';
+                    ctx.fillRect(600, 70, 20, 3);
+                    ctx.fillText('sin(x)', 630, 75);
+                    
+                    ctx.fillStyle = '#10b981';
+                    ctx.fillRect(600, 90, 20, 3);
+                    ctx.fillText('cos(x)', 630, 95);
+                }
+            }
+            
+            freqSlider.addEventListener('input', drawGraphs);
+            drawGraphs();
+        }
+
+        function showSine() { graphMode = 'sine'; if (graphCanvas) drawGraphs(); }
+        function showCosine() { graphMode = 'cosine'; if (graphCanvas) drawGraphs(); }
+        function showBoth() { graphMode = 'both'; if (graphCanvas) drawGraphs(); }
+    </script>
+</body>
+</html>

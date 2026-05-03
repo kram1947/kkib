@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB MYP Economics: History & Future of Money - Study Material</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #475569;
+            --accent-cyan: #06b6d4;
+            --accent-pink: #ec4899;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(6, 182, 212, 0.1));
+            border-radius: 20px;
+            border: 1px solid var(--primary);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header .subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .header .meta {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .ib-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid var(--primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .topic-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .topic-section:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .topic-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .topic-section h2 .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(139, 92, 246, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .statement-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .statement-box h3 {
+            color: var(--primary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .statement-box p {
+            color: var(--text-primary);
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .concept {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .concept h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .concept p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .formula {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+            font-size: 16px;
+            margin: 16px 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent-cyan));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 24px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 2px solid var(--bg-dark);
+        }
+
+        .timeline-item h4 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .timeline-item .year {
+            display: inline-block;
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--primary);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .key-term {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .key-term:hover {
+            border-color: var(--primary);
+        }
+
+        .key-term h4 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .key-term p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .opvl-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .opvl-table th, .opvl-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .opvl-table th {
+            background: var(--bg-dark);
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .opvl-table td {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .opvl-table tr:hover td {
+            background: var(--bg-dark);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-dark);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            color: var(--text-secondary);
+        }
+
+        .comparison-table tr:nth-child(even) td {
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .pro-con {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .pro-box, .con-box {
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .pro-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--secondary);
+        }
+
+        .con-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+        }
+
+        .pro-box h4, .con-box h4 {
+            font-size: 16px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pro-box h4 { color: var(--secondary); }
+        .con-box h4 { color: var(--danger); }
+
+        .pro-box ul, .con-box ul {
+            list-style: none;
+        }
+
+        .pro-box li, .con-box li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .pro-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+
+        .con-box li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: var(--danger);
+        }
+
+        .pestel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .pestel-card {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .pestel-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .pestel-card .letter {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .pestel-card h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .pestel-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .interactive-quiz {
+            background: var(--bg-dark);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px 0;
+            border: 2px solid var(--border);
+        }
+
+        .interactive-quiz h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .quiz-question {
+            margin-bottom: 16px;
+        }
+
+        .quiz-question p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .quiz-option {
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+        }
+
+        .quiz-option.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .quiz-option.incorrect {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .reveal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 12px;
+        }
+
+        .reveal-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .globe-icon {
+            font-size: 48px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .flex-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .flex-card {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .flex-card h4 {
+            color: var(--accent-cyan);
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .flex-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px 16px; }
+            .topic-section { padding: 20px; }
+            .header h1 { font-size: 28px; }
+            .key-terms { grid-template-columns: 1fr; }
+            .pro-con { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="ib-badge">🎓 IB MYP4 Individuals & Societies</div>
+            <h1>History & Future of Money</h1>
+            <p class="subtitle">From Barter to Bitcoin: 11,000 Years of Monetary Evolution</p>
+            <div class="meta">
+                <div class="meta-item">
+                    <span>📖</span> 12 Topics
+                </div>
+                <div class="meta-item">
+                    <span>🏛️</span> Global Context: Orientation in Space & Time
+                </div>
+                <div class="meta-item">
+                    <span>💡</span> Key Concept: Systems
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="framework">
+            <h2><span class="icon">🎯</span> IB MYP Framework</h2>
+            
+            <div class="statement-box">
+                <h3>Statement of Inquiry</h3>
+                <p>"Change is shaped by the relationship between causality and innovation, as shifts in space and time influence the evolution of ideas and societies."</p>
+            </div>
+
+            <div class="flex-grid">
+                <div class="flex-card">
+                    <h4>Global Context</h4>
+                    <p>Orientation in Space and Time: Examining the 11,000-year trajectory of exchange from barter to digital currency.</p>
+                </div>
+                <div class="flex-card">
+                    <h4>Key Concept</h4>
+                    <p>Systems: Understanding the interconnected structures of central banking and blockchain networks.</p>
+                </div>
+                <div class="flex-card">
+                    <h4>Related Concepts</h4>
+                    <p>Innovation and Causality: How technological breakthroughs drive monetary evolution.</p>
+                </div>
+                <div class="flex-card">
+                    <h4>Assessment Focus</h4>
+                    <p>Criterion D: Thinking Critically - Evaluating the legitimacy of cryptocurrency as a medium of exchange.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="timeline">
+            <h2><span class="icon">📜</span> Evolution of Money: A Timeline</h2>
+            <p class="globe-icon">🌍</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="year">~9,000 BCE</span>
+                    <h4>Barter Systems</h4>
+                    <p>Early agricultural societies engaged in direct exchange of goods. The "double coincidence of wants" problem limited trade.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">~1,200 BCE</span>
+                    <h4>Commodity Money</h4>
+                    <p>Shells, seeds, cocoa beans, and livestock became widely accepted mediums of exchange. Durable, portable, and divisible.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">~600 BCE</span>
+                    <h4>Lydian Coinage</h4>
+                    <p>King Croesus of Lydia introduces the first standardized coins made of electrum. The royal stamp guarantees value.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">~500 BCE - 400 CE</span>
+                    <h4>Classical Coinage</h4>
+                    <p>Athenian "Owl" coins and Roman denarius. Coinage becomes political messaging. Roman debasement leads to inflation.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">600 CE</span>
+                    <h4>Paper Money in China</h4>
+                    <p>Chinese merchants develop paper money as "bills of credit." Later adopted in Europe.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1690 CE</span>
+                    <h4>Colonial Paper Money</h4>
+                    <p>Massachusetts Bay Colony issues first Western paper money to pay soldiers. Represents "representative value."</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">1971 CE</span>
+                    <h4>End of Bretton Woods</h4>
+                    <p>Nixon ends gold convertibility. The fiat currency era begins - money has no intrinsic value, only trust.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="year">2009 CE</span>
+                    <h4>Bitcoin</h4>
+                    <p>Satoshi Nakamoto launches Bitcoin - the first decentralized cryptocurrency. Blockchain technology emerges.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="barter">
+            <h2><span class="icon">🤝</span> Barter & Early Exchange</h2>
+            
+            <div class="concept">
+                <h3>The Double Coincidence of Wants</h3>
+                <p>The fundamental problem with barter: both parties must want exactly what the other has at the same time and place. This severely limited trade opportunities.</p>
+            </div>
+
+            <div class="concept">
+                <h3>Commodity Money Solution</h3>
+                <p>Societies developed items that were:</p>
+                <ul style="list-style: none; margin-top: 12px;">
+                    <li style="padding: 8px 0; color: var(--text-secondary);">✓ <strong>Durable:</strong> Can be stored and used over time</li>
+                    <li style="padding: 8px 0; color: var(--text-secondary);">✓ <strong>Portable:</strong> Easy to transport</li>
+                    <li style="padding: 8px 0; color: var(--text-secondary);">✓ <strong>Divisible:</strong> Can be split into smaller units</li>
+                    <li style="padding: 8px 0; color: var(--text-secondary);">✓ <strong>Widespread:</strong> Recognized and valued by many</li>
+                </ul>
+            </div>
+
+            <div class="concept">
+                <h3>The Yap Stone: A Proto-Ledger</h3>
+                <p>The massive limestone disks of Yap (Micronesia) demonstrate that money's value is a social contract, not physical reality. Even when stones were lost at sea, ownership remained valid through oral history!</p>
+            </div>
+
+            <div class="key-terms">
+                <div class="key-term">
+                    <h4>Double Coincidence of Wants</h4>
+                    <p>Both parties must have what the other wants simultaneously.</p>
+                </div>
+                <div class="key-term">
+                    <h4>Commodity Money</h4>
+                    <p>Physical objects with intrinsic value used as currency.</p>
+                </div>
+                <div class="key-term">
+                    <h4>Unit of Account</h4>
+                    <p>A standard measurement for comparing values of different goods.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="coins">
+            <h2><span class="icon">🪙</span> The Rise of Coinage</h2>
+            
+            <div class="concept">
+                <h3>The Lydian Innovation (600 BCE)</h3>
+                <p>King Croesus introduced coins made of electrum (gold-silver alloy) with a royal stamp. This revolutionary change:</p>
+                <ul style="list-style: none; margin-top: 12px;">
+                    <li style="padding: 8px 0; color: var(--text-secondary);">✓ Reduced transaction costs</li>
+                    <li style="padding: 8px 0; color: var(--text-secondary);">✓ Eliminated need to weigh/assay metal</li>
+                    <li style="padding: 8px 0; color: var(--text-secondary);">✓ Internalized trust in the state</li>
+                    <li style="padding: 8px 0; color: var(--text-secondary);">✓ Created standardized unit of account</li>
+                </ul>
+            </div>
+
+            <div class="concept">
+                <h3>Coinage as Political Messaging</h3>
+                <div class="flex-grid">
+                    <div class="flex-card">
+                        <h4>Athenian Owl</h4>
+                        <p>Displaying wisdom and economic dominance of Athens. The most recognized coin of the classical world.</p>
+                    </div>
+                    <div class="flex-card">
+                        <h4>Roman Denarius</h4>
+                        <p>Featured Emperor's likeness to establish presence in distant provinces. First used for political propaganda.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept">
+                <h3>Monetary Debasement</h3>
+                <p>As Roman expenses grew, emperors reduced silver content in coins. This led to:</p>
+                <div class="formula">↑ Expenses → ↓ Silver Content → ↑ Prices → ↓ Public Confidence</div>
+                <p style="margin-top: 12px; color: var(--text-secondary);">This mirrors modern concerns about fiat currency expansion and inflation!</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="fiat">
+            <h2><span class="icon">📄</span> From Paper to Fiat</h2>
+            
+            <div class="concept">
+                <h3>The Paper Revolution</h3>
+                <p>Paper money originated in China (600 CE) but saw Western development in Massachusetts Bay Colony (1690), issued as "bills of credit" to pay soldiers.</p>
+            </div>
+
+            <div class="concept">
+                <h3>Fiat Money: The Modern Era</h3>
+                <div class="formula">Intrinsic Value → Representative Value → Fiat Value</div>
+                <p>In 1971, Nixon ended the gold convertibility of the dollar, ending the Bretton Woods system. Modern currencies are "free-floating" - their value depends on:</p>
+                <ul style="list-style: none; margin-top: 12px;">
+                    <li style="padding: 8px 0; color: var(--text-secondary);">• Central bank policy credibility</li>
+                    <li style="padding: 8px 0; color: var(--text-secondary);">• Economic health of the issuing nation</li>
+                    <li style="padding: 8px 0; color: var(--text-secondary);">• Market supply and demand</li>
+                </ul>
+            </div>
+
+            <div class="key-terms">
+                <div class="key-term">
+                    <h4>Fiat Money</h4>
+                    <p>Currency with no intrinsic value, not backed by gold or commodities.</p>
+                </div>
+                <div class="key-term">
+                    <h4>Bretton Woods System</h4>
+                    <p>Post-WWII monetary system linking currencies to the US dollar, which was convertible to gold.</p>
+                </div>
+                <div class="key-term">
+                    <h4>Free-Floating</h4>
+                    <p>Currency value determined by market forces, not government fixing.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="opvl">
+            <h2><span class="icon">🔍</span> OPVL: Source Analysis Framework</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">The gold standard for source evaluation in IB History. Use this to analyze any source on the history of money.</p>
+            
+            <table class="opvl-table">
+                <tr>
+                    <th>Element</th>
+                    <th>Key Questions</th>
+                    <th>Application to "History of Money" Video</th>
+                </tr>
+                <tr>
+                    <td><strong>Origin (O)</strong></td>
+                    <td>Who created it? When? What institutional context?</td>
+                    <td>Caroline Turco, Curator at ANA Money Museum. Non-profit educational organization chartered by US Congress.</td>
+                </tr>
+                <tr>
+                    <td><strong>Purpose (P)</strong></td>
+                    <td>Why was it created? Who is the target audience?</td>
+                    <td>Educational overview for general public; institutional promotion to encourage museum visits.</td>
+                </tr>
+                <tr>
+                    <td><strong>Value (V)</strong></td>
+                    <td>What unique insights does it offer? Usefulness?</td>
+                    <td>Visual evidence of physical artifacts (Yap stones, Lydian coins). Shows continuity of money functions across cultures.</td>
+                </tr>
+                <tr>
+                    <td><strong>Limitation (L)</strong></td>
+                    <td>What is missing? What biases exist?</td>
+                    <td>Artifact-centric focus; less on modern banking or digital currency. Western-centric narrative may overlook Global South.</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="topic-section" id="crypto">
+            <h2><span class="icon">₿</span> Cryptocurrency & Blockchain</h2>
+            
+            <div class="concept">
+                <h3>What is Cryptocurrency?</h3>
+                <p>A digital currency operating on decentralized networks using cryptography for security. No central authority like banks or governments.</p>
+            </div>
+
+            <div class="concept">
+                <h3>How Blockchain Works</h3>
+                <div class="flex-grid">
+                    <div class="flex-card">
+                        <h4>Distributed Ledger</h4>
+                        <p>Transactions recorded across thousands of computers (nodes) worldwide.</p>
+                    </div>
+                    <div class="flex-card">
+                        <h4>Immutable</h4>
+                        <p>Once recorded, data cannot be altered without compromising the entire chain.</p>
+                    </div>
+                    <div class="flex-card">
+                        <h4>Consensus</h4>
+                        <p>Network verifies transactions through Proof-of-Work or Proof-of-Stake.</p>
+                    </div>
+                    <div class="flex-card">
+                        <h4>Decentralized</h4>
+                        <p>No single authority controls the network - trust is in code, not institutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept">
+                <h3>Proof-of-Work vs. Proof-of-Stake</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Proof-of-Work (PoW)</th>
+                        <th>Proof-of-Stake (PoS)</th>
+                    </tr>
+                    <tr>
+                        <td>Mechanism</td>
+                        <td>Miners solve complex puzzles</td>
+                        <td>Validators lock up coins as collateral</td>
+                    </tr>
+                    <tr>
+                        <td>Energy Use</td>
+                        <td>Very High (like mid-sized nations)</td>
+                        <td>99% lower than PoW</td>
+                    </tr>
+                    <tr>
+                        <td>Examples</td>
+                        <td>Bitcoin, Dogecoin</td>
+                        <td>Ethereum, Cardano</td>
+                    </tr>
+                    <tr>
+                        <td>Speed</td>
+                        <td>Slower (~7 TPS)</td>
+                        <td>Faster (thousands TPS)</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <section class="topic-section" id="functions">
+            <h2><span class="icon">⚖️</span> Functions of Money: Can Crypto Compete?</h2>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>Function</th>
+                    <th>Fiat Currency</th>
+                    <th>Cryptocurrency (Bitcoin)</th>
+                </tr>
+                <tr>
+                    <td><strong>Medium of Exchange</strong></td>
+                    <td>High: Widely accepted, fast retail transactions</td>
+                    <td>Low-Moderate: High fees during peaks, limited acceptance</td>
+                </tr>
+                <tr>
+                    <td><strong>Unit of Account</strong></td>
+                    <td>High: Stable prices, predictable value</td>
+                    <td>Low: Extreme volatility makes pricing difficult</td>
+                </tr>
+                <tr>
+                    <td><strong>Store of Value</strong></td>
+                    <td>Moderate: Subject to inflation over time</td>
+                    <td>High Potential/Low Stability: "Digital gold" but volatile</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="topic-section" id="debate">
+            <h2><span class="icon">⚔️</span> The Debate: Is Cryptocurrency Legitimate?</h2>
+            
+            <div class="pro-con">
+                <div class="pro-box">
+                    <h4>✓ Arguments FOR Cryptocurrency</h4>
+                    <ul>
+                        <li><strong>Financial Inclusion:</strong> Banks the "unbanked" - 4 billion people without bank access</li>
+                        <li><strong>Efficiency:</strong> Instant 24/7/365 settlement, lower fees than traditional banking</li>
+                        <li><strong>Transparency:</strong> Public ledger prevents corruption</li>
+                        <li><strong>Programmable Money:</strong> Smart contracts automate transactions (DeFi)</li>
+                        <li><strong>Borderless:</strong> Send money anywhere without intermediaries</li>
+                        <li><strong>Privacy:</strong> Pseudonymous transactions protect identity</li>
+                    </ul>
+                </div>
+                <div class="con-box">
+                    <h4>✗ Arguments AGAINST Cryptocurrency</h4>
+                    <ul>
+                        <li><strong>Deflationary Risk:</strong> Fixed supply (MV=PY) causes recession</li>
+                        <li><strong>Environmental Damage:</strong> PoW mining = energy consumption of nations</li>
+                        <li><strong>Illegal Activities:</strong> Money laundering, terrorism financing</li>
+                        <li><strong>Volatility:</strong> Not a reliable store of value</li>
+                        <li><strong>No Consumer Protection:</strong> Lost keys = lost funds forever</li>
+                        <li><strong>Scalability:</strong> Bitcoin TPS ~7 vs. Visa thousands</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="pestel">
+            <h2><span class="icon">📊</span> PESTEL Analysis: Evaluating Cryptocurrency</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">A framework for macro-environment analysis in your IB essays.</p>
+            
+            <div class="pestel-grid">
+                <div class="pestel-card">
+                    <div class="letter">P</div>
+                    <h4>Political</h4>
+                    <p>El Salvador: Bitcoin legal tender. China: Ban. Regulation varies globally.</p>
+                </div>
+                <div class="pestel-card">
+                    <div class="letter">E</div>
+                    <h4>Economic</h4>
+                    <p>Volatility vs. utility. Correlation with stocks questions "safe haven" status.</p>
+                </div>
+                <div class="pestel-card">
+                    <div class="letter">S</div>
+                    <h4>Social</h4>
+                    <p>Millennials/Gen Z trust digital assets. "Dark tetrad" correlation research.</p>
+                </div>
+                <div class="pestel-card">
+                    <div class="letter">T</div>
+                    <h4>Technological</h4>
+                    <p>Lightning Network for scalability. Security of code vs. exchange hacks.</p>
+                </div>
+                <div class="pestel-card">
+                    <div class="letter">E</div>
+                    <h4>Environmental</h4>
+                    <p>PoW energy crisis. Ethereum's PoS transition shows solution exists.</p>
+                </div>
+                <div class="pestel-card">
+                    <div class="letter">L</div>
+                    <h4>Legal</h4>
+                    <p>EU MiCA regulation. US SEC vs. Ripple. Patchwork global laws.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="cbdc">
+            <h2><span class="icon">🏦</span> CBDCs: The State Response</h2>
+            
+            <div class="concept">
+                <h3>Central Bank Digital Currencies</h3>
+                <p>Governments are developing their own digital currencies - combining crypto efficiency with state stability.</p>
+            </div>
+
+            <div class="flex-grid">
+                <div class="flex-card">
+                    <h4>Advantages</h4>
+                    <p>State-backed stability, instant settlement, programmable money, easier monetary policy.</p>
+                </div>
+                <div class="flex-card">
+                    <h4>Concerns</h4>
+                    <p>Surveillance: Every transaction trackable. Programmable spending limits. Privacy loss.</p>
+                </div>
+            </div>
+
+            <div class="concept">
+                <h3>The Surveillance Paradox</h3>
+                <p>Crypto was invented for privacy and freedom from state control. But CBDCs give governments MORE surveillance power than cash ever did!</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="assessment">
+            <h2><span class="icon">📝</span> Test Your Knowledge</h2>
+            
+            <div class="interactive-quiz">
+                <h3>Quick Quiz: History of Money</h3>
+                
+                <div class="quiz-question" id="q1">
+                    <p>1. What is the "double coincidence of wants" problem in barter?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">A. Both parties must have the same amount of money</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)">B. Both parties must want exactly what the other has at the same time</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">C. Both parties must agree on a fair price</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">D. Both parties must live in the same location</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question" id="q2">
+                    <p>2. What was the key innovation of Lydian coinage?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">A. Using gold instead of silver</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)">B. The royal stamp guaranteed value without weighing</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">C. Making coins round instead of square</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">D. Using paper instead of metal</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question" id="q3">
+                    <p>3. What year did Nixon end the gold convertibility of the dollar?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">A. 1944</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">B. 1965</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)">C. 1971</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">D. 1989</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question" id="q4">
+                    <p>4. In OPVL, what does the "L" stand for?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">A. Location</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">B. Language</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)">C. Limitation</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">D. Logic</div>
+                    </div>
+                </div>
+
+                <div class="quiz-question" id="q5">
+                    <p>5. What is a key environmental concern with Bitcoin?</p>
+                    <div class="quiz-options">
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">A. It uses too little energy</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, true)">B. Proof-of-Work mining consumes massive electricity</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">C. It encourages paper money use</div>
+                        <div class="quiz-option" onclick="checkAnswer(this, false)">D. Coins are made from non-recyclable materials</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="reveal-btn" onclick="showAnswers()">Check Answers</button>
+            <div id="answers-reveal" class="hidden" style="margin-top: 20px;">
+                <p style="color: var(--secondary);">✓ Answers: 1-B, 2-B, 3-C, 4-C, 5-B</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="summary">
+            <h2><span class="icon">📋</span> Key Takeaways</h2>
+            
+            <div class="concept">
+                <h3>IB MYP Assessment Criteria</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Criterion</th>
+                        <th>Focus</th>
+                        <th>In This Unit</th>
+                    </tr>
+                    <tr>
+                        <td><strong>A</strong></td>
+                        <td>Knowing & Understanding</td>
+                        <td>Economic theories, terminology, graph interpretation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>B</strong></td>
+                        <td>Investigating</td>
+                        <td>Case studies, data analysis on money evolution</td>
+                    </tr>
+                    <tr>
+                        <td><strong>C</strong></td>
+                        <td>Communicating</td>
+                        <td>Clear explanations, proper terminology</td>
+                    </tr>
+                    <tr>
+                        <td><strong>D</strong></td>
+                        <td>Thinking Critically</td>
+                        <td>Analyzing cryptocurrency debate, policy evaluation</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="concept">
+                <h3>Essential Vocabulary</h3>
+                <div class="key-terms">
+                    <div class="key-term">
+                        <h4>Scarcity</h4>
+                        <p>Limited resources vs. unlimited wants</p>
+                    </div>
+                    <div class="key-term">
+                        <h4>Fiat Money</h4>
+                        <p>Currency with no intrinsic value</p>
+                    </div>
+                    <div class="key-term">
+                        <h4>Blockchain</h4>
+                        <p>Distributed, immutable ledger</p>
+                    </div>
+                    <div class="key-term">
+                        <h4>OPVL</h4>
+                        <p>Origin, Purpose, Value, Limitation</p>
+                    </div>
+                    <div class="key-term">
+                        <h4>PESTEL</h4>
+                        <p>Political, Economic, Social, Technological, Environmental, Legal</p>
+                    </div>
+                    <div class="key-term">
+                        <h4>CBDC</h4>
+                        <p>Central Bank Digital Currency</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style="text-align: center; padding: 40px;">
+            <a href="myp4-ins-money-history.html" class="start-btn">
+                Start Assessment →
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let quizScore = 0;
+        
+        function checkAnswer(element, isCorrect) {
+            // Remove previous selections
+            const parent = element.parentElement;
+            const options = parent.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.remove('correct', 'incorrect');
+                opt.style.pointerEvents = 'none';
+            });
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                quizScore++;
+            } else {
+                element.classList.add('incorrect');
+                // Show correct answer
+                options.forEach(opt => {
+                    if (opt.onclick.toString().includes('true')) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+        }
+
+        function showAnswers() {
+            document.getElementById('answers-reveal').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

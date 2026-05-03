@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaniMath | IB MYP4 Math Assessments</title>
+    <meta name="description" content="Interactive mathematics assessments for IB MYP4 students. Track progress, identify gaps, master key concepts.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --secondary-light: #34d399;
+            --accent: #f59e0b;
+            --bg-dark: #0a0f1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --border: #1f2937;
+            --border-light: #374151;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 80px 24px 60px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--primary-light);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero-badge span {
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stats Grid */
+        .stats-section {
+            padding: 0 24px;
+            margin-bottom: 48px;
+        }
+
+        .stats-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .stat-icon.purple { background: rgba(99, 102, 241, 0.15); }
+        .stat-icon.green { background: rgba(16, 185, 129, 0.15); }
+        .stat-icon.amber { background: rgba(245, 158, 11, 0.15); }
+        .stat-icon.cyan { background: rgba(6, 182, 212, 0.15); }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .stat-value.purple { color: var(--primary-light); }
+        .stat-value.green { color: var(--secondary-light); }
+        .stat-value.amber { color: var(--accent); }
+        .stat-value.cyan { color: #22d3ee; }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Topic Categories Section */
+        .topics-section {
+            padding: 48px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .topic-chip {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .topic-chip:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .topic-chip.active {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: var(--primary);
+        }
+
+        .topic-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .topic-chip span {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Assessment Cards */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .assessments-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .assessments-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            background: var(--bg-card);
+            padding: 6px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-tab:hover {
+            color: var(--text-primary);
+        }
+
+        .filter-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .assessments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .assessment-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .assessment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .assessment-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .assessment-card:hover::before {
+            opacity: 1;
+        }
+
+        .assessment-card.coming-soon {
+            background: transparent;
+            border: 2px dashed var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 280px;
+            text-align: center;
+            cursor: default;
+        }
+
+        .assessment-card.coming-soon:hover {
+            transform: none;
+            border-color: var(--border);
+            box-shadow: none;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .card-icon.math { background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.1)); }
+        .card-icon.probability { background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1)); }
+        .card-icon.algebra { background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.1)); }
+        .card-icon.geometry { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(245, 158, 11, 0.1)); }
+        .card-icon.functions { background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(6, 182, 212, 0.1)); }
+        .card-icon.stats { background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(236, 72, 153, 0.1)); }
+
+        .card-badge {
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-myp4 { background: rgba(99, 102, 241, 0.15); color: var(--primary-light); }
+        .badge-myp5 { background: rgba(16, 185, 129, 0.15); color: var(--secondary-light); }
+        .badge-dp { background: rgba(245, 158, 11, 0.15); color: var(--accent); }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .topic-tag {
+            padding: 4px 10px;
+            background: var(--bg-dark);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .meta-item .icon {
+            font-size: 16px;
+            opacity: 0.7;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .difficulty {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .difficulty-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-right: 8px;
+        }
+
+        .difficulty span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-light);
+        }
+
+        .difficulty span.active { background: var(--secondary); }
+        .difficulty span.warning { background: var(--accent); }
+
+        .start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .assessment-card:hover .start-btn {
+            gap: 10px;
+        }
+
+        .coming-soon-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.4;
+        }
+
+        .coming-soon-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        .coming-soon-topics {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 64px 24px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .features-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* History Panel */
+        .history-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .history-header h2 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .history-clear-btn {
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .history-clear-btn:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+        
+        .history-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        
+        .history-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .history-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .history-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .history-student {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .history-class {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        
+        .history-quiz {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .history-score {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+        
+        .history-date {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        
+        .history-empty {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--bg-card);
+            border: 2px dashed var(--border);
+            border-radius: 16px;
+            color: var(--text-secondary);
+        }
+        
+        .history-empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px 40px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-card {
+                padding: 20px 12px;
+            }
+
+            .stat-value {
+                font-size: 26px;
+            }
+
+            .topics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .assessments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .assessments-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filter-tabs {
+                width: 100%;
+                overflow-x: auto;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topics-section {
+                padding: 32px 16px;
+            }
+
+            .container {
+                padding: 0 16px 60px;
+            }
+        }
+
+        /* Focus states for accessibility */
+        .btn:focus-visible,
+        .filter-tab:focus-visible,
+        .assessment-card:focus-visible,
+        .topic-chip:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span></span>
+                Free IB Math Practice
+            </div>
+            <h1 id="hero-title">Master <span>Mathematics</span><br>with Kanishka</h1>
+            <p class="hero-desc">Interactive assessments aligned with IB MYP4 curriculum. Track your progress, identify knowledge gaps, and achieve excellence.</p>
+            <div class="hero-actions">
+                <a href="#assessments" class="btn btn-primary">
+                    Start Learning
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#topics" class="btn btn-secondary">
+                    Browse Topics
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" aria-label="Platform statistics">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon purple">📚</div>
+                <div class="stat-value purple" data-count="6">0</div>
+                <div class="stat-label">Assessments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">📝</div>
+                <div class="stat-value green" data-count="181">0</div>
+                <div class="stat-label">Questions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon amber">⏱</div>
+                <div class="stat-value amber" data-count="195">0</div>
+                <div class="stat-label">Minutes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon cyan">🎯</div>
+                <div class="stat-value cyan">MYP4</div>
+                <div class="stat-label">Curriculum</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section class="topics-section" id="topics" aria-labelledby="topics-title">
+        <div class="section-header">
+            <h2 id="topics-title">Explore by Topic</h2>
+            <p>Filter assessments by mathematical domain</p>
+        </div>
+        <div class="topics-grid" role="tablist" aria-label="Topic filters">
+            <a href="#" class="topic-chip active" data-topic="all" role="tab" aria-selected="true">
+                <div class="topic-icon" style="background: rgba(99, 102, 241, 0.15);">📖</div>
+                <span>All Topics</span>
+            </a>
+            <a href="#" class="topic-chip" data-topic="number" role="tab" aria-selected="false">
+                <div class="topic-icon" style="background: rgba(245, 158, 11, 0.15);">🔢</div>
+                <span>Number</span>
+            </a>
+            <a href="#" class="topic-chip" data-topic="algebra" role="tab" aria-selected="false">
+                <div class="topic-icon" style="background: rgba(139, 92, 246, 0.15);">𝑥𝑦</div>
+                <span>Algebra</span>
+            </a>
+            <a href="#" class="topic-chip" data-topic="geometry" role="tab" aria-selected="false">
+                <div class="topic-icon" style="background: rgba(236, 72, 153, 0.15);">△</div>
+                <span>Geometry</span>
+            </a>
+            <a href="#" class="topic-chip" data-topic="probability" role="tab" aria-selected="false">
+                <div class="topic-icon" style="background: rgba(16, 185, 129, 0.15);">🎲</div>
+                <span>Probability</span>
+            </a>
+            <a href="#" class="topic-chip" data-topic="statistics" role="tab" aria-selected="false">
+                <div class="topic-icon" style="background: rgba(6, 182, 212, 0.15);">📊</div>
+                <span>Statistics</span>
+            </a>
+            <a href="#" class="topic-chip" data-topic="ins" role="tab" aria-selected="false">
+                <div class="topic-icon" style="background: rgba(234, 88, 12, 0.15);">🏛</div>
+                <span>I & S</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="main-content" class="container">
+        <div class="assessments-header">
+            <h2>Available Assessments</h2>
+            <div class="filter-tabs" role="tablist" aria-label="Level filters">
+                <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
+                <button class="filter-tab" data-filter="myp4" role="tab" aria-selected="false">MYP4</button>
+                <button class="filter-tab" data-filter="myp5" role="tab" aria-selected="false">MYP5</button>
+                <button class="filter-tab" data-filter="dp" role="tab" aria-selected="false">DP</button>
+            </div>
+        </div>
+
+        <div id="assessments" class="assessments-grid">
+            <!-- Sets, Venn & Probability -->
+            <a href="assessments/myp4-sets-venn-probability.html" class="assessment-card" data-category="myp4" data-topics="probability" aria-label="Start Sets, Venn Diagrams and Probability assessment">
+                <div class="card-header">
+                    <div class="card-icon probability">∪∩</div>
+                    <span class="card-badge badge-myp4">MYP4</span>
+                </div>
+                <h3 class="card-title">Sets, Venn & Probability</h3>
+                <p class="card-desc">Master set theory, 3-set Venn diagrams, inclusion-exclusion principle, and compound probability calculations.</p>
+                <div class="card-topics">
+                    <span class="topic-tag">Sets</span>
+                    <span class="topic-tag">Venn Diagrams</span>
+                    <span class="topic-tag">Probability</span>
+                </div>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <span class="icon">📝</span>
+                        16 Questions
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">⏱</span>
+                        45 mins
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">🏆</span>
+                        70 marks
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty</span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span class="start-btn">Start Exam →</span>
+                </div>
+            </a>
+
+            <!-- Sets, Venn & Probability - Advanced Challenge -->
+            <a href="assessments/myp4-sets-venn-probability-advanced.html" class="assessment-card" data-category="myp4" data-topics="probability" aria-label="Start Advanced Sets, Venn & Probability assessment">
+                <div class="card-header">
+                    <div class="card-icon probability">∪∩</div>
+                    <span class="card-badge badge-myp4">MYP4</span>
+                </div>
+                <h3 class="card-title">Sets, Venn & Probability - Advanced</h3>
+                <p class="card-desc">Expert-level challenge: 4-set Venn diagrams, multi-stage Bayes' theorem, advanced combinatorics, and probability paradoxes.</p>
+                <div class="card-topics">
+                    <span class="topic-tag">4-Set Venn</span>
+                    <span class="topic-tag">Bayes' Theorem</span>
+                    <span class="topic-tag">Combinatorics</span>
+                </div>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <span class="icon">📝</span>
+                        50 Questions
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">⏱</span>
+                        90 mins
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">🏆</span>
+                        400 marks
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty</span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                    </div>
+                    <span class="start-btn">Start Exam →</span>
+                </div>
+            </a>
+
+<!-- Statistics Assessment -->
+            <a href="assessments/myp4-statistics.html" class="assessment-card" data-category="myp4" data-topics="statistics" aria-label="Start Statistics Assessment">
+                <div class="card-header">
+                    <div class="card-icon stats">📊</div>
+                    <span class="card-badge badge-myp4">MYP4</span>
+                </div>
+                <h3 class="card-title">Statistics & Data Analysis</h3>
+                <p class="card-desc">Measures of central tendency, spread, box plots, histograms, and correlation.</p>
+                <div class="card-topics">
+                    <span class="topic-tag">Mean/Median</span>
+                    <span class="topic-tag">Box Plots</span>
+                    <span class="topic-tag">IQR</span>
+                </div>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <span class="icon">📝</span>
+                        25 Questions
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">⏱</span>
+                        60 mins
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">🏆</span>
+                        150 marks
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty</span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span class="start-btn">Start Exam →</span>
+                </div>
+            </a>
+
+            <!-- Elite Statistics Assessment -->
+            <a href="assessments/myp4-sets-venn-probability-part3.html" class="assessment-card" data-category="myp4" data-topics="statistics,probability" aria-label="Start Elite Assessment Part 3">
+                <div class="card-header">
+                    <div class="card-icon stats">🎯</div>
+                    <span class="card-badge badge-myp4">MYP4</span>
+                </div>
+                <h3 class="card-title">Set & Probability - Advanced (Part 3)</h3>
+                <p class="card-desc">Elite assessment: PIE, derangements, mean-median identity, Z-scores, combinatorics. AMC/Kangaroo style with charts.</p>
+                <div class="card-topics">
+                    <span class="topic-tag">PIE</span>
+                    <span class="topic-tag">Derangements</span>
+                    <span class="topic-tag">Z-scores</span>
+                </div>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <span class="icon">📝</span>
+                        25 Questions
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">⏱</span>
+                        90 mins
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">🏆</span>
+                        175 marks
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty</span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                    </div>
+                    <span class="start-btn">Start Exam →</span>
+                </div>
+            </a>
+
+            <!-- Statistics Part 4 -->
+            <a href="assessments/myp4-statistics-part4.html" class="assessment-card" data-category="myp4" data-topics="statistics" aria-label="Start Statistics Part 4">
+                <div class="card-header">
+                    <div class="card-icon stats">📊</div>
+                    <span class="card-badge badge-myp4">MYP4</span>
+                </div>
+                <h3 class="card-title">Statistics & Data Analysis - Part 4</h3>
+                <p class="card-desc">Mastery portal: Criterion A-D knowledge, patterns, communication, real-life application with AoPS elite challenges.</p>
+                <div class="card-topics">
+                    <span class="topic-tag">Mean/Median</span>
+                    <span class="topic-tag">Std Dev</span>
+                    <span class="topic-tag">Box Plots</span>
+                </div>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <span class="icon">📝</span>
+                        25 Questions
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">⏱</span>
+                        60 mins
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">🏆</span>
+                        100 marks
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty</span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                    </div>
+                    <span class="start-btn">Start Exam →</span>
+                </div>
+            </a>
+
+            <!-- I&S: History of Money -->
+            <a href="assessments/myp4-ins-money-history.html" class="assessment-card" data-category="myp4" data-topics="ins" aria-label="Start I&S: History and Future of Money">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, rgba(234, 88, 12, 0.2), rgba(234, 88, 12, 0.1));">🏛</div>
+                    <span class="card-badge badge-myp4">MYP4 I&S</span>
+                </div>
+                <h3 class="card-title">History & Future of Money</h3>
+                <p class="card-desc">Explore 11,000 years of monetary evolution: barter to Bitcoin. OPVL analysis, PESTEL framework, and cryptocurrency debate.</p>
+                <div class="card-topics">
+                    <span class="topic-tag">Barter Systems</span>
+                    <span class="topic-tag">Fiat Currency</span>
+                    <span class="topic-tag">Blockchain</span>
+                </div>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <span class="icon">📝</span>
+                        20 Questions
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">⏱</span>
+                        90 mins
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">🏆</span>
+                        44 marks
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty</span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span class="start-btn">Start Exam →</span>
+                </div>
+            </a>
+
+            <!-- I&S: Supply and Demand -->
+            <a href="assessments/myp4-ins-supply-demand.html" class="assessment-card" data-category="myp4" data-topics="ins" aria-label="Start I&S: Supply and Demand">
+                <div class="card-header">
+                    <div class="card-icon" style="background: linear-gradient(135deg, rgba(234, 88, 12, 0.2), rgba(234, 88, 12, 0.1));">📊</div>
+                    <span class="card-badge badge-myp4">MYP4 I&S</span>
+                </div>
+                <h3 class="card-title">Supply & Demand</h3>
+                <p class="card-desc">Master market economics: Law of Demand/Supply, equilibrium, shifts, and government intervention with Swedish examples.</p>
+                <div class="card-topics">
+                    <span class="topic-tag">Demand</span>
+                    <span class="topic-tag">Supply</span>
+                    <span class="topic-tag">Equilibrium</span>
+                </div>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <span class="icon">📝</span>
+                        20 Questions
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">⏱</span>
+                        90 mins
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">🏆</span>
+                        84 marks
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty</span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span class="start-btn">Start Exam →</span>
+                </div>
+            </a>
+
+            <!-- Comprehensive Math Review -->
+            <a href="assessments/myp4-comprehensive.html" class="assessment-card" data-category="myp4" data-topics="number,algebra,geometry,probability,statistics" aria-label="Start Comprehensive Math Review assessment">
+                <div class="card-header">
+                    <div class="card-icon math">∑</div>
+                    <span class="card-badge badge-myp4">MYP4</span>
+                </div>
+                <h3 class="card-title">Comprehensive Math Review</h3>
+                <p class="card-desc">Full curriculum coverage: Number, Algebra, Geometry, Coordinate Geometry, Statistics, Probability, and Problem Solving.</p>
+                <div class="card-topics">
+                    <span class="topic-tag">Number</span>
+                    <span class="topic-tag">Algebra</span>
+                    <span class="topic-tag">Geometry</span>
+                    <span class="topic-tag">+more</span>
+                </div>
+                <div class="card-meta">
+                    <div class="meta-item">
+                        <span class="icon">📝</span>
+                        45 Questions
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">⏱</span>
+                        60 mins
+                    </div>
+                    <div class="meta-item">
+                        <span class="icon">🏆</span>
+                        45 marks
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="difficulty">
+                        <span class="difficulty-label">Difficulty</span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <span class="start-btn">Start Exam →</span>
+                </div>
+            </a>
+
+            <!-- Coming Soon: Algebra -->
+            <div class="assessment-card coming-soon" data-category="myp4">
+                <div class="coming-soon-icon">📐</div>
+                <div class="coming-soon-title">Algebra & Equations</div>
+                <div class="coming-soon-topics">Coming Soon • Linear equations, quadratics, sequences</div>
+            </div>
+
+            <!-- Coming Soon: Functions -->
+            <div class="assessment-card coming-soon" data-category="myp5">
+                <div class="coming-soon-icon">𝑓</div>
+                <div class="coming-soon-title">Functions & Graphing</div>
+                <div class="coming-soon-topics">Coming Soon • Domain, range, transformations</div>
+            </div>
+
+            <!-- Coming Soon: Geometry -->
+            <div class="assessment-card coming-soon" data-category="myp4">
+                <div class="coming-soon-icon">△</div>
+                <div class="coming-soon-title">Geometry & Trigonometry</div>
+                <div class="coming-soon-topics">Coming Soon • Angles, triangles, SOHCAHTOA</div>
+            </div>
+
+            <!-- Coming Soon: Statistics -->
+            <div class="assessment-card coming-soon" data-category="myp5">
+                <div class="coming-soon-icon">📊</div>
+                <div class="coming-soon-title">Statistics & Probability</div>
+                <div class="coming-soon-topics">Coming Soon • Mean, median, standard deviation</div>
+            </div>
+
+            <!-- Coming Soon: DP -->
+            <div class="assessment-card coming-soon" data-category="dp">
+                <div class="coming-soon-icon">🎓</div>
+                <div class="coming-soon-title">DP Mathematics AA</div>
+                <div class="coming-soon-topics">Coming Soon • IB Diploma Programme content</div>
+            </div>
+        </div>
+
+        <!-- History Section -->
+        <section id="history-section" class="history-section" style="display: none;">
+            <div class="history-header">
+                <h2>📊 Your Recent Results</h2>
+                <button class="history-clear-btn" onclick="clearHistory()">Clear History</button>
+            </div>
+            <div id="history-grid" class="history-grid"></div>
+        </section>
+    </main>
+
+    <!-- Features Section -->
+    <section class="features-section" aria-labelledby="features-title">
+        <div class="section-header">
+            <h2 id="features-title">Why Choose KaniMath?</h2>
+            <p>Designed to help you succeed</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Track Progress</h3>
+                <p>Detailed performance analysis shows your strengths and areas for improvement after each assessment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏱</div>
+                <h3>Timed Practice</h3>
+                <p>Build exam stamina with realistic time limits. The timer helps you manage your pace effectively.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📥</div>
+                <h3>PDF Reports</h3>
+                <p>Download comprehensive result reports with personalized study plans to guide your revision.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <nav class="footer-links" aria-label="Footer navigation">
+                <a href="https://github.com/kram1947/mathapp">GitHub</a>
+                <a href="#topics">Topics</a>
+                <a href="#assessments">Assessments</a>
+            </nav>
+            <p class="footer-text">KaniMath • Built for IB Students • Open Source</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animate stats on scroll
+        const animateStats = () => {
+            const statValues = document.querySelectorAll('.stat-value[data-count]');
+            statValues.forEach(stat => {
+                const target = parseInt(stat.dataset.count);
+                const duration = 1500;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const update = () => {
+                    current += step;
+                    if (current < target) {
+                        stat.textContent = Math.floor(current);
+                        requestAnimationFrame(update);
+                    } else {
+                        stat.textContent = target;
+                    }
+                };
+                update();
+            });
+        };
+
+        // Intersection Observer for stats animation
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) statsObserver.observe(statsSection);
+
+        // Topic filter
+        document.querySelectorAll('.topic-chip').forEach(chip => {
+            chip.addEventListener('click', (e) => {
+                e.preventDefault();
+                const topic = chip.dataset.topic;
+                
+                document.querySelectorAll('.topic-chip').forEach(c => {
+                    c.classList.remove('active');
+                    c.setAttribute('aria-selected', 'false');
+                });
+                chip.classList.add('active');
+                chip.setAttribute('aria-selected', 'true');
+                
+                document.querySelectorAll('.assessment-card:not(.coming-soon)').forEach(card => {
+                    if (topic === 'all' || card.dataset.topics?.includes(topic)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Level filter tabs
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+                
+                const filter = tab.dataset.filter;
+                document.querySelectorAll('.assessment-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Keyboard navigation for tabs
+        document.querySelectorAll('[role="tablist"]').forEach(tablist => {
+            const tabs = tablist.querySelectorAll('[role="tab"]');
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        const next = tabs[(index + 1) % tabs.length];
+                        next.focus();
+                        next.click();
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        const prev = tabs[(index - 1 + tabs.length) % tabs.length];
+                        prev.focus();
+                        prev.click();
+                    }
+                });
+            });
+        });
+
+        // Load and display history
+        function loadHistory() {
+            const history = JSON.parse(localStorage.getItem('kanimath_history') || '[]');
+            const section = document.getElementById('history-section');
+            const grid = document.getElementById('history-grid');
+            
+            if (history.length === 0) {
+                section.style.display = 'none';
+                return;
+            }
+            
+            section.style.display = 'block';
+            grid.innerHTML = history.map(item => `
+                <div class="history-card">
+                    <div class="history-card-header">
+                        <div>
+                            <div class="history-student">${item.studentName}</div>
+                            ${item.studentClass !== 'Not specified' ? `<div class="history-class">${item.studentClass}</div>` : ''}
+                        </div>
+                    </div>
+                    <div class="history-quiz">${item.quizName}</div>
+                    <div class="history-score">${item.percentage}%</div>
+                    <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;">${item.score}/${item.total} correct</div>
+                    <div class="history-date">${item.date}</div>
+                </div>
+            `).join('');
+        }
+
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear all history?')) {
+                localStorage.removeItem('kanimath_history');
+                loadHistory();
+            }
+        }
+
+        // Load history on page load
+        loadHistory();
+    </script>
+</body>
+</html>

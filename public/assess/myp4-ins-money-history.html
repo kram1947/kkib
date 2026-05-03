@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYP4 I&S - The History and Future of Money</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --primary: #ea580c;
+            --primary-dark: #c2410c;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #475569;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--warning));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .logo-text h1 {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .timer-container {
+            background: rgba(234, 88, 12, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .timer-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .timer {
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'Fira Code', monospace;
+            color: var(--primary);
+        }
+
+        .timer.warning { color: var(--warning); animation: pulse 1s infinite; }
+        .timer.danger { color: var(--danger); }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .progress-section { margin-bottom: 20px; }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-dark);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .question-nav {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .nav-q {
+            aspect-ratio: 1;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-q:hover { border-color: var(--primary); }
+        .nav-q.answered { background: var(--primary); border-color: var(--primary); }
+        .nav-q.current { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.3); }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .btn-submit {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-submit:hover { background: #059669; }
+
+        .btn-exit {
+            background: var(--bg-dark);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-exit:hover { color: var(--text-primary); border-color: var(--text-secondary); }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+        }
+
+        .question-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .question-num {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .question-num span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .marks {
+            background: var(--bg-card);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .question-text {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .question-text h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .question-text p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .reference-box {
+            background: rgba(234, 88, 12, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reference-box h4 {
+            font-size: 12px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .reference-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .option:hover {
+            border-color: var(--text-secondary);
+            background: var(--bg-hover);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(234, 88, 12, 0.1);
+        }
+
+        .option-marker {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-marker {
+            background: var(--primary);
+        }
+
+        .option-text {
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .input-answer {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .input-answer input,
+        .input-answer textarea {
+            width: 100%;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .input-answer textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .input-answer input:focus,
+        .input-answer textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .input-answer label {
+            display: block;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .word-count {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .modal-score {
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 24px 0;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .modal-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .modal .btn {
+            width: auto;
+            padding: 14px 32px;
+        }
+
+        @media (max-width: 768px) {
+            .app-container { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+            .main { padding: 20px; }
+            .question-text { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">I&S</div>
+                <div class="logo-text">
+                    <h1>KaniMath</h1>
+                    <span>IB MYP Individuals & Societies</span>
+                </div>
+            </div>
+
+            <div class="timer-container">
+                <div class="timer-label">Time Remaining</div>
+                <div class="timer" id="timer">90:00</div>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-text">
+                    <span>Progress</span>
+                    <span id="progress-text">0 / 20</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="nav-label">Question Navigator</div>
+            <div class="question-nav" id="question-nav"></div>
+
+            <div class="sidebar-footer">
+                <button class="btn btn-submit" onclick="submitQuiz()">Submit & Finish</button>
+                <button class="btn btn-exit" onclick="exitQuiz()">Study Material</button>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="question-container" id="question-container"></div>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <h2>Quiz Complete!</h2>
+            <div class="modal-score" id="modal-score">0%</div>
+            <p id="modal-msg">Great effort!</p>
+            <div class="modal-btns">
+                <button class="btn btn-submit" onclick="downloadPDF()">Download Results</button>
+                <button class="btn btn-exit" onclick="window.close()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                id: 1,
+                type: "mcq",
+                text: "Which of the following best describes the 'double coincidence of wants' problem in early barter systems?",
+                options: [
+                    "Both parties must want each other's goods at the same time and place",
+                    "Both parties must agree on the value of gold as money",
+                    "Both parties need government approval for their trade",
+                    "Both parties must use the same currency"
+                ],
+                correct: 0,
+                marks: 2
+            },
+            {
+                id: 2,
+                type: "mcq",
+                text: "The Yap Stone of Micronesia is a significant example in monetary history because:",
+                options: [
+                    "It was made of valuable gold",
+                    "It demonstrated that money's value comes from social trust, not physical presence",
+                    "It was the first cryptocurrency",
+                    "It was used in international trade"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 3,
+                type: "mcq",
+                text: "What was the critical innovation of Lydian coinage around 600 BCE?",
+                options: [
+                    "Using gold and silver alloys",
+                    "The royal stamp guaranteeing weight and value",
+                    "Making coins round",
+                    "Allowing foreign merchants to use them"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 4,
+                type: "mcq",
+                text: "What event in 1971 marked the end of the Bretton Woods system?",
+                options: [
+                    "President Nixon ended gold convertibility of the dollar",
+                    "The US left the IMF",
+                    "World Bank was established",
+                    "Gold standard was adopted globally"
+                ],
+                correct: 0,
+                marks: 2
+            },
+            {
+                id: 5,
+                type: "mcq",
+                text: "In the OPVL framework, what does the 'P' stand for?",
+                options: [
+                    "Proof",
+                    "Purpose",
+                    "Perspective",
+                    "Position"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 6,
+                type: "mcq",
+                text: "A key limitation of the ANA 'History of Money' video is:",
+                options: [
+                    "It includes cryptocurrency details",
+                    "It has an artifact-centric focus with less detail on modern banking",
+                    "It covers non-Western monetary traditions",
+                    "It explains quantitative easing"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 7,
+                type: "mcq",
+                text: "What is the 'consensus mechanism' used by Bitcoin called?",
+                options: [
+                    "Proof of Authority",
+                    "Proof of Stake",
+                    "Proof of Work",
+                    "Proof of History"
+                ],
+                correct: 2,
+                marks: 2
+            },
+            {
+                id: 8,
+                type: "mcq",
+                text: "According to the three traditional functions of money, which is CURRENTLY Bitcoin's weakest function?",
+                options: [
+                    "Medium of Exchange",
+                    "Unit of Account",
+                    "Store of Value",
+                    "All are equally strong"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 9,
+                type: "mcq",
+                text: "The Fisher Equation (MV=PY) suggests that a fixed money supply with growing output leads to:",
+                options: [
+                    "Inflation",
+                    "Deflation",
+                    "Stability",
+                    "Unchanged prices"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 10,
+                type: "mcq",
+                text: "Which country made Bitcoin legal tender in 2021?",
+                options: [
+                    "China",
+                    "El Salvador",
+                    "USA",
+                    "Japan"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 11,
+                type: "mcq",
+                text: "In the PESTEL model, 'E' stands for:",
+                options: [
+                    "Exchange",
+                    "Economic",
+                    "Environment",
+                    "Employment"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 12,
+                type: "mcq",
+                text: "A major criticism of Proof-of-Work cryptocurrency is:",
+                options: [
+                    "It's too fast",
+                    "High energy consumption",
+                    "It's controlled by banks",
+                    "It's not decentralized"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 13,
+                type: "short",
+                text: "Briefly explain the Statement of Inquiry for this unit: 'Change is shaped by the relationship between causality and innovation in economic history.'",
+                placeholder: "Write 2-3 sentences explaining how monetary innovations responded to problems (causality) and how those solutions created new economic systems...",
+                marks: 4
+            },
+            {
+                id: 14,
+                type: "mcq",
+                text: "What is a 'CBDC'?",
+                options: [
+                    "Crypto Banking Digital Certificate",
+                    "Central Bank Digital Currency",
+                    "Cross-Border Digital Commerce",
+                    "Consumer Banking Deposit Card"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 15,
+                type: "mcq",
+                text: "The 'surveillance paradox' suggests that cryptocurrency, meant to provide privacy, may lead to:",
+                options: [
+                    "More government tracking via CBDCs",
+                    "Less online commerce",
+                    "Better banking privacy",
+                    "Higher inflation"
+                ],
+                correct: 0,
+                marks: 2
+            },
+            {
+                id: 16,
+                type: "mcq",
+                text: "Which Global Context does the IB MYP framework use for exploring the history of money?",
+                options: [
+                    "Globalization and Sustainability",
+                    "Orientation in Space and Time",
+                    "Personal and Cultural Expression",
+                    "Scientific and Technical Innovation"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 17,
+                type: "mcq",
+                text: "For a Level 7-8 response in Criterion D, students must:",
+                options: [
+                    "List pros and cons",
+                    "Interpret different perspectives and their implications",
+                    "Simply state their opinion",
+                    "Copy textbook definitions"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 18,
+                type: "mcq",
+                text: "What does 'scalability' refer to in cryptocurrency?",
+                options: [
+                    "The ability to expand storage",
+                    "The number of transactions processed per second",
+                    "The mining difficulty",
+                    "The price stability"
+                ],
+                correct: 1,
+                marks: 2
+            },
+            {
+                id: 19,
+                type: "short",
+                text: "Evaluate whether Bitcoin can function as 'digital gold.' Explain one argument FOR and one argument AGAINST this claim.",
+                placeholder: "FOR: [argument] AGAINST: [argument] Your evaluation: [conclusion]...",
+                marks: 6
+            },
+            {
+                id: 20,
+                type: "short",
+                text: "In MLA format, how would you cite a YouTube video by 'AnaMoney' titled 'History of Money' uploaded on 15 March 2024?",
+                placeholder: "Write the in-text citation and works cited entry...",
+                marks: 4
+            }
+        ];
+
+        let answers = {};
+        let currentQ = 0;
+        const totalTime = 90 * 60;
+
+        function init() {
+            renderNav();
+            renderQuestion(currentQ);
+            startTimer();
+            updateProgress();
+        }
+
+        function renderNav() {
+            const nav = document.getElementById('question-nav');
+            nav.innerHTML = questions.map((q, i) => `
+                <div class="nav-q ${answers[q.id] !== undefined ? 'answered' : ''} ${i === currentQ ? 'current' : ''}" 
+                     onclick="goToQuestion(${i})">${i + 1}</div>
+            `).join('');
+        }
+
+        function renderQuestion(index) {
+            const q = questions[index];
+            const container = document.getElementById('question-container');
+            
+            let content = `
+                <div class="question-header">
+                    <div class="question-num">Question <span>${index + 1}</span> of ${questions.length}</div>
+                    <div class="marks">${q.marks} marks</div>
+                </div>
+                <div class="question-text">
+                    <h2>${q.text}</h2>
+            `;
+
+            if (q.type === 'mcq') {
+                content += `<div class="options">`;
+                q.options.forEach((opt, i) => {
+                    const selected = answers[q.id] === i ? 'selected' : '';
+                    content += `<div class="option ${selected}" onclick="selectOption(${q.id}, ${i})">
+                        <div class="option-marker">${String.fromCharCode(65 + i)}</div>
+                        <div class="option-text">${opt}</div>
+                    </div>`;
+                });
+                content += `</div>`;
+            } else if (q.type === 'short') {
+                content += `
+                    <div class="input-answer">
+                        <label>Your answer (aim for concise, well-structured response)</label>
+                        <textarea id="answer-${q.id}" placeholder="${q.placeholder}" 
+                            oninput="saveShortAnswer(${q.id}, this.value)">${answers[q.id] || ''}</textarea>
+                        <div class="word-count"><span id="wc-${q.id}">${(answers[q.id] || '').length}</span> characters</div>
+                    </div>
+                `;
+            }
+
+            content += `</div>`;
+
+            if (index > 0) {
+                content = `<button class="btn btn-exit" style="width:auto;margin-bottom:16px" onclick="goToQuestion(${index - 1})">← Previous</button>` + content;
+            }
+            if (index < questions.length - 1) {
+                content += `<button class="btn btn-exit" style="width:auto;margin-top:16px" onclick="goToQuestion(${index + 1})">Next →</button>`;
+            }
+
+            container.innerHTML = content;
+        }
+
+        function selectOption(qId, optIndex) {
+            answers[qId] = optIndex;
+            renderNav();
+            renderQuestion(currentQ);
+            updateProgress();
+        }
+
+        function saveShortAnswer(qId, value) {
+            answers[qId] = value;
+            document.getElementById(`wc-${qId}`).textContent = value.length;
+            updateProgress();
+        }
+
+        function goToQuestion(index) {
+            currentQ = index;
+            renderNav();
+            renderQuestion(currentQ);
+        }
+
+        function updateProgress() {
+            const answered = Object.keys(answers).length;
+            const percent = (answered / questions.length) * 100;
+            document.getElementById('progress-fill').style.width = percent + '%';
+            document.getElementById('progress-text').textContent = `${answered} / ${questions.length}`;
+        }
+
+        let timeLeft = totalTime;
+        function startTimer() {
+            setInterval(() => {
+                timeLeft--;
+                const mins = Math.floor(timeLeft / 60);
+                const secs = timeLeft % 60;
+                const display = `${mins}:${secs.toString().padStart(2, '0')}`;
+                const timerEl = document.getElementById('timer');
+                timerEl.textContent = display;
+                
+                timerEl.classList.remove('warning', 'danger');
+                if (timeLeft < 300) timerEl.classList.add('danger');
+                else if (timeLeft < 600) timerEl.classList.add('warning');
+                
+                if (timeLeft <= 0) submitQuiz();
+            }, 1000);
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            let maxScore = 0;
+            
+            questions.forEach(q => {
+                maxScore += q.marks;
+                if (q.type === 'mcq') {
+                    if (answers[q.id] === q.correct) {
+                        score += q.marks;
+                    }
+                } else if (q.type === 'short') {
+                    if (answers[q.id] && answers[q.id].length > 20) {
+                        score += Math.floor(q.marks * 0.6);
+                    }
+                }
+            });
+
+            const percent = Math.round((score / maxScore) * 100);
+            document.getElementById('modal-score').textContent = percent + '%';
+            
+            let msg = '';
+            if (percent >= 80) msg = 'Excellent! You demonstrate strong understanding of monetary history and cryptocurrency.';
+            else if (percent >= 60) msg = 'Good work! Review the OPVL and PESTEL frameworks for stronger analysis.';
+            else msg = 'Keep studying the key concepts and try again for better understanding.';
+            document.getElementById('modal-msg').textContent = msg;
+            
+            document.getElementById('modal').classList.add('show');
+        }
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(20);
+            doc.text('MYP4 I&S - History of Money', 20, 20);
+            
+            doc.setFontSize(12);
+            doc.text(`Score: ${document.getElementById('modal-score').textContent}`, 20, 30);
+            doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 40);
+            
+            let y = 60;
+            questions.forEach((q, i) => {
+                if (y > 270) { doc.addPage(); y = 20; }
+                doc.setFontSize(11);
+                doc.text(`Q${i+1}: ${q.text.substring(0, 80)}...`, 20, y);
+                if (q.type === 'mcq') {
+                    const userAns = answers[q.id];
+                    const correctAns = q.correct;
+                    doc.text(`Your answer: ${userAns !== undefined ? q.options[userAns] : 'Not answered'}`, 25, y + 8);
+                    doc.text(`Correct: ${q.options[correctAns]}`, 25, y + 16);
+                } else {
+                    doc.text(`Your answer: ${(answers[q.id] || 'Not answered').substring(0, 100)}`, 25, y + 8);
+                }
+                y += 30;
+            });
+            
+            doc.save('ins-money-results.pdf');
+        }
+
+        function exitQuiz() {
+            window.location.href = 'myp4-ins-money-history-study.html';
+        }
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYP4 Statistics & Data Analysis - Mastery Portal</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --myp-primary: #1e293b;
+            --myp-accent: #3b82f6;
+            --myp-success: #10b981;
+            --myp-bg: #f8fafc;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--myp-bg); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .criterion-card { border-left: 4px solid var(--myp-accent); }
+        .math-font { font-family: "Times New Roman", Times, serif; font-style: italic; }
+        .gradient-header { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); }
+        .answer-pill { background: #e2e8f0; border-radius: 4px; padding: 2px 8px; font-weight: bold; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Header Section -->
+    <header class="gradient-header text-white p-8 rounded-2xl shadow-xl mb-8">
+        <div class="flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold">MYP4: Statistics & Global Trends</h1>
+                <p class="mt-2 text-blue-200">Unit: Representation of Change & Numerical Spread</p>
+            </div>
+            <div class="text-right hidden md:block">
+                <span class="bg-blue-500/20 border border-blue-400/30 px-4 py-2 rounded-full text-sm">
+                    <i class="fas fa-chart-line mr-2"></i>Data Literacy Unit
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="flex flex-wrap gap-2 mb-6">
+        <button onclick="openTab('critA')" class="tab-btn px-6 py-3 rounded-lg bg-white shadow-sm border font-semibold hover:bg-blue-50 transition active-tab" id="btn-critA">Crit A: Knowledge</button>
+        <button onclick="openTab('critB')" class="tab-btn px-6 py-3 rounded-lg bg-white shadow-sm border font-semibold hover:bg-blue-50 transition" id="btn-critB">Crit B: Patterns</button>
+        <button onclick="openTab('critC')" class="tab-btn px-6 py-3 rounded-lg bg-white shadow-sm border font-semibold hover:bg-blue-50 transition" id="btn-critC">Crit C: Communication</button>
+        <button onclick="openTab('critD')" class="tab-btn px-6 py-3 rounded-lg bg-white shadow-sm border font-semibold hover:bg-blue-50 transition" id="btn-critD">Crit D: Application</button>
+        <button onclick="openTab('aops')" class="tab-btn px-6 py-3 rounded-lg bg-slate-800 text-white shadow-sm font-semibold hover:bg-slate-700 transition" id="btn-aops">AoPS: Elite Challenges</button>
+        <button onclick="openTab('answers')" class="tab-btn px-6 py-3 rounded-lg bg-emerald-600 text-white shadow-sm font-semibold hover:bg-emerald-700 transition" id="btn-answers">Answer Key</button>
+    </nav>
+
+    <!-- CRITERION A -->
+    <div id="critA" class="tab-content active space-y-6">
+        <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-600">
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Criterion A: Knowledge & Understanding</h2>
+            <p class="text-sm text-slate-600 mb-6">Demonstrate knowledge and understanding of statistical measures and data classification.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-50 rounded-lg border">
+                        <p class="font-medium">1. Classify the following data: "The height of sunflowers measured to the nearest mm."</p>
+                        <div class="mt-2 space-x-4">
+                            <label><input type="radio" name="q1"> Discrete</label>
+                            <label><input type="radio" name="q1"> Continuous</label>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg border">
+                        <p class="font-medium">2. Calculate the Median of the set: {12, 15, 12, 18, 22, 15, 15}.</p>
+                        <input type="number" class="mt-2 p-1 border rounded w-20" placeholder="Ans">
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg border">
+                        <p class="font-medium">3. Find the Range of a set where the minimum value is $x-5$ and the maximum is $2x+3$.</p>
+                        <input type="text" class="mt-2 p-1 border rounded w-full" placeholder="Expression in x">
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-50 rounded-lg border">
+                        <p class="font-medium">4. If the mean of five numbers is 10, and four of the numbers are 8, 12, 7, and 14, what is the fifth number?</p>
+                        <input type="number" class="mt-2 p-1 border rounded w-20">
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-lg border">
+                        <p class="font-medium">5. Identify the 'Modal Class' for the grouped data below:</p>
+                        <table class="w-full mt-2 text-sm border bg-white">
+                            <tr class="bg-slate-200"><th>Interval</th><th>Freq</th></tr>
+                            <tr><td>0 ≤ x < 10</td><td>4</td></tr>
+                            <tr><td>10 ≤ x < 20</td><td>12</td></tr>
+                            <tr><td>20 ≤ x < 30</td><td>9</td></tr>
+                        </table>
+                        <input type="text" class="mt-2 p-1 border rounded w-full" placeholder="Answer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRITERION B -->
+    <div id="critB" class="tab-content space-y-6">
+        <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-emerald-500">
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Criterion B: Investigating Patterns</h2>
+            
+            <div class="p-6 bg-slate-900 text-white rounded-xl mb-6">
+                <h3 class="text-lg font-bold text-emerald-400 mb-2">The Standard Deviation Mystery</h3>
+                <p class="mb-4">Dataset A: {10, 10, 10, 10, 10}<br>Dataset B: {8, 9, 10, 11, 12}</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white/10 p-4 rounded">
+                        <p class="text-sm">6. Which set has $\sigma = 0$?</p>
+                        <input type="text" class="bg-slate-800 border border-slate-600 p-2 mt-2 w-full rounded text-white">
+                    </div>
+                    <div class="bg-white/10 p-4 rounded">
+                        <p class="text-sm">7. If every number in Set B is multiplied by 2, how does the Mean change?</p>
+                        <input type="text" class="bg-slate-800 border border-slate-600 p-2 mt-2 w-full rounded text-white">
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 border rounded-lg">
+                <p class="font-bold mb-2">Interactive: Box Plot Analysis</p>
+                <div class="h-48 w-full bg-slate-100 flex items-center justify-center rounded border-dashed border-2 border-slate-300 relative">
+                    <div class="w-4/5 h-1 bg-slate-400 absolute"></div>
+                    <div class="w-1 h-6 bg-slate-800 absolute" style="left: 10%;"></div>
+                    <div class="w-1 h-6 bg-slate-800 absolute" style="left: 90%;"></div>
+                    <div class="w-40 h-16 border-2 border-slate-800 bg-white absolute" style="left: 25%;"></div>
+                    <div class="w-1 h-16 bg-red-500 absolute" style="left: 45%;"></div>
+                    <p class="absolute bottom-2 text-xs text-slate-500 font-mono">0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4 mt-4">
+                    <div class="p-2 bg-blue-50 rounded border">
+                        <p class="text-xs font-bold">8. IQR Estimation (Q3-Q1)</p>
+                        <input type="text" class="w-full text-sm p-1 border rounded">
+                    </div>
+                    <div class="p-2 bg-blue-50 rounded border">
+                        <p class="text-xs font-bold">9. Percentage below Median</p>
+                        <input type="text" class="w-full text-sm p-1 border rounded">
+                    </div>
+                    <div class="p-2 bg-blue-50 rounded border">
+                        <p class="text-xs font-bold">10. Identify Skewness</p>
+                        <select class="w-full text-sm p-1 border rounded">
+                            <option>Positive</option>
+                            <option>Negative</option>
+                            <option>Symmetrical</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRITERION C -->
+    <div id="critC" class="tab-content space-y-6">
+        <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-amber-500">
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Criterion C: Communication</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div><canvas id="chartCritC" class="max-h-64"></canvas></div>
+                <div class="space-y-4">
+                    <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                        <p class="font-medium">11. Why is a Pie Chart unsuitable for continuous height data tracking?</p>
+                        <textarea class="w-full mt-2 p-2 border rounded h-20 text-sm"></textarea>
+                    </div>
+                    <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                        <p class="font-medium">12. Define "Outlier" using the IQR rule.</p>
+                        <input type="text" class="w-full mt-2 p-1 border rounded" placeholder="Threshold formula...">
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 p-4 border rounded bg-slate-50">
+                <p class="font-medium">13. Interpret the 'Ogive' Concept: At what cumulative percentage does Q3 lie?</p>
+                <input type="text" class="w-full mt-1 p-1 border rounded">
+            </div>
+            <div class="mt-4 p-4 border rounded bg-slate-50">
+                <p class="font-medium">14. What is the difference between a Bar Chart and a Histogram?</p>
+                <textarea class="w-full mt-1 p-2 border rounded text-sm"></textarea>
+            </div>
+            <div class="mt-4 p-4 border rounded bg-slate-50">
+                <p class="font-medium">15. "A survey of 10 people in a gym found 100% exercise daily." Why is this a biased representation?</p>
+                <input type="text" class="w-full mt-1 p-1 border rounded">
+            </div>
+        </div>
+    </div>
+
+    <!-- CRITERION D -->
+    <div id="critD" class="tab-content space-y-6">
+        <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-red-500">
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Criterion D: Real-Life Application</h2>
+            
+            <div class="bg-red-50 p-4 rounded-lg mb-6 border border-red-200">
+                <h3 class="font-bold text-red-800">Scenario: Agricultural Efficiency</h3>
+                <p class="text-sm mt-1">A farm yields 100 apples. The weights are normally distributed: Mean = 150g, $\sigma$ = 10g.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="p-4 border rounded">
+                        <p class="font-medium">16. What % of apples weigh between 140g and 160g?</p>
+                        <input type="text" class="mt-2 p-1 border rounded w-full">
+                    </div>
+                    <div class="p-4 border rounded">
+                        <p class="font-medium">17. Identify the weight range for the "Lightest 2.5%" of apples.</p>
+                        <input type="text" class="mt-2 p-1 border rounded w-full">
+                    </div>
+                    <div class="p-4 border rounded">
+                        <p class="font-medium">18. If a box holds 10 apples, why is the 'Average Weight' not enough to guarantee the box won't break?</p>
+                        <textarea class="mt-2 p-2 border rounded w-full text-sm"></textarea>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="p-4 border rounded">
+                        <p class="font-medium">19. Evaluate the impact of a single 500g "Monster Apple" on the dataset's Mean vs Median.</p>
+                        <input type="text" class="mt-2 p-1 border rounded w-full">
+                    </div>
+                    <div class="p-4 border rounded">
+                        <p class="font-medium">20. Formulate a strategy for a supermarket to buy only the top 16% of apples based on weight.</p>
+                        <textarea class="mt-2 p-2 border rounded w-full text-sm"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOPS STYLE -->
+    <div id="aops" class="tab-content space-y-6">
+        <div class="bg-slate-900 p-8 rounded-2xl shadow-2xl border-t-8 border-yellow-500">
+            <h2 class="text-2xl font-black text-yellow-500 mb-2 italic">SECTION 5: AOPS STYLE CHALLENGES</h2>
+            
+            <div class="space-y-10">
+                <div class="relative pl-8 border-l-2 border-yellow-500/30">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-slate-900 font-bold">21</div>
+                    <p class="text-slate-200 text-lg">In a set of 10 distinct integers, the average of the 6 smallest is 15 and the average of the 6 largest is 25. What is the smallest possible sum of all 10 integers?</p>
+                    <input type="number" class="mt-4 bg-slate-800 border border-slate-600 p-3 rounded-lg text-white w-48">
+                </div>
+                <div class="relative pl-8 border-l-2 border-yellow-500/30">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-slate-900 font-bold">22</div>
+                    <p class="text-slate-200 text-lg">New Variance of a dataset (initial $\sigma^2=1$, $\mu=0$) after adding $k$ and multiplying by $m$?</p>
+                    <input type="text" class="mt-4 bg-slate-800 border border-slate-600 p-3 rounded-lg text-white w-48">
+                </div>
+                <div class="relative pl-8 border-l-2 border-yellow-500/30">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-slate-900 font-bold">23</div>
+                    <p class="text-slate-200 text-lg">Max product of $a,b$ given $a+b=20$ (AM-GM)?</p>
+                    <input type="number" class="mt-4 bg-slate-800 border border-slate-600 p-3 rounded-lg text-white w-48">
+                </div>
+                <div class="relative pl-8 border-l-2 border-yellow-500/30">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-slate-900 font-bold">24</div>
+                    <p class="text-slate-200 text-lg">Define Simpson's Paradox reversal in one sentence.</p>
+                    <input type="text" class="mt-4 bg-slate-800 border border-slate-600 p-3 rounded-lg text-white w-full">
+                </div>
+                <div class="relative pl-8 border-l-2 border-yellow-500/30">
+                    <div class="absolute -left-3 top-0 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-slate-900 font-bold">25</div>
+                    <p class="text-slate-200 text-lg">Probability point density: Same mean, which $\sigma$ (2, 5, or 10) makes the mean most likely?</p>
+                    <input type="text" class="mt-4 bg-slate-800 border border-slate-600 p-3 rounded-lg text-white w-48">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ANSWERS TAB -->
+    <div id="answers" class="tab-content space-y-6">
+        <div class="bg-white p-8 rounded-xl shadow-md border-l-8 border-emerald-600">
+            <h2 class="text-2xl font-bold text-emerald-800 mb-6">Answer Key & Marking Guide</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-bold text-slate-700 mb-2 underline">Criterion A</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>1. <span class="answer-pill">Continuous</span> (Numerical, ratio scale)</li>
+                        <li>2. <span class="answer-pill">15</span> (Order: 12, 12, 15, 15, 15, 18, 22)</li>
+                        <li>3. <span class="answer-pill">x + 8</span> (Range = Max - Min = (2x+3) - (x-5))</li>
+                        <li>4. <span class="answer-pill">9</span> (Total must be 50; 8+12+7+14 = 41)</li>
+                        <li>5. <span class="answer-pill">10 ≤ x < 20</span> (Highest frequency of 12)</li>
+                    </ul>
+
+                    <h3 class="font-bold text-slate-700 mt-6 mb-2 underline">Criterion B</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>6. <span class="answer-pill">Dataset A</span> (All values equal, no deviation)</li>
+                        <li>7. <span class="answer-pill">Doubles</span> (Linear transformation: new Mean = old Mean * 2)</li>
+                        <li>8. <span class="answer-pill">~40</span> (Approx Q3=65, Q1=25)</li>
+                        <li>9. <span class="answer-pill">50%</span> (Definition of Median)</li>
+                        <li>10. <span class="answer-pill">Positive</span> (Tail extends to the right/higher end)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-slate-700 mb-2 underline">Criterion C</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>11. <span class="answer-pill">Time-series data</span> (Line graphs are for trends; Pie is for parts of a whole)</li>
+                        <li>12. <span class="answer-pill">Q3 + 1.5 * IQR</span> (Upper boundary for outliers)</li>
+                        <li>13. <span class="answer-pill">75%</span> (Q3 represents the 75th percentile)</li>
+                        <li>14. <span class="answer-pill">Gaps</span> (Bar charts have gaps; Histograms for continuous data don't)</li>
+                        <li>15. <span class="answer-pill">Sampling Bias</span> (Sample taken from a gym is not representative of the general population)</li>
+                    </ul>
+
+                    <h3 class="font-bold text-slate-700 mt-6 mb-2 underline">Criterion D</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>16. <span class="answer-pill">68%</span> (Within ±1 standard deviation)</li>
+                        <li>17. <span class="answer-pill">< 130g</span> (Values below -2 sigma)</li>
+                        <li>18. <span class="answer-pill">Variance</span> (Extreme heavy apples could break it even if average is fine)</li>
+                        <li>19. <span class="answer-pill">Mean increases significantly</span> (Median stays stable; Mean is non-resistant)</li>
+                        <li>20. <span class="answer-pill">Weight > 160g</span> (Top 16% starts at +1 sigma)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-slate-900 text-yellow-500 rounded-xl">
+                <h3 class="font-bold mb-2 underline">AoPS Challenge Solutions</h3>
+                <ul class="space-y-2 text-sm">
+                    <li>21. <span class="text-white">162</span> (Smallest sum occurs when middle elements are shared and maximized)</li>
+                    <li>22. <span class="text-white">m²</span> (Variance is multiplied by the square of the factor; adding k doesn't change spread)</li>
+                    <li>23. <span class="text-white">100</span> (Max product when a = b = 10)</li>
+                    <li>24. <span class="text-white">Correlation reversal</span> (Weighted averages across subgroups mask the overall trend)</li>
+                    <li>25. <span class="text-white">Set X (σ=2)</span> (Lower spread means higher probability density around the center)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'bg-slate-800', 'bg-emerald-600', 'bg-yellow-600');
+                btn.classList.add('bg-white', 'text-slate-800');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            const activeBtn = document.getElementById('btn-' + tabId);
+            
+            if (tabId === 'aops') activeBtn.classList.add('bg-yellow-600', 'text-white');
+            else if (tabId === 'answers') activeBtn.classList.add('bg-emerald-600', 'text-white');
+            else activeBtn.classList.add('bg-blue-600', 'text-white');
+        }
+
+        window.onload = function() {
+            const ctx = document.getElementById('chartCritC').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Weight Category A', 'Category B', 'Category C'],
+                    datasets: [{
+                        data: [40, 30, 30],
+                        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b']
+                    }]
+                },
+                options: { responsive: true, plugins: { title: { display: true, text: 'Crit C: Misleading Representation Example' } } }
+            });
+        };
+    </script>
+</body>
+</html>

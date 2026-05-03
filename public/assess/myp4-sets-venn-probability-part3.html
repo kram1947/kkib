@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYP4 Mathematical Challenge: Sets & Probability</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfbf9;
+            color: #1c1917;
+        }
+        h1, h2, h3, h4, h5, .serif {
+            font-family: 'Crimson Pro', serif;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 400px;
+            min-height: 300px;
+        }
+        
+        @media (max-width: 640px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+
+        .tab-active {
+            border-bottom: 2px solid #b45309;
+            color: #b45309;
+            font-weight: 600;
+        }
+
+        .math-block {
+            overflow-x: auto;
+            padding: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+    <!-- Header -->
+    <header class="bg-stone-900 text-stone-50 shadow-md z-10 sticky top-0">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight">MYP4 Mathematical Challenge</h1>
+                <p class="text-sm text-stone-400 font-medium mt-1">Unit: Sets, Venn Diagrams, and Probability - Part 3</p>
+            </div>
+            <div class="bg-stone-800 px-4 py-2 rounded-lg border border-stone-700 text-sm">
+                <span class="text-stone-400">Target Time:</span> <span class="font-bold text-amber-500">45 Minutes</span>
+            </div>
+        </div>
+        <!-- Navigation Tabs -->
+        <nav class="max-w-6xl mx-auto px-4 flex overflow-x-auto hide-scrollbar border-t border-stone-800">
+            <button onclick="switchTab('intro')" id="tab-intro" class="px-4 py-3 text-sm text-stone-300 hover:text-white whitespace-nowrap tab-active transition-colors">Overview & Context</button>
+            <button onclick="switchTab('sec1')" id="tab-sec1" class="px-4 py-3 text-sm text-stone-300 hover:text-white whitespace-nowrap transition-colors">Sec 1: Kangaroo Logic</button>
+            <button onclick="switchTab('sec2')" id="tab-sec2" class="px-4 py-3 text-sm text-stone-300 hover:text-white whitespace-nowrap transition-colors">Sec 2: AoPS Applications</button>
+            <button onclick="switchTab('sec3')" id="tab-sec3" class="px-4 py-3 text-sm text-stone-300 hover:text-white whitespace-nowrap transition-colors">Sec 3: Crit B Investigation</button>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow w-full max-w-6xl mx-auto p-4 md:p-8">
+        
+        <!-- INTRO TAB -->
+        <div id="content-intro" class="space-y-8 animate-fade-in">
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-stone-200">
+                <h2 class="text-3xl font-bold text-stone-800 mb-4 serif">Statement of Inquiry</h2>
+                <blockquote class="border-l-4 border-amber-600 pl-4 py-2 text-xl italic text-stone-600 mb-6 serif">
+                    "An individual's understanding of risk and chance is highly dependent on both logic and their personal experience."
+                </blockquote>
+                <p class="text-stone-600 leading-relaxed mb-4">
+                    Welcome to the MYP4 High-Challenge Assessment. This paper bridges the rigorous conceptual framework of the IB Middle Years Programme with the complex, out-of-the-box problem-solving styles of Math Kangaroo and the Art of Problem Solving (AoPS) / AMC 10.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                    <div class="bg-stone-50 p-5 rounded-lg border border-stone-100">
+                        <div class="text-amber-700 font-bold mb-2">Section 1: Kangaroo Style</div>
+                        <p class="text-sm text-stone-600">Multiple-choice logic puzzles requiring quick deductions involving set notation, 2-set Venn diagrams, and grids.</p>
+                    </div>
+                    <div class="bg-stone-50 p-5 rounded-lg border border-stone-100">
+                        <div class="text-amber-700 font-bold mb-2">Section 2: AoPS Style</div>
+                        <p class="text-sm text-stone-600">Deep applications. Theoretical probability, Inclusion-Exclusion Principle (PIE), and real-world life tables analysis.</p>
+                    </div>
+                    <div class="bg-stone-50 p-5 rounded-lg border border-stone-100">
+                        <div class="text-amber-700 font-bold mb-2">Section 3: Criterion B</div>
+                        <p class="text-sm text-stone-600">A multi-step mathematical investigation generalizing Venn diagram regions using formal notation.</p>
+                    </div>
+                </div>
+                <div class="mt-8 text-center">
+                    <button onclick="switchTab('sec1')" class="bg-amber-700 hover:bg-amber-800 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all">Begin Assessment</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1 TAB: KANGAROO -->
+        <div id="content-sec1" class="hidden space-y-8">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-stone-800 serif">Section 1: Kangaroo Logic (Multiple Choice)</h2>
+                <p class="text-stone-600 mt-2">Identify the correct answer using logical deduction. Select your answer to check your reasoning.</p>
+            </div>
+
+            <!-- Q1 -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold text-lg text-stone-800">Question 1 <span class="text-sm font-normal text-stone-500 ml-2">(3 Points)</span></h3>
+                    <span class="bg-stone-100 text-stone-600 text-xs px-2 py-1 rounded font-mono">Sets & Notation</span>
+                </div>
+                <div class="math-block text-stone-700 mb-6">
+                    Let the universal set \( U = \{x \mid x \in \mathbb{Z}, -3 \leq x \leq 5\} \).<br>
+                    Let \( A = \{x \mid x > 0\} \) and \( B = \{x \mid x \text{ is a multiple of } 2\} \).<br><br>
+                    Calculate the cardinality of the set \( (A \cup B)' \).
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q1-options">
+                    <button onclick="checkMCQ('q1', 0, false)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">A) 1</button>
+                    <button onclick="checkMCQ('q1', 1, true)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">B) 2</button>
+                    <button onclick="checkMCQ('q1', 2, false)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">C) 3</button>
+                    <button onclick="checkMCQ('q1', 3, false)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">D) 7</button>
+                </div>
+                <div id="q1-feedback" class="hidden mt-4 p-4 rounded-lg text-sm"></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold text-lg text-stone-800">Question 2 <span class="text-sm font-normal text-stone-500 ml-2">(4 Points)</span></h3>
+                    <span class="bg-stone-100 text-stone-600 text-xs px-2 py-1 rounded font-mono">Logical Deduction</span>
+                </div>
+                <div class="math-block text-stone-700 mb-6">
+                    In a room of 50 students, 35 play football, 20 play basketball, and 5 play neither. If a student is selected at random, what is the theoretical probability that they play <strong>exactly one</strong> of these sports?
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q2-options">
+                    <button onclick="checkMCQ('q2', 0, false)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">A) \(\frac{1}{5}\)</button>
+                    <button onclick="checkMCQ('q2', 1, false)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">B) \(\frac{1}{2}\)</button>
+                    <button onclick="checkMCQ('q2', 2, true)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">C) \(\frac{7}{10}\)</button>
+                    <button onclick="checkMCQ('q2', 3, false)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">D) \(\frac{9}{10}\)</button>
+                </div>
+                <div id="q2-feedback" class="hidden mt-4 p-4 rounded-lg text-sm"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold text-lg text-stone-800">Question 3 <span class="text-sm font-normal text-stone-500 ml-2">(5 Points)</span></h3>
+                    <span class="bg-stone-100 text-stone-600 text-xs px-2 py-1 rounded font-mono">Sample Spaces</span>
+                </div>
+                <div class="math-block text-stone-700 mb-6">
+                    Two fair six-sided dice are rolled. Let Event \( A \) be "the sum of the dice is a prime number", and Event \( B \) be "at least one die shows a 2". <br><br>
+                    Calculate the probability of \( A \cap B \).
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="q3-options">
+                    <button onclick="checkMCQ('q3', 0, false)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">A) \(\frac{1}{6}\)</button>
+                    <button onclick="checkMCQ('q3', 1, true)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">B) \(\frac{1}{9}\)</button>
+                    <button onclick="checkMCQ('q3', 2, false)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">C) \(\frac{5}{36}\)</button>
+                    <button onclick="checkMCQ('q3', 3, false)" class="text-left px-4 py-3 rounded-lg border border-stone-200 hover:border-amber-500 hover:bg-amber-50 transition-colors">D) \(\frac{11}{36}\)</button>
+                </div>
+                <div id="q3-feedback" class="hidden mt-4 p-4 rounded-lg text-sm"></div>
+            </div>
+        </div>
+
+        <!-- SECTION 2 TAB: AoPS -->
+        <div id="content-sec2" class="hidden space-y-8">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-stone-800 serif">Section 2: AoPS Style Applications</h2>
+                <p class="text-stone-600 mt-2">Deep application of probability theory, Inclusion-Exclusion, and real-world data interpretation. Answer in short form, then check the markscheme.</p>
+            </div>
+
+            <!-- Interactive Life Table Data -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 mb-8">
+                <h3 class="font-bold text-xl text-stone-800 mb-2">Context: Actuarial Life Table (Sweden Data)</h3>
+                <p class="text-sm text-stone-600 mb-6">
+                    A life table tracks a hypothetical cohort of 100,000 individuals from birth, showing how many survive to specific ages based on current mortality rates. <em>Hover over the chart to explore the experimental data.</em>
+                </p>
+                <div class="chart-container">
+                    <canvas id="lifeTableChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Q4: Data Application -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold text-lg text-stone-800">Question 4</h3>
+                    <span class="bg-stone-100 text-stone-600 text-xs px-2 py-1 rounded font-mono">Data Interpretation</span>
+                </div>
+                <div class="math-block text-stone-700 mb-4">
+                    Using the Life Table chart above, <strong>Calculate</strong> the experimental probability that a person who has already survived to age 40 will survive to age 80. Express your answer as a percentage to one decimal place.<br><br>
+                    <strong>Justify</strong> how this experimental probability differs conceptually from flipping a coin, referring to the Statement of Inquiry.
+                </div>
+                
+                <button onclick="toggleMarkscheme('ms4')" class="mt-4 text-amber-700 hover:text-amber-800 font-semibold text-sm flex items-center gap-1 transition-colors">
+                    <span id="ms4-icon">▶</span> Show Markscheme & Pitfalls
+                </button>
+                
+                <div id="ms4" class="hidden mt-4 p-5 bg-stone-50 border-l-4 border-emerald-500 rounded-r-lg text-sm text-stone-700 space-y-3">
+                    <div><strong>Markscheme:</strong></div>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Identify survivors at Age 40: \( l_{40} = 98,000 \) <em>(1 mark)</em></li>
+                        <li>Identify survivors at Age 80: \( l_{80} = 65,000 \) <em>(1 mark)</em></li>
+                        <li>Calculate conditional probability: \( P(\text{Survive to 80} \mid \text{Survived to 40}) = \frac{65,000}{98,000} \approx 66.3\% \) <em>(1 mark)</em></li>
+                        <li><strong>Justification:</strong> Flipping a coin is <em>theoretical</em> probability (based on pure logic/symmetry). The life table uses <em>experimental</em> probability (based on accumulated human experience and empirical data). <em>(2 marks)</em></li>
+                    </ul>
+                    <div class="bg-amber-100 border border-amber-300 p-3 rounded mt-3">
+                        <strong class="text-amber-800">Olympiad Pitfall:</strong> Many students calculate \( \frac{65,000}{100,000} = 65\% \). They fail to recognize the <em>conditional</em> nature of the prompt ("already survived to age 40"). The sample space has shrunk!
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q5: 3-Set PIE -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-bold text-lg text-stone-800">Question 5</h3>
+                    <span class="bg-stone-100 text-stone-600 text-xs px-2 py-1 rounded font-mono">Inclusion-Exclusion</span>
+                </div>
+                
+                <div class="flex flex-col md:flex-row gap-6 mb-6">
+                    <div class="flex-1 math-block text-stone-700">
+                        In an MYP cohort of 150 students, data is collected on three subjects: Math (\(M\)), Physics (\(P\)), and Chemistry (\(C\)).<br><br>
+                        <ul>
+                            <li>\( |M| = 80 \), \( |P| = 60 \), \( |C| = 50 \)</li>
+                            <li>\( |M \cap P| = 30 \), \( |M \cap C| = 25 \), \( |P \cap C| = 20 \)</li>
+                            <li>10 students take all three subjects.</li>
+                        </ul><br>
+                        <strong>Calculate</strong> the probability that a randomly selected student takes <strong>at least two</strong> of these subjects, <em>given</em> that they take at least one.
+                    </div>
+                    <div class="w-full md:w-1/3 flex justify-center items-center">
+                        <canvas id="vennCanvas" width="200" height="200"></canvas>
+                    </div>
+                </div>
+
+                <button onclick="toggleMarkscheme('ms5')" class="mt-4 text-amber-700 hover:text-amber-800 font-semibold text-sm flex items-center gap-1 transition-colors">
+                    <span id="ms5-icon">▶</span> Show Markscheme & Pitfalls
+                </button>
+                
+                <div id="ms5" class="hidden mt-4 p-5 bg-stone-50 border-l-4 border-emerald-500 rounded-r-lg text-sm text-stone-700 space-y-3">
+                    <div><strong>Markscheme:</strong></div>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Find denominator (At least 1): Use PIE.<br> \( |M \cup P \cup C| = 80 + 60 + 50 - 30 - 25 - 20 + 10 = 125 \). <em>(2 marks)</em></li>
+                        <li>Find numerator (At least 2): <br> Regions representing exactly 2: <br>
+                            Only M&P = 30 - 10 = 20<br>
+                            Only M&C = 25 - 10 = 15<br>
+                            Only P&C = 20 - 10 = 10<br>
+                            Sum of exactly 2 = 45. Add all 3 (10) = 55. <em>(2 marks)</em></li>
+                        <li>Probability = \( \frac{55}{125} = \frac{11}{25} \). <em>(1 mark)</em></li>
+                    </ul>
+                    <div class="bg-amber-100 border border-amber-300 p-3 rounded mt-3">
+                        <strong class="text-amber-800">Olympiad Pitfall:</strong> Double counting the center region! When adding the intersections \( (30+25+20 = 75) \), the center (10) is counted <em>three</em> times.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3 TAB: CRIT B -->
+        <div id="content-sec3" class="hidden space-y-8">
+            <div class="mb-6">
+                <h2 class="text-3xl font-bold text-stone-800 serif">Section 3: Criterion B Investigation</h2>
+                <p class="text-stone-600 mt-2">Investigating Patterns: Generalizing Venn Diagram Regions.</p>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <div class="mb-6 border-b border-stone-100 pb-4">
+                    <h3 class="font-bold text-xl text-stone-800 mb-2">The Setup</h3>
+                    <p class="text-stone-700">
+                        A standard Venn diagram with 2 overlapping sets (circles) divides the universal rectangular plane into a maximum of 4 distinct regions. A diagram with 3 overlapping sets divides the plane into a maximum of 8 distinct regions.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Part A -->
+                    <div>
+                        <h4 class="font-semibold text-stone-800">Part A (Identify)</h4>
+                        <p class="text-stone-700 mt-1">If you were to construct a Venn diagram using 4 overlapping shapes, what is the maximum number of distinct regions the universal set would be divided into?</p>
+                        
+                        <button onclick="toggleMarkscheme('ms6a')" class="mt-2 text-amber-700 hover:text-amber-800 font-semibold text-sm flex items-center gap-1 transition-colors">
+                            <span id="ms6a-icon">▶</span> Reveal Answer
+                        </button>
+                        <div id="ms6a" class="hidden mt-2 p-3 bg-stone-50 border-l-4 border-emerald-500 rounded-r-lg text-sm text-stone-700">
+                            16 distinct regions. <em>(Note: It is impossible to draw 4 mutually overlapping circles to create 16 regions; ellipses or other shapes are required, a classic topological trap!)</em>
+                        </div>
+                    </div>
+
+                    <!-- Part B -->
+                    <div>
+                        <h4 class="font-semibold text-stone-800">Part B (Generalize)</h4>
+                        <p class="text-stone-700 mt-1">Write a generalized formula for \( R_n \), the maximum number of distinct regions formed by \( n \) intersecting sets in a Venn diagram.</p>
+                        
+                        <button onclick="toggleMarkscheme('ms6b')" class="mt-2 text-amber-700 hover:text-amber-800 font-semibold text-sm flex items-center gap-1 transition-colors">
+                            <span id="ms6b-icon">▶</span> Reveal Answer
+                        </button>
+                        <div id="ms6b" class="hidden mt-2 p-3 bg-stone-50 border-l-4 border-emerald-500 rounded-r-lg text-sm text-stone-700 math-block">
+                            \( R_n = 2^n \)
+                        </div>
+                    </div>
+
+                    <!-- Part C -->
+                    <div>
+                        <h4 class="font-semibold text-stone-800">Part C (Justify - AoPS Level)</h4>
+                        <p class="text-stone-700 mt-1">Using logical principles of sets (In/Out states) or combinatorics, <strong>Justify</strong> why your generalized formula works.</p>
+                        
+                        <button onclick="toggleMarkscheme('ms6c')" class="mt-2 text-amber-700 hover:text-amber-800 font-semibold text-sm flex items-center gap-1 transition-colors">
+                            <span id="ms6c-icon">▶</span> Reveal Markscheme
+                        </button>
+                        <div id="ms6c" class="hidden mt-2 p-4 bg-stone-50 border-l-4 border-emerald-500 rounded-r-lg text-sm text-stone-700 space-y-2">
+                            <p><strong>Markscheme (Combinatorial Justification):</strong></p>
+                            <p>For any element \( x \) in the Universal set \( U \), and for any specific set \( S_i \) (where \( i \) goes from 1 to \( n \)), the element \( x \) has exactly two possible states:</p>
+                            <ol class="list-decimal pl-5 space-y-1 my-2">
+                                <li>It is <strong>Inside</strong> the set (\( x \in S_i \))</li>
+                                <li>It is <strong>Outside</strong> the set (\( x \notin S_i \))</li>
+                            </ol>
+                            <p>Since there are \( n \) distinct sets, and each set offers 2 independent choices for any point's location, the Fundamental Counting Principle states there are \( 2 \times 2 \times 2 \dots \times 2 \) (\( n \) times) possible combinations of states.</p>
+                            <p>Therefore, there are \( 2^n \) mathematically distinct regions. <em>(Level 7/8 Justification)</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-6 text-center text-sm border-t border-stone-800 mt-auto">
+        <p>Designed for MYP4 Mathematics | Sets, Venn Diagrams & Probability Unit</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let currentTab = 'intro';
+        const mcqAnswers = {
+            q1: { correct: 1, explanation: "U = {-3, -2, -1, 0, 1, 2, 3, 4, 5}. A = {1, 2, 3, 4, 5}. B (multiples of 2 in U) = {-2, 0, 2, 4}. A ∪ B = {-2, 0, 1, 2, 3, 4, 5}. The complement (A ∪ B)' = {-3, -1}. Cardinality is 2." },
+            q2: { correct: 2, explanation: "Total = 50. Neither = 5. So, Football ∪ Basketball = 45. F + B - (F ∩ B) = 45. 35 + 20 - x = 45, so x = 10 (both). Football only = 25. Basketball only = 10. Exactly one = 25 + 10 = 35. Probability = 35/50 = 7/10." },
+            q3: { correct: 1, explanation: "Sample space = 36. Prime sums: 2, 3, 5, 7, 11. Outcomes with a '2' AND prime sum: (2,1)[sum 3], (1,2)[sum 3], (2,3)[sum 5], (3,2)[sum 5], (2,5)[sum 7], (5,2)[sum 7]. There are 6 such outcomes. Note: (2,2) sums to 4 (not prime). 6/36 = 1/9." }
+        };
+
+        function switchTab(tabId) {
+            document.querySelectorAll('main > div').forEach(div => div.classList.add('hidden'));
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('text-stone-300');
+            });
+            
+            document.getElementById(`content-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.classList.add('tab-active');
+            activeBtn.classList.remove('text-stone-300');
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+
+            if(tabId === 'sec2' && !window.vennDrawn) {
+                drawVennDiagram();
+                window.vennDrawn = true;
+            }
+        }
+
+        function checkMCQ(qId, selectedIdx, isCorrect) {
+            const optionsDiv = document.getElementById(`${qId}-options`);
+            const buttons = optionsDiv.querySelectorAll('button');
+            const feedbackDiv = document.getElementById(`${qId}-feedback`);
+            const actualCorrectIdx = mcqAnswers[qId].correct;
+
+            buttons.forEach((btn, idx) => {
+                btn.classList.remove('bg-emerald-100', 'border-emerald-500', 'bg-red-100', 'border-red-500', 'text-emerald-800', 'text-red-800');
+                btn.classList.add('border-stone-200');
+                
+                if (idx === actualCorrectIdx) {
+                    btn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-800');
+                } else if (idx === selectedIdx && selectedIdx !== actualCorrectIdx) {
+                    btn.classList.add('bg-red-100', 'border-red-500', 'text-red-800');
+                }
+            });
+
+            feedbackDiv.classList.remove('hidden', 'bg-red-50', 'text-red-800', 'bg-emerald-50', 'text-emerald-800');
+            
+            if (selectedIdx === actualCorrectIdx) {
+                feedbackDiv.classList.add('bg-emerald-50', 'text-emerald-800');
+                feedbackDiv.innerHTML = `<strong>Correct!</strong> <br> ${mcqAnswers[qId].explanation}`;
+            } else {
+                feedbackDiv.classList.add('bg-red-50', 'text-red-800');
+                feedbackDiv.innerHTML = `<strong>Incorrect.</strong> <br> ${mcqAnswers[qId].explanation}`;
+            }
+
+            if (window.MathJax) {
+                MathJax.typesetPromise([feedbackDiv]);
+            }
+        }
+
+        function toggleMarkscheme(msId) {
+            const msDiv = document.getElementById(msId);
+            const icon = document.getElementById(`${msId}-icon`);
+            if (msDiv.classList.contains('hidden')) {
+                msDiv.classList.remove('hidden');
+                icon.textContent = '▼';
+            } else {
+                msDiv.classList.add('hidden');
+                icon.textContent = '▶';
+            }
+            if (window.MathJax) {
+                MathJax.typesetPromise([msDiv]);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('lifeTableChart').getContext('2d');
+            
+            const ages = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+            const survivors = [100000, 99500, 99100, 98600, 98000, 96000, 91000, 81000, 65000, 25000, 1500];
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ages,
+                    datasets: [{
+                        label: 'Number of Survivors (l_x)',
+                        data: survivors,
+                        borderColor: '#b45309',
+                        backgroundColor: 'rgba(180, 83, 9, 0.1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#1c1917',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#1c1917',
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(28, 25, 23, 0.9)',
+                            callbacks: {
+                                label: function(context) {
+                                    return `Survivors: ${context.parsed.y.toLocaleString()}`;
+                                },
+                                title: function(context) {
+                                    return `Age: ${context[0].label}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 105000,
+                            title: { display: true, text: 'Survivors (out of 100k)' }
+                        },
+                        x: {
+                            title: { display: true, text: 'Age (Years)' }
+                        }
+                    }
+                }
+            });
+        });
+
+        function drawVennDiagram() {
+            const canvas = document.getElementById('vennCanvas');
+            if(!canvas || !canvas.getContext) return;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.globalCompositeOperation = 'multiply';
+
+            const drawCircle = (x, y, color, label, labelX, labelY) => {
+                ctx.beginPath();
+                ctx.arc(x, y, 50, 0, Math.PI * 2, false);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = 'rgba(0,0,0,0.1)';
+                ctx.stroke();
+                
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.fillStyle = '#1c1917';
+                ctx.font = 'bold 16px Inter';
+                ctx.textAlign = 'center';
+                ctx.fillText(label, labelX, labelY);
+                ctx.globalCompositeOperation = 'multiply';
+            };
+
+            drawCircle(80, 80, 'rgba(56, 189, 248, 0.5)', 'M', 50, 50);
+            drawCircle(120, 80, 'rgba(251, 191, 36, 0.5)', 'P', 150, 50);
+            drawCircle(100, 115, 'rgba(52, 211, 153, 0.5)', 'C', 100, 160);
+            
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.strokeStyle = '#a8a29e';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(5, 5, 190, 190);
+            
+            ctx.fillStyle = '#a8a29e';
+            ctx.font = 'italic 12px serif';
+            ctx.fillText('U', 15, 20);
+        }
+    </script>
+</body>
+</html>

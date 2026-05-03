@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB MYP4 Algebra - Study Material | KaniMath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg-dark: #0a0f1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1e293b;
+            --bg-section: #0f172a;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --border: #374151;
+            --gradient-1: linear-gradient(135deg, #6366f1, #8b5cf6);
+            --gradient-2: linear-gradient(135deg, #10b981, #059669);
+            --gradient-3: linear-gradient(135deg, #f59e0b, #d97706);
+            --gradient-4: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .logo-text h1 { font-size: 18px; font-weight: 700; }
+        .logo-text span { font-size: 12px; color: var(--text-secondary); }
+
+        .badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-myp4 { background: rgba(99, 102, 241, 0.2); color: var(--primary-light); border: 1px solid rgba(99, 102, 241, 0.3); }
+        .badge-ib { background: rgba(16, 185, 129, 0.2); color: var(--secondary); border: 1px solid rgba(16, 185, 129, 0.3); }
+
+        .nav-links { display: flex; gap: 12px; flex-wrap: wrap; }
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+        }
+        .nav-link:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--primary); }
+        .nav-link.primary { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .hero-section {
+            padding: 4rem 0;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .topic-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .topic-nav-item {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .topic-nav-item:hover { border-color: var(--primary); color: var(--primary-light); background: var(--bg-card-hover); }
+
+        .section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+        .section:last-child { border-bottom: none; }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header p { color: var(--text-secondary); font-size: 1rem; }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .content-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+        .content-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-light);
+        }
+
+        .content-card p { color: var(--text-secondary); margin-bottom: 1rem; }
+
+        .formula-box {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .formula-box .formula {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+        }
+
+        .example-box {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .example-box p { color: var(--text-secondary); margin-bottom: 0.8rem; }
+
+        .realworld-box {
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .realworld-box h4 {
+            color: var(--warning);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .interactive-canvas {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .interactive-canvas h4 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+        }
+
+        canvas, svg { max-width: 100%; height: auto; }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn:hover { border-color: var(--primary); background: var(--bg-card-hover); }
+        .btn-primary { background: var(--primary); border-color: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+
+        .tip-box {
+            background: rgba(99, 102, 241, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tip-box strong { color: var(--primary-light); }
+
+        .footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer a { color: var(--primary-light); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2rem; }
+            .container { padding: 0 1rem; }
+        }
+
+        .full-width { grid-column: 1 / -1; }
+
+        .question-preview {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .question-preview .q-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-section);
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        td { color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">K</div>
+                <div class="logo-text">
+                    <h1>KaniMath</h1>
+                    <span>IB MYP4 Algebra Study Guide</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <span class="badge badge-myp4">MYP4</span>
+                <span class="badge badge-ib">IB Curriculum</span>
+                <a href="myp4-algebra-assessment.html" class="nav-link primary">Take Assessment →</a>
+                <a href="/" class="nav-link">← Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <div class="container">
+            <h1>📊 Algebra</h1>
+            <p>Master algebraic expressions, equations, functions, and real-world applications. Based on Haese Mathematics 9 MYP4 curriculum with interactive graphing and practical examples.</p>
+            <div class="topic-nav">
+                <a href="#expressions" class="topic-nav-item">Expressions</a>
+                <a href="#linear" class="topic-nav-item">Linear Equations</a>
+                <a href="#inequalities" class="topic-nav-item">Linear Inequalities</a>
+                <a href="#simultaneous" class="topic-nav-item">Simultaneous Equations</a>
+                <a href="#quadratic" class="topic-nav-item">Quadratic Equations</a>
+                <a href="#functions" class="topic-nav-item">Functions</a>
+                <a href="#sequences" class="topic-nav-item">Sequences</a>
+                <a href="#realworld" class="topic-nav-item">Real-World Apps</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 1: Algebraic Expressions -->
+    <section class="section" id="expressions">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(99, 102, 241, 0.15);">📝</span> Algebraic Expressions</h2>
+                <p>Simplifying, expanding, and factoring algebraic expressions (Haese Chapter 6)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Key Concepts</h3>
+                    <p>An algebraic expression contains variables, constants, and operation signs. Learning to manipulate these is fundamental to algebra.</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">Terms: \(3x^2, -5y, 7\)</div>
+                        <div class="formula">Like Terms: \(3x, -5x\) (same variable)</div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Remember:</strong> Only like terms can be combined. \(3x + 5x = 8x\), but \(3x + 5y\) cannot be combined.
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Expanding Brackets</h3>
+                    <p>Use the distributive law to remove brackets:</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">\(a(b + c) = ab + ac\)</div>
+                        <div class="formula">\((a + b)(c + d) = ac + ad + bc + bd\)</div>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 1: Expanding</h4>
+                        <p><strong>Expand:</strong> \(3(x + 4)\)</p>
+                        <p>\(= 3x + 3(4) = 3x + 12\)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-col" style="margin-top: 1.5rem;">
+                <div class="content-card">
+                    <h3>Factoring</h3>
+                    <p>Reverse of expanding - take out a common factor:</p>
+                    <div class="formula-box">
+                        <div class="formula">\(3x + 12 = 3(x + 4)\)</div>
+                        <div class="formula">\(x^2 + x = x(x + 1)\)</div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>Difference of Squares</h3>
+                    <p>Special factoring pattern:</p>
+                    <div class="formula-box">
+                        <div class="formula">\(a^2 - b^2 = (a+b)(a-b)\)</div>
+                        <div class="formula">\(x^2 - 9 = (x+3)(x-3)\)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box full-width">
+                <h4>📝 Example 2: Full Factorization</h4>
+                <p><strong>Factor fully:</strong> \(2x^2 - 8\)</p>
+                <p><strong>Step 1:</strong> Take out common factor 2: \(2(x^2 - 4)\)</p>
+                <p><strong>Step 2:</strong> Factor difference of squares: \(2(x + 2)(x - 2)\)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Linear Equations -->
+    <section class="section" id="linear">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(16, 185, 129, 0.15);">⚖️</span> Linear Equations</h2>
+                <p>Solving equations of the form ax + b = c (Haese Chapter 7)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Solving Linear Equations</h3>
+                    <p>The goal is to isolate the variable. Use inverse operations:</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">If \(ax + b = c\)</div>
+                        <div class="formula">Then \(x = \frac{c - b}{a}\)</div>
+                    </div>
+
+                    <div class="interactive-canvas">
+                        <h4>Interactive: Solve Linear Equation</h4>
+                        <canvas id="linear-solve" width="400" height="300"></canvas>
+                        <div class="controls">
+                            <label style="color: var(--text-secondary);">a: <input type="range" id="lin-a" min="1" max="5" value="2" style="width: 100px;"> <span id="lin-a-val">2</span></label>
+                            <label style="color: var(--text-secondary);">b: <input type="range" id="lin-b" min="-10" max="10" value="4" style="width: 100px;"> <span id="lin-b-val">4</span></label>
+                            <label style="color: var(--text-secondary);">c: <input type="range" id="lin-c" min="1" max="20" value="12" style="width: 100px;"> <span id="lin-c-val">12</span></label>
+                        </div>
+                        <p style="color: var(--primary-light); font-weight: 600; margin-top: 10px;">Solution: <span id="linear-sol">x = ?</span></p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Worked Examples</h3>
+                    
+                    <div class="example-box">
+                        <h4>📝 Example 3: Basic Solve</h4>
+                        <p><strong>Solve:</strong> \(3x + 7 = 22\)</p>
+                        <p>\(3x = 22 - 7 = 15\)</p>
+                        <p>\(x = 15 ÷ 3 = 5\)</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 4: Fraction Solution</h4>
+                        <p><strong>Solve:</strong> \(\frac{x}{4} - 3 = 2\)</p>
+                        <p>\(\frac{x}{4} = 5\)</p>
+                        <p>\(x = 20\)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="realworld-box full-width">
+                <h4>🌍 Real-World: Distance Problem</h4>
+                <p><strong>Problem:</strong> A train travels 240 km in x hours at 80 km/h. Find x.</p>
+                <p><strong>Solution:</strong> distance = speed × time</p>
+                <p>\(240 = 80x\)</p>
+                <p>\(x = 240 ÷ 80 = 3\) hours</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Linear Inequalities -->
+    <section class="section" id="inequalities">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(245, 158, 11, 0.15);">📏</span> Linear Inequalities</h2>
+                <p>Solving and graphing inequalities (Haese Chapter 7)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Inequality Symbols</h3>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.5rem;">\(>\) greater than</li>
+                        <li style="margin-bottom: 0.5rem;">\(<\) less than</li>
+                        <li style="margin-bottom: 0.5rem;">\(\ge\) greater than or equal</li>
+                        <li style="margin-bottom: 0.5rem;">\(\le\) less than or equal</li>
+                    </ul>
+
+                    <div class="tip-box">
+                        <strong>Key Rule:</strong> When multiplying or dividing by a negative number, reverse the inequality sign!
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Solving Inequalities</h3>
+                    
+                    <div class="example-box">
+                        <h4>📝 Example 5</h4>
+                        <p><strong>Solve:</strong> \(3x + 2 < 14\)</p>
+                        <p>\(3x < 12\)</p>
+                        <p>\(x < 4\)</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 6 (Reverse Sign)</h4>
+                        <p><strong>Solve:</strong> \(-2x \ge 8\)</p>
+                        <p>\(x \le -4\) (divided by -2, flip sign!)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-canvas full-width">
+                <h4>Interactive: Inequality Number Line</h4>
+                <canvas id="inequality-canvas" width="700" height="150"></canvas>
+                <div class="controls">
+                    <label style="color: var(--text-secondary);">Coefficient a: <input type="range" id="ineq-a" min="1" max="3" value="1" style="width: 100px;"> <span id="ineq-a-val">1</span></label>
+                    <label style="color: var(--text-secondary);">b: <input type="range" id="ineq-b" min="-5" max="5" value="2" style="width: 100px;"> <span id="ineq-b-val">2</span></label>
+                    <select id="ineq-symbol" style="padding: 8px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); border-radius: 8px;">
+                        <option value="<"> &lt; </option>
+                        <option value=">"> &gt; </option>
+                        <option value="≤"> ≤ </option>
+                        <option value="≥"> ≥ </option>
+                    </select>
+                </div>
+                <p style="color: var(--primary-light); margin-top: 10px;">Solution set shown on number line</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Simultaneous Equations -->
+    <section class="section" id="simultaneous">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(236, 72, 153, 0.15);">🔢</span> Simultaneous Equations</h2>
+                <p>Solving systems of two linear equations (Haese Chapter 8)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Methods</h3>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.8rem;"><strong>Substitution</strong>: solve one eq for one variable, substitute into other</li>
+                        <li style="margin-bottom: 0.8rem;"><strong>Elimination</strong>: add/subtract equations to eliminate a variable</li>
+                        <li style="margin-bottom: 0.8rem;"><strong>Graphical</strong>: find where lines intersect</li>
+                    </ul>
+
+                    <div class="interactive-canvas" style="margin-top: 1rem;">
+                        <h4>Interactive: Graphical Solution</h4>
+                        <canvas id="simult-graph" width="400" height="400"></canvas>
+                        <div class="controls">
+                            <label style="color: var(--text-secondary);">Eq1: y = <input type="range" id="sim-m1" min="-3" max="3" value="2" style="width: 80px;"> x + <input type="range" id="sim-b1" min="-5" max="5" value="-3" style="width: 80px;"></label>
+                            <label style="color: var(--text-secondary);">Eq2: y = <input type="range" id="sim-m2" min="-3" max="3" value="-1" style="width: 80px;"> x + <input type="range" id="sim-b2" min="-5" max="5" value="4" style="width: 80px;"></label>
+                        </div>
+                        <p style="color: var(--secondary); font-weight: 600; margin-top: 10px;">Intersection: (<span id="sim-x">?</span>, <span id="sim-y">?</span>)</p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Worked Examples</h3>
+                    
+                    <div class="example-box">
+                        <h4>📝 Example 7: Substitution</h4>
+                        <p><strong>Solve:</strong> y = 2x + 1, x + y = 7</p>
+                        <p>Substitute: x + (2x + 1) = 7</p>
+                        <p>3x + 1 = 7 → 3x = 6 → x = 2</p>
+                        <p>y = 2(2) + 1 = 5</p>
+                        <p><strong>Answer:</strong> (2, 5)</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 8: Elimination</h4>
+                        <p><strong>Solve:</strong> 2x + y = 8, x - y = 1</p>
+                        <p>Add equations: 3x = 9 → x = 3</p>
+                        <p>Substitute: 3 - y = 1 → y = 2</p>
+                        <p><strong>Answer:</strong> (3, 2)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="realworld-box full-width">
+                <h4>🌍 Real-World: Ticket Problem</h4>
+                <p><strong>Problem:</strong> 50 tickets sold for $200. Adult tickets $5, child $3. How many of each?</p>
+                <p><strong>Let:</strong> a = adults, c = children</p>
+                <p>a + c = 50</p>
+                <p>5a + 3c = 200</p>
+                <p><strong>Solution:</strong> From first: c = 50 - a</p>
+                <p>Substitute: 5a + 3(50-a) = 200</p>
+                <p>5a + 150 - 3a = 200 → 2a = 50 → a = 25</p>
+                <p>c = 50 - 25 = 25 adults, 25 children</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Quadratic Equations -->
+    <section class="section" id="quadratic">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(239, 68, 68, 0.15);">📉</span> Quadratic Equations</h2>
+                <p>Solving equations of the form ax² + bx + c = 0 (Haese Chapter 9)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Methods of Solving</h3>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.8rem;"><strong>Factoring</strong>: if possible to factor</li>
+                        <li style="margin-bottom: 0.8rem;"><strong>Square Root</strong>: if bx = 0</li>
+                        <li style="margin-bottom: 0.8rem;"><strong>Quadratic Formula</strong>: always works!</li>
+                    </ul>
+
+                    <div class="formula-box">
+                        <div class="formula">\(x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\)</div>
+                        <p style="color: var(--text-muted); font-size: 13px;">The discriminant: \(D = b^2 - 4ac\)</p>
+                    </div>
+
+                    <table>
+                        <tr><th>D value</th><th>Roots</th></tr>
+                        <tr><td>D > 0</td><td>Two real roots</td></tr>
+                        <tr><td>D = 0</td><td>One real root</td></tr>
+                        <tr><td>D < 0</td><td>No real roots</td></tr>
+                    </table>
+                </div>
+
+                <div class="content-card">
+                    <h3>Worked Examples</h3>
+                    
+                    <div class="example-box">
+                        <h4>📝 Example 9: Factoring</h4>
+                        <p><strong>Solve:</strong> x² + 5x + 6 = 0</p>
+                        <p>Factor: (x + 2)(x + 3) = 0</p>
+                        <p>x = -2 or x = -3</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 10: Quadratic Formula</h4>
+                        <p><strong>Solve:</strong> x² - 3x - 4 = 0</p>
+                        <p>a=1, b=-3, c=-4</p>
+                        <p>D = (-3)² - 4(1)(-4) = 9 + 16 = 25</p>
+                        <p>x = (3 ± 5)/2 = 4 or -1</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-canvas full-width">
+                <h4>Interactive: Quadratic Graph</h4>
+                <canvas id="quadratic-graph" width="700" height="400"></canvas>
+                <div class="controls">
+                    <label style="color: var(--text-secondary);">a: <input type="range" id="quad-a" min="-2" max="2" value="1" style="width: 80px;"> <span id="quad-a-val">1</span></label>
+                    <label style="color: var(--text-secondary);">b: <input type="range" id="quad-b" min="-10" max="10" value="-3" style="width: 80px;"> <span id="quad-b-val">-3</span></label>
+                    <label style="color: var(--text-secondary);">c: <input type="range" id="quad-c" min="-10" max="10" value="-4" style="width: 80px;"> <span id="quad-c-val">-4</span></label>
+                </div>
+                <p style="color: var(--secondary); font-weight: 600; margin-top: 10px;">Roots: <span id="quad-roots">x = 4, x = -1</span></p>
+            </div>
+
+            <div class="realworld-box full-width">
+                <h4>🌍 Real-World: Projectile Motion</h4>
+                <p><strong>Problem:</strong> A ball is thrown up with velocity 30 m/s from height 0. When does it hit the ground? (h = 30t - 5t²)</p>
+                <p><strong>Solve:</strong> 30t - 5t² = 0</p>
+                <p>5t(6 - t) = 0</p>
+                <p>t = 0 (launch) or t = 6 seconds (lands)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Functions -->
+    <section class="section" id="functions">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(139, 92, 246, 0.15);">🔄</span> Functions</h2>
+                <p>Understanding functions, domain, range, and inverses (Haese Chapter 10)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Function Notation</h3>
+                    <p>A function maps each input to exactly one output:</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">f(x) = 2x + 3</div>
+                        <div class="formula">f(2) = 2(2) + 3 = 7</div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Vertical Line Test:</strong> If a vertical line crosses a graph more than once, it's not a function.
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Domain & Range</h3>
+                    
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Domain</strong>: all possible x-values</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Range</strong>: all possible y-values</li>
+                    </ul>
+
+                    <div class="example-box" style="margin-top: 1rem;">
+                        <h4>📝 Example 11</h4>
+                        <p>f(x) = x², domain = all real numbers</p>
+                        <p>Range = all non-negative: y ≥ 0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-col" style="margin-top: 1.5rem;">
+                <div class="content-card">
+                    <h3>Inverse Functions</h3>
+                    <p>Swap x and y, solve for the new y:</p>
+                    <div class="formula-box">
+                        <div class="formula">If f(x) = 2x + 1</div>
+                        <div class="formula">Let y = 2x + 1</div>
+                        <div class="formula">x = 2y + 1 → y = (x-1)/2</div>
+                        <div class="formula">f⁻¹(x) = (x - 1)/2</div>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>Composite Functions</h3>
+                    <p>Apply one function to the result of another:</p>
+                    <div class="formula-box">
+                        <div class="formula">f(x) = x + 2, g(x) = x²</div>
+                        <div class="formula">f(g(x)) = x² + 2</div>
+                        <div class="formula">g(f(x)) = (x + 2)²</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Sequences & Series -->
+    <section class="section" id="sequences">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(6, 182, 212, 0.15);">🔢</span> Sequences & Series</h2>
+                <p>Arithmetic and geometric sequences (Haese Chapter 11)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Arithmetic Sequences</h3>
+                    <p>Each term increases by a constant difference:</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">\(a_n = a_1 + (n-1)d\)</div>
+                        <p style="color: var(--text-muted); font-size: 13px;">where d = common difference</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 12</h4>
+                        <p>Sequence: 5, 8, 11, 14, ...</p>
+                        <p>d = 3, a₁ = 5</p>
+                        <p>a₁₀ = 5 + 9(3) = 32</p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Geometric Sequences</h3>
+                    <p>Each term is multiplied by a constant ratio:</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">\(a_n = ar^{n-1}\)</div>
+                        <p style="color: var(--text-muted); font-size: 13px;">where r = common ratio</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 13</h4>
+                        <p>Sequence: 2, 6, 18, 54, ...</p>
+                        <p>r = 3, a = 2</p>
+                        <p>a₅ = 2 × 3⁴ = 2 × 81 = 162</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-canvas full-width">
+                <h4>Interactive: Sequence Visualization</h4>
+                <canvas id="sequence-canvas" width="700" height="300"></canvas>
+                <div class="controls">
+                    <label style="color: var(--text-secondary);">Type:
+                        <select id="seq-type" style="padding: 8px; background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); border-radius: 8px;">
+                            <option value="arithmetic">Arithmetic</option>
+                            <option value="geometric">Geometric</option>
+                        </select>
+                    </label>
+                    <label style="color: var(--text-secondary);">First term: <input type="range" id="seq-a1" min="1" max="5" value="2" style="width: 80px;"> <span id="seq-a1-val">2</span></label>
+                    <label style="color: var(--text-secondary);">d or r: <input type="range" id="seq-dr" min="2" max="5" value="2" style="width: 80px;"> <span id="seq-dr-val">2</span></label>
+                </div>
+                <p style="color: var(--primary-light); font-weight: 600; margin-top: 10px;">Terms: <span id="seq-terms">2, 4, 6, 8, 10...</span></p>
+            </div>
+
+            <div class="tip-box full-width">
+                <strong>Series:</strong> The sum of terms in a sequence. Arithmetic series: Sₙ = n(a₁ + aₙ)/2 or Sₙ = n[2a₁ + (n-1)d]/2
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Real-World Applications -->
+    <section class="section" id="realworld">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(16, 185, 129, 0.15);">🌍</span> Real-World Applications</h2>
+                <p>How algebra is used in various fields</p>
+            </div>
+
+            <div class="three-col">
+                <div class="content-card">
+                    <h3>💰 Finance</h3>
+                    <p><strong>Compound Interest:</strong></p>
+                    <p style="margin-top: 1rem;">\(A = P(1 + r)^n\)</p>
+                    <p style="margin-top: 0.5rem;">P = principal, r = rate, n = years</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>📏 Architecture</h3>
+                    <p><strong>Structural Load:</strong></p>
+                    <p style="margin-top: 1rem;">Linear equations model stress distribution across beams.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>🌡️ Science</h3>
+                    <p><strong>Temperature (C to F):</strong></p>
+                    <p style="margin-top: 1rem;">\(F = \frac{9}{5}C + 32\)</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>📱 Technology</h3>
+                    <p><strong>Computer Growth:</strong></p>
+                    <p style="margin-top: 1rem;">Moore's Law: computing power doubles every 2 years (exponential).</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>🏃 Sports</h3>
+                    <p><strong>Training Pace:</strong></p>
+                    <p style="margin-top: 1rem;">Use linear equations to predict race times based on training data.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>🌱 Biology</h3>
+                    <p><strong>Population Growth:</strong></p>
+                    <p style="margin-top: 1rem;">Exponential models for bacteria growth: N = N₀eᵏᵗ</p>
+                </div>
+            </div>
+
+            <div class="realworld-box full-width" style="margin-top: 2rem;">
+                <h4>🌍 Comprehensive: Investment Growth</h4>
+                <p><strong>Scenario:</strong> $10,000 invested at 7% annual compound interest. How much after 10 years?</p>
+                <p><strong>Solution:</strong> A = 10000(1 + 0.07)¹⁰</p>
+                <p>A = 10000 × 1.967 ≈ $19,670</p>
+                <p style="color: var(--secondary); font-weight: 600; margin-top: 1rem;">The investment nearly doubles in 10 years!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Link -->
+    <section class="section" style="text-align: center; background: var(--bg-section);">
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Ready to Test Your Knowledge?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Take the comprehensive algebra assessment with 25 questions covering all topics</p>
+            <a href="myp4-algebra-assessment.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 18px; text-decoration: none; display: inline-block;">Start Assessment →</a>
+            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 14px;">25 Questions • 60 Minutes • Covers All Topics</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>KaniMath • IB MYP4 Algebra Study Material</p>
+            <p style="margin-top: 0.5rem;">Based on Haese Mathematics 9 MYP4 Curriculum</p>
+            <p style="margin-top: 1rem;">
+                <a href="../src/pages/Home.jsx">← Back to KaniMath Home</a> • 
+                <a href="myp4-algebra-assessment.html">Take Assessment</a> • 
+                <a href="https://github.com/kram1947/kaniib">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+
+        function toRad(deg) { return deg * Math.PI / 180; }
+        function toDeg(rad) { return rad * 180 / Math.PI; }
+
+        // Linear Equation Solver
+        const linA = document.getElementById('lin-a');
+        const linB = document.getElementById('lin-b');
+        const linC = document.getElementById('lin-c');
+        if (linA && linB && linC) {
+            function updateLinearSol() {
+                const a = parseInt(linA.value);
+                const b = parseInt(linB.value);
+                const c = parseInt(linC.value);
+                document.getElementById('lin-a-val').textContent = a;
+                document.getElementById('lin-b-val').textContent = b;
+                document.getElementById('lin-c-val').textContent = c;
+                const x = (c - b) / a;
+                document.getElementById('linear-sol').textContent = 'x = ' + x.toFixed(2);
+            }
+            linA.addEventListener('input', updateLinearSol);
+            linB.addEventListener('input', updateLinearSol);
+            linC.addEventListener('input', updateLinearSol);
+            updateLinearSol();
+        }
+
+        // Inequality Number Line
+        const ineqCanvas = document.getElementById('inequality-canvas');
+        if (ineqCanvas) {
+            const ctx = ineqCanvas.getContext('2d');
+            const ineqA = document.getElementById('ineq-a');
+            const ineqB = document.getElementById('ineq-b');
+            const ineqSym = document.getElementById('ineq-symbol');
+            
+            function drawInequality() {
+                const a = parseInt(ineqA.value);
+                const b = parseInt(ineqB.value);
+                const sym = ineqSym.value;
+                document.getElementById('ineq-a-val').textContent = a;
+                document.getElementById('ineq-b-val').textContent = b;
+                
+                ctx.clearRect(0, 0, ineqCanvas.width, ineqCanvas.height);
+                
+                // Draw number line
+                ctx.strokeStyle = '#374151';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(50, 75);
+                ctx.lineTo(650, 75);
+                ctx.stroke();
+                
+                // Draw ticks
+                for (let i = -5; i <= 15; i++) {
+                    const x = 50 + (i + 5) * 40;
+                    ctx.beginPath();
+                    ctx.moveTo(x, 70);
+                    ctx.lineTo(x, 80);
+                    ctx.stroke();
+                    ctx.fillStyle = '#9ca3af';
+                    ctx.font = '12px Inter';
+                    ctx.fillText(i.toString(), x - 5, 95);
+                }
+                
+                // Solve inequality
+                let sol;
+                if (sym === '<') sol = -b / a + ' (x < ' + (-b / a).toFixed(2) + ')';
+                else if (sym === '>') sol = -b / a + ' (x > ' + (-b / a).toFixed(2) + ')';
+                else if (sym === '≤') sol = -b / a + ' (x ≤ ' + (-b / a).toFixed(2) + ')';
+                else sol = -b / a + ' (x ≥ ' + (-b / a).toFixed(2) + ')';
+                
+                ctx.fillStyle = '#818cf8';
+                ctx.font = 'bold 16px Inter';
+                ctx.fillText('Equation: ' + a + 'x ' + (b >= 0 ? '+ ' + b : '- ' + Math.abs(b)) + ' ' + sym + ' 0', 50, 30);
+                ctx.fillText('Solution: ' + sol, 50, 55);
+            }
+            ineqA.addEventListener('input', drawInequality);
+            ineqB.addEventListener('input', drawInequality);
+            ineqSym.addEventListener('change', drawInequality);
+            drawInequality();
+        }
+
+        // Simultaneous Equations Graph
+        const simCanvas = document.getElementById('simult-graph');
+        if (simCanvas) {
+            const ctx = simCanvas.getContext('2d');
+            const simM1 = document.getElementById('sim-m1');
+            const simB1 = document.getElementById('sim-b1');
+            const simM2 = document.getElementById('sim-m2');
+            const simB2 = document.getElementById('sim-b2');
+            
+            function drawSimult() {
+                const m1 = parseInt(simM1.value);
+                const b1 = parseInt(simB1.value);
+                const m2 = parseInt(simM2.value);
+                const b2 = parseInt(simB2.value);
+                
+                ctx.clearRect(0, 0, simCanvas.width, simCanvas.height);
+                
+                // Grid
+                ctx.strokeStyle = '#1e293b';
+                ctx.lineWidth = 1;
+                for (let i = 0; i <= 10; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(i * 40, 0);
+                    ctx.lineTo(i * 40, 400);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(0, i * 40);
+                    ctx.lineTo(400, i * 40);
+                    ctx.stroke();
+                }
+                
+                // Axes
+                ctx.strokeStyle = '#4b5563';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(200, 0);
+                ctx.lineTo(200, 400);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, 200);
+                ctx.lineTo(400, 200);
+                ctx.stroke();
+                
+                // Line 1
+                ctx.strokeStyle = '#6366f1';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                for (let x = -10; x <= 10; x++) {
+                    const y = m1 * x + b1;
+                    const px = 200 + x * 30;
+                    const py = 200 - y * 30;
+                    if (x === -10) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+                ctx.stroke();
+                
+                // Line 2
+                ctx.strokeStyle = '#10b981';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                for (let x = -10; x <= 10; x++) {
+                    const y = m2 * x + b2;
+                    const px = 200 + x * 30;
+                    const py = 200 - y * 30;
+                    if (x === -10) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+                ctx.stroke();
+                
+                // Intersection
+                const det = m1 - m2;
+                if (det !== 0) {
+                    const x = (b2 - b1) / det;
+                    const y = m1 * x + b1;
+                    document.getElementById('sim-x').textContent = x.toFixed(2);
+                    document.getElementById('sim-y').textContent = y.toFixed(2);
+                    
+                    ctx.fillStyle = '#ef4444';
+                    ctx.beginPath();
+                    ctx.arc(200 + x * 30, 200 - y * 30, 8, 0, Math.PI * 2);
+                    ctx.fill();
+                } else {
+                    document.getElementById('sim-x').textContent = '∞';
+                    document.getElementById('sim-y').textContent = '∞';
+                }
+            }
+            simM1.addEventListener('input', drawSimult);
+            simB1.addEventListener('input', drawSimult);
+            simM2.addEventListener('input', drawSimult);
+            simB2.addEventListener('input', drawSimult);
+            drawSimult();
+        }
+
+        // Quadratic Graph
+        const quadCanvas = document.getElementById('quadratic-graph');
+        if (quadCanvas) {
+            const ctx = quadCanvas.getContext('2d');
+            const quadA = document.getElementById('quad-a');
+            const quadB = document.getElementById('quad-b');
+            const quadC = document.getElementById('quad-c');
+            
+            function drawQuadratic() {
+                const a = parseInt(quadA.value);
+                const b = parseInt(quadB.value);
+                const c = parseInt(quadC.value);
+                document.getElementById('quad-a-val').textContent = a;
+                document.getElementById('quad-b-val').textContent = b;
+                document.getElementById('quad-c-val').textContent = c;
+                
+                ctx.clearRect(0, 0, quadCanvas.width, quadCanvas.height);
+                
+                // Grid
+                ctx.strokeStyle = '#1e293b';
+                ctx.lineWidth = 1;
+                for (let i = 0; i <= 14; i++) {
+                    ctx.beginPath();
+                    ctx.moveTo(i * 50, 0);
+                    ctx.lineTo(i * 50, 400);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(0, i * 33.3);
+                    ctx.lineTo(700, i * 33.3);
+                    ctx.stroke();
+                }
+                
+                // Axes
+                ctx.strokeStyle = '#4b5563';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(350, 0);
+                ctx.lineTo(350, 400);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, 200);
+                ctx.lineTo(700, 200);
+                ctx.stroke();
+                
+                // Parabola
+                ctx.strokeStyle = '#ef4444';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                for (let x = -7; x <= 7; x += 0.1) {
+                    const y = a * x * x + b * x + c;
+                    const px = 350 + x * 50;
+                    const py = 200 - y * 30;
+                    if (x === -7) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+                ctx.stroke();
+                
+                // Roots
+                const disc = b * b - 4 * a * c;
+                let rootsText = '';
+                if (disc > 0) {
+                    const r1 = (-b + Math.sqrt(disc)) / (2 * a);
+                    const r2 = (-b - Math.sqrt(disc)) / (2 * a);
+                    rootsText = 'x = ' + r1.toFixed(2) + ', x = ' + r2.toFixed(2);
+                } else if (disc === 0) {
+                    const r = -b / (2 * a);
+                    rootsText = 'x = ' + r.toFixed(2);
+                } else {
+                    rootsText = 'No real roots';
+                }
+                document.getElementById('quad-roots').textContent = rootsText;
+            }
+            quadA.addEventListener('input', drawQuadratic);
+            quadB.addEventListener('input', drawQuadratic);
+            quadC.addEventListener('input', drawQuadratic);
+            drawQuadratic();
+        }
+
+        // Sequence Visualization
+        const seqCanvas = document.getElementById('sequence-canvas');
+        if (seqCanvas) {
+            const ctx = seqCanvas.getContext('2d');
+            const seqType = document.getElementById('seq-type');
+            const seqA1 = document.getElementById('seq-a1');
+            const seqDR = document.getElementById('seq-dr');
+            
+            function drawSequence() {
+                const type = seqType.value;
+                const a1 = parseInt(seqA1.value);
+                const dr = parseInt(seqDR.value);
+                document.getElementById('seq-a1-val').textContent = a1;
+                document.getElementById('seq-dr-val').textContent = dr;
+                
+                ctx.clearRect(0, 0, seqCanvas.width, seqCanvas.height);
+                
+                const terms = [];
+                for (let i = 1; i <= 8; i++) {
+                    if (type === 'arithmetic') {
+                        terms.push(a1 + (i - 1) * dr);
+                    } else {
+                        terms.push(a1 * Math.pow(dr, i - 1));
+                    }
+                }
+                
+                const maxVal = Math.max(...terms);
+                const barWidth = 60;
+                const spacing = 20;
+                
+                terms.forEach((val, i) => {
+                    const height = (val / maxVal) * 220;
+                    const x = 80 + i * (barWidth + spacing);
+                    const y = 260 - height;
+                    
+                    ctx.fillStyle = type === 'arithmetic' ? '#6366f1' : '#10b981';
+                    ctx.fillRect(x, y, barWidth, height);
+                    
+                    ctx.fillStyle = '#f9fafb';
+                    ctx.font = '14px Inter';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(val, x + barWidth/2, y - 10);
+                    ctx.fillText('n=' + (i + 1), x + barWidth/2, 280);
+                });
+                
+                document.getElementById('seq-terms').textContent = terms.join(', ') + '...';
+            }
+            seqType.addEventListener('change', drawSequence);
+            seqA1.addEventListener('input', drawSequence);
+            seqDR.addEventListener('input', drawSequence);
+            drawSequence();
+        }
+    </script>
+</body>
+</html>

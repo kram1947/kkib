@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYP4 I&S - Supply and Demand Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --primary: #ea580c;
+            --primary-dark: #c2410c;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #475569;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--warning));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .logo-text h1 {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .timer-container {
+            background: rgba(234, 88, 12, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .timer-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .timer {
+            font-size: 32px;
+            font-weight: 700;
+            font-family: 'Fira Code', monospace;
+            color: var(--primary);
+        }
+
+        .timer.warning { color: var(--warning); animation: pulse 1s infinite; }
+        .timer.danger { color: var(--danger); }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .progress-section { margin-bottom: 20px; }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-dark);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .question-nav {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .nav-q {
+            aspect-ratio: 1;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .nav-q:hover { border-color: var(--primary); }
+        .nav-q.answered { background: var(--primary); border-color: var(--primary); color: white; }
+        .nav-q.current { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.3); }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .btn-submit {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-submit:hover { background: #059669; }
+
+        .btn-exit {
+            background: var(--bg-dark);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-exit:hover { color: var(--text-primary); border-color: var(--text-secondary); }
+
+        .main {
+            flex: 1;
+            padding: 32px;
+            margin-left: 280px;
+            overflow-y: auto;
+        }
+
+        .question-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .question-num {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .question-num span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .marks {
+            background: var(--bg-card);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .question-text {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .question-text h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .question-text p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .reference-box {
+            background: rgba(234, 88, 12, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .reference-box h4 {
+            font-size: 12px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .reference-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .option:hover {
+            border-color: var(--text-secondary);
+            background: var(--bg-hover);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(234, 88, 12, 0.1);
+        }
+
+        .option-marker {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .option.selected .option-marker {
+            background: var(--primary);
+            color: white;
+        }
+
+        .option-text {
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .input-answer {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .input-answer input,
+        .input-answer textarea {
+            width: 100%;
+            background: var(--bg-dark);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .input-answer textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .input-answer input:focus,
+        .input-answer textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .input-answer label {
+            display: block;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .word-count {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .modal h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .modal-score {
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 24px 0;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .modal-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .modal .btn {
+            width: auto;
+            padding: 14px 32px;
+        }
+
+        @media (max-width: 768px) {
+            .app-container { flex-direction: column; }
+            .sidebar { width: 100%; position: relative; border-right: none; border-bottom: 1px solid var(--border); }
+            .main { margin-left: 0; padding: 20px; }
+            .question-text { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">I&S</div>
+                <div class="logo-text">
+                    <h1>KaniMath</h1>
+                    <span>IB MYP Economics</span>
+                </div>
+            </div>
+
+            <div class="timer-container">
+                <div class="timer-label">Time Remaining</div>
+                <div class="timer" id="timer">90:00</div>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-text">
+                    <span>Progress</span>
+                    <span id="progress-text">0 / 20</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="nav-label">Question Navigator</div>
+            <div class="question-nav" id="question-nav"></div>
+
+            <div class="sidebar-footer">
+                <button class="btn btn-submit" onclick="submitQuiz()">Submit & Finish</button>
+                <button class="btn btn-exit" onclick="exitQuiz()">Study Material</button>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="question-container" id="question-container"></div>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <h2>Quiz Complete!</h2>
+            <div class="modal-score" id="modal-score">0%</div>
+            <p id="modal-msg">Great effort!</p>
+            <div class="modal-btns">
+                <button class="btn btn-submit" onclick="downloadPDF()">Download Results</button>
+                <button class="btn btn-exit" onclick="window.location.href='myp4-ins-supply-demand-study.html'">Study More</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                id: 1,
+                type: "mcq",
+                text: "Which of the following best describes the Law of Demand?",
+                options: [
+                    "As the price increases, quantity demanded increases",
+                    "As the price decreases, quantity demanded decreases",
+                    "As the price increases, quantity demanded decreases (inverse relationship)",
+                    "Price and quantity demanded have no relationship"
+                ],
+                correct: 2,
+                marks: 2,
+                explanation: "The Law of Demand states that there is an inverse relationship between price and quantity demanded."
+            },
+            {
+                id: 2,
+                type: "mcq",
+                text: "In Sweden, if the Riksbank raises interest rates from 2% to 4%, what happens to the demand for Volvo cars?",
+                options: [
+                    "Demand shifts right due to increased consumer confidence",
+                    "Movement up along the demand curve",
+                    "Demand shifts left due to expensive car loans",
+                    "Supply curve shifts left"
+                ],
+                correct: 2,
+                marks: 2,
+                explanation: "Higher interest rates make car loans more expensive, reducing consumer purchasing power and shifting demand left."
+            },
+            {
+                id: 3,
+                type: "mcq",
+                text: "Electricity prices in Sweden increase by 50%. How does this affect Northvolt's battery production?",
+                options: [
+                    "COP increases, Supply shifts right, Price decreases",
+                    "COP increases, Supply shifts left, Price increases, Quantity decreases",
+                    "COP decreases, Supply shifts left, Price increases",
+                    "Movement along supply curve only"
+                ],
+                correct: 1,
+                marks: 2,
+                explanation: "Higher electricity prices increase Cost of Production (COP), shifting supply left, increasing price and decreasing quantity."
+            },
+            {
+                id: 4,
+                type: "mcq",
+                text: "The Swedish government implements rent control in Stockholm, setting maximum rent at 8,000 SEK when equilibrium is 12,000 SEK. What is the result?",
+                options: [
+                    "Surplus of apartments",
+                    "Equilibrium maintained",
+                    "Shortage with long waiting queues",
+                    "Supply increases immediately"
+                ],
+                correct: 2,
+                marks: 2,
+                explanation: "Price ceiling below equilibrium creates shortage - quantity demanded exceeds quantity supplied."
+            },
+            {
+                id: 5,
+                type: "mcq",
+                text: "H&M develops new automation technology that reduces textile production costs by 30%. What happens in the market?",
+                options: [
+                    "Supply shifts left, Price increases, Quantity decreases",
+                    "Supply shifts right, Price decreases, Quantity increases",
+                    "Demand shifts right, Price increases, Quantity increases",
+                    "Movement along supply curve"
+                ],
+                correct: 1,
+                marks: 2,
+                explanation: "Lower production costs shift supply right, decreasing price and increasing quantity."
+            },
+            {
+                id: 6,
+                type: "short",
+                text: "Define the following terms and provide one Swedish example for each:\n\na) Scarcity\nb) Expendable income\nc) Market equilibrium",
+                placeholder: "Write your answer here...\n\na) Scarcity: [definition + Swedish example]\n\nb) Expendable income: [definition + Swedish example]\n\nc) Market equilibrium: [definition + Swedish example]",
+                marks: 6,
+                keywords: ["limited resources", "unlimited wants", "after basic needs", "balance supply demand", "Nord Pool", "ICA"]
+            },
+            {
+                id: 7,
+                type: "short",
+                text: "List FOUR factors that can shift the demand curve to the RIGHT. For each factor, provide a specific real-world example from Sweden.",
+                placeholder: "Write your answer here...\n\n1. [Factor]: [Swedish example]\n2. [Factor]: [Swedish example]\n3. [Factor]: [Swedish example]\n4. [Factor]: [Swedish example]",
+                marks: 8,
+                keywords: ["income", "preferences", "population", "interest rates", "tax cut", "Oatly", "immigration", "Riksbank"]
+            },
+            {
+                id: 8,
+                type: "short",
+                text: "Explain the difference between:\na) Movement along the demand curve\nb) Shift of the demand curve\n\nProvide one example of each using Swedish companies.",
+                placeholder: "Write your answer here...\n\na) Movement along demand curve: [explanation + example]\n\nb) Shift of demand curve: [explanation + example]",
+                marks: 6,
+                keywords: ["price change", "non-price factor", "Oatly", "Spotify", "movement along", "shift"]
+            },
+            {
+                id: 9,
+                type: "short",
+                text: "The Nord Pool electricity market in Sweden experiences the following:\n- Winter demand increases by 40%\n- A nuclear plant shuts down, reducing supply by 20%\n\na) What happens to equilibrium price? (Certain/Uncertain)\nb) What happens to equilibrium quantity? (Certain/Uncertain)\nc) Explain why",
+                placeholder: "Write your answer here...\n\na) Price: [Certain/Uncertain] - because...\n\nb) Quantity: [Certain/Uncertain] - because...\n\nc) [Detailed explanation]",
+                marks: 6,
+                keywords: ["uncertain", "both shift", "magnitude", "opposite directions"]
+            },
+            {
+                id: 10,
+                type: "short",
+                text: "Calculate the percentage change in purchasing power:\n- Person A earned 100,000 SEK in 2020\n- Person A earns 105,000 SEK in 2024\n- Price level increased from 100 to 110\n\nShow your working and state whether Person A is better off, worse off, or the same.",
+                placeholder: "Write your calculation here...\n\nReal income = \n\n= \n\nConclusion:",
+                marks: 6,
+                keywords: ["real income", "105000/1.10", "95454", "worse off", "4.5%"]
+            },
+            {
+                id: 11,
+                type: "mcq",
+                text: "What does a shift of the supply curve represent?",
+                options: [
+                    "A change in the price of the good",
+                    "A change in production costs or other non-price factors",
+                    "A change in consumer preferences",
+                    "A movement along the demand curve"
+                ],
+                correct: 1,
+                marks: 2,
+                explanation: "A shift in the supply curve occurs when non-price factors like costs, technology, or expectations change."
+            },
+            {
+                id: 12,
+                type: "mcq",
+                text: "If the Swedish government provides subsidies to farmers, what happens to the supply curve?",
+                options: [
+                    "Supply shifts left",
+                    "Supply shifts right",
+                    "Movement along supply curve",
+                    "No change"
+                ],
+                correct: 1,
+                marks: 2,
+                explanation: "Subsidies reduce production costs, making it profitable to produce more at each price - supply shifts right."
+            },
+            {
+                id: 13,
+                type: "mcq",
+                text: "Which of the following is NOT a factor of production?",
+                options: [
+                    "Labour",
+                    "Land",
+                    "Capital",
+                    "Inflation"
+                ],
+                correct: 3,
+                marks: 2,
+                explanation: "Factors of production are: Labour, Land, Capital, and Entrepreneurship. Inflation is an economic condition."
+            },
+            {
+                id: 14,
+                type: "mcq",
+                text: "What is the relationship between Cost of Production (COP) and Supply?",
+                options: [
+                    "Direct relationship - COP increases, supply increases",
+                    "Inverse relationship - COP increases, supply decreases",
+                    "No relationship",
+                    "COP determines demand"
+                ],
+                correct: 1,
+                marks: 2,
+                explanation: "When COP increases, producers cannot afford to produce as much, so supply decreases - inverse relationship."
+            },
+            {
+                id: 15,
+                type: "short",
+                text: "CASE STUDY: Middle East Conflict\n\nThe conflict blocks the Strait of Hormuz, through which 20% of global oil supply flows. Countries panic-buy to build reserves.\n\na) Which curve(s) shift and in which direction?\nb) What happens to equilibrium price?\nc) What happens to equilibrium quantity? Explain why quantity change is uncertain.",
+                placeholder: "Write your answer here...\n\na) [Curves and directions]\n\nb) Price: [↑/↓/Uncertain] - because...\n\nc) Quantity: [↑/↓/Uncertain] - because...",
+                marks: 6,
+                keywords: ["supply shifts left", "demand shifts right", "price increases certain", "quantity uncertain", "magnitude"]
+            },
+            {
+                id: 16,
+                type: "short",
+                text: "CASE STUDY: DRC Cobalt Crisis\n\nThe Democratic Republic of Congo produces 70% of global cobalt. Political unrest reduces cobalt supply by 40%. Cobalt is essential for EV batteries (Volvo, Polestar). Battery production costs increase by 35%.\n\nIf an EV battery cost 50,000 SEK before the crisis, what is the new cost after 35% increase? Show your calculation.",
+                placeholder: "Write your calculation here...\n\nNew cost = \n\n= \n\n= SEK",
+                marks: 4,
+                keywords: ["50000", "1.35", "67500", "35000", "17500"]
+            },
+            {
+                id: 17,
+                type: "mcq",
+                text: "What is a price floor?",
+                options: [
+                    "Government-imposed maximum price",
+                    "Government-imposed minimum price",
+                    "The lowest price consumers will pay",
+                    "The equilibrium price"
+                ],
+                correct: 1,
+                marks: 2,
+                explanation: "A price floor is a government-imposed minimum price, set above equilibrium to protect producers."
+            },
+            {
+                id: 18,
+                type: "mcq",
+                text: "If the Riksbank wants to combat inflation, what should they do?",
+                options: [
+                    "Lower interest rates",
+                    "Raise interest rates",
+                    "Print more money",
+                    "Reduce taxes"
+                ],
+                correct: 1,
+                marks: 2,
+                explanation: "Raising interest rates reduces borrowing and spending, helping to reduce inflationary pressure."
+            },
+            {
+                id: 19,
+                type: "mcq",
+                text: "What happens when both demand and supply increase simultaneously?",
+                options: [
+                    "Price definitely increases, quantity definitely decreases",
+                    "Price definitely decreases, quantity definitely increases",
+                    "Quantity definitely increases, price uncertain",
+                    "Price definitely increases, quantity uncertain"
+                ],
+                correct: 2,
+                marks: 2,
+                explanation: "When both curves shift right (increase), quantity definitely increases. Price change depends on which shift is larger."
+            },
+            {
+                id: 20,
+                type: "essay",
+                text: "ESSAY: The Role of Riksbank in Managing Sweden's Economy\n\nWrite a structured essay (400-500 words) addressing:\n\na) Introduction: Define what a central bank is and state the Riksbank's main objectives\nb) Body 1: Explain how LOW interest rates affect consumer borrowing, spending, and inflation risk\nc) Body 2: Explain how HIGH interest rates affect borrowing, spending, and recession risk\nd) Body 3: Analyze what the Riksbank should do if Sweden faces 8% inflation. Use Volvo car market as example.\ne) Conclusion: Evaluate the effectiveness of interest rate policy and mention ONE limitation.",
+                placeholder: "Write your essay here (400-500 words)...\n\n[Introduction - 50 words]\n\n[Body Paragraph 1 - 100 words]\n\n[Body Paragraph 2 - 100 words]\n\n[Body Paragraph 3 - 100 words]\n\n[Conclusion - 50 words]",
+                marks: 15,
+                keywords: ["central bank", "interest rates", "inflation", "borrowing", "spending", "recession", "Volvo", "transmission mechanism"]
+            }
+        ];
+
+        let answers = {};
+        let currentQuestion = 0;
+        let timeRemaining = 90 * 60;
+        let timerInterval;
+
+        function init() {
+            renderQuestionNav();
+            showQuestion(0);
+            startTimer();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                const mins = Math.floor(timeRemaining / 60);
+                const secs = timeRemaining % 60;
+                const timerEl = document.getElementById('timer');
+                timerEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                
+                if (timeRemaining < 300) timerEl.classList.add('danger');
+                else if (timeRemaining < 600) timerEl.classList.add('warning');
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function renderQuestionNav() {
+            const nav = document.getElementById('question-nav');
+            nav.innerHTML = questions.map((q, i) => `
+                <div class="nav-q ${answers[q.id] ? 'answered' : ''}" onclick="showQuestion(${i})">${i + 1}</div>
+            `).join('');
+        }
+
+        function showQuestion(index) {
+            currentQuestion = index;
+            const q = questions[index];
+            const container = document.getElementById('question-container');
+            
+            document.querySelectorAll('.nav-q').forEach((el, i) => {
+                el.classList.toggle('current', i === index);
+            });
+
+            if (q.type === 'mcq') {
+                container.innerHTML = `
+                    <div class="question-header">
+                        <div class="question-num">Question <span>${q.id}</span> of ${questions.length}</div>
+                        <div class="marks">${q.marks} marks</div>
+                    </div>
+                    <div class="question-text">
+                        <h2>${q.text}</h2>
+                    </div>
+                    <div class="options">
+                        ${q.options.map((opt, i) => `
+                            <div class="option ${answers[q.id] === i ? 'selected' : ''}" onclick="selectOption(${q.id}, ${i})">
+                                <div class="option-marker">${String.fromCharCode(65 + i)}</div>
+                             <div class="option-text">${opt}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (q.type === 'short') {
+                container.innerHTML = `
+                    <div class="question-header">
+                        <div class="question-num">Question <span>${q.id}</span> of ${questions.length}</div>
+                        <div class="marks">${q.marks} marks</div>
+                    </div>
+                    <div class="question-text">
+                        <h2>${q.text.replace(/\n/g, '<br>')}</h2>
+                    </div>
+                    <div class="input-answer">
+                        <label>Your Answer:</label>
+                        <textarea id="answer-${q.id}" placeholder="${q.placeholder}" oninput="saveAnswer(${q.id}, this.value)">${answers[q.id] || ''}</textarea>
+                        <div class="word-count">${(answers[q.id] || '').length} characters</div>
+                    </div>
+                `;
+            } else if (q.type === 'essay') {
+                container.innerHTML = `
+                    <div class="question-header">
+                        <div class="question-num">Question <span>${q.id}</span> of ${questions.length}</div>
+                        <div class="marks">${q.marks} marks</div>
+                    </div>
+                    <div class="question-text">
+                        <h2>${q.text.replace(/\n/g, '<br>')}</h2>
+                    </div>
+                    <div class="reference-box">
+                        <h4>Tip</h4>
+                        <p>Structure your essay with clear introduction, body paragraphs, and conclusion. Use Swedish examples (Riksbank, Volvo, Nord Pool) to support your arguments.</p>
+                    </div>
+                    <div class="input-answer">
+                        <label>Your Essay (400-500 words):</label>
+                        <textarea id="answer-${q.id}" placeholder="${q.placeholder}" oninput="saveAnswer(${q.id}, this.value)" style="min-height: 300px;">${answers[q.id] || ''}</textarea>
+                        <div class="word-count">${(answers[q.id] || '').length} characters</div>
+                    </div>
+                `;
+            }
+        }
+
+        function selectOption(qId, optIndex) {
+            answers[qId] = optIndex;
+            renderQuestionNav();
+            showQuestion(currentQuestion);
+        }
+
+        function saveAnswer(qId, value) {
+            answers[qId] = value;
+            renderQuestionNav();
+            document.querySelector('.word-count').textContent = `${value.length} characters`;
+        }
+
+        function updateProgress() {
+            const answered = Object.keys(answers).length;
+            document.getElementById('progress-text').textContent = `${answered} / ${questions.length}`;
+            document.getElementById('progress-fill').style.width = `${(answered / questions.length) * 100}%`;
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            let score = 0;
+            let maxScore = 0;
+
+            questions.forEach(q => {
+                maxScore += q.marks;
+                if (q.type === 'mcq') {
+                    if (answers[q.id] === q.correct) {
+                        score += q.marks;
+                    }
+                } else {
+                    if (answers[q.id] && answers[q.id].length > 20) {
+                        let keywordMatches = 0;
+                        q.keywords.forEach(kw => {
+                            if (answers[q.id].toLowerCase().includes(kw.toLowerCase())) {
+                                keywordMatches++;
+                            }
+                        });
+                        score += Math.min(q.marks, Math.floor(q.marks * (keywordMatches / q.keywords.length)));
+                    }
+                }
+            });
+
+            const percentage = Math.round((score / maxScore) * 100);
+            document.getElementById('modal-score').textContent = `${percentage}%`;
+            
+            let msg = 'Keep practicing!';
+            if (percentage >= 90) msg = 'Outstanding! Excellent understanding!';
+            else if (percentage >= 80) msg = 'Great work! Very strong performance!';
+            else if (percentage >= 70) msg = 'Good job! Well done!';
+            else if (percentage >= 60) msg = 'Nice effort! Room for improvement.';
+            
+            document.getElementById('modal-msg').textContent = msg;
+            document.getElementById('modal').classList.add('show');
+            
+            localStorage.setItem('kanimath_ins_supply_demand', JSON.stringify({
+                score,
+                maxScore,
+                percentage,
+                date: new Date().toISOString(),
+                answers
+            }));
+        }
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(20);
+            doc.text('KaniMath - Supply & Demand Assessment Results', 20, 20);
+            
+            doc.setFontSize(12);
+            doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 30);
+            
+            let y = 50;
+            questions.forEach((q, i) => {
+                if (y > 270) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFontSize(11);
+                doc.text(`Q${i+1} (${q.marks} marks): ${q.text.substring(0, 80)}...`, 20, y);
+                y += 10;
+                
+                const answer = answers[q.id];
+                if (answer !== undefined) {
+                    if (q.type === 'mcq') {
+                        doc.text(`   Answer: ${String.fromCharCode(65 + answer)}`, 20, y);
+                    } else {
+                        const ansText = typeof answer === 'string' ? answer.substring(0, 100) : answer;
+                        doc.text(`   Answer: ${ansText}...`, 20, y);
+                    }
+                } else {
+                    doc.text(`   Answer: Not answered`, 20, y);
+                }
+                y += 15;
+            });
+            
+            doc.save('supply-demand-results.pdf');
+        }
+
+        function exitQuiz() {
+            window.location.href = 'myp4-ins-supply-demand.html';
+        }
+
+        init();
+    </script>
+</body>
+</html>

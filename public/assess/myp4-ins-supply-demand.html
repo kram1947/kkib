@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB MYP Economics: Supply & Demand - Study Material</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        :root {
+            --primary: #ea580c;
+            --primary-dark: #c2410c;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #475569;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding: 40px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--warning));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header .subtitle {
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .header .meta {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .topic-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .topic-section:hover {
+            border-color: var(--primary);
+        }
+
+        .topic-section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .topic-section h2 .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(234, 88, 12, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .concept {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .concept h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--primary);
+        }
+
+        .concept p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .formula {
+            background: rgba(234, 88, 12, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+            font-size: 16px;
+            margin: 16px 0;
+        }
+
+        .formula.positive {
+            border-color: var(--secondary);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .formula.negative {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .key-term {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .key-term h4 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .key-term p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .swedish-example {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid #06b6d4;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        .swedish-example h4 {
+            color: #22d3ee;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .swedish-example p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .graph-container {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .graph-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .factor-list {
+            list-style: none;
+        }
+
+        .factor-list li {
+            padding: 12px 16px;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .factor-list .arrow {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .case-study {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--warning);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .case-study h4 {
+            color: var(--warning);
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .case-study p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(234, 88, 12, 0.4);
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-btn.secondary {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            box-shadow: none;
+        }
+
+        .start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(234, 88, 12, 0.4);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-dark);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        tr:hover td {
+            background: var(--bg-dark);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px 16px; }
+            .topic-section { padding: 20px; }
+            .header h1 { font-size: 28px; }
+            .key-terms { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Economics: Supply & Demand</h1>
+            <p class="subtitle">IB MYP Grade 9 Comprehensive Study Guide</p>
+            <div class="meta">
+                <div class="meta-item">
+                    <span>📖</span> 24 Topics
+                </div>
+                <div class="meta-item">
+                    <span>🏛️</span> I&S Individuals & Societies
+                </div>
+                <div class="meta-item">
+                    <span>🇸🇪</span> Swedish & Global Examples
+                </div>
+            </div>
+        </header>
+
+        <section class="topic-section" id="fundamentals">
+            <h2><span class="icon">📚</span> Economics Fundamentals</h2>
+            
+            <div class="concept">
+                <h3>What is Economics?</h3>
+                <p>The study of <strong>scarcity</strong> and its implications for the consumption and production of goods and services, as well as the transfer of wealth. Economics enables you to understand the world around you—people, business, markets, and governments and their interconnectedness.</p>
+            </div>
+
+            <div class="key-terms">
+                <div class="key-term">
+                    <h4>Scarcity</h4>
+                    <p>The biggest economic problem: limited resources to satisfy unlimited needs and wants.</p>
+                </div>
+                <div class="key-term">
+                    <h4>Goods & Services</h4>
+                    <p>Goods are tangible products; Services are intangible work done or advice provided.</p>
+                </div>
+                <div class="key-term">
+                    <h4>Market</h4>
+                    <p>A place (physical or virtual) where people buy and sell goods and services.</p>
+                </div>
+            </div>
+
+            <div class="swedish-example">
+                <h4>🇸🇪 Swedish Example</h4>
+                <p>The Swedish housing market in Stockholm demonstrates scarcity—with high demand and limited supply, prices rise significantly.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="demand">
+            <h2><span class="icon">📉</span> Law of Demand</h2>
+            
+            <div class="concept">
+                <h3>Definition</h3>
+                <p>The law of demand explains the <strong>inverse relationship</strong> between the price of a good/service and the quantity demanded.</p>
+                <div class="formula">↑ Price → ↓ Quantity Demanded | ↓ Price → ↑ Quantity Demanded</div>
+            </div>
+
+            <div class="concept">
+                <h3>Why Does Demand Slope Downward?</h3>
+                <ul class="factor-list">
+                    <li><span class="arrow">💰</span> <strong>Income Effect:</strong> When prices fall, consumers feel wealthier and buy more.</li>
+                    <li><span class="arrow">📊</span> <strong>Substitution Effect:</strong> When prices rise, consumers switch to cheaper alternatives.</li>
+                    <li><span class="arrow">🎯</span> <strong>Diminishing Marginal Utility:</strong> Each additional unit is less valuable to consumers.</li>
+                </ul>
+            </div>
+
+            <div class="graph-container">
+                <svg viewBox="0 0 440 380" width="100%" height="auto">
+                    <rect fill="#0f172a" width="440" height="380"/>
+                    <text x="220" y="25" fill="#f8fafc" font-family="Inter" font-size="14" font-weight="600" text-anchor="middle">Law of Demand</text>
+                    <line x1="60" y1="320" x2="400" y2="320" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="320" x2="60" y2="50" stroke="#475569" stroke-width="2"/>
+                    <polygon points="60,320 370,60 370,320" fill="url(#demandGrad)" opacity="0.2"/>
+                    <line x1="60" y1="320" x2="370" y2="60" stroke="#6366f1" stroke-width="3"/>
+                    <text x="395" y="325" fill="#94a3b8" font-family="Inter" font-size="12" font-weight="500">Quantity (Q)</text>
+                    <text x="60" y="45" fill="#94a3b8" font-family="Inter" font-size="12" font-weight="500">Price (P)</text>
+                    <text x="30" y="60" fill="#f59e0b" font-family="Fira Code" font-size="10">High Price</text>
+                    <text x="30" y="310" fill="#f59e0b" font-family="Fira Code" font-size="10">Low Price</text>
+                    <text x="55" y="340" fill="#94a3b8" font-family="Inter" font-size="10">0</text>
+                    <circle cx="120" cy="270" r="5" fill="#f59e0b"/>
+                    <circle cx="200" cy="190" r="5" fill="#f59e0b"/>
+                    <circle cx="280" cy="110" r="5" fill="#f59e0b"/>
+                    <text x="125" y="285" fill="#f8fafc" font-family="Inter" font-size="9">Point A: P=20, Q=100</text>
+                    <text x="205" y="205" fill="#f8fafc" font-family="Inter" font-size="9">Point B: P=50, Q=60</text>
+                    <text x="285" y="125" fill="#f8fafc" font-family="Inter" font-size="9">Point C: P=80, Q=20</text>
+                    <text x="200" y="170" fill="#6366f1" font-family="Inter" font-size="14" font-weight="600">D</text>
+                    <line x1="120" y1="270" x2="200" y2="190" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,4"/>
+                    <line x1="200" y1="190" x2="280" y2="110" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,4"/>
+                </svg>
+                <div style="background: rgba(99, 102, 241, 0.1); border: 1px solid #6366f1; border-radius: 8px; padding: 16px; margin-top: 16px; text-align: left;">
+                    <h4 style="color: #6366f1; margin-bottom: 12px; font-size: 14px;">How to Read This Graph</h4>
+                    <ol style="color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Y-axis (Price):</strong> Higher = more expensive, Lower = cheaper</li>
+                        <li><strong>X-axis (Quantity):</strong> Higher = more items sold, Lower = fewer items sold</li>
+                        <li><strong>The Curve (D):</strong> Shows the relationship between price and quantity demanded</li>
+                        <li><strong>Reading the curve:</strong> Move up = price increases = fewer people buy. Move down = price decreases = more people buy</li>
+                    </ol>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #475569;">
+                        <h4 style="color: #10b981; margin-bottom: 8px; font-size: 13px;">Real Example: Coffee at ICA</h4>
+                        <p style="color: #94a3b8; font-size: 12px;">If ICA raises coffee from 50 SEK to 80 SEK per bag → fewer people buy → quantity demanded drops (Point A to Point C). If ICA lowers coffee to 20 SEK → more people buy → quantity demanded rises (Point C to Point A).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept">
+                <h3>Factors Influencing Demand</h3>
+                <table>
+                    <tr>
+                        <th>Factor</th>
+                        <th>Effect on Demand</th>
+                        <th>Swedish Example</th>
+                    </tr>
+                    <tr>
+                        <td>Income</td>
+                        <td>↑ Income → ↑ Demand (normal goods)</td>
+                        <td>Tax cut → more iPhone 15 purchases</td>
+                    </tr>
+                    <tr>
+                        <td>Preferences</td>
+                        <td>Trends & fashion changes demand</td>
+                        <td>Oatly popularity surge in Sweden</td>
+                    </tr>
+                    <tr>
+                        <td>Population</td>
+                        <td>More people → more demand</td>
+                        <td>Immigration to Sweden</td>
+                    </tr>
+                    <tr>
+                        <td>Interest Rates</td>
+                        <td>↓ Rates → ↑ Demand (borrowing)</td>
+                        <td>Riksbank lowers rates → car loans</td>
+                    </tr>
+                    <tr>
+                        <td>Price of Related Goods</td>
+                        <td>Substitutes & complements affect demand</td>
+                        <td>Spotify vs. Apple Music</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="swedish-example">
+                <h4>🇸🇪 Real Example: Oatly Milk</h4>
+                <p>If the price of Oatly milk in ICA increases from 20 SEK to 35 SEK, many Swedish consumers will switch to cheaper store-brand alternatives, causing a movement up the demand curve.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="demand-shifts">
+            <h2><span class="icon">↔️</span> Shifts in Demand</h2>
+            
+            <div class="concept">
+                <h3>Movement vs. Shift</h3>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Cause</th>
+                        <th>Effect</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Movement</strong></td>
+                        <td>Change in PRICE</td>
+                        <td>Along the curve</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shift</strong></td>
+                        <td>Change in NON-PRICE factors</td>
+                        <td>Entire curve moves</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="concept">
+                <h3>Shift Right (Increase in Demand)</h3>
+                <ul class="factor-list">
+                    <li>↑ Income</li>
+                    <li>↑ Preferences (trends & fashion)</li>
+                    <li>↑ Population</li>
+                    <li>↓ Interest Rates</li>
+                </ul>
+                <div class="formula positive">D₀ → D₁: Quantity Demanded Increases, Price stays the same</div>
+            </div>
+
+            <div class="graph-container">
+                <svg viewBox="0 0 440 360" width="100%" height="auto">
+                    <rect fill="#0f172a" width="440" height="360"/>
+                    <text x="220" y="25" fill="#f8fafc" font-family="Inter" font-size="14" font-weight="600" text-anchor="middle">Demand Increase (Shift Right)</text>
+                    <line x1="60" y1="310" x2="400" y2="310" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="310" x2="60" y2="50" stroke="#475569" stroke-width="2"/>
+                    <text x="405" y="315" fill="#94a3b8" font-family="Inter" font-size="11">Quantity (Q)</text>
+                    <text x="60" y="45" fill="#94a3b8" font-family="Inter" font-size="11">Price (P)</text>
+                    <line x1="60" y1="310" x2="350" y2="80" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+                    <line x1="60" y1="310" x2="350" y2="80" stroke="#6366f1" stroke-width="3"/>
+                    <text x="280" y="75" fill="#10b981" font-family="Inter" font-size="12" font-weight="600">D₁ (New)</text>
+                    <text x="270" y="100" fill="#6366f1" font-family="Inter" font-size="11" opacity="0.6">D₀ (Old)</text>
+                    <line x1="100" y1="285" x2="170" y2="170" stroke="#f59e0b" stroke-width="2"/>
+                    <line x1="170" y1="170" x2="250" y2="90" stroke="#f59e0b" stroke-width="2"/>
+                    <circle cx="100" cy="285" r="5" fill="#f59e0b"/>
+                    <circle cx="170" cy="170" r="5" fill="#f59e0b"/>
+                    <circle cx="250" cy="90" r="5" fill="#f59e0b"/>
+                    <text x="35" y="80" fill="#10b981" font-family="Inter" font-size="9">↑ Q at same P</text>
+                </svg>
+                <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin-top: 16px; text-align: left;">
+                    <h4 style="color: #10b981; margin-bottom: 12px; font-size: 14px;">Understanding Demand Shift</h4>
+                    <ol style="color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Old Curve (D₀):</strong> Shows original demand at each price level</li>
+                        <li><strong>New Curve (D₁):</strong> Shifts RIGHT - at every price, people want MORE</li>
+                        <li><strong>Key Point:</strong> Price hasn't changed! Something else caused the shift (income, preferences, etc.)</li>
+                        <li><strong>Result:</strong> More quantity demanded at the same equilibrium price</li>
+                    </ol>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #475569;">
+                        <h4 style="color: #6366f1; margin-bottom: 8px; font-size: 13px;">Real Examples</h4>
+                        <p style="color: #94a3b8; font-size: 12px;"><strong>1. Oatly goes viral:</strong> Suddenly everyone wants oat milk → D shifts right → more sold at every price<br>
+                        <strong>2. Tax cut:</strong> People have more money → buy more iPhones → D shifts right<br>
+                        <strong>3. Summer heatwave:</strong> More people want ice cream → D shifts right</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept">
+                <h3>Shift Left (Decrease in Demand)</h3>
+                <ul class="factor-list">
+                    <li>↓ Income</li>
+                    <li>↓ Preferences</li>
+                    <li>↓ Population</li>
+                    <li>↑ Interest Rates</li>
+                </ul>
+                <div class="formula negative">D₀ → D₂: Quantity Demanded Decreases, Price stays the same</div>
+            </div>
+
+            <div class="graph-container">
+                <svg viewBox="0 0 440 360" width="100%" height="auto">
+                    <rect fill="#0f172a" width="440" height="360"/>
+                    <text x="220" y="25" fill="#f8fafc" font-family="Inter" font-size="14" font-weight="600" text-anchor="middle">Demand Decrease (Shift Left)</text>
+                    <line x1="60" y1="310" x2="400" y2="310" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="310" x2="60" y2="50" stroke="#475569" stroke-width="2"/>
+                    <text x="405" y="315" fill="#94a3b8" font-family="Inter" font-size="11">Quantity (Q)</text>
+                    <text x="60" y="45" fill="#94a3b8" font-family="Inter" font-size="11">Price (P)</text>
+                    <line x1="60" y1="310" x2="350" y2="80" stroke="#6366f1" stroke-width="2" opacity="0.4" stroke-dasharray="6,3"/>
+                    <line x1="60" y1="350" x2="300" y2="120" stroke="#ef4444" stroke-width="3"/>
+                    <text x="280" y="75" fill="#ef4444" font-family="Inter" font-size="12" font-weight="600">D₂ (New)</text>
+                    <text x="270" y="100" fill="#6366f1" font-family="Inter" font-size="11" opacity="0.7">D₀ (Old)</text>
+                    <line x1="140" y1="270" x2="200" y2="190" stroke="#f59e0b" stroke-width="2"/>
+                    <line x1="200" y1="190" x2="260" y2="110" stroke="#f59e0b" stroke-width="2"/>
+                    <circle cx="140" cy="270" r="5" fill="#f59e0b"/>
+                    <circle cx="200" cy="190" r="5" fill="#f59e0b"/>
+                    <circle cx="260" cy="110" r="5" fill="#f59e0b"/>
+                    <text x="35" y="130" fill="#ef4444" font-family="Inter" font-size="9">↓ Q at same P</text>
+                </svg>
+                <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 8px; padding: 16px; margin-top: 16px; text-align: left;">
+                    <h4 style="color: #ef4444; margin-bottom: 12px; font-size: 14px;">Understanding Demand Shift</h4>
+                    <ol style="color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Old Curve (D₀):</strong> Shows original demand</li>
+                        <li><strong>New Curve (D₂):</strong> Shifts LEFT - at every price, people want LESS</li>
+                        <li><strong>Key Point:</strong> Price hasn't changed! Something else caused the shift</li>
+                        <li><strong>Result:</strong> Less quantity demanded at every price level</li>
+                    </ol>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #475569;">
+                        <h4 style="color: #6366f1; margin-bottom: 8px; font-size: 13px;">Real Examples</h4>
+                        <p style="color: #94a3b8; font-size: 12px;"><strong>1. Recession hits:</strong> People lose jobs → buy less → D shifts left<br>
+                        <strong>2. Bad publicity:</strong> Scandals reduce product appeal → D shifts left<br>
+                        <strong>3. Substitutes improve:</strong> Better competitor product → original demand drops</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swedish-example">
+                <h4>🇸🇪 Swedish Example: Riksbank Interest Rates</h4>
+                <p>If the Riksbank raises interest rates, it becomes more expensive to borrow money for a car loan. Consequently, the demand for Volvo cars shifts to the LEFT.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="supply">
+            <h2><span class="icon">📈</span> Law of Supply</h2>
+            
+            <div class="concept">
+                <h3>Definition</h3>
+                <p>The law of supply explains the <strong>direct relationship</strong> between the price of a good/service and the quantity supplied.</p>
+                <div class="formula positive">↑ Price → ↑ Quantity Supplied | ↓ Price → ↓ Quantity Supplied</div>
+            </div>
+
+            <div class="concept">
+                <h3>Why Does Supply Slope Upward?</h3>
+                <p>Higher prices give producers more profit incentive to produce more. At higher prices, producers can cover higher production costs and still make a profit.</p>
+            </div>
+
+            <div class="graph-container">
+                <svg viewBox="0 0 440 380" width="100%" height="auto">
+                    <rect fill="#0f172a" width="440" height="380"/>
+                    <text x="220" y="25" fill="#f8fafc" font-family="Inter" font-size="14" font-weight="600" text-anchor="middle">Law of Supply</text>
+                    <line x1="60" y1="320" x2="400" y2="320" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="320" x2="60" y2="50" stroke="#475569" stroke-width="2"/>
+                    <polygon points="60,320 140,320 370,60 370,320" fill="url(#supplyGrad)" opacity="0.2"/>
+                    <line x1="60" y1="320" x2="370" y2="60" stroke="#10b981" stroke-width="3"/>
+                    <text x="395" y="325" fill="#94a3b8" font-family="Inter" font-size="12" font-weight="500">Quantity (Q)</text>
+                    <text x="60" y="45" fill="#94a3b8" font-family="Inter" font-size="12" font-weight="500">Price (P)</text>
+                    <text x="30" y="60" fill="#10b981" font-family="Fira Code" font-size="10">High Price</text>
+                    <text x="30" y="310" fill="#10b981" font-family="Fira Code" font-size="10">Low Price</text>
+                    <text x="55" y="340" fill="#94a3b8" font-family="Inter" font-size="10">0</text>
+                    <circle cx="130" cy="280" r="5" fill="#f59e0b"/>
+                    <circle cx="210" cy="200" r="5" fill="#f59e0b"/>
+                    <circle cx="290" cy="120" r="5" fill="#f59e0b"/>
+                    <text x="135" y="295" fill="#f8fafc" font-family="Inter" font-size="9">Point A: P=20, Q=20</text>
+                    <text x="215" y="215" fill="#f8fafc" font-family="Inter" font-size="9">Point B: P=50, Q=60</text>
+                    <text x="295" y="135" fill="#f8fafc" font-family="Inter" font-size="9">Point C: P=80, Q=100</text>
+                    <text x="200" y="170" fill="#10b981" font-family="Inter" font-size="14" font-weight="600">S</text>
+                    <line x1="130" y1="280" x2="210" y2="200" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,4"/>
+                    <line x1="210" y1="200" x2="290" y2="120" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,4"/>
+                </svg>
+                <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin-top: 16px; text-align: left;">
+                    <h4 style="color: #10b981; margin-bottom: 12px; font-size: 14px;">How to Read This Graph</h4>
+                    <ol style="color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Y-axis (Price):</strong> Higher = sellers get more money per item</li>
+                        <li><strong>X-axis (Quantity):</strong> Higher = more items available for sale</li>
+                        <li><strong>The Curve (S):</strong> Shows the relationship between price and quantity supplied</li>
+                        <li><strong>Reading the curve:</strong> Move UP = higher price = more sellers produce. Move DOWN = lower price = less production</li>
+                    </ol>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #475569;">
+                        <h4 style="color: #6366f1; margin-bottom: 8px; font-size: 13px;">Real Example: Volvo Car Production</h4>
+                        <p style="color: #94a3b8; font-size: 12px;">If Volvo can sell cars at 500,000 SEK → they produce 1,000 cars (Point A). If market price rises to 800,000 SEK → Volvo produces 3,000 cars (Point C) because it's more profitable. Lower prices mean less motivation to produce.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept">
+                <h3>Factors Influencing Supply</h3>
+                <table>
+                    <tr>
+                        <th>Factor</th>
+                        <th>Effect on Supply</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost of Production (COP)</strong></td>
+                        <td>↑ COP → ↓ Supply (inverse relationship)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technology</strong></td>
+                        <td>↑ Technology → ↑ Supply</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Number of Firms</strong></td>
+                        <td>↑ Firms → ↑ Supply</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taxes & Subsidies</strong></td>
+                        <td>↑ Taxes → ↓ Supply | ↑ Subsidies → ↑ Supply</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Expectations</strong></td>
+                        <td>Expected ↓ demand → ↓ supply</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mother Nature</strong></td>
+                        <td>Disasters → ↓ Supply</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="swedish-example">
+                <h4>🇸🇪 Real Example: Swedish Timber</h4>
+                <p>If the global price of timber increases, Swedish forestry companies like Sveaskog will increase logging operations to sell more wood while it is highly profitable.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="supply-shifts">
+            <h2><span class="icon">↔️</span> Shifts in Supply</h2>
+            
+            <div class="concept">
+                <h3>Factors of Production (Input Costs)</h3>
+                <ul class="factor-list">
+                    <li><span class="arrow">👷</span> <strong>Labour:</strong> Wages & salaries of employees</li>
+                    <li><span class="arrow">🏠</span> <strong>Land:</strong> Rental for space, mortgages</li>
+                    <li><span class="arrow">⚙️</span> <strong>Capital:</strong> Loans, machinery, maintenance</li>
+                    <li><span class="arrow">💡</span> <strong>Entrepreneurship:</strong> Human/intellectual capital cost</li>
+                </ul>
+                <div class="formula negative">↑ COP → ↓ Quantity Supplied (Inverse Relationship)</div>
+            </div>
+
+            <div class="concept">
+                <h3>Shift Right (Increase in Supply)</h3>
+                <ul class="factor-list">
+                    <li>↓ Cost of Production</li>
+                    <li>↑ Technology</li>
+                    <li>↑ Number of firms</li>
+                    <li>↑ Subsidies</li>
+                    <li>↓ Taxes</li>
+                </ul>
+            </div>
+
+            <div class="graph-container">
+                <svg viewBox="0 0 440 360" width="100%" height="auto">
+                    <rect fill="#0f172a" width="440" height="360"/>
+                    <text x="220" y="25" fill="#f8fafc" font-family="Inter" font-size="14" font-weight="600" text-anchor="middle">Supply Increase (Shift Right)</text>
+                    <line x1="60" y1="310" x2="400" y2="310" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="310" x2="60" y2="50" stroke="#475569" stroke-width="2"/>
+                    <text x="405" y="315" fill="#94a3b8" font-family="Inter" font-size="11">Quantity (Q)</text>
+                    <text x="60" y="45" fill="#94a3b8" font-family="Inter" font-size="11">Price (P)</text>
+                    <line x1="60" y1="310" x2="350" y2="80" stroke="#10b981" stroke-width="2" opacity="0.5"/>
+                    <line x1="60" y1="285" x2="380" y2="60" stroke="#10b981" stroke-width="3"/>
+                    <text x="280" y="75" fill="#10b981" font-family="Inter" font-size="12" font-weight="600">S₀ (Old)</text>
+                    <text x="310" y="100" fill="#06b6d4" font-family="Inter" font-size="12">S₁ (New) →</text>
+                    <circle cx="130" cy="265" r="5" fill="#f59e0b"/>
+                    <circle cx="210" cy="180" r="5" fill="#f59e0b"/>
+                    <circle cx="290" cy="95" r="5" fill="#f59e0b"/>
+                    <text x="35" y="110" fill="#06b6d4" font-family="Inter" font-size="9">↑ Q at same P</text>
+                </svg>
+                <div style="background: rgba(6, 182, 212, 0.1); border: 1px solid #06b6d4; border-radius: 8px; padding: 16px; margin-top: 16px; text-align: left;">
+                    <h4 style="color: #06b6d4; margin-bottom: 12px; font-size: 14px;">Understanding Supply Shift</h4>
+                    <ol style="color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Old Curve (S₀):</strong> Shows original supply</li>
+                        <li><strong>New Curve (S₁):</strong> Shifts RIGHT - producers make MORE at every price</li>
+                        <li><strong>Key Point:</strong> Price hasn't changed! Something else caused the shift</li>
+                        <li><strong>Result:</strong> More supply in the market at the same price</li>
+                    </ol>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #475569;">
+                        <h4 style="color: #10b981; margin-bottom: 8px; font-size: 13px;">Real Examples</h4>
+                        <p style="color: #94a3b8; font-size: 12px;"><strong>1. Northvolt builds new factory:</strong> More batteries produced at every price ��� S shifts right<br>
+                        <strong>2. Government subsidy:</strong> Cheaper production → farmers grow more → S shifts right<br>
+                        <strong>3. Tech improvement:</strong> Better machines → lower costs → more production</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept">
+                <h3>Shift Left (Decrease in Supply)</h3>
+                <ul class="factor-list">
+                    <li>↑ Cost of Production</li>
+                    <li>↓ Technology</li>
+                    <li>↓ Number of firms</li>
+                    <li>↑ Taxes</li>
+                    <li>↓ Subsidies</li>
+                    <li>Negative expectations</li>
+                </ul>
+            </div>
+
+            <div class="graph-container">
+                <svg viewBox="0 0 440 360" width="100%" height="auto">
+                    <rect fill="#0f172a" width="440" height="360"/>
+                    <text x="220" y="25" fill="#f8fafc" font-family="Inter" font-size="14" font-weight="600" text-anchor="middle">Supply Decrease (Shift Left)</text>
+                    <line x1="60" y1="310" x2="400" y2="310" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="310" x2="60" y2="50" stroke="#475569" stroke-width="2"/>
+                    <text x="405" y="315" fill="#94a3b8" font-family="Inter" font-size="11">Quantity (Q)</text>
+                    <text x="60" y="45" fill="#94a3b8" font-family="Inter" font-size="11">Price (P)</text>
+                    <line x1="60" y1="310" x2="350" y2="80" stroke="#10b981" stroke-width="3"/>
+                    <line x1="60" y1="285" x2="320" y2="100" stroke="#ef4444" stroke-width="2" opacity="0.5"/>
+                    <text x="280" y="85" fill="#10b981" font-family="Inter" font-size="12" font-weight="600">S₀ (Old)</text>
+                    <text x="250" y="110" fill="#ef4444" font-family="Inter" font-size="12">← S₁ (New)</text>
+                    <circle cx="130" cy="265" r="5" fill="#f59e0b"/>
+                    <circle cx="210" cy="180" r="5" fill="#f59e0b"/>
+                    <circle cx="290" cy="95" r="5" fill="#f59e0b"/>
+                    <text x="35" y="110" fill="#ef4444" font-family="Inter" font-size="9">↓ Q at same P</text>
+                </svg>
+                <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 8px; padding: 16px; margin-top: 16px; text-align: left;">
+                    <h4 style="color: #ef4444; margin-bottom: 12px; font-size: 14px;">Understanding Supply Shift</h4>
+                    <ol style="color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Old Curve (S₀):</strong> Shows original supply</li>
+                        <li><strong>New Curve (S₁):</strong> Shifts LEFT - producers make LESS at every price</li>
+                        <li><strong>Key Point:</strong> Price hasn't changed! Costs or other factors changed</li>
+                        <li><strong>Result:</strong> Less supply in the market</li>
+                    </ol>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #475569;">
+                        <h4 style="color: #10b981; margin-bottom: 8px; font-size: 13px;">Real Examples</h4>
+                        <p style="color: #94a3b8; font-size: 12px;"><strong>1. Energy crisis:</strong> Electricity prices rise → production costs up → S shifts left<br>
+                        <strong>2. Factory fire:</strong> Production capacity destroyed → S shifts left<br>
+                        <strong>3. Supply chain broken:</strong> Can't get raw materials → less production</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swedish-example">
+                <h4>🇸🇪 Swedish Example: Northvolt</h4>
+                <p>Electricity prices for factories rise sharply. For Northvolt (battery producer), this increases the Cost of Production (COP). Their supply curve shifts to the LEFT.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="equilibrium">
+            <h2><span class="icon">⚖️</span> Market Equilibrium</h2>
+            
+            <div class="concept">
+                <h3>Definition</h3>
+                <p>A state of balance between supply and demand where the quantity demanded equals quantity supplied.</p>
+                <div class="formula">Qₑ: Qₛ = Qᴅ (Equilibrium Quantity)</div>
+            </div>
+
+            <div class="concept">
+                <h3>Importance of Equilibrium</h3>
+                <ul class="factor-list">
+                    <li>Consumers know what they will pay and how much will be available</li>
+                    <li>Producers know how much will sell and at what price</li>
+                    <li>Graphically: Where supply and demand curves intersect</li>
+                </ul>
+            </div>
+
+            <div class="graph-container">
+                <svg viewBox="0 0 440 400" width="100%" height="auto">
+                    <rect fill="#0f172a" width="440" height="400"/>
+                    <text x="220" y="25" fill="#f8fafc" font-family="Inter" font-size="14" font-weight="600" text-anchor="middle">Market Equilibrium</text>
+                    <line x1="60" y1="350" x2="400" y2="350" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="350" x2="60" y2="60" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="350" x2="360" y2="80" stroke="#6366f1" stroke-width="2.5"/>
+                    <line x1="60" y1="350" x2="360" y2="330" stroke="#10b981" stroke-width="2.5"/>
+                    <text x="405" y="355" fill="#94a3b8" font-family="Inter" font-size="12" font-weight="500">Quantity (Q)</text>
+                    <text x="60" y="50" fill="#94a3b8" font-family="Inter" font-size="12" font-weight="500">Price (P)</text>
+                    <text x="140" y="60" fill="#6366f1" font-family="Inter" font-size="12">D (Demand)</text>
+                    <text x="300" y="340" fill="#10b981" font-family="Inter" font-size="12">S (Supply)</text>
+                    <circle cx="210" cy="190" r="7" fill="#f59e0b"/>
+                    <text x="220" y="185" fill="#f59e0b" font-family="Inter" font-size="11" font-weight="600">E</text>
+                    <line x1="60" y1="190" x2="210" y2="190" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,4"/>
+                    <line x1="210" y1="190" x2="210" y2="350" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,4"/>
+                    <text x="20" y="195" fill="#f59e0b" font-family="Fira Code" font-size="10">Pe = 50</text>
+                    <text x="215" y="370" fill="#f59e0b" font-family="Fira Code" font-size="10">Qe = 60</text>
+                    <circle cx="120" cy="290" r="4" fill="#6366f1" opacity="0.6"/>
+                    <circle cx="120" cy="290" r="4" fill="#10b981" opacity="0.6"/>
+                    <text x="85" y="285" fill="#94a3b8" font-family="Inter" font-size="8">Shortage zone</text>
+                    <circle cx="300" cy="130" r="4" fill="#6366f1" opacity="0.6"/>
+                    <circle cx="300" cy="130" r="4" fill="#10b981" opacity="0.6"/>
+                    <text x="265" y="125" fill="#94a3b8" font-family="Inter" font-size="8">Surplus zone</text>
+                </svg>
+                <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b; border-radius: 8px; padding: 16px; margin-top: 16px; text-align: left;">
+                    <h4 style="color: #f59e0b; margin-bottom: 12px; font-size: 14px;">How to Read This Graph</h4>
+                    <ol style="color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Equilibrium (E):</strong> Where D and S cross - the "fair price" where everyone is happy</li>
+                        <li><strong>At Equilibrium:</strong> Pe = 50 SEK, Qe = 60 units - this is the market balance</li>
+                        <li><strong>Below Equilibrium (left of E):</strong> Shortage - too many buyers, not enough supply</li>
+                        <li><strong>Above Equilibrium (right of E):</strong> Surplus - too much supply, not enough buyers</li>
+                    </ol>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #475569;">
+                        <h4 style="color: #6366f1; margin-bottom: 8px; font-size: 13px;">Real Example: Stockholm Housing</h4>
+                        <p style="color: #94a3b8; font-size: 12px;">If rent is set too LOW (below Pe) → SHORTAGE: Many students want apartments but few are available. If rent is too HIGH (above Pe) → SURPLUS: Landlords have empty apartments. The equilibrium is where supply meets demand naturally.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept">
+                <h3>Disequilibrium</h3>
+                <table>
+                    <tr>
+                        <th>Condition</th>
+                        <th>Definition</th>
+                        <th>Result</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Shortage</strong></td>
+                        <td>Price too low (Qᴅ > Qₛ)</td>
+                        <td>Price increases</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Surplus</strong></td>
+                        <td>Price too high (Qₛ > Qᴅ)</td>
+                        <td>Price decreases</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="swedish-example">
+                <h4>🇸🇪 Real Example: Nord Pool Electricity</h4>
+                <p>The daily price of electricity on the Nord Pool exchange. The price fluctuates until the amount of power generated matches the amount Swedish homes and factories need.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="inflation">
+            <h2><span class="icon">💸</span> Inflation & Purchasing Power</h2>
+            
+            <div class="concept">
+                <h3>What is Inflation?</h3>
+                <p>A general increase in prices of products due to economic crisis, causing a fall in the purchasing power of money.</p>
+            </div>
+
+            <div class="concept">
+                <h3>Why Prices Gradually Increase</h3>
+                <ul class="factor-list">
+                    <li>Natural increase in demand</li>
+                    <li>Population growth</li>
+                    <li>Currency loses value over time</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h4>📊 Swedish Example</h4>
+                <p>100,000 SEK in 2020 = 110,000 SEK in 2024 (same goods). If Person A only has 100,000 SEK in 2024, they are poorer. If they have 110,000 SEK, they're the same. If more than 110,000 SEK, they're wealthier.</p>
+            </div>
+
+            <div class="concept">
+                <h3>Is Inflation Good?</h3>
+                <table>
+                    <tr>
+                        <th>When Inflation is Positive</th>
+                        <th>When Inflation is Negative</th>
+                    </tr>
+                    <tr>
+                        <td>Indicates economic growth</td>
+                        <td>Erodes purchasing power</td>
+                    </tr>
+                    <tr>
+                        <td>Higher demand → higher prices</td>
+                        <td>Hurts fixed-income earners</td>
+                    </tr>
+                    <tr>
+                        <td>More profit for businesses</td>
+                        <td>Creates uncertainty</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="case-study">
+                <h4>⚠️ Extreme Example: Zimbabwe</h4>
+                <p>Hyperinflation in Zimbabwe showed the devastating effects of uncontrolled money printing—prices doubled every few days.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="central-banks">
+            <h2><span class="icon">🏦</span> Central Banks & Interest Rates</h2>
+            
+            <div class="concept">
+                <h3>What is a Central Bank?</h3>
+                <p>The "Bank of Banks"—run by the government to ensure prices don't fluctuate too much and to help manage the economy.</p>
+            </div>
+
+            <div class="concept">
+                <h3>Low Interest Rates</h3>
+                <ul class="factor-list">
+                    <li>↑ Borrowing</li>
+                    <li>↑ Business growth</li>
+                    <li>↑ Consumer spending</li>
+                    <li>Risk: Can cause inflation</li>
+                </ul>
+            </div>
+
+            <div class="concept">
+                <h3>High Interest Rates</h3>
+                <ul class="factor-list">
+                    <li>↓ Borrowing</li>
+                    <li>↓ Consumer spending</li>
+                    <li>Used to combat inflation</li>
+                    <li>Can lead to recession if too high</li>
+                </ul>
+            </div>
+
+            <div class="concept">
+                <h3>Recession</h3>
+                <p>An economic depression causing GDP to fall as business success rates reduce and unemployment rates increase.</p>
+                <ul class="factor-list">
+                    <li>Causes: High inflation, War, Pandemic, High interest rates</li>
+                    <li>Response: Central bank decreases interest rates</li>
+                </ul>
+            </div>
+
+            <div class="swedish-example">
+                <h4>🇸🇪 Swedish Example: Riksbank</h4>
+                <p>The Riksbank uses interest rates to control inflation. If inflation is too high, they raise rates (like raising rates from 2% to 4% affects Volvo car demand).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="government">
+            <h2><span class="icon">🏛️</span> Government Intervention</h2>
+            
+            <div class="concept">
+                <h3>Price Ceilings</h3>
+                <p>Government-imposed maximum price that producers can charge for a product (usually for essential goods).</p>
+                <ul class="factor-list">
+                    <li>Price set BELOW equilibrium</li>
+                    <li>↑ Demand + ↓ Supply = SHORTAGE</li>
+                </ul>
+            </div>
+
+            <div class="graph-container">
+                <svg viewBox="0 0 440 380" width="100%" height="auto">
+                    <rect fill="#0f172a" width="440" height="380"/>
+                    <text x="220" y="25" fill="#f8fafc" font-family="Inter" font-size="14" font-weight="600" text-anchor="middle">Price Ceiling (Maximum Price)</text>
+                    <line x1="60" y1="330" x2="400" y2="330" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="330" x2="60" y2="50" stroke="#475569" stroke-width="2"/>
+                    <text x="405" y="335" fill="#94a3b8" font-family="Inter" font-size="11">Quantity (Q)</text>
+                    <text x="60" y="45" fill="#94a3b8" font-family="Inter" font-size="11">Price (P)</text>
+                    <line x1="60" y1="330" x2="360" y2="80" stroke="#6366f1" stroke-width="2.5"/>
+                    <line x1="60" y1="330" x2="360" y2="60" stroke="#10b981" stroke-width="2.5"/>
+                    <circle cx="210" cy="150" r="6" fill="#f59e0b"/>
+                    <text x="220" y="145" fill="#f59e0b" font-family="Fira Code" font-size="11" font-weight="600">E</text>
+                    <text x="175" y="165" fill="#f59e0b" font-family="Fira Code" font-size="9">Pe</text>
+                    <line x1="60" y1="200" x2="400" y2="200" stroke="#ef4444" stroke-width="3"/>
+                    <text x="380" y="195" fill="#ef4444" font-family="Inter" font-size="11" font-weight="600">PC</text>
+                    <text x="15" y="205" fill="#ef4444" font-family="Fira Code" font-size="9">Max</text>
+                    <line x1="280" y1="150" x2="280" y2="200" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,4"/>
+                    <line x1="280" y1="200" x2="280" y2="330" stroke="#ef4444" stroke-width="2"/>
+                    <text x="290" y="260" fill="#ef4444" font-family="Inter" font-size="12" font-weight="600">SHORTAGE</text>
+                    <text x="290" y="275" fill="#ef4444" font-family="Inter" font-size="10">Qd > Qs</text>
+                    <text x="290" y="290" fill="#94a3b8" font-family="Inter" font-size="10">60 > 30</text>
+                    <line x1="160" y1="150" x2="160" y2="200" stroke="#6366f1" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="160" y1="200" x2="160" y2="330" stroke="#10b981" stroke-width="1"/>
+                    <text x="100" y="240" fill="#6366f1" font-family="Inter" font-size="9">Qd</text>
+                    <text x="100" y="270" fill="#10b981" font-family="Inter" font-size="9">Qs</text>
+                </svg>
+                <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 8px; padding: 16px; margin-top: 16px; text-align: left;">
+                    <h4 style="color: #ef4444; margin-bottom: 12px; font-size: 14px;">How to Read This Graph</h4>
+                    <ol style="color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Equilibrium (E):</strong> Natural market price without government interference</li>
+                        <li><strong>Price Ceiling (PC):</strong> Government says "price cannot go above this"</li>
+                        <li><strong>The Gap:</strong> At PC, Qd (demand) is MUCH higher than Qs (supply)</li>
+                        <li><strong>Result:</strong> SHORTAGE - too many buyers, not enough product</li>
+                    </ol>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #475569;">
+                        <h4 style="color: #6366f1; margin-bottom: 8px; font-size: 13px;">Real Examples</h4>
+                        <p style="color: #94a3b8; font-size: 12px;"><strong>1. Rent control:</strong> Govt sets max rent → more people want apartments than available → housing shortage<br>
+                        <strong>2. Price cap on masks:</strong> During pandemic, govt limits mask prices → more people want masks than stores have<br>
+                        <strong>3. Ticket price limit:</strong> Concert tickets capped → way more fans want tickets than seats available</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swedish-example">
+                <h4>🇸🇪 Example: Stockholm Rent Control</h4>
+                <p>Rent control keeps prices below equilibrium, resulting in long queues (shortages) for apartments in Stockholm.</p>
+            </div>
+
+            <div class="concept">
+                <h3>Price Floors</h3>
+                <p>Government-imposed minimum price to protect producers/farmers.</p>
+                <ul class="factor-list">
+                    <li>Price set ABOVE equilibrium</li>
+                    <li>↓ Demand + ↑ Supply = SURPLUS</li>
+                </ul>
+            </div>
+
+            <div class="graph-container">
+                <svg viewBox="0 0 440 380" width="100%" height="auto">
+                    <rect fill="#0f172a" width="440" height="380"/>
+                    <text x="220" y="25" fill="#f8fafc" font-family="Inter" font-size="14" font-weight="600" text-anchor="middle">Price Floor (Minimum Price)</text>
+                    <line x1="60" y1="330" x2="400" y2="330" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="330" x2="60" y2="50" stroke="#475569" stroke-width="2"/>
+                    <text x="405" y="335" fill="#94a3b8" font-family="Inter" font-size="11">Quantity (Q)</text>
+                    <text x="60" y="45" fill="#94a3b8" font-family="Inter" font-size="11">Price (P)</text>
+                    <line x1="60" y1="330" x2="360" y2="80" stroke="#6366f1" stroke-width="2.5"/>
+                    <line x1="60" y1="330" x2="360" y2="60" stroke="#10b981" stroke-width="2.5"/>
+                    <circle cx="210" cy="150" r="6" fill="#f59e0b"/>
+                    <text x="220" y="145" fill="#f59e0b" font-family="Fira Code" font-size="11" font-weight="600">E</text>
+                    <text x="175" y="165" fill="#f59e0b" font-family="Fira Code" font-size="9">Pe</text>
+                    <line x1="60" y1="100" x2="400" y2="100" stroke="#10b981" stroke-width="3"/>
+                    <text x="380" y="105" fill="#10b981" font-family="Inter" font-size="11" font-weight="600">PF</text>
+                    <text x="15" y="105" fill="#10b981" font-family="Fira Code" font-size="9">Min</text>
+                    <line x1="300" y1="100" x2="300" y2="150" stroke="#10b981" stroke-width="2" stroke-dasharray="4,4"/>
+                    <line x1="300" y1="150" x2="300" y2="330" stroke="#10b981" stroke-width="2"/>
+                    <text x="310" y="220" fill="#10b981" font-family="Inter" font-size="12" font-weight="600">SURPLUS</text>
+                    <text x="310" y="235" fill="#10b981" font-family="Inter" font-size="10">Qs > Qd</text>
+                    <text x="310" y="250" fill="#94a3b8" font-family="Inter" font-size="10">60 > 30</text>
+                    <line x1="260" y1="100" x2="260" y2="150" stroke="#6366f1" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="260" y1="150" x2="260" y2="330" stroke="#6366f1" stroke-width="1"/>
+                    <text x="200" y="120" fill="#10b981" font-family="Inter" font-size="9">Qs</text>
+                    <text x="200" y="150" fill="#6366f1" font-family="Inter" font-size="9">Qd</text>
+                </svg>
+                <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 8px; padding: 16px; margin-top: 16px; text-align: left;">
+                    <h4 style="color: #10b981; margin-bottom: 12px; font-size: 14px;">How to Read This Graph</h4>
+                    <ol style="color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>Equilibrium (E):</strong> Natural market price without government interference</li>
+                        <li><strong>Price Floor (PF):</strong> Government says "price cannot go below this"</li>
+                        <li><strong>The Gap:</strong> At PF, Qs (supply) is MUCH higher than Qd (demand)</li>
+                        <li><strong>Result:</strong> SURPLUS - too much product, not enough buyers</li>
+                    </ol>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #475569;">
+                        <h4 style="color: #6366f1; margin-bottom: 8px; font-size: 13px;">Real Examples</h4>
+                        <p style="color: #94a3b8; font-size: 12px;"><strong>1. Minimum wage:</strong> Govt sets minimum hourly rate → more people want jobs than available positions<br>
+                        <strong>2. EU milk quotas:</strong> Minimum price for farmers → too much milk produced, government buys excess<br>
+                        <strong>3. Airline tickets:</strong> Minimum price during holidays → airlines have empty seats they can't sell cheaper</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swedish-example">
+                <h4>🇸🇪 Example: Swedish Agricultural Subsidies</h4>
+                <p>Minimum corn price leads to excess supply that government must buy.</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="case-studies">
+            <h2><span class="icon">🌍</span> Global Case Studies</h2>
+            
+            <div class="case-study">
+                <h4>🛢️ Middle East Conflict - Oil Market</h4>
+                <p>Iran borders the Strait of Hormuz through which 20% of global oil supply flows. When the strait was blocked, supply ↓ rapidly causing sharp ↑ in price. As a secondary effect, countries worry about running out of oil, leading to panic buying → demand ↑.</p>
+            </div>
+
+            <div class="case-study">
+                <h4>🌽 Corn Industry Failure</h4>
+                <p>When crop farming industries fail, supply decreases. This eventually results in increasing demand for US corn farming industry. Heavy demand causes price to increase.</p>
+            </div>
+
+            <div class="case-study">
+                <h4>⛏️ DRC Cobalt Crisis</h4>
+                <p>Political instability in the Democratic Republic of Congo (produces 70% of global cobalt) reduces cobalt supply by 40%. Since cobalt is key for EV batteries, input costs increase → EV prices rise in Sweden (Volvo, Polestar).</p>
+            </div>
+        </section>
+
+        <section class="topic-section" id="simultaneous">
+            <h2><span class="icon">🔄</span> Simultaneous Shifts</h2>
+            
+            <div class="concept">
+                <h3>When Both Curves Move</h3>
+                <table>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Price Effect</th>
+                        <th>Quantity Effect</th>
+                    </tr>
+                    <tr>
+                        <td>Demand ↑ + Supply ↓</td>
+                        <td>↑↑ Increases</td>
+                        <td>Uncertain</td>
+                    </tr>
+                    <tr>
+                        <td>Demand ↓ + Supply ↑</td>
+                        <td>↓↓ Decreases</td>
+                        <td>Uncertain</td>
+                    </tr>
+                    <tr>
+                        <td>Demand ↑ + Supply ↑</td>
+                        <td>Uncertain</td>
+                        <td>↑↑ Increases</td>
+                    </tr>
+                    <tr>
+                        <td>Demand ↓ + Supply ↓</td>
+                        <td>Uncertain</td>
+                        <td>↓↓ Decreases</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="graph-container">
+                <svg viewBox="0 0 440 380" width="100%" height="auto">
+                    <rect fill="#0f172a" width="440" height="380"/>
+                    <text x="220" y="25" fill="#f8fafc" font-family="Inter" font-size="14" font-weight="600" text-anchor="middle">Simultaneous Shifts: Demand ↑ + Supply ↑</text>
+                    <line x1="60" y1="330" x2="400" y2="330" stroke="#475569" stroke-width="2"/>
+                    <line x1="60" y1="330" x2="60" y2="50" stroke="#475569" stroke-width="2"/>
+                    <text x="405" y="335" fill="#94a3b8" font-family="Inter" font-size="11">Quantity (Q)</text>
+                    <text x="60" y="45" fill="#94a3b8" font-family="Inter" font-size="11">Price (P)</text>
+                    <line x1="60" y1="330" x2="360" y2="100" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+                    <line x1="60" y1="330" x2="360" y2="100" stroke="#6366f1" stroke-width="2.5" stroke-dasharray="6,3"/>
+                    <line x1="60" y1="330" x2="360" y2="80" stroke="#10b981" stroke-width="2" opacity="0.5"/>
+                    <line x1="60" y1="330" x2="360" y2="80" stroke="#10b981" stroke-width="2.5" stroke-dasharray="6,3"/>
+                    <text x="300" y="95" fill="#10b981" font-family="Inter" font-size="11" font-weight="600">S₀ → S₁</text>
+                    <text x="280" y="115" fill="#6366f1" font-family="Inter" font-size="11" font-weight="600">D₀ → D₁</text>
+                    <circle cx="190" cy="190" r="7" fill="#f59e0b"/>
+                    <text x="175" y="215" fill="#f59e0b" font-family="Fira Code" font-size="10" font-weight="600">E₀</text>
+                    <circle cx="270" cy="145" r="7" fill="#f59e0b"/>
+                    <text x="255" y="170" fill="#f59e0b" font-family="Fira Code" font-size="10" font-weight="600">E₁</text>
+                    <line x1="190" y1="190" x2="270" y2="145" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,4"/>
+                    <text x="35" y="120" fill="#f59e0b" font-family="Inter" font-size="10">↑ P</text>
+                    <text x="35" y="140" fill="#10b981" font-family="Inter" font-size="10">↑ Q ✓</text>
+                </svg>
+                <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b; border-radius: 8px; padding: 16px; margin-top: 16px; text-align: left;">
+                    <h4 style="color: #f59e0b; margin-bottom: 12px; font-size: 14px;">How to Read This Graph</h4>
+                    <ol style="color: #94a3b8; font-size: 13px; line-height: 1.8; padding-left: 20px;">
+                        <li><strong>BOTH curves shift RIGHT:</strong> More demand AND more supply at every price</li>
+                        <li><strong>Equilibrium moves from E₀ to E₁:</strong> New market balance point</li>
+                        <li><strong>Price goes UP:</strong> Both shifts push price higher (certain)</li>
+                        <li><strong>Quantity goes UP:</strong> Both shifts push quantity higher (certain)</li>
+                        <li><strong>UNIQUE case:</strong> Both effects on Q agree - quantity change is certain!</li>
+                    </ol>
+                    <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #475569;">
+                        <h4 style="color: #6366f1; margin-bottom: 8px; font-size: 13px;">Real Examples</h4>
+                        <p style="color: #94a3b8; font-size: 12px;"><strong>1. New smartphone launch:</strong> Huge hype (D↑) + factories produce more (S↑) → both Q and P rise<br>
+                        <strong>2. Summer concert:</strong> Many fans want tickets (D↑) + venue adds more seating (S↑) → more tickets, higher prices<br>
+                        <strong>3. Electric cars:</strong> Green trends boost demand (D↑) + tech improvements increase production (S↑)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="topic-section" id="summary">
+            <h2><span class="icon">📋</span> Key Formulas Summary</h2>
+            
+            <div class="concept">
+                <h3>Demand</h3>
+                <ul class="factor-list">
+                    <li><strong>Law of Demand:</strong> ↑P → ↓Qᴅ (inverse)</li>
+                    <li><strong>Demand Shift Right:</strong> ↑Income, ↑Preferences, ↑Population, ↓Interest Rates</li>
+                    <li><strong>Demand Shift Left:</strong> ↓Income, ↓Preferences, ↓Population, ↑Interest Rates</li>
+                </ul>
+            </div>
+
+            <div class="concept">
+                <h3>Supply</h3>
+                <ul class="factor-list">
+                    <li><strong>Law of Supply:</strong> ↑P → ↑Qₛ (direct)</li>
+                    <li><strong>Supply Shift Right:</strong> ↓COP, ↑Technology, ↑Subsidies, ↓Taxes</li>
+                    <li><strong>Supply Shift Left:</strong> ↑COP, ↓Technology, ↑Taxes, ↓Subsidies</li>
+                </ul>
+            </div>
+
+            <div class="concept">
+                <h3>Equilibrium</h3>
+                <ul class="factor-list">
+                    <li><strong>Equilibrium:</strong> Qᴅ = Qₛ</li>
+                    <li><strong>Shortage:</strong> Qᴅ > Qₛ (price too low)</li>
+                    <li><strong>Surplus:</strong> Qₛ > Qᴅ (price too high)</li>
+                </ul>
+            </div>
+        </section>
+
+        <div style="text-align: center; padding: 40px;">
+            <a href="myp4-ins-supply-demand-assessment.html" class="start-btn">
+                Start Assessment →
+            </a>
+        </div>
+    </div>
+</body>
+</html>
