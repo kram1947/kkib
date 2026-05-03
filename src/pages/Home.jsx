@@ -10,6 +10,7 @@ const topicsData = [
   { id: 'trigonometry', name: 'Trigonometry', icon: '📐', color: 'rgba(6, 182, 212, 0.15)' },
   { id: 'probability', name: 'Probability', icon: '🎲', color: 'rgba(16, 185, 129, 0.15)' },
   { id: 'statistics', name: 'Statistics', icon: '📊', color: 'rgba(6, 182, 212, 0.15)' },
+  { id: 'science', name: 'Science', icon: '⚛️', color: 'rgba(16, 185, 129, 0.15)' },
   { id: 'ins', name: 'I & S', icon: '🏛', color: 'rgba(234, 88, 12, 0.15)' },
 ];
 
@@ -206,6 +207,38 @@ const assessmentsData = [
     icon: '📊',
     iconBg: 'geometry'
   },
+  {
+    id: 13,
+    title: 'Science - Ions, Isotopes & Ionic Bonding',
+    description: 'Comprehensive science study guide covering ion formation, isotope notation, ionic bonding, and properties of ionic compounds. Based on MYP4 Science curriculum.',
+    topics: ['Ions', 'Isotopes', 'Ionic Bonding', 'Properties'],
+    topicId: 'science',
+    questionCount: 0,
+    time: 'Self-paced',
+    marks: 0,
+    difficulty: 0,
+    href: 'assess/myp4-science-ions-isotopes-study.html',
+    category: 'myp4',
+    badge: 'MYP4',
+    icon: '⚛️',
+    iconBg: 'stats'
+  },
+  {
+    id: 14,
+    title: 'Science Assessment - Ions & Bonding',
+    description: '20 questions covering ions, isotopes, ionic bonding, properties of ionic compounds, and real-world applications. LaTeX formatted with interactive diagrams.',
+    topics: ['Ions', 'Isotopes', 'Ionic Bonding', 'Properties', 'Real World'],
+    topicId: 'science',
+    questionCount: 20,
+    time: '45',
+    marks: 80,
+    difficulty: 3,
+    href: 'assess/myp4-science-ions-isotopes-assessment.html',
+    category: 'myp4',
+    badge: 'MYP4',
+    icon: '⚡',
+    iconBg: 'geometry'
+  },
 ];
 
   const comingSoon = [
@@ -373,9 +406,9 @@ export default function Home() {
 
       <section className="stats-section" aria-label="Platform statistics">
         <div className="stats-grid">
-          <StatCard icon="📚" value="10" label="Assessments" colorClass="purple" />
-          <StatCard icon="📝" value="256" label="Questions" colorClass="green" />
-          <StatCard icon="⏱" value="315" label="Minutes" colorClass="amber" />
+          <StatCard icon="📚" value="14" label="Assessments" colorClass="purple" />
+          <StatCard icon="📝" value="276" label="Questions" colorClass="green" />
+          <StatCard icon="⏱" value="360" label="Minutes" colorClass="amber" />
           <StatCard icon="🎯" value="MYP4" label="Curriculum" colorClass="cyan" />
         </div>
       </section>

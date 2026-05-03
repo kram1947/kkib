@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB MYP4 Science - Ions, Isotopes & Ionic Bonding | KaniMath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #34d399;
+            --secondary: #6366f1;
+            --secondary-dark: #4f46e5;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg-dark: #0a0f1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1e293b;
+            --bg-section: #0f172a;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --border: #374151;
+            --gradient-1: linear-gradient(135deg, #10b981, #059669);
+            --gradient-2: linear-gradient(135deg, #6366f1, #8b5cf6);
+            --gradient-3: linear-gradient(135deg, #f59e0b, #d97706);
+            --gradient-4: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #064e3b 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .logo-text h1 { font-size: 18px; font-weight: 700; }
+        .logo-text span { font-size: 12px; color: var(--text-secondary); }
+
+        .badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-myp4 { background: rgba(16, 185, 129, 0.2); color: var(--primary-light); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-ib { background: rgba(99, 102, 241, 0.2); color: var(--secondary); border: 1px solid rgba(99, 102, 241, 0.3); }
+
+        .nav-links { display: flex; gap: 12px; flex-wrap: wrap; }
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+        }
+        .nav-link:hover { background: var(--bg-card-hover); color: var(--text-primary); border-color: var(--primary); }
+        .nav-link.primary { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .hero-section {
+            padding: 4rem 0;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .topic-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .topic-nav-item {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .topic-nav-item:hover { border-color: var(--primary); color: var(--primary-light); background: var(--bg-card-hover); }
+
+        .section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+        .section:last-child { border-bottom: none; }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-header p { color: var(--text-secondary); font-size: 1rem; }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .content-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+        .content-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-light);
+        }
+
+        .content-card p { color: var(--text-secondary); margin-bottom: 1rem; }
+
+        .formula-box {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .formula-box .formula {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+        }
+
+        .example-box {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .example-box h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .example-box p { color: var(--text-secondary); margin-bottom: 0.8rem; }
+
+        .realworld-box {
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .realworld-box h4 {
+            color: var(--warning);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .interactive-canvas {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .interactive-canvas h4 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+        }
+
+        canvas, svg { max-width: 100%; height: auto; }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn:hover { border-color: var(--primary); background: var(--bg-card-hover); }
+        .btn-primary { background: var(--primary); border-color: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+
+        .tip-box {
+            background: rgba(16, 185, 129, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tip-box strong { color: var(--primary-light); }
+
+        .footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer a { color: var(--primary-light); text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .hero-section h1 { font-size: 2rem; }
+            .container { padding: 0 1rem; }
+        }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-section);
+            color: var(--primary-light);
+            font-weight: 600;
+        }
+
+        td { color: var(--text-secondary); }
+
+        .atom-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .atom-svg {
+            max-width: 400px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">K</div>
+                <div class="logo-text">
+                    <h1>KaniMath</h1>
+                    <span>IB MYP4 Science Study Guide</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <span class="badge badge-myp4">MYP4</span>
+                <span class="badge badge-ib">IB Curriculum</span>
+                <a href="myp4-science-ions-isotopes-assessment.html" class="nav-link primary">Take Assessment →</a>
+                <a href="/" class="nav-link">← Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <div class="container">
+            <h1>⚛️ Ions, Isotopes & Ionic Bonding</h1>
+            <p>Master atomic structure, ion formation, isotop identification, and ionic bonding principles. Based on MYP4 Science curriculum with interactive diagrams and real-world applications.</p>
+            <div class="topic-nav">
+                <a href="#ions" class="topic-nav-item">Ions</a>
+                <a href="#isotopes" class="topic-nav-item">Isotopes</a>
+                <a href="#ionic-bonding" class="topic-nav-item">Ionic Bonding</a>
+                <a href="#properties" class="topic-nav-item">Properties</a>
+                <a href="#realworld" class="topic-nav-item">Real-World Apps</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 1: Ions -->
+    <section class="section" id="ions">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(16, 185, 129, 0.15);">⚛️</span> Ions</h2>
+                <p>Understanding how atoms gain or lose electrons to form charged particles (Haese Science Chapter 4)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>What are Ions?</h3>
+                    <p>An ion is an atom or molecule with a net electrical charge due to the loss or gain of electrons.</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">Neutral Atom → Ion + e⁻ (or Ion - e⁻)</div>
+                        <div class="formula">Cation: positive ion (lost electrons)</div>
+                        <div class="formula">Anion: negative ion (gained electrons)</div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Remember:</strong> Ions are formed to achieve a stable electron configuration (usually 8 valence electrons - the octet rule).
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Formation of Ions</h3>
+                    <p>Atoms gain or lose electrons to achieve stable electron configurations:</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">Na → Na⁺ + e⁻</div>
+                        <div class="formula">Cl + e⁻ → Cl⁻</div>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 1: Sodium Ion</h4>
+                        <p><strong>Neutral Sodium (Na):</strong> 11 protons, 11 electrons</p>
+                        <p><strong>Sodium Ion (Na⁺):</strong> 11 protons, 10 electrons</p>
+                        <p><strong>Charge:</strong> +1 (one more proton than electrons)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-col" style="margin-top: 1.5rem;">
+                <div class="content-card">
+                    <h3>Common Cations (+)</h3>
+                    <table>
+                        <tr><th>Ion</th><th>Name</th><th>Source</th></tr>
+                        <tr><td>Na⁺</td><td>Sodium ion</td><td>Group 1</td></tr>
+                        <tr><td>K⁺</td><td>Potassium ion</td><td>Group 1</td></tr>
+                        <tr><td>Ca²⁺</td><td>Calcium ion</td><td>Group 2</td></tr>
+                        <tr><td>Mg²⁺</td><td>Magnesium ion</td><td>Group 2</td></tr>
+                        <tr><td>Al³⁺</td><td>Aluminium ion</td><td>Group 13</td></tr>
+                    </table>
+                </div>
+                <div class="content-card">
+                    <h3>Common Anions (−)</h3>
+                    <table>
+                        <tr><th>Ion</th><th>Name</th><th>Source</th></tr>
+                        <tr><td>Cl⁻</td><td>Chloride ion</td><td>Group 17</td></tr>
+                        <tr><td>Br⁻</td><td>Bromide ion</td><td>Group 17</td></tr>
+                        <tr><td>O²⁻</td><td>Oxide ion</td><td>Group 16</td></tr>
+                        <tr><td>S²⁻</td><td>Sulfide ion</td><td>Group 16</td></tr>
+                        <tr><td>N³⁻</td><td>Nitride ion</td><td>Group 15</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="example-box full-width">
+                <h4>📝 Example 2: Magnesium Ion Formation</h4>
+                <p><strong>Step 1:</strong> Neutral Mg has 12 protons and 12 electrons (2,8,2 configuration)</p>
+                <p><strong>Step 2:</strong> Loses 2 valence electrons from outer shell</p>
+                <p><strong>Result:</strong> Mg²⁺ with 12 protons, 10 electrons (2,8 configuration - stable!)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Isotopes -->
+    <section class="section" id="isotopes">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(99, 102, 241, 0.15);">🧬</span> Isotopes</h2>
+                <p>Atoms of the same element with different numbers of neutrons (Haese Science Chapter 4)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>What are Isotopes?</h3>
+                    <p>Isotopes are variants of a chemical element that have the same number of protons but different numbers of neutrons.</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">Same: Atomic number (protons)</div>
+                        <div class="formula">Different: Mass number (protons + neutrons)</div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Key Point:</strong> Isotopes of an element have identical chemical properties but different physical properties (like density).
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Notation</h3>
+                    <p>Isotopes are represented using mass number and atomic number:</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">\(^{A}_{Z}X\)</div>
+                        <p style="color: var(--text-muted); font-size: 13px;">X = element symbol, Z = atomic number, A = mass number</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 3: Carbon Isotopes</h4>
+                        <p><strong>Carbon-12:</strong> \(^{12}_{6}C\) (6p⁺, 6n⁰)</p>
+                        <p><strong>Carbon-13:</strong> \(^{13}_{6}C\) (6p⁺, 7n⁰)</p>
+                        <p><strong>Carbon-14:</strong> \(^{14}_{6}C\) (6p⁺, 8n⁰)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid" style="margin-top: 1.5rem;">
+                <div class="content-card">
+                    <h3>Calculating Neutrons</h3>
+                    <p>Number of neutrons = Mass number (A) − Atomic number (Z)</p>
+                    
+                    <div class="example-box">
+                        <h4>📝 Example 4: Oxygen-17</h4>
+                        <p><strong>Notation:</strong> \(^{17}_{8}O\)</p>
+                        <p><strong>Protons:</strong> 8</p>
+                        <p><strong>Neutrons:</strong> 17 - 8 = 9</p>
+                        <p><strong>Electrons:</strong> 8 (neutral atom)</p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Radioactive Isotopes</h3>
+                    <p>Some isotopess are unstable and undergo radioactive decay:</p>
+                    
+                    <div class="example-box">
+                        <h4>📝 Example 5: Carbon-14 Dating</h4>
+                        <p><strong>Use:</strong> Dating archaeological artifacts</p>
+                        <p><strong>Half-life:</strong> 5,730 years</p>
+                        <p><strong>Process:</strong> C-14 decays to nitrogen-14</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="realworld-box full-width">
+                <h4>🌍 Real-World: Medical Isotopes</h4>
+                <p><strong>Iodine-131:</strong> Used to treat thyroid cancer (radioactive isotope)</p>
+                <p><strong>Technetium-99m:</strong> Used in 80% of all nuclear medicine scans</p>
+                <p><strong>Key Point:</strong> Only the nucleus changes during radioactivity - electron configuration stays the same!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Ionic Bonding -->
+    <section class="section" id="ionic-bonding">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(245, 158, 11, 0.15);">⚡</span> Ionic Bonding</h2>
+                <p>Transfer of electrons between atoms to form oppositely charged ions (Haese Science Chapter 5)</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>What is Ionic Bonding?</h3>
+                    <p>Ionic bonding is the electrostatic attraction between oppositely charged ions formed by electron transfer.</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">Metal + Non-metal → Ionic Compound</div>
+                        <div class="formula">Electron transfer: Metal loses, Non-metal gains</div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Remember:</strong> Ionic bonds typically form between metals (left side of periodic table) and non-metals (right side).
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Formation of Sodium Chloride (NaCl)</h3>
+                    
+                    <div class="example-box">
+                        <h4>📝 Example 6: NaCl Formation</h4>
+                        <p><strong>Step 1:</strong> Na atom loses 1 electron → Na⁺</p>
+                        <p><strong>Step 2:</strong> Cl atom gains 1 electron → Cl⁻</p>
+                        <p><strong>Step 3:</strong> Na⁺ and Cl⁻ attract → NaCl (table salt)</p>
+                        <p><strong>Electron transfer:</strong> 1 electron moves from Na to Cl</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid" style="margin-top: 1.5rem;">
+                <div class="content-card">
+                    <h3>Dot-and-Cross Diagrams</h3>
+                    <p>Visual representation of electron transfer:</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">Na• + •Cl: → Na⁺ [:Cl:]⁻</div>
+                        <p style="color: var(--text-muted); font-size: 13px;">Dots = Na electrons, Crosses = Cl electrons</p>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 7: Magnesium Oxide (MgO)</h4>
+                        <p><strong>Mg:</strong> 2,8,2 → loses 2 electrons → Mg²⁺</p>
+                        <p><strong>O:</strong> 2,6 → gains 2 electrons → O²⁻</p>
+                        <p><strong>Formula:</strong> MgO (1:1 ratio)</p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>Formula Writing</h3>
+                    <p>Balance charges to determine the formula:</p>
+                    
+                    <div class="formula-box">
+                        <div class="formula">Ca²⁺ + Cl⁻ → CaCl₂</div>
+                        <div class="formula">Al³⁺ + O²⁻ → Al₂O₃</div>
+                    </div>
+
+                    <div class="example-box">
+                        <h4>📝 Example 8: Calcium Chloride</h4>
+                        <p><strong>Ca²⁺</strong> needs 2 Cl⁻ to balance charge</p>
+                        <p><strong>Total positive:</strong> +2</p>
+                        <p><strong>Total negative:</strong> 2 × (-1) = -2</p>
+                        <p><strong>Formula:</strong> CaCl₂</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-canvas full-width">
+                <h4>Interactive: Ionic Compound Formation</h4>
+                <svg width="600" height="300" viewBox="0 0 600 300" style="background: var(--bg-section); border-radius: 12px;">
+                    <!-- Sodium atom -->
+                    <circle cx="150" cy="150" r="60" fill="#10b981" opacity="0.7"/>
+                    <text x="150" y="155" text-anchor="middle" fill="white" font-size="18" font-weight="bold">Na</text>
+                    <text x="150" y="175" text-anchor="middle" fill="white" font-size="12">11p⁺, 11e⁻</text>
+                    
+                    <!-- Arrow -->
+                    <path d="M 220 150 L 280 150" stroke="#f59e0b" stroke-width="3" fill="none"/>
+                    <text x="250" y="140" text-anchor="middle" fill="#f59e0b" font-size="14">e⁻ transfer</text>
+                    
+                    <!-- Chlorine atom -->
+                    <circle cx="350" cy="150" r="70" fill="#6366f1" opacity="0.7"/>
+                    <text x="350" y="155" text-anchor="middle" fill="white" font-size="18" font-weight="bold">Cl</text>
+                    <text x="350" y="175" text-anchor="middle" fill="white" font-size="12">17p⁺, 17e⁻</text>
+                    
+                    <!-- Products -->
+                    <circle cx="500" cy="120" r="30" fill="#10b981" opacity="0.9"/>
+                    <text x="500" y="125" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Na⁺</text>
+                    
+                    <circle cx="500" cy="180" r="35" fill="#6366f1" opacity="0.9"/>
+                    <text x="500" y="185" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Cl⁻</text>
+                    
+                    <text x="500" y="225" text-anchor="middle" fill="var(--primary-light)" font-size="14" font-weight="600">NaCl</text>
+                </svg>
+                <p style="color: var(--primary-light); font-weight: 600; margin-top: 10px;">Electron transfer from Na to Cl forms ionic bond</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Properties of Ionic Compounds -->
+    <section class="section" id="properties">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(239, 68, 68, 0.15);">💎</span> Properties of Ionic Compounds</h2>
+                <p>How ionic bonding affects physical properties (Haese Science Chapter 5)</p>
+            </div>
+
+            <div class="three-col">
+                <div class="content-card">
+                    <h3>🔥 High Melting Point</h3>
+                    <p>Strong electrostatic forces between ions require lots of energy to overcome.</p>
+                    <div class="formula-box">
+                        <div class="formula">NaCl: 801°C</div>
+                        <div class="formula">MgO: 2852°C</div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>⚡ Electrical Conductivity</h3>
+                    <p>Conduct electricity when molten or dissolved (ions can move).</p>
+                    <div class="formula-box">
+                        <div class="formula">Solid: ❌ No conduction</div>
+                        <div class="formula">Liquid: ✅ Conduction</div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <h3>💧 Solubility</h3>
+                    <p>Many ionic compounds dissolve in water (polar solvent).</p>
+                    <div class="formula-box">
+                        <div class="formula">NaCl: Soluble</div>
+                        <div class="formula">CaCO₃: Insoluble</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-box full-width" style="margin-top: 1.5rem;">
+                <h4>📝 Example 9: Comparing MgO and NaCl</h4>
+                <p><strong>MgO:</strong> Mg²⁺ and O²⁻ → 2+ and 2- charges → stronger attraction → higher melting point (2852°C)</p>
+                <p><strong>NaCl:</strong> Na⁺ and Cl⁻ → 1+ and 1- charges → weaker attraction → lower melting point (801°C)</p>
+                <p><strong>Rule:</strong> Higher ion charges = stronger ionic bonds = higher melting point!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Real-World Applications -->
+    <section class="section" id="realworld">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="section-icon" style="background: rgba(16, 185, 129, 0.15);">🌍</span> Real-World Applications</h2>
+                <p>How ions, isotopess and ionic bonding are used in everyday life</p>
+            </div>
+
+            <div class="three-col">
+                <div class="content-card">
+                    <h3>🧂 Table Salt (NaCl)</h3>
+                    <p>Essential for human health - nerves need Na⁺ ions to transmit signals. Too much causes high blood pressure.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>💊 Medicine</h3>
+                    <p>Isotope iodine-131 treats thyroid issues. Ionic compounds like Mg²⁺ help muscle function.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>🕰️ Carbon Dating</h3>
+                    <p>Carbon-14 isotopess date archaeological finds up to 50,000 years old. Used on Dead Sea Scrolls!</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>🔋 Batteries</h3>
+                    <p>Lithium-ion batteries use Li⁺ movement between electrodes. Ionic conductivity is key!</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>💎 Gemstones</h3>
+                    <p>Different ions give gemstones their colors: Cr³⁺ = ruby red, Co²⁺ = blue glass.</p>
+                </div>
+
+                <div class="content-card">
+                    <h3>🏗️ Construction</h3>
+                    <p>Calcium ions (Ca²⁺) in cement and concrete. Strong ionic bonds = strong buildings!</p>
+                </div>
+            </div>
+
+            <div class="realworld-box full-width" style="margin-top: 2rem;">
+                <h4>🌍 Swedish Example: Vattenfall Power Plants</h4>
+                <p><strong>Context:</strong> Swedish power company uses ionic compounds in batteries for renewable energy storage.</p>
+                <p><strong>Science:</strong> Lithium-ion (Li⁺) and sodium-ion (Na⁺) batteries store energy from wind/solar for later use.</p>
+                <p style="color: var(--primary); font-weight: 600; margin-top: 1rem;">Sweden aims for 100% renewable electricity by 2040 - ionic battery tech is crucial!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Link -->
+    <section class="section" style="text-align: center; background: var(--bg-section);">
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Ready to Test Your Knowledge?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Take the comprehensive science assessment with 20 questions covering all topics</p>
+            <a href="myp4-science-ions-isotopes-assessment.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 18px; text-decoration: none; display: inline-block;">Start Assessment →</a>
+            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 14px;">20 Questions • 45 Minutes • Covers All Topics</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>KaniMath • IB MYP4 Science Study Material</p>
+            <p style="margin-top: 0.5rem;">Based on MYP4 Science Curriculum</p>
+            <p style="margin-top: 1rem;">
+                <a href="../src/pages/Home.jsx">← Back to KaniMath Home</a> • 
+                <a href="myp4-science-ions-isotopes-assessment.html">Take Assessment</a> • 
+                <a href="https://github.com/kram1947/kkib">GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+</body>
+</html>

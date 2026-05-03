@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYP4 Science Assessment - Ions, Isotopes & Ionic Bonding | KaniMath</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #10b981; --primary-dark: #059669; --primary-light: #34d399; --secondary: #6366f1; --danger: #ef4444; --warning: #f59e0b; --bg-dark: #0f172a; --bg-card: #1e293b; --bg-hover: #334155; --bg-section: #0a0f1a; --text-primary: #f8fafc; --text-secondary: #94a3b8; --text-muted: #64748b; --border: #475569; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); min-height: 100vh; }
+        .app-container { display: flex; min-height: 100vh; }
+        .sidebar { width: 280px; background: var(--bg-card); border-right: 1px solid var(--border); padding: 20px; display: flex; flex-direction: column; position: fixed; height: 100vh; overflow-y: auto; }
+        .logo { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; }
+        .logo-text h1 { font-size: 14px; font-weight: 600; }
+        .logo-text span { font-size: 11px; color: var(--text-secondary); }
+        .timer-container { background: rgba(16, 185, 129, 0.1); border: 1px solid var(--primary); border-radius: 12px; padding: 16px; margin-bottom: 20px; text-align: center; }
+        .timer-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+        .timer { font-size: 32px; font-weight: 700; font-family: 'Fira Code', monospace; color: var(--primary); }
+        .timer.warning { color: var(--warning); animation: pulse 1s infinite; }
+        .timer.danger { color: var(--danger); }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .progress-section { margin-bottom: 20px; }
+        .progress-text { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 8px; color: var(--text-secondary); }
+        .progress-bar { height: 8px; background: var(--bg-section); border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: width 0.3s ease; }
+        .nav-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .question-nav { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 20px; }
+        .nav-btn { aspect-ratio: 1; border: 2px solid var(--border); background: var(--bg-section); border-radius: 8px; color: var(--text-secondary); font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+        .nav-btn:hover { background: var(--bg-hover); border-color: var(--primary); }
+        .nav-btn.current { background: var(--primary); border-color: var(--primary); color: white; }
+        .nav-btn.answered { background: var(--secondary); border-color: var(--secondary); color: white; }
+        .controls { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+        .btn { padding: 10px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-section); color: var(--text-primary); font-size: 14px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; font-weight: 500; text-align: center; }
+        .btn:hover { border-color: var(--primary); background: var(--bg-hover); }
+        .btn-primary { background: var(--primary); border-color: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-danger { background: rgba(239, 68, 68, 0.1); border-color: var(--danger); color: var(--danger); }
+        .main-content { flex: 1; margin-left: 280px; padding: 40px; max-width: 900px; }
+        .quiz-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .quiz-title h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+        .quiz-title p { font-size: 14px; color: var(--text-secondary); }
+        .badge { padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-myp4 { background: rgba(16, 185, 129, 0.2); color: var(--primary-light); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .question-container { margin-bottom: 40px; }
+        .question-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .question-number { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; }
+        .question-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .difficulty-dots span { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--border); margin-right: 3px; }
+        .difficulty-dots span.active { background: var(--warning); }
+        .topic-tag { padding: 4px 10px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; font-size: 11px; color: var(--primary-light); }
+        .question-text { font-size: 16px; line-height: 1.8; margin-bottom: 20px; color: var(--text-primary); }
+        .question-diagram { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+        .option-btn { padding: 16px 20px; background: var(--bg-card); border: 2px solid var(--border); border-radius: 12px; color: var(--text-primary); font-size: 15px; cursor: pointer; transition: all 0.2s; text-align: left; font-family: 'Inter', sans-serif; }
+        .option-btn:hover { border-color: var(--primary); background: var(--bg-hover); }
+        .option-btn.selected { border-color: var(--primary); background: rgba(16, 185, 129, 0.1); }
+        .option-btn.correct { border-color: var(--secondary); background: rgba(99, 102, 241, 0.1); }
+        .option-btn.incorrect { border-color: var(--danger); background: rgba(239, 68, 68, 0.1); }
+        .option-label { display: inline-block; width: 30px; height: 30px; background: var(--bg-section); border-radius: 8px; text-align: center; line-height: 30px; font-weight: 600; margin-right: 12px; }
+        .option-btn.selected .option-label { background: var(--primary); color: white; }
+        .option-btn.correct .option-label { background: var(--secondary); color: white; }
+        .option-btn.incorrect .option-label { background: var(--danger); color: white; }
+        .explanation { background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 20px; margin-top: 20px; display: none; }
+        .explanation.show { display: block; }
+        .explanation h4 { color: var(--primary-light); margin-bottom: 10px; font-size: 14px; }
+        .explanation p { color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+        .question-actions { display: flex; gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+        .result-screen { text-align: center; padding: 60px 20px; display: none; }
+        .result-screen.show { display: block; }
+        .result-icon { width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 48px; margin: 0 auto 30px; }
+        .result-icon.excellent { background: rgba(16, 185, 129, 0.1); border: 2px solid var(--secondary); }
+        .result-icon.good { background: rgba(99, 102, 241, 0.1); border: 2px solid var(--primary); }
+        .result-icon.needs-work { background: rgba(245, 158, 11, 0.1); border: 2px solid var(--warning); }
+        .result-score { font-size: 64px; font-weight: 800; margin-bottom: 10px; }
+        .result-score.excellent { color: var(--secondary); }
+        .result-score.good { color: var(--primary); }
+        .result-score.needs-work { color: var(--warning); }
+        .result-details { color: var(--text-secondary); margin-bottom: 30px; }
+        .result-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 30px 0; }
+        .stat-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+        .stat-value { font-size: 28px; font-weight: 700; color: var(--primary-light); }
+        .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        @media (max-width: 1024px) { .sidebar { width: 100%; height: auto; position: relative; } .main-content { margin-left: 0; padding: 20px; } .app-container { flex-direction: column; } }
+        @media (max-width: 768px) { .options-grid { grid-template-columns: 1fr; } .result-stats { grid-template-columns: repeat(2, 1fr); } }
+        .review-section { margin-top: 30px; }
+        .review-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 15px; }
+        .review-item.correct { border-left: 4px solid var(--secondary); }
+        .review-item.incorrect { border-left: 4px solid var(--danger); }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">K</div>
+                <div class="logo-text"><h1><a href="/" style="color:inherit;text-decoration:none;">KaniMath</a></h1><span>Science Quiz</span></div>
+            </div>
+            <a href="/" class="btn" style="margin-bottom:20px;display:block;text-align:center;">← Back to Home</a>
+            <div class="timer-container"><div class="timer-label">Time Remaining</div><div class="timer" id="timer">45:00</div></div>
+            <div class="progress-section">
+                <div class="progress-text"><span>Progress</span><span id="progress-text">0/20</span></div>
+                <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+            </div>
+            <div class="nav-label">Question Navigator</div>
+            <div class="question-nav" id="question-nav"></div>
+            <div class="controls">
+                <button class="btn btn-primary" onclick="submitQuiz()">Submit Quiz</button>
+                <button class="btn" onclick="reviewAnswers()">Review</button>
+                <button class="btn btn-danger" onclick="exitQuiz()">Exit</button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div id="quiz-screen">
+                <div class="quiz-header">
+                    <div class="quiz-title"><h1>Science Assessment</h1><p>20 Questions • 45 Minutes • Ions, Isotopes & Ionic Bonding</p></div>
+                    <span class="badge badge-myp4">MYP4</span>
+                </div>
+                <div id="question-display"></div>
+            </div>
+            <div class="result-screen" id="result-screen">
+                <div class="result-icon excellent" id="result-icon"><span>🎉</span></div>
+                <div class="result-score excellent" id="result-score">0%</div>
+                <div class="result-details" id="result-details">You answered 0 out of 20 correctly.</div>
+                <div class="result-stats">
+                    <div class="stat-item"><div class="stat-value" id="stat-correct">0</div><div class="stat-label">Correct</div></div>
+                    <div class="stat-item"><div class="stat-value" id="stat-incorrect">0</div><div class="stat-label">Incorrect</div></div>
+                    <div class="stat-item"><div class="stat-value" id="stat-time">0:00</div><div class="stat-label">Time Used</div></div>
+                    <div class="stat-item"><div class="stat-value" id="stat-score">0</div><div class="stat-label">Marks</div></div>
+                </div>
+                <div class="question-actions">
+                    <button class="btn btn-primary" onclick="reviewAnswers()">Review Answers</button>
+                    <button class="btn" onclick="retakeQuiz()">Retake Quiz</button>
+                    <button class="btn" onclick="exitQuiz()">Back to Study</button>
+                </div>
+                <div class="review-section" id="review-section" style="display:none;"></div>
+            </div>
+        </main>
+    </div>
+    <script>
+        const questions = [
+            // Section 1: Ions (Questions 1-5)
+            {id:1,topic:"Ions",difficulty:1,text:"What is an ion?",options:["A charged atom or molecule","A neutral atom","An atom with equal protons and electrons","A type of chemical bond"],correct:0,explanation:"An ion is formed when an atom gains or loses electrons, creating a net electrical charge."},
+            {id:2,topic:"Ions",difficulty:1,text:"Which particle is a cation?",options:["Na⁺","Cl⁻","O²⁻","Br⁻"],correct:0,explanation:"Na⁺ is a cation (positive ion) formed when sodium loses one electron."},
+            {id:3,topic:"Ions",difficulty:2,text:"How many electrons does Mg²⁺ have?",options:["10","12","14","8"],correct:0,explanation:"Mg has 12 protons. Mg²⁺ lost 2 electrons, so it has 10 electrons."},
+            {id:4,topic:"Ions",difficulty:2,text:"What charge will an atom with 11 protons and 10 electrons have?",options:["+1","-1","+2","0"],correct:0,explanation:"11 protons (+) and 10 electrons (-) gives a net charge of +1."},
+            {id:5,topic:"Ions",difficulty:1,text:"Which group forms 1+ ions?",options:["Group 1","Group 6","Group 7","Group 8"],correct:0,explanation:"Group 1 elements (Li, Na, K) lose one electron to form 1+ ions."},
+
+            // Section 2: Isotopes (Questions 6-10)
+            {id:6,topic:"Isotopes",difficulty:1,text:"What defines isotopess of the same element?",options:["Same protons, different neutrons","Same neutrons, different protons","Same electrons, different protons","Same mass number"],correct:0,explanation:"Isotopes have the same atomic number (protons) but different mass numbers due to different numbers of neutrons."},
+            {id:7,topic:"Isotopes",difficulty:2,text:"Carbon-14 has how many neutrons?",options:["8","6","7","14"],correct:0,explanation:"Carbon-14: 6 protons (atomic number 6), so neutrons = 14 - 6 = 8."},
+            {id:8,topic:"Isotopes",difficulty:2,text:"Which notation represents an isotope of chlorine with 18 neutrons?",options:["³⁵₁₇Cl","³⁷₁₇Cl","³⁶₁₇Cl","³⁸₁₇Cl"],correct:0,explanation:"Protons = 17, neutrons = 18, so mass number = 35. Notation: ³⁵₁₇Cl"},
+            {id:9,topic:"Isotopes",difficulty:3,text:"An atom has 8 protons and 9 neutrons. What is it?",options:["¹⁷₈O","¹⁶₈O","¹⁸₈O","¹⁷₇N"],correct:0,explanation:"8 protons = oxygen (O), 8+9=17 mass number. This is ¹⁷₈O (oxygen-17)."},
+            {id:10,topic:"Isotopes",difficulty:2,text:"Which isotope is used in carbon dating?",options:["Carbon-14","Carbon-12","Carbon-13","Carbon-11"],correct:0,explanation:"Carbon-14 is radioactive with a half-life of 5,730 years, used for dating organic materials."},
+
+            // Section 3: Ionic Bonding (Questions 11-15)
+            {id:11,topic:"Ionic Bonding",difficulty:1,text:"What type of elements typically form ionic bonds?",options:["Metal + Non-metal","Metal + Metal","Non-metal + Non-metal","Noble gas + Metal"],correct:0,explanation:"Ionic bonds form when metals (which lose electrons) bond with non-metals (which gain electrons)."},
+            {id:12,topic:"Ionic Bonding",difficulty:2,text:"What happens to electrons in ionic bonding?",options:["Transfer from metal to non-metal","Shared equally","Shared unequally","Destroyed"],correct:0,explanation:"Electrons are transferred from the metal atom to the non-metal atom."},
+            {id:13,topic:"Ionic Bonding",difficulty:2,text:"What is the formula for calcium chloride?",options:["CaCl₂","CaCl","Ca₂Cl","Ca₂Cl₂"],correct:0,explanation:"Ca²⁺ needs two Cl⁻ ions to balance charge: (+2) + 2(-1) = 0. Formula: CaCl₂"},
+            {id:14,topic:"Ionic Bonding",difficulty:3,text:"What is the formula for aluminum oxide?",options:["Al₂O₃","AlO","Al₂O","AlO₃"],correct:0,explanation:"Al³⁺ and O²⁻ require: 2(3+) + 3(2-) = +6 -6 = 0. Formula: Al₂O₃"},
+            {id:15,topic:"Ionic Bonding",difficulty:3,text:"Which dot-and-cross diagram shows NaCl correctly?",options:["Na⁺ [•Cl:]⁻","Na [•Cl:]⁺","Na⁺ [Cl:]⁺","Na [Cl:]⁻"],correct:0,explanation:"Na loses 1 electron (becomes Na⁺), Cl gains 1 electron (becomes Cl⁻ with 8 electrons in outer shell)."},
+
+            // Section 4: Properties (Questions 16-18)
+            {id:16,topic:"Properties",difficulty:2,text:"Why do ionic compounds have high melting points?",options:["Strong electrostatic forces between ions","Weak intermolecular forces","Covalent bonds are weak","They are gases at room temperature"],correct:0,explanation:"The strong electrostatic attraction between oppositely charged ions requires lots of energy to overcome."},
+            {id:17,topic:"Properties",difficulty:2,text:"When can ionic compounds conduct electricity?",options:["When molten or dissolved in water","Only when solid","Never","Only at very low temperatures"],correct:0,explanation:"Ions must be free to move to conduct electricity. This happens when molten or dissolved."},
+            {id:18,topic:"Properties",difficulty:3,text:"Which has a higher melting point: NaCl or MgO? Why?",options:["MgO - higher ion charges","NaCl - more ions","MgO - lighter ions","NaCl - stronger bonds"],correct:0,explanation:"MgO has Mg²⁺ and O²⁻ (2+ and 2-) vs NaCl's 1+ and 1-. Higher charges = stronger attraction = higher melting point."},
+
+            // Section 5: Real-World Applications (Questions 19-20)
+            {id:19,topic:"Real-World",difficulty:2,text:"Which medical isotope treats thyroid issues?",options:["Iodine-131","Carbon-14","Technetium-99m","Oxygen-17"],correct:0,explanation:"Iodine-131 is used to treat thyroid cancer and hyperthyroidism."},
+            {id:20,topic:"Real-World",difficulty:2,text:"What type of battery uses Li⁺ ion movement?",options:["Lithium-ion battery","Lead-acid battery","Alkaline battery","Nickel-cadmium battery"],correct:0,explanation:"Lithium-ion batteries work by moving Li⁺ ions between electrodes during charge/discharge cycles."}
+        ];
+
+        let currentQ=0, answers=new Array(20).fill(null), quizSubmitted=false, timerInterval, timeRemaining=2700;
+
+        function startTimer(){
+            timerInterval=setInterval(function(){
+                timeRemaining--;
+                updateTimerDisplay();
+                if(timeRemaining<=600)document.getElementById('timer').classList.add('warning');
+                if(timeRemaining<=60){
+                    document.getElementById('timer').classList.remove('warning');
+                    document.getElementById('timer').classList.add('danger');
+                }
+                if(timeRemaining<=0){
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+            },1000);
+        }
+
+        function updateTimerDisplay(){
+            document.getElementById('timer').textContent=Math.floor(timeRemaining/60)+':'+String(timeRemaining%60).padStart(2,'0');
+        }
+
+        function createQuestionNav(){
+            var nav=document.getElementById('question-nav');
+            nav.innerHTML='';
+            questions.forEach(function(q,i){
+                var btn=document.createElement('button');
+                btn.className='nav-btn';
+                btn.textContent=i+1;
+                btn.onclick=function(){goToQuestion(i);};
+                if(i===currentQ)btn.classList.add('current');
+                if(answers[i]!==null)btn.classList.add('answered');
+                nav.appendChild(btn);
+            });
+        }
+
+        function updateProgress(){
+            var answered=answers.filter(function(a){return a!==null;}).length;
+            document.getElementById('progress-text').textContent=answered+'/20';
+            document.getElementById('progress-fill').style.width=(answered*5)+'%';
+        }
+
+        function displayQuestion(index){
+            var q=questions[index];
+            var prevTopic = index > 0 ? questions[index-1].topic : null;
+            var isNewTopic = q.topic != prevTopic;
+            var topicSection = isNewTopic ? '<div style="background:rgba(16,185,129,0.1);border:2px solid var(--primary);border-radius:12px;padding:15px;margin-bottom:20px;text-align:center;"><div style="font-size:13px;color:var(--primary-light);font-weight:600;">📚 NEW SECTION</div><div style="font-size:18px;font-weight:700;color:white;margin-top:5px;">'+q.topic+'</div></div>' : '';
+            
+            document.getElementById('question-display').innerHTML=topicSection+'<div class="question-container"><div class="question-header"><div class="question-number">'+q.id+'</div><div class="question-meta"><div class="difficulty-dots">'+Array(4).fill(0).map(function(_,i){return '<span class="'+(i<q.difficulty?'active':'')+'"></span>';}).join('')+'</div><span class="topic-tag" style="font-size:12px;font-weight:600;padding:5px 12px;">📌 '+q.topic+'</span></div></div><div class="question-text">'+q.text+'</div><div class="options-grid">'+q.options.map(function(opt,i){return '<button class="option-btn '+(answers[index]===i?'selected':'')+' '+(quizSubmitted&&i===q.correct?'correct':'')+' '+(quizSubmitted&&answers[index]===i&&i!==q.correct?'incorrect':'')+'" onclick="selectOption('+index+','+i+')" '+(quizSubmitted?'disabled':'')+'><span class="option-label">'+String.fromCharCode(65+i)+'</span><span>'+opt+'</span></button>';}).join('')+'</div><div class="explanation '+(quizSubmitted&&answers[index]!==q.correct?'show':'')+'"><h4>Explanation:</h4><p>'+q.explanation+'</p></div><div class="question-actions"><button class="btn" onclick="goToQuestion('+(index-1)+')" '+(index===0?'disabled':'')+'>← Previous</button><button class="btn btn-primary" onclick="goToQuestion('+(index+1)+')" '+(index===19?'disabled':'')+'>Next →</button></div></div>';
+        }
+
+        function selectOption(qIndex,optIndex){
+            answers[qIndex]=optIndex;
+            createQuestionNav();
+            updateProgress();
+            displayQuestion(qIndex);
+        }
+
+        function goToQuestion(index){
+            if(index>=0&&index<20){
+                currentQ=index;
+                createQuestionNav();
+                displayQuestion(index);
+            }
+        }
+
+        function submitQuiz(){
+            if(quizSubmitted)return;
+            quizSubmitted=true;
+            clearInterval(timerInterval);
+            var correct=answers.filter(function(a,i){return a===questions[i].correct;}).length;
+            var percent=Math.round(correct/20*100);
+            var used=2700-timeRemaining;
+            document.getElementById('quiz-screen').style.display='none';
+            document.getElementById('result-screen').classList.add('show');
+            document.getElementById('result-score').textContent=percent+'%';
+            document.getElementById('result-details').textContent='You answered '+correct+' out of 20 correctly.';
+            if(percent>=80){
+                document.getElementById('result-score').className='result-score excellent';
+                document.getElementById('result-icon').className='result-icon excellent';
+                document.getElementById('result-icon').innerHTML='<span>🎉</span>';
+            }else if(percent>=60){
+                document.getElementById('result-score').className='result-score good';
+                document.getElementById('result-icon').className='result-icon good';
+                document.getElementById('result-icon').innerHTML='<span>👍</span>';
+            }else{
+                document.getElementById('result-score').className='result-score needs-work';
+                document.getElementById('result-icon').className='result-icon needs-work';
+                document.getElementById('result-icon').innerHTML='<span>📚</span>';
+            }
+            document.getElementById('stat-correct').textContent=correct;
+            document.getElementById('stat-incorrect').textContent=20-correct;
+            document.getElementById('stat-time').textContent=Math.floor(used/60)+':'+String(used%60).padStart(2,'0');
+            document.getElementById('stat-score').textContent=correct;
+        }
+
+        function reviewAnswers(){
+            var section=document.getElementById('review-section');
+            section.style.display=section.style.display==='none'?'block':'none';
+            if(section.style.display==='block'){
+                section.innerHTML='<h3 style="margin-bottom:20px;">Question Review</h3>';
+                questions.forEach(function(q,i){
+                    var isCorrect=answers[i]===q.correct;
+                    section.innerHTML+='<div class="review-item '+(isCorrect?'correct':'incorrect')+'"><div class="review-status '+(isCorrect?'correct':'incorrect')+'">'+(i+1)+'. '+(isCorrect?'Correct':'Incorrect')+'</div><p>'+q.text+'</p><p style="margin-top:10px;color:var(--text-muted);">Your answer: '+(answers[i]!==null?q.options[answers[i]]:'Not answered')+'</p>'+(isCorrect?'':'<p style="color:var(--secondary);margin-top:5px;">Correct: '+q.options[q.correct]+'</p>')+'</div>';
+                });
+            }
+        }
+
+        function retakeQuiz(){
+            answers=new Array(20).fill(null);
+            currentQ=0;
+            quizSubmitted=false;
+            timeRemaining=2700;
+            document.getElementById('quiz-screen').style.display='block';
+            document.getElementById('result-screen').classList.remove('show');
+            createQuestionNav();
+            updateProgress();
+            displayQuestion(0);
+            startTimer();
+        }
+
+        function exitQuiz(){
+            window.location.href='myp4-science-ions-isotopes-study.html';
+        }
+
+        createQuestionNav();
+        updateProgress();
+        displayQuestion(0);
+        startTimer();
+    </script>
+</body>
+</html>
